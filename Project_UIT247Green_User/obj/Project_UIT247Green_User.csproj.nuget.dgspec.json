@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dangdo1364\\source\\repos\\Project_UIT247Green_User\\Project_UIT247Green_User\\Project_UIT247Green_User.csproj": {}
+    "C:\\Users\\dangdo1364\\Desktop\\Project_UIT247Green_User\\Project_UIT247Green_User\\Project_UIT247Green_User.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dangdo1364\\source\\repos\\Project_UIT247Green_User\\Project_UIT247Green_User\\Project_UIT247Green_User.csproj": {
+    "C:\\Users\\dangdo1364\\Desktop\\Project_UIT247Green_User\\Project_UIT247Green_User\\Project_UIT247Green_User.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dangdo1364\\source\\repos\\Project_UIT247Green_User\\Project_UIT247Green_User\\Project_UIT247Green_User.csproj",
+        "projectUniqueName": "C:\\Users\\dangdo1364\\Desktop\\Project_UIT247Green_User\\Project_UIT247Green_User\\Project_UIT247Green_User.csproj",
         "projectName": "Project_UIT247Green_User",
-        "projectPath": "C:\\Users\\dangdo1364\\source\\repos\\Project_UIT247Green_User\\Project_UIT247Green_User\\Project_UIT247Green_User.csproj",
+        "projectPath": "C:\\Users\\dangdo1364\\Desktop\\Project_UIT247Green_User\\Project_UIT247Green_User\\Project_UIT247Green_User.csproj",
         "packagesPath": "C:\\Users\\dangdo1364\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dangdo1364\\source\\repos\\Project_UIT247Green_User\\Project_UIT247Green_User\\obj\\",
+        "outputPath": "C:\\Users\\dangdo1364\\Desktop\\Project_UIT247Green_User\\Project_UIT247Green_User\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dangdo1364\\AppData\\Roaming\\NuGet\\NuGet.Config",
