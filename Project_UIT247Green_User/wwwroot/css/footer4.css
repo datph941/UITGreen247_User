@@ -69,14 +69,9 @@
       display: inline-block;
       vertical-align: middle; }
   .footer-center .module h3.modtitle {
-    /* [4] */
-    /* [6] */
-    /* [6] */
-    /* [7] */
     font-size: 16px;
-    /* [8] */
     font-size: 1.6rem;
-    /* [8] */
+
     text-transform: uppercase;
     font-weight: 700;
     color: #fff; }
