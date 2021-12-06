@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace Project_UIT247Green_User.Controllers
 {
-    public class CartController : Controller
+    public class OrdersController : Controller
     {
-        public IActionResult Index() // file cart sửa tên thành index giúp t
+        public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Checkout()
+        public IActionResult Order_history()
+        {
+            return View();
+        }
+        public IActionResult Order_information()
         {
             return View();
         }
