@@ -44,3 +44,15 @@ C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\ob
 C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Order\Order-history.cshtml.g.cs
 C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Order\Order-information.cshtml.g.cs
 C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Product\Product.cshtml.g.cs
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\MySql.Data.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\MySql.Data.EntityFrameworkCore.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\Remotion.Linq.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\System.Interactive.Async.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
