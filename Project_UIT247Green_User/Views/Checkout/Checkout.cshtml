@@ -3,3 +3,261 @@
 *@
 @{
 }
+<body class="res layout-subpage">
+	
+	<!-- Main Container  -->
+	<div class="main-container container">
+		<ul class="breadcrumb">
+			<li><a href="#"><i class="fa fa-home"></i></a></li>
+			<li><a href="#">Thanh toán</a></li>
+			
+		</ul>
+		
+		<div class="row">
+			<!--Middle Part Start-->
+			<div id="content" class="col-sm-12">
+			  <h2 class="title">Thanh toán</h2>
+			  <div class="so-onepagecheckout ">
+				<div class="col-left col-sm-3">
+				  <div class="panel panel-default">
+					<div class="panel-heading">
+					  <h4 class="panel-title"><i class="fa fa-sign-in"></i> Chưa là thành viên?</h4>
+					</div>
+					  <div class="panel-body">
+							<div class="radio">
+							  <label>
+								<input type="radio" value="register" name="account">
+								Tạo tài khoản</label>
+							</div>
+							<!-- <div class="radio">
+							  <label>
+								<input type="radio" checked="checked" value="guest" name="account">
+								Đăng nhập</label>
+							</div> -->
+							<div class="radio">
+							  <label>
+								<input type="radio" value="returning" name="account">
+								Khách vãng lai</label>
+							</div>
+							<br>
+					  </div>
+				  </div>
+				  <div class="panel panel-default">
+					<div class="panel-heading">
+					  <h4 class="panel-title"><i class="fa fa-user"></i> Thông tin khách hàng</h4>
+					</div>
+					  <div class="panel-body">
+							<fieldset id="account">
+							  <div class="form-group required">
+								<label for="input-payment-firstname" class="control-label">Họ tên</label>
+								<input type="text" class="form-control" id="input-payment-firstname" placeholder="Họ tên" value="" name="firstname">
+							  </div>
+							  <!-- <div class="form-group required">
+								<label for="input-payment-lastname" class="control-label">Last Name</label>
+								<input type="text" class="form-control" id="input-payment-lastname" placeholder="Last Name" value="" name="lastname">
+							  </div> -->
+							  <div class="form-group required">
+								<label for="input-payment-email" class="control-label">E-mail</label>
+								<input type="text" class="form-control" id="input-payment-email" placeholder="E-mail" value="" name="email">
+							  </div>
+							  <div class="form-group required">
+								<label for="input-payment-telephone" class="control-label">Số điện thoại</label>
+								<input type="text" class="form-control" id="input-payment-telephone" placeholder="Số điện thoại" value="" name="telephone">
+							  </div>
+							  <div class="form-group">
+								<label for="input-payment-fax" class="control-label">Tên tài khoản</label>
+								<input type="text" class="form-control" id="input-payment-fax" placeholder="Tên tài khoản" value="" name="fax">
+							  </div>
+							</fieldset>
+						  </div>
+				  </div>
+				  <div class="panel panel-default">
+					<div class="panel-heading">
+					  <h4 class="panel-title"><i class="fa fa-book"></i> Địa chỉ giao hàng</h4>
+					</div>
+					  <div class="panel-body">
+							<fieldset id="address" class="required">
+							  <!-- <div class="form-group">
+								<label for="input-payment-company" class="control-label">Company</label>
+								<input type="text" class="form-control" id="input-payment-company" placeholder="Company" value="" name="company">
+							  </div> -->
+							  <div class="form-group">
+								<label for="input-payment-address-1" class="control-label">Số nhà / Tên đường</label>
+								<input type="text" class="form-control" id="input-payment-address-1" placeholder="Số nhà / Tên đường" value="" name="address_1">
+							  </div>
+							  <div class="form-group required">
+								<label for="input-payment-address-2" class="control-label">Xã / Phường</label>
+								<input type="text" class="form-control" id="input-payment-address-2" placeholder="Xã / Phường" value="" name="address_2">
+							  </div>
+							  <div class="form-group required">
+								<label for="input-payment-city" class="control-label">Quận / Huyện</label>
+								<input type="text" class="form-control" id="input-payment-city" placeholder="Quận / Huyện" value="" name="city">
+							  </div>	
+							  <div class="form-group required">
+								<label for="input-payment-zone" class="control-label">Tỉnh</label>
+								<select class="form-control" id="input-payment-zone" name="zone_id">
+								  <option value=""> --- Vui lòng chọn --- </option>
+								  <option value="3513">Vĩnh Long</option>
+								  <option value="3514">Bạc Liêu</option>
+								  <option value="3515">Quãng Ngãi</option>
+								  <option value="3516">TP. Hồ Chí Minh</option>							  
+								</select>
+							  </div>
+							  <!-- <div class="checkbox">
+								<label>
+								  <input type="checkbox" checked="checked" value="1" name="shipping_address">
+								  My delivery and billing addresses are the same.</label>
+							  </div> -->
+							</fieldset>
+						  </div>
+				  </div>
+				</div>
+				<div class="col-right col-sm-9">
+				  <div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default no-padding">
+							<div class="col-sm-6 checkout-shipping-methods">
+								<div class="panel-heading">
+								  <h4 class="panel-title"><i class="fa fa-truck"></i> Phương thức vận chuyển</h4>
+								</div>
+								<div class="panel-body ">
+									<p>Vui lòng chọn phương thức vận chuyển mà bạn mong muốn.</p>
+									<div class="radio">
+									  <label>
+										<input type="radio" checked="checked" name="Free Shipping">
+										Vận chuyển tiết kiệm</label>
+									</div>
+									<div class="radio">
+									  <label>
+										<input type="radio" name="Fast Shipping">
+										Vận chuyển trong 2h</label>
+									</div>
+									
+								</div>
+							</div>
+							<div class="col-sm-6  checkout-payment-methods">
+								<div class="panel-heading">
+								  <h4 class="panel-title"><i class="fa fa-credit-card"></i> Phương thức thanh toán</h4>
+								</div>
+								<div class="panel-body">
+									<p>Vui lòng chọn phương thức thanh toán mà bạn mong muốn.</p>
+									<div class="radio">
+									  <label>
+										<input type="radio" checked="checked" name="Cash On Delivery">Tiền mặt</label>
+									</div>
+									
+									<div class="radio">
+									  <label>
+										<input type="radio" name="Paypal">Thanh toán online</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					
+					
+					
+					<div class="col-sm-12">
+					  <div class="panel panel-default">
+						<div class="panel-heading">
+						  <h4 class="panel-title"><i class="fa fa-ticket"></i> Bạn có mã khuyến mãi?</h4>
+						</div>
+						  <div class="panel-body row">
+							<div class="col-sm-6 ">
+							<div class="input-group">
+							  <input type="text" class="form-control" id="input-coupon" placeholder="Nhập mã khuyến mãi" value="" name="coupon">
+							  <span class="input-group-btn">
+							  <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Áp dụng">
+							  </span></div>
+							</div>
+							
+							<div class="col-sm-6">
+							<div class="input-group">
+							  <input type="text" class="form-control" id="input-voucher" placeholder="Nhập mã quà tặng" value="" name="voucher">
+							  <span class="input-group-btn">
+							  <input type="submit" class="btn btn-primary" data-loading-text="Loading..." id="button-voucher" value="Áp dụng">
+							  </span> </div>
+							</div>
+						  </div>
+					  </div>
+					</div>
+					
+					<div class="col-sm-12">
+					  <div class="panel panel-default">
+						<div class="panel-heading">
+						  <h4 class="panel-title"><i class="fa fa-shopping-cart"></i> Giỏ hàng</h4>
+						</div>
+						  <div class="panel-body">
+							<div class="table-responsive">
+							  <table class="table table-bordered">
+								<thead>
+								  <tr>
+									<td class="text-center">Sản phẩm</td>
+									<td class="text-left">Tên</td>
+									<td class="text-left">Số lượng</td>
+									<td class="text-right">Đơn giá</td>
+									<td class="text-right">Tổng</td>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<td class="text-center"><a href="product.html"><img width="60px" src="image/demo/shop/product/E4.jpg" alt="sp1" title="sp1" class="img-thumbnail"></a></td>
+									<td class="text-left"><a href="product.html">Sản phẩm 1</a></td>
+									<td class="text-left"><div class="input-group btn-block" style="min-width: 100px;">
+										<input type="text" name="quantity" value="1" size="1" class="form-control">
+										<span class="input-group-btn">
+										<button type="submit" data-toggle="tooltip" title="Cập nhật" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
+										<button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onClick=""><i class="fa fa-times-circle"></i></button>
+										</span></div></td>
+									<td class="text-right">100.000đ</td>
+									<td class="text-right">100.000đ</td>
+								  </tr>
+								</tbody>
+								<tfoot>
+								  <tr>
+									<td class="text-right" colspan="4"><strong>Tổng sản phẩm:</strong></td>
+									<td class="text-right">100.000đ</td>
+								  </tr>
+								  <tr>
+									<td class="text-right" colspan="4"><strong>Phí vận chuyển:</strong></td>
+									<td class="text-right">30.000đ</td>
+								  </tr>
+								  <tr>
+									<td class="text-right" colspan="4"><strong>Tổng thanh toán:</strong></td>
+									<td class="text-right">130.000đ</td>
+								  </tr>
+								</tfoot>
+							  </table>
+							</div>
+						  </div>
+					  </div>
+					</div>
+					<div class="col-sm-12">
+					  <div class="panel panel-default">
+						<div class="panel-heading">
+						  <h4 class="panel-title"><i class="fa fa-pencil"></i> Thêm ghi chú cho đơn hàng</h4>
+						</div>
+						  <div class="panel-body">
+							<textarea rows="4" class="form-control" id="confirm_comment" name="comments"></textarea>
+							<br>
+							<label class="control-label" for="confirm_agree">
+							  <input type="checkbox" checked="checked" value="1" required="" class="validate required" id="confirm_agree" name="confirm agree">
+							  <span>Tôi đã đọc và đồng ý với <a class="agree" href="#"><b>Điều khoản & Chính sách</b></a></span> </label>
+							<div class="buttons">
+							  <div class="pull-right">
+								<input type="button" class="btn btn-primary" id="button-confirm" value="Xác nhận">
+							  </div>
+							</div>
+						  </div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+			<!--Middle Part End -->
+			
+		</div>
+	</div>
+	<!-- //Main Container -->
+</body>
