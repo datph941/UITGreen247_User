@@ -36,3 +36,11 @@ C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\ob
 C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Project_UIT247Green_User.pdb
 C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Project_UIT247Green_User.genruntimeconfig.cache
 C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Project_UIT247Green_User.csproj.CopyComplete
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\About-us\About-us.cshtml.g.cs
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Cart.cshtml.g.cs
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Category\Category.cshtml.g.cs
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Checkout.cshtml.g.cs
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Contact.cshtml.g.cs
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Order\Order-history.cshtml.g.cs
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Order\Order-information.cshtml.g.cs
+C:\Users\dangdo1364\Desktop\Project_UIT247Green_User\Project_UIT247Green_User\obj\Debug\netcoreapp3.1\Razor\Views\Product\Product.cshtml.g.cs
