@@ -228,11 +228,11 @@
                                             </tbody>
                                         </table>
                                         <p class="text-right">
-                                            <a class="btn view-cart" href="#">
+                                            <a class="btn view-cart" asp-controller="cart" asp-action="index">
                                                 <i class="fa fa-shopping-cart"></i>Xem giỏ
                                                 hàng
                                             </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
-                                                                      href="checkout.html"><i class="fa fa-share"></i>Thanh toán</a>
+                                                                      asp-controller="cart" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
                                         </p>
                                     </div>
                                 </li>
@@ -868,7 +868,7 @@
                                                         </li>
                                                         <li class="with-sub-menu hover">
                                                             <p class="close-menu"></p>
-                                                            <a href="about-us.html" class="clearfix">
+                                                            <a asp-controller="home" asp-action="about_us" class="clearfix">
                                                                 <strong>GIỚI THIỆU</strong>
                                                             </a>
                                                         </li>
@@ -1030,7 +1030,7 @@
 
                                                         <li class="with-sub-menu hover">
                                                             <p class="close-menu"></p>
-                                                            <a href="#" class="clearfix">
+                                                            <a asp-controller="home" asp-action="contact" class="clearfix">
                                                                 <strong>LIÊN HỆ</strong>
                                                             </a>
 
@@ -1043,7 +1043,7 @@
                                                             </a>
                                                         </li>
                                                         <li class="pull-right">
-                                                            <a href="#"
+                                                            <a asp-controller="home" asp-action="category"
                                                                title="Special Offer!"><strong>MUA NGAY!</strong></a>
                                                         </li>
                                                     </ul>

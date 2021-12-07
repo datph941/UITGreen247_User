@@ -18,6 +18,15 @@ namespace Project_UIT247Green_User.Models
         public string type { set; get; }
         public double discount { set; get; }
         public double sale_rate { set; get; }
-
+        public static List<Product> ListProByCat(int id)
+        {
+            List<Product> listPro = new List<Product>();
+            using (var context = new DataContext())
+            {
+                var product = context.Product.Where(p => p.id_cat==id).ToList();
+                listPro = product;
+            }
+            return listPro;
+        }
     }
 }

@@ -23,9 +23,22 @@ namespace Project_UIT247Green_User.Controllers
             return View();
         }
 
-        public IActionResult Category()
+        public IActionResult category(int id)
         {
-            return View();
+            List<Category> listCat = new List<Category>();
+            List<Category> list= new List<Category>();
+            listCat = Category.FindCatFather();
+            list = Category.FindCatChild();
+            this.ViewBag.list = list;
+            List<Product> listpro = Product.ListProByCat(id);
+            this.ViewBag.listpro = listpro;
+            List<Image> listimg = Image.SelectImg();
+            this.ViewBag.listimg = listimg;
+            return View(listCat);
+        }
+        public IActionResult categoryPro(int id_child)
+        {
+            return View("category");
         }
         public IActionResult Contact()
         {
@@ -43,11 +56,10 @@ namespace Project_UIT247Green_User.Controllers
         {
             return View();
         }
-        public IActionResult Product()
+        public IActionResult Product_detail()
         {
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();

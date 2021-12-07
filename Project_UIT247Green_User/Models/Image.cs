@@ -9,5 +9,15 @@ namespace Project_UIT247Green_User.Models
     {
         public int id_img { set; get; }
         public string link { set; get; }
+        public static List<Image> SelectImg()
+        {
+            List<Image> listImg = new List<Image>();
+            using (var context = new DataContext())
+            {
+                listImg = context.Image.ToList();
+            }
+            return listImg;
+        }
     }
+
 }
