@@ -76,13 +76,16 @@
 								<td class="text-left" width="200px">
 									<div class="input-group btn-block quantity">
 										<input type="text" name="quantity" value="1" size="1" class="form-control" />
-										<span class="input-group-btn">
-											<button type="submit" data-toggle="tooltip" title="Update"
-												class="btn btn-primary"><i class="fa fa-clone" </i></button>
-											<button type="button" data-toggle="tooltip" title="Remove"
-												class="btn btn-danger" onClick=""><i
-													class="fa fa-times-circle"></i></button>
-										</span>
+                                        <span class="input-group-btn">
+                                            <button type="submit" data-toggle="tooltip" title="Update"
+                                                    class="btn btn-primary">
+                                                <i class="fa fa-clone"></i>
+                                            </button>
+                                            <button type="button" data-toggle="tooltip" title="Remove"
+                                                    class="btn btn-danger" onClick="">
+                                                <i class="fa fa-times-circle"></i>
+                                            </button>
+                                        </span>
 									</div>
 								</td>
 								<td class="text-right">130.000đ</td>
@@ -234,7 +237,7 @@
 				</div>
 
 				<div class="buttons">
-					<div class="pull-left"><a href="index.html" class="btn btn-primary">Tiếp tục mua sắm</a></div>
+					<div class="pull-left"><a asp-controller="home" asp-action="category" class="btn btn-primary">Tiếp tục mua sắm</a></div>
 					<div class="pull-right"><a href="checkout.html" class="btn btn-primary">Thanh toán</a></div>
 				</div>
 			</div>
