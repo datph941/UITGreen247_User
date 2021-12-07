@@ -28,5 +28,17 @@ namespace Project_UIT247Green_User.Models
             }
             return listPro;
         }
+        public static Product FindProByID(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var pro = context.Product;
+                Product product = (from p in pro
+                                   where (p.id_pro == id)
+                                   select p).FirstOrDefault();
+                return product;
+            }
+
+        }
     }
 }

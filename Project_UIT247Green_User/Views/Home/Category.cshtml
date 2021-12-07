@@ -312,89 +312,174 @@
                         <div class="products-list row grid">
                             @foreach (var item2 in list1)
                             {
-                                @foreach (var item3 in list2)
+                                if (item2.sale_rate > 0)
                                 {
-                                    if (item3.id_img == item2.id_img)
+                                    @foreach (var item3 in list2)
                                     {
-                                        <div class="product-layout col-md-4 col-sm-6 col-xs-12 ">
-                                            <div class="product-item-container">
-                                                <div class="left-block">
-                                                    <div class="product-image-container second_img ">
-                                                        <img src="@item3.link"
-                                                             alt="Apple Cinema 30&quot;" class="img-responsive" />
-             
+                                        if (item3.id_img == item2.id_img)
+                                        {
+                                            <div class="product-layout col-md-4 col-sm-6 col-xs-12 ">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img ">
+                                                            <img src="@item3.link"
+                                                                 alt="Apple Cinema 30&quot;" class="img-responsive" />
+
+                                                        </div>
+                                                        <!--Giảm giá Label-->
+                                                        <span class="label label-sale">Giảm giá</span>
+                                                        <!--countdown box-->
+                                                        <!--end countdown box-->
+                                                        <!--full quick view block-->
+                                                        <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
+                                                           href="quickview.html"> Xem nhanh</a>
+                                                        <!--end full quick view block-->
                                                     </div>
-                                                    <!--Giảm giá Label-->
-                                                    <span class="label label-sale">Giảm giá</span>
-                                                    <!--countdown box-->
-                                                    
-                                                    <!--end countdown box-->
-                                                    <!--full quick view block-->
-                                                    <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                                       href="quickview.html"> Xem nhanh</a>
-                                                    <!--end full quick view block-->
-                                                </div>
 
 
-                                                <div class="right-block">
-                                                    <div class="caption">
-                                                        <h4><a href="product/?idpro=@item2.id_pro">@item2.name_pro</a></h4>
-                                                        <div class="ratings">
-                                                            <div class="rating-box">
-                                                                <span class="fa fa-stack">
-                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                </span>
-                                                                <span class="fa fa-stack">
-                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                </span>
-                                                                <span class="fa fa-stack">
-                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                </span>
-                                                                <span class="fa fa-stack">
-                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                </span>
-                                                                <span class="fa fa-stack">
-                                                                    <i class="fa fa-star-o fa-stack-1x"></i>
-                                                                </span>
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <h4><a href="product_detail/?idpro=@item2.id_pro&idcat=@item2.id_cat">@item2.name_pro</a></h4>
+                                                            <div class="ratings">
+                                                                <div class="rating-box">
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="price">
+                                                                @{
+                                                                    double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
+                                                                    double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
+
+                                                                    <span class="price-new">@String.Format("{0:0,0 vnđ}", price_new)</span>
+                                                                    <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                                    <span class="label label-percent">@item2.discount%</span>
+                                                                }
+                                                            </div>
+                                                            <div class="description item-desc hidden">
+                                                                <p>Mô tả. </p>
                                                             </div>
                                                         </div>
-                                                        
-                                                        <div class="price">
-                                                            @{
-                                                                double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
-                                                                double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
-                                                                
-                                                                <span class="price-new">@String.Format("{0:0,0 vnđ}", price_new)</span>
-                                                                <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
-                                                                <span class="label label-percent">@item2.discount%</span>
-                                                            }
-                                                        </div>
-                                                        <div class="description item-desc hidden">
-                                                            <p>Mô tả. </p>
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="button-group">
-                                                        <button class="addToCart" type="button" data-toggle="tooltip"
-                                                                title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
-                                                            <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                        </button>
-                                                        <button class="wishlist" type="button" data-toggle="tooltip"
-                                                                title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');">
-                                                            <i class="fa fa-heart"></i>
-                                                        </button>
-                                                        <button class="compare" type="button" data-toggle="tooltip"
-                                                                title="So sánh sản phẩm" onclick="compare.add('42');">
-                                                            <i class="fa fa-exchange"></i>
-                                                        </button>
-                                                    </div>
-                                                </div><!-- right block -->
+                                                        <div class="button-group">
+                                                            <button class="addToCart" type="button" data-toggle="tooltip"
+                                                                    title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                                <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                            </button>
+                                                            <button class="wishlist" type="button" data-toggle="tooltip"
+                                                                    title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');">
+                                                                <i class="fa fa-heart"></i>
+                                                            </button>
+                                                            <button class="compare" type="button" data-toggle="tooltip"
+                                                                    title="So sánh sản phẩm" onclick="compare.add('42');">
+                                                                <i class="fa fa-exchange"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div><!-- right block -->
 
+                                                </div>
                                             </div>
-                                        </div>
-                                        break;
+                                            break;
+                                        }
                                     }
                                 }
+                                else
+                                {
+                                    @foreach (var item3 in list2)
+                                    {
+                                        if (item3.id_img == item2.id_img)
+                                        {
+                                            <div class="product-layout col-md-4 col-sm-6 col-xs-12 ">
+                                                <div class="product-item-container">
+                                                    <div class="left-block">
+                                                        <div class="product-image-container second_img ">
+                                                            <img src="@item3.link"
+                                                                 alt="Apple Cinema 30&quot;" class="img-responsive" />
+
+                                                        </div>
+                                                        <!--Giảm giá Label-->
+                                                        <span class="label label-sale">Giảm giá</span>
+                                                        <!--countdown box-->
+                                                        <!--end countdown box-->
+                                                        <!--full quick view block-->
+                                                        <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
+                                                           href="quickview.html"> Xem nhanh</a>
+                                                        <!--end full quick view block-->
+                                                    </div>
+
+
+                                                    <div class="right-block">
+                                                        <div class="caption">
+                                                            <h4><a href="product_detail/?idpro=@item2.id_pro&idcat=@item2.id_cat">@item2.name_pro</a></h4>
+                                                            <div class="ratings">
+                                                                <div class="rating-box">
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="price">
+                                                                @{
+                                                                    double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
+                                                                    double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
+                                                                    <span class="price-new">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                                }
+                                                            </div>
+                                                            <div class="description item-desc hidden">
+                                                                <p>Mô tả. </p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="button-group">
+                                                            <button class="addToCart" type="button" data-toggle="tooltip"
+                                                                    title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                                <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                            </button>
+                                                            <button class="wishlist" type="button" data-toggle="tooltip"
+                                                                    title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');">
+                                                                <i class="fa fa-heart"></i>
+                                                            </button>
+                                                            <button class="compare" type="button" data-toggle="tooltip"
+                                                                    title="So sánh sản phẩm" onclick="compare.add('42');">
+                                                                <i class="fa fa-exchange"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div><!-- right block -->
+
+                                                </div>
+                                            </div>
+                                            break;
+                                        }
+                                    }
+                                }
+
                             }
 
                             <div class="clearfix visible-xs-block"></div>

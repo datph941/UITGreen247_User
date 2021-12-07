@@ -56,8 +56,14 @@ namespace Project_UIT247Green_User.Controllers
         {
             return View();
         }
-        public IActionResult Product_detail()
+        public IActionResult Product_detail(int idpro,int idcat)
         {
+            Product pro = new Product();
+            pro = Product.FindProByID(idpro);
+            Category cat = Category.FindCatByID(idcat);
+            Image img = Image.SelectImg();
+            this.ViewBag.pro = pro;
+            this.ViewBag.cat = cat;
             return View();
         }
         public IActionResult Privacy()

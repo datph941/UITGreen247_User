@@ -2,6 +2,17 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Product pro = new Product();
+    if (ViewBag.pro != null)
+    {
+        pro = ViewBag.pro;
+    }
+    Category cat = new Category();
+
+    if (ViewBag.cat != null)
+    {
+        cat = ViewBag.cat;
+    }
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
@@ -29,9 +40,9 @@
         <!-- Main Container  -->
         <div class="main-container container">
             <ul class="breadcrumb">
-                <li><a href="#"><i class="fa fa-home"></i></a></li>
-                <li><a href="#">Danh mục</a></li>
-                <li><a href="#">Tên sản phẩm</a></li>
+                <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
+                <li><a asp-controller="home" asp-action="category" asp-route-id="@cat.id_cat">@cat.name_cat</a></li>
+                <li><a>@pro.name_pro</a></li>
             </ul>
 
             <div class="row">
@@ -79,7 +90,7 @@
 
                                 <div class="content-product-right col-sm-5 col-xs-12">
                                     <div class="title-product">
-                                        <h1>Tên sản phẩm</h1>
+                                        <h1>@pro.name_pro</h1>
                                     </div>
                                     <!-- Review ---->
                                     <div class="box-review form-group">
@@ -99,16 +110,28 @@
 
                                     <div class="product-label form-group">
                                         <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
-                                            <span class="price-new" itemprop="price">100.000đ</span>
-                                            <span class="price-old">120.000đ</span>
+                                            @{
+                                                double price_old = (@pro.price * (100 + @pro.sale_rate) / 100);
+                                                double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
+                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_new)</span>
+                                                <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                            }
+
                                         </div>
-                                        <div class="stock"><span>Tình trạng:</span> <span class="status-stock">Còn hàng</span></div>
+                                        @if (pro.quantity > 0)
+                                        {
+                                            <div class="stock"><span>Tình trạng:</span> <span class="status-stock">Còn hàng</span></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="stock"><span>Tình trạng:</span> <span class="status-stock">Hết hàng</span></div>
+                                        }
                                     </div>
 
                                     <div class="product-box-desc">
                                         <div class="inner-box-desc">
-                                            <div class="brand"><span>Thương hiệu:</span><a href="#"> UIT</a>		</div>
-                                            <div class="origin"><span>Xuất xứ:</span> Việt Nam</div>
+                                            <div class="brand"><span>Thương hiệu:</span><a href="#"> UIT</a></div>
+                                            <div class="origin"><span>Xuất xứ:</span>@pro.origin</div>
                                         </div>
                                     </div>
 
