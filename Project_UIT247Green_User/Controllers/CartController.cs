@@ -8,5 +8,9 @@ namespace Project_UIT247Green_User.Controllers
         {
             return View();
         }
+        public IActionResult Checkout()
+        {
+            return View();
+        }
     }
 }
