@@ -1,0 +1,112 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<body class="res layout-subpage">
+    <div id="wrapper" class="wrapper-full ">
+	
+	<!-- Main Container  -->
+	<div class="main-container container">
+		<ul class="breadcrumb">
+			<li><a href="#"><i class="fa fa-home"></i></a></li>
+			<li><a href="#">Đăng ký</a></li>
+		</ul>
+		
+		<div class="row">
+			<div id="content" class="col-sm-12">
+				<h2 class="title">Đăng ký tài khoản mới</h2>
+				<p>Nếu bạn đã có tại khoản tài khoản tại UITGreen247, vui lòng truy cập trang <a href="#">đăng nhập</a>.</p>
+				<form action="" method="post" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
+					<fieldset id="account">
+						<legend>Thông tin cá nhân</legend>
+						<div class="form-group required" style="display: none;">
+							<label class="col-sm-2 control-label">Customer Group</label>
+							<div class="col-sm-10">
+								<div class="radio">
+									<label>
+										<input type="radio" name="customer_group_id" value="1" checked="checked"> Default
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-lastname">Họ tên</label>
+							<div class="col-sm-10">
+								<input type="text" name="name" value="" placeholder="Họ tên" id="input-name" class="form-control">
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-email">E-mail</label>
+							<div class="col-sm-10">
+								<input type="email" name="email" value="" placeholder="Địa chỉ Email" id="input-email" class="form-control">
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-telephone">Số điện thoại</label>
+							<div class="col-sm-10">
+								<input type="tel" name="phone" value="" placeholder="Số điện thoại" id="input-phone" class="form-control">
+							</div>
+						</div>
+					</fieldset>
+					<fieldset id="address">
+						<legend>Địa chỉ</legend>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="input-address-1">Số nhà / Tên đường</label>
+							<div class="col-sm-10">
+								<input type="text" name="address_1" value="" placeholder="Số nhà / Tên đường" id="input-address-1" class="form-control">
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-address-2">Xã / Phường</label>
+							<div class="col-sm-10">
+								<input type="text" name="address_2" value="" placeholder="Xã / Phường" id="input-address-2" class="form-control">
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-district">Quận / Huyện</label>
+							<div class="col-sm-10">
+								<input type="text" name="district" value="" placeholder="Quận / Huyện" id="input-district" class="form-control">
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-zone">Tỉnh</label>
+							<div class="col-sm-10">
+								<select name="zone_id" id="input-zone" class="form-control">
+									<option value=""> --- Vui lòng chọn --- </option>
+									<option value="3513">Vĩnh Long</option>
+									<option value="3514">Bạc Liêu</option>
+									<option value="3515">Quãng Ngãi</option>
+								</select>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Thiết lập mật khẩu</legend>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-password">Mật khẩu</label>
+							<div class="col-sm-10">
+								<input type="password" name="password" value="" placeholder="Mật khẩu" id="input-password" class="form-control">
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-confirm">Xác nhận mật khẩu</label>
+							<div class="col-sm-10">
+								<input type="password" name="confirm" value="" placeholder="Xác nhận mật khẩu" id="input-confirm" class="form-control">
+							</div>
+						</div>
+					</fieldset>
+					<div class="buttons">
+						<div class="pull-right">Tôi đã đồng ý với  <a href="#" class="agree"><b>Quy định của UITGreen247</b></a>
+							<input class="box-checkbox" type="checkbox" name="agree" value="1"> &nbsp;
+							<input type="submit" value="Tiếp tục" class="btn btn-primary">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- //Main Container -->
+	
+    </div>	
+</body>
