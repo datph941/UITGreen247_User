@@ -18,6 +18,7 @@ namespace Project_UIT247Green_User.Models
         public DbSet<Category> Category { set; get; }
         public DbSet<Product> Product { set; get; }
         public DbSet<Image> Image { set; get; }
+        public DbSet<Image_product> Image_product { set; get; }
         public DbSet<Comment> Comment { set; get; }
         public DbSet<Orders> Orders { set; get; }
         public DbSet<Orders_user> Orders_user { set; get; }
@@ -32,6 +33,7 @@ namespace Project_UIT247Green_User.Models
             modelBuilder.Entity<Category>().HasKey(c => new { c.id_cat });
             modelBuilder.Entity<Product>().HasKey(c => new { c.id_pro });
             modelBuilder.Entity<Image>().HasKey(c => new { c.id_img });
+            modelBuilder.Entity<Image_product>().HasKey(c => new { c.id_img });
             modelBuilder.Entity<Comment>().HasKey(c => new { c.id_cmt });
             modelBuilder.Entity<Orders>().HasKey(c => new { c.id_ord });
             modelBuilder.Entity<Orders_user>().HasKey(c => new { c.id_ord });

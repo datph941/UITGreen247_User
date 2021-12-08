@@ -32,6 +32,18 @@
     <!-- Responsive-->
 	<link href="~/css/responsive.css" rel="stylesheet">
 </head>
+@{
+    List<Category> list = new List<Category>();
+    List<Category> listCat = new List<Category>();
+    if (ViewBag.list != null)
+    {
+        list = ViewBag.list;
+    }
+    if (ViewBag.listCat != null)
+    {
+        listCat = ViewBag.listCat;
+    }
+}
 <body>
     <!-- Header Container  -->
     <header id="header" class="variantleft type_7">
@@ -53,6 +65,7 @@
                                 <li class="account" id="my_account">
                                     <a href="my-account.html" title="My Account"
                                        class="btn btn-xs dropdown-toggle">
+
                                         <i class="fa fa-user"></i> Tài khoản
                                     </a>
                                 </li>
@@ -61,7 +74,7 @@
                                        title="wishlist"><i class="fa fa-heart"></i> Yêu thích</a>
                                 </li>
                                 <li class="checkout">
-                                    <a href="checkout.html" class="top-link-checkout"
+                                    <a asp-controller="cart" asp-action="checkout" class="top-link-checkout"
                                        title="Checkout"><i class="fa fa-check-square-o"></i> Thanh toán</a>
                                 </li>
                                 <li class="signin">
@@ -83,7 +96,7 @@
                 <div class="row">
                     <!-- Logo -->
                     <div class="navbar-logo col-md-3 col-sm-12 col-xs-12">
-                        <a href="home7.html">
+                        <a asp-controller="home" asp-action="index">
                             <img src="~/image/demo/logos/logo.png" title="UITGreen@247"
                                  alt="UITGreen@247">
                         </a>
@@ -91,26 +104,17 @@
                     <!-- //end Logo -->
                     <!-- Search -->
                     <div id="sosearchpro" class="col-md-5 col-sm-7 search-pro">
-                        <form method="GET" action="index.html">
+                        <form method="GET" asp-controller="home" asp-action="search">
                             <div id="search0" class="search input-group">
                                 <div class="select_category filter_type icon-select">
-                                    <select class="no-border" name="category_id">
-                                        <option value="0">Tất cả danh mục</option>
-                                        <option value="78">Danh mục 1</option>
-                                        <option value="77">Danh mục 2</option>
-                                        <option value="82">Danh mục 3</option>
-                                        <option value="80">Danh mục 4</option>
-                                        <option value="81">Danh mục 5</option>
-                                        <option value="79">Danh mục 6</option>
-                                        <option value="20">Danh mục 7</option>
-                                        <option value="76">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Danh mục con 1</option>
-                                        <option value="26">
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Danh mục con 2
-                                        </option>
-                                        <option value="27">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Danh mục con 3</option>
+                                    <select class="no-border" name="id_cat">
+                                        <option value="0">Tất cả danh mục</option>      
+                                        @foreach (var item in listCat)
+                                        {
+                                            <option value="@item.id_cat">@item.name_cat</option>
+                                        }
                                     </select>
                                 </div>
-
                                 <input class="autosearch-input form-control" type="text" value="" size="50"
                                        autocomplete="off" placeholder="Quý khách vui lòng nhập từ khóa để tìm kiếm..."
                                        name="search">
@@ -283,499 +287,50 @@
                                                 <div class="megamenu-pattern">
                                                     <div class="container">
                                                         <ul class="megamenu">
-                                                            <li class="item-vertical style1 with-sub-menu hover">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/9.png" alt="icon"> -->
-                                                                    <span>Danh mục 1</span>
-                                                                    <b class="caret"></b>
-                                                                </a>
-                                                                <div class="sub-menu" data-subwidth="100"
-                                                                     style="width: 900px; display: none; right: 0px;">
-                                                                    <div class="content" style="display: none;">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-4 static-menu">
-                                                                                        <div class="menu">
-                                                                                            <ul>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 1</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 4</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 5</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 6</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 2</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 static-menu">
-                                                                                        <div class="menu">
-                                                                                            <ul>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 3</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 4</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 static-menu">
-                                                                                        <div class="menu">
-                                                                                            <ul>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 5</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '18_46';">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '24_64';">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '18_45';">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '18_30';">Nhãn hàng 4</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                            </ul>
+                                                            @foreach (var item in listCat)
+                                                            {
+                                                                <li class="item-vertical css-menu with-sub-menu hover">
+                                                                    <p class="close-menu"></p>
+                                                                    <a href="#" class="clearfix">
+
+                                                                        <!-- <img src="~/image/theme/icons/2.png" alt="icon"> -->
+                                                                        <span>@item.name_cat</span>
+                                                                        <b class="caret"></b>
+                                                                    </a>
+                                                                    <div class="sub-menu" data-subwidth="30"
+                                                                         style="width: 270px; display: none; right: 0px;">
+                                                                        <div class="content" style="display: none;">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-12 hover-menu">
+                                                                                            <div class="menu">
+                                                                                                <ul>
+
+                                                                                                    @foreach (var item1 in list)
+                                                                                                    {
+                                                                                                        if (item1.id_parent == item.id_cat)
+                                                                                                        {
+                                                                                                            <li>
+                                                                                                                <a asp-controller="home" asp-action="category" asp-route-id="@item1.id_cat"
+                                                                                                                   class="main-menu">@item1.name_cat</a>
+                                                                                                            </li>
+                                                                                                        }
+                                                                                                    }
+                                                                                                </ul>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="item-vertical">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/10.png" alt="icon"> -->
-                                                                    <span>Danh mục 2</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li class="item-vertical with-sub-menu hover">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <span class="label"></span>
-                                                                    <!-- <img src="~/image/theme/icons/3.png" alt="icon"> -->
-                                                                    <span>Danh mục 3</span>
-                                                                    <b class="caret"></b>
-                                                                </a>
-                                                                <div class="sub-menu" data-subwidth="60"
-                                                                     style="width: 540px; display: none; right: 0px;">
-                                                                    <div class="content" style="display: none;">
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12 static-menu">
-                                                                                        <div class="menu">
-                                                                                            <ul>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       onclick="window.location = '81';"
-                                                                                                       class="main-menu">Danh mục con 1</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '33_63';">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '24_64';">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '17';">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       onclick="window.location = '18_46';"
-                                                                                                       class="main-menu">Danh mục con 2</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '25_28';">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '80';">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '24_66';">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       onclick="window.location = '25_31';"
-                                                                                                       class="main-menu">Danh mục con 3</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '57_73';">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '18';">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '20_76';">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#"
-                                                                                                               onclick="window.location = '33_60';">Nhãn hàng 4</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="row banner">
-                                                                                    <a href="#">
-                                                                                        <img src="~/image/demo/cms/menu_bg2.jpg"
-                                                                                             alt="banner1">
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="item-vertical with-sub-menu hover">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/2.png" alt="icon"> -->
-                                                                    <span>Danh mục 4</span>
-                                                                    <b class="caret"></b>
-                                                                </a>
-                                                                <div class="sub-menu" data-subwidth="100"
-                                                                     style="width: 900px; display: none;">
-                                                                    <div class="content" style="display: none;">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-4 static-menu">
-                                                                                        <div class="menu">
-                                                                                            <ul>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 1</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 4</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="24"
-                                                                                                       onclick="window.location = '24';"
-                                                                                                       class="main-menu">Danh mục con</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 4</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 static-menu">
-                                                                                        <div class="menu">
-                                                                                            <ul>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 4</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 4</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-md-4 static-menu">
-                                                                                        <div class="menu">
-                                                                                            <ul>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 4</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con</a>
-                                                                                                    <ul>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 1</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 2</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 3</a>
-                                                                                                        </li>
-                                                                                                        <li>
-                                                                                                            <a href="#">Nhãn hàng 4</a>
-                                                                                                        </li>
-                                                                                                    </ul>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="item-vertical css-menu with-sub-menu hover">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-
-                                                                    <!-- <img src="~/image/theme/icons/2.png" alt="icon"> -->
-                                                                    <span>Danh mục 5</span>
-                                                                    <b class="caret"></b>
-                                                                </a>
-                                                                <div class="sub-menu" data-subwidth="30"
-                                                                     style="width: 270px; display: none; right: 0px;">
-                                                                    <div class="content" style="display: none;">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-12">
-                                                                                <div class="row">
-                                                                                    <div class="col-sm-12 hover-menu">
-                                                                                        <div class="menu">
-                                                                                            <ul>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 1</a>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 2</a>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 3</a>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 4</a>
-                                                                                                </li>
-                                                                                                <li>
-                                                                                                    <a href="#"
-                                                                                                       class="main-menu">Danh mục con 5</a>
-                                                                                                </li>
-                                                                                            </ul>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="item-vertical">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/11.png" alt="icon"> -->
-                                                                    <span>Danh mục 6</span>
-
-                                                                </a>
-                                                            </li>
-                                                            <li class="item-vertical">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/4.png" alt="icon"> -->
-                                                                    <span>Danh mục 7</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="item-vertical">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/5.png" alt="icon"> -->
-                                                                    <span>Danh mục 8</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="item-vertical">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/7.png" alt="icon"> -->
-                                                                    <span>Danh mục 9</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="item-vertical" style="display: none;">
-                                                                <p class="close-menu"></p>
-
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/6.png" alt="icon"> -->
-                                                                    <span>Danh mục 10</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="item-vertical">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/8.png" alt="icon"> -->
-                                                                    <span>Danh mục 11</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="item-vertical">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/12.png" alt="icon"> -->
-                                                                    <span>Danh mục 12</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="item-vertical">
-                                                                <p class="close-menu"></p>
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/13.png" alt="icon"> -->
-                                                                    <span>Danh mục 13</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="item-vertical">
-                                                                <p class="close-menu"></p>
-
-                                                                <a href="#" class="clearfix">
-                                                                    <!-- <img src="~/image/theme/icons/13.png" alt="icon"> -->
-                                                                    <span>Danh mục 14</span>
-                                                                </a>
-                                                            </li>
+                                                                </li>
+                                                            }
                                                             <!-- <li class="loadmore">
-                                                                <i class="fa fa-plus-square-o"></i>
-                                                                <span class="more-view">Mở rộng</span>
-                                                            </li> -->
+        <i class="fa fa-plus-square-o"></i>
+        <span class="more-view">Mở rộng</span>
+    </li> -->
                                                         </ul>
                                                     </div>
                                                 </div>

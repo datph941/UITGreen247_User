@@ -17,35 +17,53 @@ namespace Project_UIT247Green_User.Controllers
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult category(int id)
+        public void MenuCat()
         {
             List<Category> listCat = new List<Category>();
-            List<Category> list= new List<Category>();
+            List<Category> list = new List<Category>();
             listCat = Category.FindCatFather();
             list = Category.FindCatChild();
             this.ViewBag.list = list;
+            this.ViewBag.listCat = listCat;
+        }
+        public IActionResult Index()
+        {
+            MenuCat();
+            return View();
+        }
+        public IActionResult category(int id, int pg = 1)
+        {
+            MenuCat();
             List<Product> listpro = Product.ListProByCat(id);
             this.ViewBag.listpro = listpro;
-            List<Image> listimg = Image.SelectImg();
+            List<Image_product> listimg = Image_product.SelectImg();
             this.ViewBag.listimg = listimg;
-            return View(listCat);
+            Category cat = new Category();
+            cat = Category.FindCatByID(id);
+            this.ViewBag.cat = cat;
+
+            const int pageSize = 9;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            int recsCount = listpro.Count();
+            var pager = new Pager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = listpro.Skip(recSkip).Take(pager.pageSize).ToList();
+            this.ViewBag.Pager = pager;
+            this.ViewBag.data = data;
+            return View();
         }
-        public IActionResult categoryPro(int id_child)
-        {
-            return View("category");
-        }
+      
         public IActionResult Contact()
         {
+            MenuCat();
             return View();
         }
         public IActionResult About_us()
         {
+            MenuCat();
             return View();
         }
         public IActionResult Login()
@@ -58,19 +76,16 @@ namespace Project_UIT247Green_User.Controllers
         }
         public IActionResult Product_detail(int idpro,int idcat)
         {
+            MenuCat();
             Product pro = new Product();
             pro = Product.FindProByID(idpro);
             Category cat = Category.FindCatByID(idcat);
-            Image img = Image.SelectImg();
+   
             this.ViewBag.pro = pro;
             this.ViewBag.cat = cat;
             return View();
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

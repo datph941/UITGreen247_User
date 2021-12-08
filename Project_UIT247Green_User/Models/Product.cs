@@ -9,7 +9,6 @@ namespace Project_UIT247Green_User.Models
     {
         public int id_pro { set; get; }
         public string name_pro { set; get; }
-        public int id_img { set; get; }
         public int id_cat { set; get; }
         public double price { set; get; }
         public int quantity { set; get; }
