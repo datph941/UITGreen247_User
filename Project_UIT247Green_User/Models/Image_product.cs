@@ -28,7 +28,7 @@ namespace Project_UIT247Green_User.Models
                                 where (p.id_pro == id)
                                 select p).ToList();
                 return list;
-            }
+            }   
 
         }
     }

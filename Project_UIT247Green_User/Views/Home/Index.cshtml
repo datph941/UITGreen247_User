@@ -6,7 +6,7 @@
     {
         listpronew = ViewBag.listpronew;
     }
-    List<Image_product> listimg = new List<Image_product>();
+    
 }
 <body class="common-home res layout-home7 ">
     <div id="wrapper" class="wrapper-full banners-effect-7">
@@ -147,156 +147,158 @@
                                                 {
                                                     if (item.discount > 0)
                                                     {
-                                                        @listimg = Image_product.FindImgByIDPro(item.id_pro);
-                                            <div class="ltabs-item product-layout">
-                                                <div class="product-item-container">
-                                                    <div class="left-block">
+                                                        List<Image_product> listimg = new List<Image_product>();
+                                                        listimg = Image_product.FindImgByIDPro(item.id_pro);
+                                                        <div class="ltabs-item product-layout">
+                                                            <div class="product-item-container">
+                                                                <div class="left-block">
 
-                                                        <div class="product-image-container second_img ">
-                                                            <img src="@listimg[0].link"
-                                                                 alt="Apple Cinema 30&quot;"
-                                                                 class="img-responsive" />
-                                                        </div>
+                                                                    <div class="product-image-container second_img ">
+                                                                        <img src="@listimg[0].link"
+                                                                             alt="Apple Cinema 30&quot;"
+                                                                             class="img-responsive" />
+                                                                    </div>
 
-                                                        <!--Sale Label-->
-                                                        <span class="label label-sale">Giảm giá</span>
-                                                        <!--full quick view block-->
-                                                        <a class="quickview iframe-link visible-lg"
-                                                           data-fancybox-type="iframe" href="quickview.html">
-                                                            Xem
-                                                            nhanh
-                                                        </a>
-                                                        <!--end full quick view block-->
-                                                    </div>
-                                                    <div class="right-block">
-                                                        <div class="caption">
-                                                            <h4><a href="product.html">@item.name_pro</a></h4>
-                                                            <div class="ratings">
-                                                                <div class="rating-box">
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
+                                                                    <!--Sale Label-->
+                                                                    <span class="label label-sale">Giảm giá</span>
+                                                                    <!--full quick view block-->
+                                                                    <a class="quickview iframe-link visible-lg"
+                                                                       data-fancybox-type="iframe" href="quickview.html">
+                                                                        Xem
+                                                                        nhanh
+                                                                    </a>
+                                                                    <!--end full quick view block-->
                                                                 </div>
-                                                            </div>
+                                                                <div class="right-block">
+                                                                    <div class="caption">
+                                                                        <h4><a href="product.html">@item.name_pro</a></h4>
+                                                                        <div class="ratings">
+                                                                            <div class="rating-box">
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
 
-                                                            <div class="price">
-                                                                @{
-                                                                    double price_old = (@item.price * (100 + @item.sale_rate) / 100);
-                                                                    double price_new = (@item.price * (100 + @item.sale_rate) / 100 * ((100 - @item.discount) / 100));
-                                                                    <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_new)</span>
-                                                                    <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
-                                                                }
+                                                                        <div class="price">
+                                                                            @{
+                                                                                double price_old = (@item.price * (100 + @item.sale_rate) / 100);
+                                                                                double price_new = (@item.price * (100 + @item.sale_rate) / 100 * ((100 - @item.discount) / 100));
+                                                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_new)</span>
+                                                                                <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="button-group">
+                                                                        <button class="addToCart addToCart--notext"
+                                                                                type="button" data-toggle="tooltip"
+                                                                                title="Add to Cart"
+                                                                                onclick="cart.add('42', '1');">
+                                                                            <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
+                                                                        </button>
+                                                                        <button class="wishlist" type="button"
+                                                                                data-toggle="tooltip" title="Add to Wish List"
+                                                                                onclick="wishlist.add('42');">
+                                                                            <i class="fa fa-heart"></i>
+                                                                        </button>
+                                                                        <button class="compare" type="button"
+                                                                                data-toggle="tooltip" title="Compare this Product"
+                                                                                onclick="compare.add('42');">
+                                                                            <i class="fa fa-exchange"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div><!-- right block -->
                                                             </div>
                                                         </div>
-
-                                                        <div class="button-group">
-                                                            <button class="addToCart addToCart--notext"
-                                                                    type="button" data-toggle="tooltip"
-                                                                    title="Add to Cart"
-                                                                    onclick="cart.add('42', '1');">
-                                                                <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
-                                                            </button>
-                                                            <button class="wishlist" type="button"
-                                                                    data-toggle="tooltip" title="Add to Wish List"
-                                                                    onclick="wishlist.add('42');">
-                                                                <i class="fa fa-heart"></i>
-                                                            </button>
-                                                            <button class="compare" type="button"
-                                                                    data-toggle="tooltip" title="Compare this Product"
-                                                                    onclick="compare.add('42');">
-                                                                <i class="fa fa-exchange"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div><!-- right block -->
-                                                </div>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            @listimg = Image_product.FindImgByIDPro(item.id_pro);
-                                            <div class="ltabs-item product-layout">
-                                                <div class="product-item-container">
-                                                    <div class="left-block">
-                                                        <div class="product-image-container second_img ">
-                                                            <img src="@listimg[0].link"
-                                                                 alt="Apple Cinema 30&quot;"
-                                                                 class="img-responsive" />
-                                                        </div>
-                                                        <!--full quick view block-->
-                                                        <a class="quickview iframe-link visible-lg"
-                                                           data-fancybox-type="iframe" href="quickview.html">
-                                                            Xem
-                                                            nhanh
-                                                        </a>
-                                                        <!--end full quick view block-->
-                                                    </div>
-                                                    <div class="right-block">
-                                                        <div class="caption">
-                                                            <h4><a href="product.html">@item.name_pro</a></h4>
-                                                            <div class="ratings">
-                                                                <div class="rating-box">
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
-                                                                    <span class="fa fa-stack">
-                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
-                                                                    </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        List<Image_product> listimg = new List<Image_product>();
+                                                        listimg = Image_product.FindImgByIDPro(item.id_pro);
+                                                        <div class="ltabs-item product-layout">
+                                                            <div class="product-item-container">
+                                                                <div class="left-block">
+                                                                    <div class="product-image-container second_img ">
+                                                                        <img src="@listimg[0].link"
+                                                                             alt="Apple Cinema 30&quot;"
+                                                                             class="img-responsive" />
+                                                                    </div>
+                                                                    <!--full quick view block-->
+                                                                    <a class="quickview iframe-link visible-lg"
+                                                                       data-fancybox-type="iframe" href="quickview.html">
+                                                                        Xem
+                                                                        nhanh
+                                                                    </a>
+                                                                    <!--end full quick view block-->
                                                                 </div>
-                                                            </div>
-                                                            <div class="price">
-                                                                @{
-                                                                    double price_old = (@item.price * (100 + @item.sale_rate) / 100);
+                                                                <div class="right-block">
+                                                                    <div class="caption">
+                                                                        <h4><a href="product.html">@item.name_pro</a></h4>
+                                                                        <div class="ratings">
+                                                                            <div class="rating-box">
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                                <span class="fa fa-stack">
+                                                                                    <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="price">
+                                                                            @{
+                                                                                double price_old = (@item.price * (100 + @item.sale_rate) / 100);
 
-                                                                    <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_old)</span>
 
-                                                                }
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="button-group">
+                                                                        <button class="addToCart addToCart--notext"
+                                                                                type="button" data-toggle="tooltip"
+                                                                                title="Add to Cart"
+                                                                                onclick="cart.add('42', '1');">
+                                                                            <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
+                                                                        </button>
+                                                                        <button class="wishlist" type="button"
+                                                                                data-toggle="tooltip" title="Add to Wish List"
+                                                                                onclick="wishlist.add('42');">
+                                                                            <i class="fa fa-heart"></i>
+                                                                        </button>
+                                                                        <button class="compare" type="button"
+                                                                                data-toggle="tooltip" title="Compare this Product"
+                                                                                onclick="compare.add('42');">
+                                                                            <i class="fa fa-exchange"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div><!-- right block -->
                                                             </div>
                                                         </div>
-
-                                                        <div class="button-group">
-                                                            <button class="addToCart addToCart--notext"
-                                                                    type="button" data-toggle="tooltip"
-                                                                    title="Add to Cart"
-                                                                    onclick="cart.add('42', '1');">
-                                                                <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
-                                                            </button>
-                                                            <button class="wishlist" type="button"
-                                                                    data-toggle="tooltip" title="Add to Wish List"
-                                                                    onclick="wishlist.add('42');">
-                                                                <i class="fa fa-heart"></i>
-                                                            </button>
-                                                            <button class="compare" type="button"
-                                                                    data-toggle="tooltip" title="Compare this Product"
-                                                                    onclick="compare.add('42');">
-                                                                <i class="fa fa-exchange"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div><!-- right block -->
-                                                </div>
-                                            </div>
-                                        }
-                                    }
+                                                    }
+                                                }
                                             </div>
 
                                         </div>
