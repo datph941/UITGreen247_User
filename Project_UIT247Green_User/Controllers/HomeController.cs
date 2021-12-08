@@ -29,6 +29,9 @@ namespace Project_UIT247Green_User.Controllers
         public IActionResult Index()
         {
             MenuCat();
+            List<Product> listpronew = new List<Product>();
+            listpronew = Product.ListProNew();
+            this.ViewBag.listpronew = listpronew;
             return View();
         }
         public IActionResult category(int id, int pg = 1)
@@ -80,9 +83,11 @@ namespace Project_UIT247Green_User.Controllers
             Product pro = new Product();
             pro = Product.FindProByID(idpro);
             Category cat = Category.FindCatByID(idcat);
-   
+            List<Image_product> listimg = new List<Image_product>();
+            listimg = Image_product.FindImgByIDPro(idpro);
             this.ViewBag.pro = pro;
             this.ViewBag.cat = cat;
+            this.ViewBag.listimg = listimg;
             return View();
         }
         

@@ -13,6 +13,11 @@
     {
         cat = ViewBag.cat;
     }
+    List<Image_product> listimg = new List<Image_product>();
+    if(ViewBag.listimg != null)
+    {
+        listimg = ViewBag.listimg;
+    }
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
@@ -57,32 +62,20 @@
                                         <span class="btn-more prev-thumb nt"><i class="fa fa-angle-up"></i></span>
                                         <span class="btn-more next-thumb nt"><i class="fa fa-angle-down"></i></span>
                                         <ul class="thumb-vertical">
-                                            <li class="owl2-item">
-                                                <a data-index="0" class="img thumbnail" data-image="image/demo/shop/product/J9.jpg" title="Canon EOS 5D">
-                                                    <img src="~/image/demo/shop/product/J9.jpg" title="Canon EOS 5D" alt="Canon EOS 5D">
-                                                </a>
-                                            </li>
-                                            <li class="owl2-item">
-                                                <a data-index="1" class="img thumbnail " data-image="image/demo/shop/product/J6.jpg" title="Bint Beef">
-                                                    <img src="~/image/demo/shop/product/J6.jpg" title="Bint Beef" alt="Bint Beef">
-                                                </a>
-                                            </li>
-                                            <li class="owl2-item">
-                                                <a data-index="2" class="img thumbnail" data-image="image/demo/shop/product/J5.jpg" title="Bint Beef">
-                                                    <img src="~/image/demo/shop/product/J5.jpg" title="Bint Beef" alt="Bint Beef">
-                                                </a>
-                                            </li>
-                                            <li class="owl2-item">
-                                                <a data-index="3" class="img thumbnail" data-image="image/demo/shop/product/J4.jpg" title="Bint Beef">
-                                                    <img src="~/image/demo/shop/product/J4.jpg" title="Bint Beef" alt="Bint Beef">
-                                                </a>
-                                            </li>
+                                            @foreach (var item in listimg)
+                                            {
+                                                <li class="owl2-item">
+                                                    <a data-index="0" class="img thumbnail" data-image="image/demo/shop/product/J9.jpg" title="Canon EOS 5D">
+                                                        <img src="@item.link" title="Canon EOS 5D" alt="Canon EOS 5D">
+                                                    </a>
+                                                </li>
+                                            }
                                         </ul>
 
 
                                     </div>
                                     <div class="large-image  vertical">
-                                        <img itemprop="image" class="product-image-zoom" src="~/image/demo/shop/product/J9.jpg" data-zoom-image="image/demo/shop/product/J9.jpg" title="SP" alt="SP">
+                                        <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" data-zoom-image="image/demo/shop/product/J9.jpg" title="SP" alt="SP">
                                     </div>
                                     <a class="thumb-video pull-left" href="https://www.youtube.com/watch?v=crb2APddijE"><i class="fa fa-youtube-play"></i></a>
 
@@ -110,11 +103,18 @@
 
                                     <div class="product-label form-group">
                                         <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
-                                            @{
+                                            @if (pro.discount > 0)
+                                            {
                                                 double price_old = (@pro.price * (100 + @pro.sale_rate) / 100);
                                                 double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
                                                 <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_new)</span>
                                                 <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                            }
+                                            else
+                                            {
+                                                double price_old = (@pro.price * (100 + @pro.sale_rate) / 100);
+                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                
                                             }
 
                                         </div>
@@ -250,8 +250,6 @@
                             <div class="tab-content col-xs-12">
                                 <div id="tab-1" class="tab-pane fade active in">
                                     <p>@pro.status</p>
-
-
                                 </div>
                                 <div id="tab-review" class="tab-pane fade">
                                     <form>

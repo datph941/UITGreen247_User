@@ -19,6 +19,18 @@ namespace Project_UIT247Green_User.Models
             }
             return listImg;
         }
+        public static List<Image_product> FindImgByIDPro(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var listimg = context.Image_product;
+                List<Image_product> list = (from p in listimg
+                                where (p.id_pro == id)
+                                select p).ToList();
+                return list;
+            }
+
+        }
     }
 
 

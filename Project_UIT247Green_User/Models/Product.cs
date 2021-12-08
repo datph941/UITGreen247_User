@@ -27,6 +27,46 @@ namespace Project_UIT247Green_User.Models
             }
             return listPro;
         }
+        public static List<Product> ListProNew()
+        {
+            List<Product> listPro = new List<Product>();
+            using (var context = new DataContext())
+            {
+                var product = context.Product.OrderByDescending(s => s.id_pro).Take(6).ToList();
+                listPro = product;
+            }
+            return listPro;
+        }
+        public static List<Product> ListProBest(int id)
+        {
+            List<Product> listPro = new List<Product>();
+            using (var context = new DataContext())
+            {
+                var product = context.Product.Where(p => p.id_cat == id).ToList();
+                listPro = product;
+            }
+            return listPro;
+        }
+        public static List<Product> ListProImp(int id)
+        {
+            List<Product> listPro = new List<Product>();
+            using (var context = new DataContext())
+            {
+                var product = context.Product.Where(p => p.id_cat == id).ToList();
+                listPro = product;
+            }
+            return listPro;
+        }
+        public static List<Product> ListProSale(int id)
+        {
+            List<Product> listPro = new List<Product>();
+            using (var context = new DataContext())
+            {
+                var product = context.Product.Where(p => p.id_cat == id).ToList();
+                listPro = product;
+            }
+            return listPro;
+        }
         public static Product FindProByID(int id)
         {
             using (var context = new DataContext())
