@@ -36,6 +36,18 @@ namespace Project_UIT247Green_User.Models
             }
             return listCat;
         }
+        public static List<Category> FindCatChildByID(int id)
+        {
+            List<Category> listCat = new List<Category>();
+            using (var context = new DataContext())
+            {
+                var cat = context.Category;
+                listCat = (from p in cat
+                           where (p.id_parent ==id)
+                           select p).ToList();
+            }
+            return listCat;
+        }
         public static Category FindCatByID(int id)
         {
             using (var context = new DataContext())

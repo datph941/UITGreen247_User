@@ -5,57 +5,82 @@
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
-	<!-- Main Container  -->
-	<div class="main-container container">
-		<ul class="breadcrumb">
-			<li><a href="#"><i class="fa fa-home"></i></a></li>
-			<li><a href="#">Đăng nhập</a></li>
-		</ul>
-		
-		<div class="row">
-			<div id="content" class="col-sm-12">
-				<div class="page-login">
-				
-					<div class="account-border">
-						<div class="row">
-							<div class="col-sm-6 new-customer">
-								<div class="well">
-									<h2><i class="fa fa-file-o" aria-hidden="true"></i> Khách hàng mới</h2>
-									<p>Khách hàng tạo tài khoản UITGreen247 để có trải nghiệm mua sắm nhanh hơn, dễ dàng quản lý và theo dõi đơn hàng.</p>
-								</div>
-								<div class="bottom-form">
-									<a href="#" class="btn btn-default pull-right">Đăng ký</a>
-								</div>
-							</div>
-							
-							<form action="#" method="post" enctype="multipart/form-data">
-								<div class="col-sm-6 customer-login">
-									<div class="well">
-										<h2><i class="fa fa-file-text-o" aria-hidden="true"></i> Đăng nhập</h2>
-										<p><strong>Tôi đã có tài khoản ở UITGreen247</strong></p>
-										<div class="form-group required">
-											<label class="control-label " for="input-email">Địa chỉ Email</label>
-											<input type="text" name="email" value="" id="input-email" class="form-control" />
-										</div>
-										<div class="form-group required">
-											<label class="control-label " for="input-password">Mật khẩu</label>
-											<input type="password" name="password" value="" id="input-password" class="form-control" />
-										</div>
-									</div>
-									<div class="bottom-form">
-										<!-- <a href="#" class="forgot">Quên mật khẩu</a> -->
-										<input type="submit" value="Đăng nhập" class="btn btn-default pull-right" />
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //Main Container -->
+        <!-- Slider  -->
+        <section class="so-slideshow">
+            <div id="so-slideshow">
+                <div class="module  no-margin">
+                    <div class="yt-content-slider yt-content-slider--arrow1" data-autoplay="no" data-autoheight="no"
+                         data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1"
+                         data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="yes"
+                         data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                        <div class="yt-content-slide">
+                            <a href="#">
+                                <img src="~/image/demo/slider/home7/background-header.png" alt="slider1"
+                                     class="img-responsive">
+                            </a><br>
+                        </div>
+                    </div>
+                    <div class="loadeding"></div>
+                </div>
+            </div>
+        </section>
+        <!-- //end Slider  -->
+        <!-- Main Container  -->
+        <div class="main-container container">
+            <ul class="breadcrumb">
+                <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
+                <li><a asp-controller="user" asp-action="login">Đăng nhập</a></li>
+            </ul>
+            <div class="row">
+                <div id="content" class="col-sm-12">
+                    <div class="page-login">
+
+                        <div class="account-border">
+                            <div class="row">
+                                <div class="col-sm-6 new-customer">
+                                    <div class="well">
+                                        <h2><i class="fa fa-file-o" aria-hidden="true"></i> Khách hàng mới</h2>
+                                        <p>Khách hàng tạo tài khoản UITGreen247 để có trải nghiệm mua sắm nhanh hơn, dễ dàng quản lý và theo dõi đơn hàng.</p>
+                                        @{
+                                            if (ViewBag.check != null)
+                                            {
+                                                <p>@ViewBag.check</p>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="bottom-form">
+                                        <a asp-controller="user" asp-action="register" class="btn btn-default pull-right">Đăng ký</a>
+                                    </div>
+                                </div>
+
+                                <form asp-controller="user" asp-action="checklogin" method="post" enctype="multipart/form-data">
+                                    <div class="col-sm-6 customer-login">
+                                        <div class="well">
+                                            <h2><i class="fa fa-file-text-o" aria-hidden="true"></i> Đăng nhập</h2>
+                                            <p><strong>Tôi đã có tài khoản ở UITGreen247</strong></p>
+                                            <div class="form-group required">
+                                                <label class="control-label " for="input-email">Địa chỉ Email</label>
+                                                <input type="email" name="email" id="input-email" class="form-control" />
+                                            </div>
+                                            <div class="form-group required">
+                                                <label class="control-label " for="input-password">Mật khẩu</label>
+                                                <input type="password" name="password" id="input-password" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="bottom-form">
+                                            <!-- <a href="#" class="forgot">Quên mật khẩu</a> -->
+                                            <input type="submit" value="Đăng nhập" class="btn btn-default pull-right" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //Main Container -->
 
     </div>
 

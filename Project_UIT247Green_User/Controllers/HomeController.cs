@@ -12,10 +12,16 @@ namespace Project_UIT247Green_User.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+       
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+        public void Email ()
+        {
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            this.ViewBag.email = cookie;
         }
         public void MenuCat()
         {
@@ -29,6 +35,7 @@ namespace Project_UIT247Green_User.Controllers
         public IActionResult Index()
         {
             MenuCat();
+            Email();
             List<Product> listpronew = new List<Product>();
             listpronew = Product.ListProNew();
             this.ViewBag.listpronew = listpronew;
@@ -37,6 +44,7 @@ namespace Project_UIT247Green_User.Controllers
         public IActionResult category(int id, int pg = 1)
         {
             MenuCat();
+            Email();
             List<Product> listpro = Product.ListProByCat(id);
             this.ViewBag.listpro = listpro;
             List<Image_product> listimg = Image_product.SelectImg();
@@ -62,11 +70,13 @@ namespace Project_UIT247Green_User.Controllers
         public IActionResult Contact()
         {
             MenuCat();
+            Email();
             return View();
         }
         public IActionResult About_us()
         {
             MenuCat();
+            Email();
             return View();
         }
         public IActionResult Login()

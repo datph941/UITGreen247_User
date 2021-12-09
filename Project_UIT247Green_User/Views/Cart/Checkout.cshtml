@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    List<Image_product> listimg = new List<Image_product>();
 }
 <body class="res layout-subpage">
     <!-- Slider  -->
@@ -28,8 +29,8 @@
     <!-- Main Container  -->
     <div class="main-container container">
         <ul class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i></a></li>
-            <li><a href="#">Thanh toán</a></li>
+            <li><a  asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
+            <li><a  asp-controller="cart" asp-action="checkout">Thanh toán</a></li>
         </ul>
 
         <div class="row">
@@ -43,22 +44,13 @@
                                 <h4 class="panel-title"><i class="fa fa-sign-in"></i> Chưa là thành viên?</h4>
                             </div>
                             <div class="panel-body">
+                                <p>Hãy là thành viên ở UITGreen247 để có trải nghiệm mua sắm tốt hơn.</p>
                                 <div class="radio">
-                                    <label>
-                                        <input type="radio" value="register" name="account">
-                                        Tạo tài khoản
-                                    </label>
-                                </div>
-                                <!-- <div class="radio">
-                                  <label>
-                                    <input type="radio" checked="checked" value="guest" name="account">
-                                    Đăng nhập</label>
-                                </div> -->
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" value="returning" name="account">
-                                        Khách vãng lai
-                                    </label>
+                                    <a asp-controller="user" asp-action="register">
+                                        <label>
+                                            Tạo tài khoản
+                                        </label>
+                                    </a>
                                 </div>
                                 <br>
                             </div>
@@ -84,11 +76,7 @@
                                     <div class="form-group required">
                                         <label for="input-payment-telephone" class="control-label">Số điện thoại</label>
                                         <input type="text" class="form-control" id="input-payment-telephone" placeholder="Số điện thoại" value="" name="telephone">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="input-payment-fax" class="control-label">Tên tài khoản</label>
-                                        <input type="text" class="form-control" id="input-payment-fax" placeholder="Tên tài khoản" value="" name="fax">
-                                    </div>
+                                    </div>                             
                                 </fieldset>
                             </div>
                         </div>
@@ -178,33 +166,18 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
                                 <div class="col-sm-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title"><i class="fa fa-ticket"></i> Bạn có mã khuyến mãi?</h4>
                                         </div>
                                         <div class="panel-body row">
-                                            <div class="col-sm-6 ">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" id="input-coupon" placeholder="Nhập mã khuyến mãi" value="" name="coupon">
                                                     <span class="input-group-btn">
                                                         <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Áp dụng">
                                                     </span>
                                                 </div>
-                                            </div>
-
-                                            <div class="col-sm-6">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="input-voucher" placeholder="Nhập mã quà tặng" value="" name="voucher">
-                                                    <span class="input-group-btn">
-                                                        <input type="submit" class="btn btn-primary" data-loading-text="Loading..." id="button-voucher" value="Áp dụng">
-                                                    </span>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -227,26 +200,44 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td class="text-center"><a href="product.html"><img width="60px" src="image/demo/shop/product/E4.jpg" alt="sp1" title="sp1" class="img-thumbnail"></a></td>
-                                                            <td class="text-left"><a href="product.html">Sản phẩm 1</a></td>
-                                                            <td class="text-left">
-                                                                <div class="input-group btn-block" style="min-width: 100px;">
-                                                                    <input type="text" name="quantity" value="1" size="1" class="form-control">
-                                                                    <span class="input-group-btn">
-                                                                        <button type="submit" data-toggle="tooltip" title="Cập nhật" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
-                                                                        <button type="button" data-toggle="tooltip" title="Xóa" class="btn btn-danger" onClick=""><i class="fa fa-times-circle"></i></button>
-                                                                    </span>
-                                                                </div>
-                                                            </td>
-                                                            <td class="text-right">100.000đ</td>
-                                                            <td class="text-right">100.000đ</td>
-                                                        </tr>
+
+                                                        @if (ViewBag.cart != null)
+                                                        {
+                                                            @foreach (var item in ViewBag.cart)
+                                                            {
+                                                                listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
+                                                                double price_new = (@item.Product.price * (100 + @item.Product.sale_rate) / 100 * ((100 - @item.Product.discount) / 100));
+                                                                <tr>
+                                                                    <td class="text-center">
+                                                                        <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.Product.id_pro" asp-route-idcat="@item.Product.id_cat">
+                                                                            <img width="60px" src="@listimg[0].link" alt="@item.Product.name_pro" title="@item.Product.name_pro" class="img-thumbnail">
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="text-left">
+                                                                        <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.Product.id_pro" asp-route-idcat="@item.Product.id_cat">
+                                                                            @item.Product.name_pro
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="text-left">
+                                                                        <div class="input-group btn-block" style="min-width: 100px;">
+                                                                            <input type="text" name="quantity" value="@item.Quantity" size="1" class="form-control" readonly />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new)</td>
+                                                                    <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new * item.Quantity)</td>
+                                                                </tr>
+                                                            }
+                                                        }
+
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
                                                             <td class="text-right" colspan="4"><strong>Tổng sản phẩm:</strong></td>
-                                                            <td class="text-right">100.000đ</td>
+                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right" colspan="4"><strong>Phí VAT:</strong></td>
+                                                            <td class="text-right">Đã bao gồm trong sản phẩm</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="text-right" colspan="4"><strong>Phí vận chuyển:</strong></td>
@@ -254,7 +245,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td class="text-right" colspan="4"><strong>Tổng thanh toán:</strong></td>
-                                                            <td class="text-right">130.000đ</td>
+                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total+30000)</td>
                                                         </tr>
                                                     </tfoot>
                                                 </table>

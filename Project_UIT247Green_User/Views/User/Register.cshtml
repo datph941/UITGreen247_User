@@ -3,110 +3,151 @@
 *@
 @{
 }
+<script>
+    $(function () {
+        $('input, select').on('focus', function () {
+            $(this).parent().find('.input-group-text').css('border-color', '#80bdff');
+        });
+        $('input, select').on('blur', function () {
+            $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
+        });
+    });
+
+    function check(input) {
+        if (input.value != document.getElementById('input-password').value) {
+            input.setCustomValidity('Mật khẩu không trùng khớp');
+        } else {
+            input.setCustomValidity('');
+        }
+    }
+</script>
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
-	
-	<!-- Main Container  -->
-	<div class="main-container container">
-		<ul class="breadcrumb">
-			<li><a href="#"><i class="fa fa-home"></i></a></li>
-			<li><a href="#">Đăng ký</a></li>
-		</ul>
-		
-		<div class="row">
-			<div id="content" class="col-sm-12">
-				<h2 class="title">Đăng ký tài khoản mới</h2>
-				<p>Nếu bạn đã có tại khoản tài khoản tại UITGreen247, vui lòng truy cập trang <a href="#">đăng nhập</a>.</p>
-				<form action="" method="post" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
-					<fieldset id="account">
-						<legend>Thông tin cá nhân</legend>
-						<div class="form-group required" style="display: none;">
-							<label class="col-sm-2 control-label">Customer Group</label>
-							<div class="col-sm-10">
-								<div class="radio">
-									<label>
-										<input type="radio" name="customer_group_id" value="1" checked="checked"> Default
-									</label>
-								</div>
-							</div>
-						</div>
-						<div class="form-group required">
-							<label class="col-sm-2 control-label" for="input-lastname">Họ tên</label>
-							<div class="col-sm-10">
-								<input type="text" name="name" value="" placeholder="Họ tên" id="input-name" class="form-control">
-							</div>
-						</div>
-						<div class="form-group required">
-							<label class="col-sm-2 control-label" for="input-email">E-mail</label>
-							<div class="col-sm-10">
-								<input type="email" name="email" value="" placeholder="Địa chỉ Email" id="input-email" class="form-control">
-							</div>
-						</div>
-						<div class="form-group required">
-							<label class="col-sm-2 control-label" for="input-telephone">Số điện thoại</label>
-							<div class="col-sm-10">
-								<input type="tel" name="phone" value="" placeholder="Số điện thoại" id="input-phone" class="form-control">
-							</div>
-						</div>
-					</fieldset>
-					<fieldset id="address">
-						<legend>Địa chỉ</legend>
-						<div class="form-group">
-							<label class="col-sm-2 control-label" for="input-address-1">Số nhà / Tên đường</label>
-							<div class="col-sm-10">
-								<input type="text" name="address_1" value="" placeholder="Số nhà / Tên đường" id="input-address-1" class="form-control">
-							</div>
-						</div>
-						<div class="form-group required">
-							<label class="col-sm-2 control-label" for="input-address-2">Xã / Phường</label>
-							<div class="col-sm-10">
-								<input type="text" name="address_2" value="" placeholder="Xã / Phường" id="input-address-2" class="form-control">
-							</div>
-						</div>
-						<div class="form-group required">
-							<label class="col-sm-2 control-label" for="input-district">Quận / Huyện</label>
-							<div class="col-sm-10">
-								<input type="text" name="district" value="" placeholder="Quận / Huyện" id="input-district" class="form-control">
-							</div>
-						</div>
-						<div class="form-group required">
-							<label class="col-sm-2 control-label" for="input-zone">Tỉnh</label>
-							<div class="col-sm-10">
-								<select name="zone_id" id="input-zone" class="form-control">
-									<option value=""> --- Vui lòng chọn --- </option>
-									<option value="3513">Vĩnh Long</option>
-									<option value="3514">Bạc Liêu</option>
-									<option value="3515">Quãng Ngãi</option>
-								</select>
-							</div>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend>Thiết lập mật khẩu</legend>
-						<div class="form-group required">
-							<label class="col-sm-2 control-label" for="input-password">Mật khẩu</label>
-							<div class="col-sm-10">
-								<input type="password" name="password" value="" placeholder="Mật khẩu" id="input-password" class="form-control">
-							</div>
-						</div>
-						<div class="form-group required">
-							<label class="col-sm-2 control-label" for="input-confirm">Xác nhận mật khẩu</label>
-							<div class="col-sm-10">
-								<input type="password" name="confirm" value="" placeholder="Xác nhận mật khẩu" id="input-confirm" class="form-control">
-							</div>
-						</div>
-					</fieldset>
-					<div class="buttons">
-						<div class="pull-right">Tôi đã đồng ý với  <a href="#" class="agree"><b>Quy định của UITGreen247</b></a>
-							<input class="box-checkbox" type="checkbox" name="agree" value="1"> &nbsp;
-							<input type="submit" value="Tiếp tục" class="btn btn-primary">
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- //Main Container -->
-	
+        <!-- Slider  -->
+        <section class="so-slideshow">
+            <div id="so-slideshow">
+                <div class="module  no-margin">
+                    <div class="yt-content-slider yt-content-slider--arrow1" data-autoplay="no" data-autoheight="no"
+                         data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1"
+                         data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="yes"
+                         data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                        <div class="yt-content-slide">
+                            <a href="#">
+                                <img src="~/image/demo/slider/home7/background-header.png" alt="slider1"
+                                     class="img-responsive">
+                            </a><br>
+                        </div>
+                    </div>
+                    <div class="loadeding"></div>
+                </div>
+            </div>
+
+        </section>
+        <!-- //end Slider  -->
+        <!-- Main Container  -->
+        <div class="main-container container">
+            <ul class="breadcrumb">
+                <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
+                <li><a asp-controller="user" asp-action="register">Đăng ký</a></li>
+            </ul>
+            <div class="row">
+                <div id="content" class="col-sm-12">
+                    @if (ViewBag.check != null)
+                    {
+                        <h2 class="title" style="text-align:center;">@ViewBag.check</h2>
+                    }
+                    <h2 class="title">Đăng ký tài khoản mới</h2>
+                    <p>Nếu bạn đã có tại khoản tài khoản tại UITGreen247, vui lòng truy cập trang <a asp-controller="user" asp-action="login">đăng nhập</a>.</p>
+                    <form asp-controller="user" asp-action="ins" method="post" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
+                        <fieldset id="account">
+                            <legend>Thông tin cá nhân</legend>
+                            <div class="form-group required" style="display: none;">
+                                <label class="col-sm-2 control-label">Customer Group</label>
+                                <div class="col-sm-10">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="customer_group_id" value="1" checked="checked"> Default
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-lastname">Họ tên</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="name" value="" placeholder="Họ tên" id="input-name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-email">E-mail</label>
+                                <div class="col-sm-10">
+                                    <input type="email" name="email" value="" placeholder="Địa chỉ Email" id="input-email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-telephone">Số điện thoại</label>
+                                <div class="col-sm-10">
+                                    <input type="tel" name="phone" value="" placeholder="Số điện thoại" id="input-phone" class="form-control">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset id="address">
+                            <legend>Địa chỉ</legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-address-1">Số nhà / Tên đường</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="add1" value="" placeholder="Số nhà / Tên đường" id="input-address-1" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-address-2">Xã / Phường</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="add2" value="" placeholder="Xã / Phường" id="input-address-2" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-district">Quận / Huyện</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="district" value="" placeholder="Quận / Huyện" id="input-district" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-zone">Tỉnh</label>
+                                <div class="col-sm-10">
+                                    <select name="zone" id="input-zone" class="form-control">
+                                        <option value=""> --- Vui lòng chọn --- </option>
+                                        <option value="Vĩnh Long">Vĩnh Long</option>
+                                        <option value="Bạc Liêu">Bạc Liêu</option>
+                                        <option value="Quãng Ngãi">Quãng Ngãi</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Thiết lập mật khẩu</legend>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-password">Mật khẩu</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="password" value="" placeholder="Mật khẩu" id="input-password" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-confirm">Xác nhận mật khẩu</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="confirm" value="" oninput="check(this)" placeholder="Xác nhận mật khẩu" id="input-confirm" class="form-control">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="buttons">
+                            <div class="pull-right">
+                                Tôi đã đồng ý với  <a class="agree"><b>Quy định của UITGreen247</b></a>
+                                <input class="box-checkbox" type="checkbox" name="agree" value="1"> &nbsp;
+                                <input type="submit" value="Tiếp tục" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- //Main Container -->
     </div>	
 </body>
