@@ -84,15 +84,13 @@
                                                 {
                                                     if (item1.id_parent == item.id_cat)
                                                     {
-                                                        <li><a href="category?id=@item1.id_cat">@item1.name_cat</a></li>
+                                                        <li><a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat">@item1.name_cat</a></li>
                                                     }
                                                 }
                                             </ul>
                                         </li>
                                     }
-
                                 </ul>
-
                             </div>
 
 

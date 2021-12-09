@@ -18,6 +18,7 @@
     {
         listimg = ViewBag.listimg;
     }
+    var index = 0;
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
@@ -65,14 +66,15 @@
                                             @foreach (var item in listimg)
                                             {
                                                 <li class="owl2-item">
-                                                    <a data-index="0" class="img thumbnail" data-image="@item.link" title="@pro.name_pro">
+                                                    <a data-index="@index" class="img thumbnail" data-image="@item.link" title="@pro.name_pro">
                                                         <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro">
                                                     </a>
                                                 </li>
-                                            }
+                                             
+                                            }  
                                         </ul>
                                     </div>
-                                    <div class="large-image  vertical">
+                                    <div class="large-image vertical">
                                         <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" data-zoom-image="@listimg[0].link" title="SP" alt="SP">
                                     </div>
                                     <a class="thumb-video pull-left" href="https://www.youtube.com/watch?v=crb2APddijE"><i class="fa fa-youtube-play"></i></a>
@@ -431,8 +433,6 @@
                                         <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe" href="quickview.html">  Xem nhanh</a>
                                         <!--end full quick view block-->
                                     </div>
-
-
                                     <div class="right-block">
                                         <div class="caption">
                                             <h4><a href="product.html">Sản phẩm 3</a></h4>
@@ -516,7 +516,6 @@
                             </div>
                         </div>
                     </div>
-
                     <script type="text/javascript">
                         $(document).ready(function () {
                             var zoomCollection = '.large-image img';
