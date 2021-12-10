@@ -16,7 +16,7 @@
                      data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="yes"
                      data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                     <div class="yt-content-slide">
-                        <a href="#">
+                        <a>
                             <img src="~/image/demo/slider/home7/background-header.png" alt="slider1"
                                  class="img-responsive">
                         </a><br>
@@ -39,8 +39,70 @@
                 <!--Middle Part Start-->
                 <div id="content" class="col-sm-12">
                     <h2 class="title">Thanh toán</h2>
-                    <div class="so-onepagecheckout ">           
-                        <div class="col-right col-sm-12">
+                    <div class="so-onepagecheckout ">        
+                        <div class="col-left col-sm-3"> 
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><i class="fa fa-user"></i> Thông tin khách hàng</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <fieldset id="account">
+                                        <div class="form-group required">
+                                            <label for="input-payment-firstname" class="control-label">Họ tên</label>
+                                            <input type="text" class="form-control" id="input-payment-firstname" placeholder="Họ tên" value="" name="firstname" readonly> 
+                                        </div>
+                                       
+                                        <div class="form-group required">
+                                            <label for="input-payment-email" class="control-label">E-mail</label>
+                                            <input type="text" class="form-control" id="input-payment-email" placeholder="E-mail" value="" name="email" readonly>
+                                        </div>
+                                        <div class="form-group required">
+                                            <label for="input-payment-telephone" class="control-label">Số điện thoại</label>
+                                            <input type="text" class="form-control" id="input-payment-telephone" placeholder="Số điện thoại" value="" name="telephone" readonly>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <form method="post" asp-controller="cartuser" asp-action="updateaddr"> 
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><i class="fa fa-book"></i> Địa chỉ giao hàng</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <fieldset id="address" class="required">
+                                            <div class="form-group">
+                                                <label for="input-payment-address-1" class="control-label">Số nhà / Tên đường</label>
+                                                <input type="text" class="form-control" id="input-payment-address-1" placeholder="Số nhà / Tên đường" value="" name="addr1">
+                                            </div>
+                                            <div class="form-group required">
+                                                <label for="input-payment-address-2" class="control-label">Xã / Phường</label>
+                                                <input type="text" class="form-control" id="input-payment-address-2" placeholder="Xã / Phường" value="" name="addr2">
+                                            </div>
+                                            <div class="form-group required">
+                                                <label for="input-payment-city" class="control-label">Quận / Huyện</label>
+                                                <input type="text" class="form-control" id="input-payment-city" placeholder="Quận / Huyện" value="" name="city">
+                                            </div>
+                                            <div class="form-group required">
+                                                <label for="input-payment-zone" class="control-label">Tỉnh</label>
+                                                <select class="form-control" id="input-payment-zone" name="zone" onchange="genderChanged(this)">
+                                                    <option value=""> --- Vui lòng chọn --- </option>
+                                                    <option value="Vĩnh Long">Vĩnh Long</option>
+                                                    <option value="Bạc Liêu">Bạc Liêu</option>
+                                                    <option value="Quãng Ngãi">Quãng Ngãi</option>
+                                                    <option value="TP.Hồ Chí Minh">TP.Hồ Chí Minh</option>
+                                                </select>
+                                            </div>
+                                        </fieldset>
+                                        <div class="buttons">
+                                            <div class="pull-right">
+                                                <input type="submit" class="btn btn-primary" id="button-confirm" value="Cập nhật địa chỉ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>  
+                        </div>
+                        <div class="col-right col-sm-9">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="panel panel-default no-padding">

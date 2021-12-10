@@ -11,6 +11,8 @@ namespace Project_UIT247Green_User.Models
         public int id_customer { set; get; }
         public int id_promotion { set; get; }
         public double ship { set; get; }
+        public int shipmethod { set; get; }
+        public int paymethod { set; get; }
         public int status { set; get; }
         public string note { set; get; }
         public double price_sum { set; get; }

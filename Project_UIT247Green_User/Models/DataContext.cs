@@ -30,6 +30,7 @@ namespace Project_UIT247Green_User.Models
         public DbSet<Users> Users { set; get; }
         public DbSet<Banner> Banner { set; get; }
         public DbSet<Cart> Cart { set; get; }
+        public DbSet<Wishlist> Wishlist { set; get; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasKey(c => new { c.id_cat });
@@ -49,6 +50,8 @@ namespace Project_UIT247Green_User.Models
             modelBuilder.Entity<Banner>().HasKey(c => new { c.id_banner });
             modelBuilder.Entity<Cart>().HasKey(c => new { c.id_user });
             modelBuilder.Entity<Cart>().HasKey(c => new { c.id_pro });
+            modelBuilder.Entity<Wishlist>().HasKey(c => new { c.id_user });
+            modelBuilder.Entity<Wishlist>().HasKey(c => new { c.id_pro });
             modelBuilder.Entity<Promotion>().HasKey(c => new { c.id_promotion });
         }
     }

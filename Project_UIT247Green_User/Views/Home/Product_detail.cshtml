@@ -31,7 +31,7 @@
                          data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="yes"
                          data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                         <div class="yt-content-slide">
-                            <a href="#">
+                            <a>
                                 <img src="~/image/demo/slider/home7/background-header.png" alt="slider1"
                                      class="img-responsive">
                             </a><br>
@@ -60,26 +60,26 @@
                             <div class="row">
                                 <div class="content-product-left  col-sm-7 col-xs-12 ">
                                     <div id="thumb-slider-vertical" class="thumb-vertical-outer">
-                                        <span class="btn-more prev-thumb nt"><i class="fa fa-angle-up"></i></span>
-                                        <span class="btn-more next-thumb nt"><i class="fa fa-angle-down"></i></span>
-                                        <ul class="thumb-vertical">
-                                            @foreach (var item in listimg)
-                                            {
-                                                <li class="owl2-item">
-                                                    <a data-index="@index" class="img thumbnail" data-image="@item.link" title="@pro.name_pro">
-                                                        <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro">
-                                                    </a>
-                                                </li>
-                                             
-                                            }  
-                                        </ul>
-                                    </div>
-                                    <div class="large-image vertical">
-                                        <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" data-zoom-image="@listimg[0].link" title="SP" alt="SP">
-                                    </div>
-                                    <a class="thumb-video pull-left" href="https://www.youtube.com/watch?v=crb2APddijE"><i class="fa fa-youtube-play"></i></a>
+                                            <span class="btn-more prev-thumb nt"><i class="fa fa-angle-up"></i></span>
+                                            <span class="btn-more next-thumb nt"><i class="fa fa-angle-down"></i></span>
+                                            <ul class="thumb-vertical">
+                                                @foreach (var item in listimg)
+                                                {
 
-                                </div>
+                                                    <li class="owl2-item">
+                                                        <a data-index="@index" class="img thumbnail" data-image="@item.link" title="@pro.name_pro">
+                                                            <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro">
+                                                        </a>
+                                                    </li>
+                                                }
+                                                </ul>
+                                        </div>
+                                        <div class="large-image vertical">
+                                            <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" title="SP" alt="SP">
+                                        </div>
+                                   
+                                        <a class="thumb-video pull-left" href="https://www.youtube.com/watch?v=crb2APddijE"><i class="fa fa-youtube-play"></i></a>
+                                    </div>
 
                                 <div class="content-product-right col-sm-5 col-xs-12">
                                     <div class="title-product">
@@ -131,44 +131,11 @@
                                     <div class="product-box-desc">
                                         <div class="inner-box-desc">
                                             <div class="brand"><span>Thương hiệu:</span><a href="#"> UIT</a></div>
-                                            <div class="origin"><span>Xuất xứ:</span>@pro.origin</div>
+                                            <div class="origin"><span>Xuất xứ:</span> @pro.origin</div>
+                                            <div class="origin"><span>ĐVT:</span> @pro.type</div>
                                         </div>
                                     </div>
-
-
-                                    <div id="product">
-                                        <!-- <h4>Available Options</h4>
-                                    <div class="image_option_type form-group required">
-                                        <label class="control-label">Màu sắc</label>
-                                        <ul class="product-options clearfix"id="input-option231">
-                                            <li class="radio active">
-                                                <label>
-                                                    <input class="image_radio" type="radio" name="option[231]" value="33"> <img src="image/demo/colors/blue.jpg"
-                                                    data-original-title="blue +$12.00" class="img-thumbnail icon icon-color">				<i class="fa fa-check"></i>
-                                                    <label> </label>
-                                                </label>
-                                            </li>
-                                            <li class="radio">
-                                                <label>
-                                                    <input class="image_radio" type="radio" name="option[231]" value="34"> <img src="image/demo/colors/brown.jpg"
-                                                    data-original-title="brown -$12.00" class="img-thumbnail icon icon-color">				<i class="fa fa-check"></i>
-                                                    <label> </label>
-                                                </label>
-                                            </li>
-                                            <li class="radio">
-                                                <label>
-                                                    <input class="image_radio" type="radio" name="option[231]" value="35"> <img src="image/demo/colors/green.jpg"
-                                                    data-original-title="green +$12.00" class="img-thumbnail icon icon-color">				<i class="fa fa-check"></i>
-                                                    <label> </label>
-                                                </label>
-                                            </li>
-                                            <li class="selected-option">
-                                            </li>
-                                        </ul>
-                                    </div> -->
-
-
-
+                                    <div id="product">                                      
                                         <div class="form-group box-info-product">
                                             <div class="option quantity">
                                                 <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
