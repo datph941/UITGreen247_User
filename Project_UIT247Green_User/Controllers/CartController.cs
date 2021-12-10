@@ -49,6 +49,34 @@ namespace Project_UIT247Green_User.Controllers
             }
             return View();
         }
+        public IActionResult Payment(string firstname, string email,string telephone,string addr1, string addr2, string city, string zone,string coupon, string comments)
+        {
+            string address = addr1 + ", " + addr2 + ", " + city + ", " + zone;
+            int id_pro = 1;
+            double ship = 15000;
+            List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            double total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
+            if (!zone.Equals("TP.Hồ Chí Minh"))
+            {
+                ship = 30000;
+            }
+            if (coupon != null)
+            {
+                id_pro = Promotion.selectbyname(coupon).id_promotion;
+            }
+            Customer.Insert(firstname, email, address, telephone);
+            Customer cus = Customer.SelectNew();
+          
+            int check = Orders.Insert(cus.id_cus, id_pro, ship, comments, total);
+            int id_ord = Orders.SelectNew().id_ord;
+            foreach(var item in cart)
+            {
+                Order_items.Insert(id_ord,item.Product.id_pro, item.Quantity);
+            }
+            cart.Clear();
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            return RedirectToAction("index");
+        }
         public IActionResult Plus(int idpro)
         {
             List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");

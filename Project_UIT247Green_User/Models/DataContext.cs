@@ -17,17 +17,19 @@ namespace Project_UIT247Green_User.Models
         }
         public DbSet<Category> Category { set; get; }
         public DbSet<Product> Product { set; get; }
+        public DbSet<Promotion> Promotion { set; get; }
         public DbSet<Image> Image { set; get; }
         public DbSet<Image_product> Image_product { set; get; }
         public DbSet<Comment> Comment { set; get; }
         public DbSet<Orders> Orders { set; get; }
         public DbSet<Orders_user> Orders_user { set; get; }
-        public DbSet<Order_items> Order_item { set; get; }
-        public DbSet<Order_user_items> Order_item_user { set; get; }
+        public DbSet<Order_items> Order_items { set; get; }
+        public DbSet<Order_user_items> Order_user_items { set; get; }
         public DbSet<News> News { set; get; }
         public DbSet<Customer> Customer { set; get; }
         public DbSet<Users> Users { set; get; }
         public DbSet<Banner> Banner { set; get; }
+        public DbSet<Cart> Cart { set; get; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasKey(c => new { c.id_cat });
@@ -47,6 +49,7 @@ namespace Project_UIT247Green_User.Models
             modelBuilder.Entity<Banner>().HasKey(c => new { c.id_banner });
             modelBuilder.Entity<Cart>().HasKey(c => new { c.id_user });
             modelBuilder.Entity<Cart>().HasKey(c => new { c.id_pro });
+            modelBuilder.Entity<Promotion>().HasKey(c => new { c.id_promotion });
         }
     }
 }

@@ -24,6 +24,17 @@ namespace Project_UIT247Green_User.Models
             }
             return u;
         }
+        public static Users FindU(string email)
+        {
+            Users u = new Users();
+            using (var context = new DataContext())
+            {
+                u = (from p in context.Users
+                     where (p.email == email)
+                     select p).FirstOrDefault();
+            }
+            return u;
+        }
         public static int InsertU(string name, string email, string pass, string addr, string phone)
         {
             Users u = new Users();

@@ -3,31 +3,9 @@
 *@
 @{
     List<Image_product> listimg = new List<Image_product>();
+    Product pro = new Product();
+    double total = 0;
 }
-<script language="javascript">
-
-    function genderChanged(obj) {
-        var total = document.getElementById("total");
-        var message = document.getElementById('ship');
-        var price_sum = document.getElementById('price_sum');
-        let sum = 0;
-        var value = obj.value;
-        if (value === '') {
-          
-        }
-        else if (value === 'TP.Hồ Chí Minh') {
-            message.innerHTML = '15000 vnđ';
-            sum = parseInt(total.dataset.total) + 15000;
-        }
-        else{
-            message.innerHTML = '30000 vnđ';
-            sum = parseInt(total.dataset.total) + 30000;
-        }
-        price_sum.innerHTML = sum.toLocaleString() + ' vnđ';
-        
-    }
-
-</script>
 <body class="res layout-subpage">
     <!-- Slider  -->
     <section class="so-slideshow">
@@ -55,98 +33,14 @@
         <div class="main-container container">
             <ul class="breadcrumb">
                 <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
-                <li><a asp-controller="cart" asp-action="checkout">Thanh toán</a></li>
+                <li><a asp-controller="cartuser" asp-action="checkout">Thanh toán</a></li>
             </ul>
             <div class="row">
                 <!--Middle Part Start-->
                 <div id="content" class="col-sm-12">
                     <h2 class="title">Thanh toán</h2>
-                    <div class="so-onepagecheckout ">
-                        <div class="col-left col-sm-3">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><i class="fa fa-sign-in"></i> Chưa là thành viên?</h4>
-                                </div>
-                                <div class="panel-body">
-                                    <p>Hãy là thành viên ở UITGreen247 để có trải nghiệm mua sắm tốt hơn.</p>
-                                    <div class="radio">
-                                        <a asp-controller="user" asp-action="register">
-                                            <label>
-                                                Tạo tài khoản
-                                            </label>
-                                        </a>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><i class="fa fa-user"></i> Thông tin khách hàng</h4>
-                                </div>
-                                <div class="panel-body">
-                                    <fieldset id="account">
-                                        <div class="form-group required">
-                                            <label for="input-payment-firstname" class="control-label">Họ tên</label>
-                                            <input type="text" class="form-control" id="input-payment-firstname" placeholder="Họ tên" value="" name="firstname">
-                                        </div>
-                                        <!-- <div class="form-group required">
-                                          <label for="input-payment-lastname" class="control-label">Last Name</label>
-                                          <input type="text" class="form-control" id="input-payment-lastname" placeholder="Last Name" value="" name="lastname">
-                                        </div> -->
-                                        <div class="form-group required">
-                                            <label for="input-payment-email" class="control-label">E-mail</label>
-                                            <input type="text" class="form-control" id="input-payment-email" placeholder="E-mail" value="" name="email">
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="input-payment-telephone" class="control-label">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="input-payment-telephone" placeholder="Số điện thoại" value="" name="telephone">
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><i class="fa fa-book"></i> Địa chỉ giao hàng</h4>
-                                </div>
-                                <div class="panel-body">
-                                    <fieldset id="address" class="required">
-                                        <!-- <div class="form-group">
-                                          <label for="input-payment-company" class="control-label">Company</label>
-                                          <input type="text" class="form-control" id="input-payment-company" placeholder="Company" value="" name="company">
-                                        </div> -->
-                                        <div class="form-group">
-                                            <label for="input-payment-address-1" class="control-label">Số nhà / Tên đường</label>
-                                            <input type="text" class="form-control" id="input-payment-address-1" placeholder="Số nhà / Tên đường" value="" name="addr1">
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="input-payment-address-2" class="control-label">Xã / Phường</label>
-                                            <input type="text" class="form-control" id="input-payment-address-2" placeholder="Xã / Phường" value="" name="addr2">
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="input-payment-city" class="control-label">Quận / Huyện</label>
-                                            <input type="text" class="form-control" id="input-payment-city" placeholder="Quận / Huyện" value="" name="city">
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="input-payment-zone" class="control-label">Tỉnh</label>
-                                            <select class="form-control" id="input-payment-zone" name="zone" onchange="genderChanged(this)">
-                                                <option value=""> --- Vui lòng chọn --- </option>
-                                                <option value="Vĩnh Long">Vĩnh Long</option>
-                                                <option value="Bạc Liêu">Bạc Liêu</option>
-                                                <option value="Quãng Ngãi">Quãng Ngãi</option>
-                                                <option value="TP.Hồ Chí Minh">TP.Hồ Chí Minh</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- <div class="checkbox">
-                                          <label>
-                                            <input type="checkbox" checked="checked" value="1" name="shipping_address">
-                                            My delivery and billing addresses are the same.</label>
-                                        </div> -->
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-right col-sm-9">
+                    <div class="so-onepagecheckout ">           
+                        <div class="col-right col-sm-12">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="panel panel-default no-padding">
@@ -230,27 +124,29 @@
                                                             {
                                                                 @foreach (var item in ViewBag.cart)
                                                                 {
-                                                                    listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
-                                                                    double price_new = (@item.Product.price * (100 + @item.Product.sale_rate) / 100 * ((100 - @item.Product.discount) / 100));
+                                                                    listimg = Image_product.FindImgByIDPro(item.id_pro);
+                                                                    pro = Product.FindProByID(item.id_pro);
+                                                                    double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
                                                                     <tr>
                                                                         <td class="text-center">
-                                                                            <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.Product.id_pro" asp-route-idcat="@item.Product.id_cat">
-                                                                                <img width="60px" src="@listimg[0].link" alt="@item.Product.name_pro" title="@item.Product.name_pro" class="img-thumbnail">
+                                                                            <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
+                                                                                <img width="60px" src="@listimg[0].link" alt="@pro.name_pro" title="@pro.name_pro" class="img-thumbnail">
                                                                             </a>
                                                                         </td>
                                                                         <td class="text-left">
-                                                                            <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.Product.id_pro" asp-route-idcat="@item.Product.id_cat">
-                                                                                @item.Product.name_pro
+                                                                            <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
+                                                                                @pro.name_pro
                                                                             </a>
                                                                         </td>
                                                                         <td class="text-left">
                                                                             <div class="input-group btn-block" style="min-width: 100px;">
-                                                                                <input type="text" name="quantity" value="@item.Quantity" size="1" class="form-control" readonly />
+                                                                                <input type="text" name="quantity" value="@item.quantity" size="1" class="form-control" readonly />
                                                                             </div>
                                                                         </td>
                                                                         <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new)</td>
-                                                                        <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new * item.Quantity)</td>
+                                                                        <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new * item.quantity)</td>
                                                                     </tr>
+                                                                    total += (price_new * item.quantity);
                                                                 }
                                                             }
 
@@ -258,7 +154,7 @@
                                                         <tfoot>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Tổng sản phẩm:</strong></td>
-                                                                <td data-total="@ViewBag.total" id="total" class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                                <td id="total" class="text-right">@String.Format("{0:0,0 vnđ}", total)</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Phí VAT:</strong></td>
@@ -266,11 +162,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Phí vận chuyển:</strong></td>
-                                                                <td id="ship" class="text-right">0 vnđ</td>
+                                                                <td id="ship" class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.ship)</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Tổng thanh toán:</strong></td>
-                                                                <td id="price_sum" class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                                <td id="price_sum" class="text-right">@String.Format("{0:0,0 vnđ}", total+ViewBag.ship)</td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>

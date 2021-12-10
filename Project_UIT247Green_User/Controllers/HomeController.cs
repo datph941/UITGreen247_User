@@ -90,6 +90,7 @@ namespace Project_UIT247Green_User.Controllers
         public IActionResult Product_detail(int idpro,int idcat)
         {
             MenuCat();
+            Email();
             Product pro = new Product();
             pro = Product.FindProByID(idpro);
             Category cat = Category.FindCatByID(idcat);

@@ -414,10 +414,20 @@
                                                 </div>
                                             </div>
                                             <div class="button-group">
-                                                <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cart" asp-action="buy" asp-route-id="@item2.id_pro"
-                                                        title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
-                                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                </a>
+                                                @if (ViewBag.email != null)
+                                                {
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cartuser" asp-action="buy" asp-route-idpro="@item2.id_pro"
+                                                       title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cart" asp-action="buy" asp-route-id="@item2.id_pro"
+                                                       title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                    </a>
+                                                }
                                                 <button class="wishlist" type="button" data-toggle="tooltip"
                                                         title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');">
                                                     <i class="fa fa-heart"></i>
@@ -482,10 +492,20 @@
                                                 </div>
                                             </div>
                                             <div class="button-group">
-                                                <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cart" asp-action="buy" asp-route-id="@item2.id_pro"
-                                                        title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
-                                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                </a>
+                                                @if (ViewBag.email != null)
+                                                {
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cartuser" asp-action="buy" asp-route-idpro="@item2.id_pro"
+                                                       title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cart" asp-action="buy" asp-route-id="@item2.id_pro"
+                                                       title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                    </a>
+                                                }
                                                 <button class="wishlist" type="button" data-toggle="tooltip"
                                                         title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');">
                                                     <i class="fa fa-heart"></i>

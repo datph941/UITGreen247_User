@@ -262,13 +262,26 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <p class="text-right">
-                                            <a class="btn view-cart" asp-controller="cart" asp-action="index">
-                                                <i class="fa fa-shopping-cart"></i>Xem giỏ
-                                                hàng
-                                            </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
-                                                                      asp-controller="cart" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
-                                        </p>
+                                        @if (ViewBag.email == null)
+                                        {
+                                            <p class="text-right">
+                                                <a class="btn view-cart" asp-controller="cart" asp-action="index">
+                                                    <i class="fa fa-shopping-cart"></i>Xem giỏ
+                                                    hàng
+                                                </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
+                                                                          asp-controller="cart" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-right">
+                                                <a class="btn view-cart" asp-controller="cartuser" asp-action="index">
+                                                    <i class="fa fa-shopping-cart"></i>Xem giỏ
+                                                    hàng
+                                                </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
+                                                                          asp-controller="cartuser" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
+                                            </p>
+                                        }
                                     </div>
                                 </li>
                             </ul>
