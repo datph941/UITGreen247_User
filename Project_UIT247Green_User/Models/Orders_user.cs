@@ -16,7 +16,7 @@ namespace Project_UIT247Green_User.Models
         public int status { set; get; }
         public string note { set; get; }
         public double price_sum { set; get; }
-        public static int Insert(int id, int id_promotion, double ship, string note, double pricesum)
+        public static int Insert(int id, int id_promotion, double ship, string note, int shipmethod, int paymethod, double pricesum)
         {
             using (var context = new DataContext())
             {
@@ -25,6 +25,8 @@ namespace Project_UIT247Green_User.Models
                     id_user = id,
                     id_promotion = id_promotion,
                     ship = ship,
+                    shipmethod = shipmethod,
+                    paymethod = paymethod,
                     status = 0,
                     note = note,
                     price_sum = pricesum + ship

@@ -81,5 +81,20 @@ namespace Project_UIT247Green_User.Models
                 }
             }
         }
+        public static void UpdateAdd(int id,string add,string phone)
+        {
+            using (var context = new DataContext())
+            {
+                Users user = (from p in context.Users
+                              where (p.id == id)
+                              select p).FirstOrDefault();
+                if (user != null)
+                {
+                    user.phone = phone;
+                    user.address = add;
+                    context.SaveChanges();
+                }
+            }
+        }
     }
 }
