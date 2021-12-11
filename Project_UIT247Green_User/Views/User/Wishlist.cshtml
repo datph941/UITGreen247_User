@@ -4,96 +4,127 @@
 @{
 }
 <body class="res layout-subpage">
-	<div id="wrapper" class="wrapper-full ">
+    <div id="wrapper" class="wrapper-full ">
+        <!-- Slider  -->
+        <section class="so-slideshow">
+            <div id="so-slideshow">
+                <div class="module  no-margin">
+                    <div class="yt-content-slider yt-content-slider--arrow1" data-autoplay="no" data-autoheight="no"
+                         data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1"
+                         data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="yes"
+                         data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                        <div class="yt-content-slide">
+                            <a href="#">
+                                <img src="~/image/demo/slider/home7/background-header.png" alt="slider1"
+                                     class="img-responsive">
+                            </a><br>
+                        </div>
+                    </div>
+                    <div class="loadeding"></div>
+                </div>
+            </div>
 
-		<!-- //Header Container  -->
-		<!-- Main Container  -->
-		<div class="main-container container">
-			<ul class="breadcrumb">
-				<li><a href="#"><i class="fa fa-home"></i></a></li>
-				<li><a href="#">Danh sách yêu thích</a></li>
-			</ul>
+        </section>
+        <!-- //end Slider  -->
+        <!-- //Header Container  -->
+        <!-- Main Container  -->
+        <div class="main-container container">
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                <li><a href="#">Danh sách yêu thích</a></li>
+            </ul>
 
-			<div class="row">
-				<!--Middle Part Start-->
-				<div id="content" class="col-sm-9">
-					<h2 class="title">Danh sách yêu thích</h2>
-					<div class="table-responsive">
-						<table class="table table-bordered table-hover">
-							<thead>
-								<tr>
-									<td class="text-center">Sản phẩm</td>
-									<td class="text-left">Tên</td>
-									<td class="text-right">Giá</td>
-									<td class="text-right"></td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="text-center">
-										<a href="product.html"><img width="70px" src="image/demo/shop/product/18.jpg"
-												alt="sp" title="sp">
-										</a>
-									</td>
-									<td class="text-left"><a href="product.html">Sản phẩm 1</a>
-									</td>
-									<td class="text-right">
-										<div class="price"> <span class="price-new">100.000đ</span> <span
-												class="price-old">200.000đ</span></div>
+            <div class="row">
+                <!--Middle Part Start-->
+                <div id="content" class="col-sm-9">
+                    <h2 class="title">Danh sách yêu thích</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-center">Sản phẩm</td>
+                                    <td class="text-left">Tên</td>
+                                    <td class="text-right">Giá</td>
+                                    <td class="text-right"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <a href="product.html">
+                                            <img width="70px" src="image/demo/shop/product/18.jpg"
+                                                 alt="sp" title="sp">
+                                        </a>
+                                    </td>
+                                    <td class="text-left">
+                                        <a href="product.html">Sản phẩm 1</a>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="price">
+                                            <span class="price-new">100.000đ</span> <span class="price-old">200.000đ</span>
+                                        </div>
 
-									</td>
-									<td class="text-right">
-										<button class="btn btn-primary" title="" data-toggle="tooltip"
-											onclick="cart.add('48');" type="button"
-											data-original-title="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i>
-										</button>
-										<a class="btn btn-danger" title="" data-toggle="tooltip" href=""
-											data-original-title="Xóa"><i class="fa fa-times"></i></a>
-									</td>
-								</tr>
-								<tr>
-									<td class="text-center">
-										<a href="product.html"><img width="70px" src="image/demo/shop/product/E1.jpg"
-												alt="sp" title="sp"></a>
-									</td>
-									<td class="text-left"><a href="product.html">Sản phẩm 2</a>
-									</td>
-									<td class="text-right">
-										<div class="price"> <span class="price-new">100.000đ</span> </div>
-									</td>
-									<td class="text-right">
-										<button class="btn btn-primary" title="" data-toggle="tooltip"
-											onclick="cart.add('48');" type="button"
-											data-original-title="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i>
-										</button>
-										<a class="btn btn-danger" title="" data-toggle="tooltip" href=""
-											data-original-title="Xóa"><i class="fa fa-times"></i></a>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-primary" title="" data-toggle="tooltip"
+                                                onclick="cart.add('48');" type="button"
+                                                data-original-title="Thêm vào giỏ hàng">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                        <a class="btn btn-danger" title="" data-toggle="tooltip" href=""
+                                           data-original-title="Xóa"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <a href="product.html">
+                                            <img width="70px" src="image/demo/shop/product/E1.jpg"
+                                                 alt="sp" title="sp">
+                                        </a>
+                                    </td>
+                                    <td class="text-left">
+                                        <a href="product.html">Sản phẩm 2</a>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="price"> <span class="price-new">100.000đ</span> </div>
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-primary" title="" data-toggle="tooltip"
+                                                onclick="cart.add('48');" type="button"
+                                                data-original-title="Thêm vào giỏ hàng">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                        <a class="btn btn-danger" title="" data-toggle="tooltip" href=""
+                                           data-original-title="Xóa"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-				<!--Middle Part End-->
-				<aside class="col-sm-3 hidden-xs" id="column-right">
-					<h2 class="subtitle">Tài khoản</h2>
-					<div class="list-group">
-						<ul class="list-item">
-							<li><a href="my-account.html">Thông tin tài khoản</a>
-							</li>
-							<li><a href="wishlist.html">Danh sách yêu thích</a>
-							</li>
-							<li><a href="order-history.html">Lịch sử đặt hàng</a>
-							</li>
-						</ul>
-					</div>
-				</aside>
-			</div>
-		</div>
-		<!-- //Main Container -->
+                <!--Middle Part End-->
+                <aside class="col-sm-3 hidden-xs" id="column-right">
+                    <h2 class="subtitle">Tài khoản</h2>
+                    <div class="list-group">
+                        <ul class="list-item">
+                            <li>
+                                <a href="my-account.html">Thông tin tài khoản</a>
+                            </li>
+                            <li>
+                                <a href="wishlist.html">Danh sách yêu thích</a>
+                            </li>
+                            <li>
+                                <a href="order-history.html">Lịch sử đặt hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <!-- //Main Container -->
 
-	</div>
+    </div>
 
 </body>
 

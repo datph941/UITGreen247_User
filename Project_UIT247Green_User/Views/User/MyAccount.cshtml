@@ -5,96 +5,120 @@
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
-	
-	<!-- Main Container  -->
-	<div class="main-container container">
-		<ul class="breadcrumb">
-			<li><a href="#"><i class="fa fa-home"></i></a></li>
-			<li><a href="#">Thông tin tài khoản</a></li>
-		</ul>
-		
-		<div class="row">
-			<!--Middle Part Start-->
-			<div class="col-sm-9" id="content">
-				<h2 class="title">Thông tin tài khoản</h2>
-				<p class="lead">Xin chào, <strong>Đăng Đô!</strong></p>
-				<form>
-					<div class="row">
-						<div class="col-sm-6">
-							<fieldset id="personal-details">
-								<legend>Thông tin cá nhân</legend>
-								<div class="form-group required">
-									<label for="input-firstname" class="control-label">Họ tên</label>
-									<input type="text" class="form-control" id="input-firstname" placeholder="Họ tên" value="" name="name">
-								</div>
-								<div class="form-group required">
-									<label for="input-email" class="control-label">E-mail</label>
-									<input type="email" class="form-control" id="input-email" placeholder="E-mail" value="" name="email">
-								</div>
-								<div class="form-group required">
-									<label for="input-telephone" class="control-label">Số điện thoại</label>
-									<input type="tel" class="form-control" id="input-telephone" placeholder="Số điện thoại" value="" name="phone">
-								</div>
-							</fieldset>
-							<br>
-						</div>
-						<div class="col-sm-6">
-							<fieldset id="address">
-								<legend>Địa chỉ</legend>
-								<div class="form-group">
-									<label for="input-payment-address-1" class="control-label">Số nhà / Tên đường</label>
-									<input type="text" class="form-control" id="input-payment-address-1" placeholder="Số nhà / Tên đường" value="" name="address_1">
-								  </div>
-								  <div class="form-group required">
-									<label for="input-payment-address-2" class="control-label">Xã / Phường</label>
-									<input type="text" class="form-control" id="input-payment-address-2" placeholder="Xã / Phường" value="" name="address_2">
-								  </div>
-								  <div class="form-group required">
-									<label for="input-payment-city" class="control-label">Quận / Huyện</label>
-									<input type="text" class="form-control" id="input-payment-city" placeholder="Quận / Huyện" value="" name="city">
-								  </div>	
-								  <div class="form-group required">
-									<label for="input-payment-zone" class="control-label">Tỉnh</label>
-									<select class="form-control" id="input-payment-zone" name="zone_id">
-									  <option value=""> --- Vui lòng chọn --- </option>
-									  <option value="3513">Vĩnh Long</option>
-									  <option value="3514">Bạc Liêu</option>
-									  <option value="3515">Quãng Ngãi</option>
-									  <option value="3516">TP. Hồ Chí Minh</option>							  
-									</select>
-								  </div>
-							</fieldset>
-						</div>
-					</div>
+        <!-- Slider  -->
+        <section class="so-slideshow">
+            <div id="so-slideshow">
+                <div class="module  no-margin">
+                    <div class="yt-content-slider yt-content-slider--arrow1" data-autoplay="no" data-autoheight="no"
+                         data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1"
+                         data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="yes"
+                         data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                        <div class="yt-content-slide">
+                            <a href="#">
+                                <img src="~/image/demo/slider/home7/background-header.png" alt="slider1"
+                                     class="img-responsive">
+                            </a><br>
+                        </div>
+                    </div>
+                    <div class="loadeding"></div>
+                </div>
+            </div>
 
-					<div class="buttons clearfix">
-						<div class="pull-right">
-							<input type="submit" class="btn btn-md btn-primary" value="Lưu thay đổi">
-						</div>
-					</div>
-				</form>
-			</div>
-			<!--Middle Part End-->
-			<!--Right Part Start -->
-			<aside class="col-sm-3 hidden-xs" id="column-right">
-				<h2 class="subtitle">Tài khoản</h2>
-					<div class="list-group">
-						<ul class="list-item">
-							<li><a href="my-account.html">Thông tin tài khoản</a>
-							</li>
-							<li><a href="password.html">Đổi mật khẩu</a>
-							</li>
-							<li><a href="wishlist.html">Danh sách yêu thích</a>
-							</li>
-							<li><a href="order-history.html">Lịch sử đặt hàng</a>
-							</li>
-						</ul>
-					</div>
-			</aside>
-			<!--Right Part End -->
-		</div>
-	</div>
-	<!-- //Main Container -->
+        </section>
+        <!-- //end Slider  -->
+        <!-- Main Container  -->
+        <div class="main-container container">
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                <li><a href="#">Thông tin tài khoản</a></li>
+            </ul>
+
+            <div class="row">
+                <!--Middle Part Start-->
+                <div class="col-sm-9" id="content">
+                    <h2 class="title">Thông tin tài khoản</h2>
+                    <p class="lead">Xin chào, <strong>Đăng Đô!</strong></p>
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <fieldset id="personal-details">
+                                    <legend>Thông tin cá nhân</legend>
+                                    <div class="form-group required">
+                                        <label for="input-firstname" class="control-label">Họ tên</label>
+                                        <input type="text" class="form-control" id="input-firstname" placeholder="Họ tên" value="" name="name">
+                                    </div>
+                                    <div class="form-group required">
+                                        <label for="input-email" class="control-label">E-mail</label>
+                                        <input type="email" class="form-control" id="input-email" placeholder="E-mail" value="" name="email">
+                                    </div>
+                                    <div class="form-group required">
+                                        <label for="input-telephone" class="control-label">Số điện thoại</label>
+                                        <input type="tel" class="form-control" id="input-telephone" placeholder="Số điện thoại" value="" name="phone">
+                                    </div>
+                                </fieldset>
+                                <br>
+                            </div>
+                            <div class="col-sm-6">
+                                <fieldset id="address">
+                                    <legend>Địa chỉ</legend>
+                                    <div class="form-group">
+                                        <label for="input-payment-address-1" class="control-label">Số nhà / Tên đường</label>
+                                        <input type="text" class="form-control" id="input-payment-address-1" placeholder="Số nhà / Tên đường" value="" name="address_1">
+                                    </div>
+                                    <div class="form-group required">
+                                        <label for="input-payment-address-2" class="control-label">Xã / Phường</label>
+                                        <input type="text" class="form-control" id="input-payment-address-2" placeholder="Xã / Phường" value="" name="address_2">
+                                    </div>
+                                    <div class="form-group required">
+                                        <label for="input-payment-city" class="control-label">Quận / Huyện</label>
+                                        <input type="text" class="form-control" id="input-payment-city" placeholder="Quận / Huyện" value="" name="city">
+                                    </div>
+                                    <div class="form-group required">
+                                        <label for="input-payment-zone" class="control-label">Tỉnh</label>
+                                        <select class="form-control" id="input-payment-zone" name="zone_id">
+                                            <option value=""> --- Vui lòng chọn --- </option>
+                                            <option value="3513">Vĩnh Long</option>
+                                            <option value="3514">Bạc Liêu</option>
+                                            <option value="3515">Quãng Ngãi</option>
+                                            <option value="3516">TP. Hồ Chí Minh</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="buttons clearfix">
+                            <div class="pull-right">
+                                <input type="submit" class="btn btn-md btn-primary" value="Lưu thay đổi">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--Middle Part End-->
+                <!--Right Part Start -->
+                <aside class="col-sm-3 hidden-xs" id="column-right">
+                    <h2 class="subtitle">Tài khoản</h2>
+                    <div class="list-group">
+                        <ul class="list-item">
+                            <li>
+                                <a href="my-account.html">Thông tin tài khoản</a>
+                            </li>
+                            <li>
+                                <a href="password.html">Đổi mật khẩu</a>
+                            </li>
+                            <li>
+                                <a href="wishlist.html">Danh sách yêu thích</a>
+                            </li>
+                            <li>
+                                <a href="order-history.html">Lịch sử đặt hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <!--Right Part End -->
+            </div>
+        </div>
+        <!-- //Main Container -->
 
     </div>
 		

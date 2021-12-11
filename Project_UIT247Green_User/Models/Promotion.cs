@@ -22,5 +22,16 @@ namespace Project_UIT247Green_User.Models
                 return pro1;
             }
         }
+        public static Promotion selectbyid(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var pro = context.Promotion;
+                Promotion pro1 = (from p in pro
+                                  where (p.id_promotion == id)
+                                  select p).FirstOrDefault();
+                return pro1;
+            }
+        }
     }
 }

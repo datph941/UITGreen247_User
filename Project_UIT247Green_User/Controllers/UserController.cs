@@ -46,6 +46,24 @@ namespace Project_UIT247Green_User.Controllers
             DataCart();
             return View();
         }
+        public IActionResult MyAccount()
+        {
+            MenuCat();
+            DataCart();
+            return View();
+        }
+        public IActionResult Password()
+        {
+            MenuCat();
+            DataCart();
+            return View();
+        }
+        public IActionResult Wishlist()
+        {
+            MenuCat();
+            DataCart();
+            return View();
+        }
         public IActionResult CheckLogin(string email, string password)
         {
             Users u = Users.CheckLogin(email, password);

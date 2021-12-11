@@ -126,9 +126,9 @@ namespace Project_UIT247Green_User.Controllers
             this.ViewBag.total = total;
             return View();
         }
-        public IActionResult Payment(int ship, int pay, string coupon, string comments)
+        public IActionResult Payment(int pay, string coupon, string comments)
         {
-            int ship1 = 15000;
+            double ship = 15000;
             double total = 0;
             int id_promo = 1;
             Product pro = new Product();
@@ -138,7 +138,7 @@ namespace Project_UIT247Green_User.Controllers
             int addr = u.address.IndexOf("TP.Hồ Chí Minh");
             if (addr < 0)
             {
-                ship1 = 30000;
+                ship = 30000;
             }
             if (coupon != null)
             {
@@ -151,7 +151,7 @@ namespace Project_UIT247Green_User.Controllers
                 double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100))*item.quantity;
                 total = total + price_new;
             }
-            Orders_user.Insert(u.id, id_promo, ship1, comments, ship, pay, total);
+            Orders_user.Insert(u.id, id_promo, ship, comments, pay, total);
             int id_ord = Orders_user.SelectNew().id_ord;
             foreach (var item in list)
             {

@@ -10,23 +10,27 @@
         var total = document.getElementById("total");
         var message = document.getElementById('ship');
         var price_sum = document.getElementById('price_sum');
+        var discount = document.getElementById('discount1');
         let sum = 0;
         var value = obj.value;
         if (value === '') {
               
         }
         else if (value === 'TP.Hồ Chí Minh') {
-            message.innerHTML = '15000 vnđ';
-            sum = parseInt(total.dataset.total) + 15000;
+            message.innerHTML = '15000 VNĐ';
+            document.querySelector('#ship').dataset.ship = 15000;
+            sum = parseInt(total.dataset.total) + 15000 - parseInt(discount.dataset.disc);
         }
         else{
-            message.innerHTML = '30000 vnđ';
-            sum = parseInt(total.dataset.total) + 30000;
+            message.innerHTML = '30000 VNĐ';
+            document.querySelector('#ship').dataset.ship = 30000;
+            sum = parseInt(total.dataset.total) + 30000 - parseInt(discount.dataset.disc);
         }
-        price_sum.innerHTML = sum.toLocaleString() + ' vnđ';
+        
+        price_sum.innerHTML = sum.toLocaleString() + ' VNĐ';
         
     }
-
+   
 </script>
 <body class="res layout-subpage">
     <!-- Slider  -->
@@ -148,29 +152,8 @@
                         <div class="col-right col-sm-9">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="panel panel-default no-padding">
-                                        <div class="col-sm-6 checkout-shipping-methods">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title"><i class="fa fa-truck"></i> Phương thức vận chuyển</h4>
-                                            </div>
-                                            <div class="panel-body ">
-                                                <p>Vui lòng chọn phương thức vận chuyển mà bạn mong muốn.</p>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" checked="checked" name="ship" value="Tiết kiệm">
-                                                        Vận chuyển tiết kiệm
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="ship" value="Nhanh 2h">
-                                                        Vận chuyển trong 2h
-                                                    </label>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6  checkout-payment-methods">
+                                    <div class="panel panel-default no-padding">                                       
+                                        <div class="col-sm-12  checkout-payment-methods">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title"><i class="fa fa-credit-card"></i> Phương thức thanh toán</h4>
                                             </div>
@@ -181,7 +164,6 @@
                                                         <input type="radio" checked="checked" name="pay" value="Tiền mặt">Tiền mặt
                                                     </label>
                                                 </div>
-
                                                 <div class="radio">
                                                     <label>
                                                         <input type="radio" name="pay" value="Online">Thanh toán online
@@ -199,8 +181,7 @@
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" id="input-coupon" placeholder="Nhập mã khuyến mãi" value="" name="coupon">
                                                     <span class="input-group-btn">
-                                                        <input type="button" class="coupon btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Áp dụng">
-                                                        
+                                                        <input type="button" class="coupon btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Áp dụng">                                             
                                                     </span>
                                                 </div>
                                             </div>
@@ -258,7 +239,7 @@
                                                         <tfoot>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Tổng sản phẩm:</strong></td>
-                                                                <td data-total="@ViewBag.total" id="total" class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                                <td data-total="@ViewBag.total" id="total" class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.total)</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Phí VAT:</strong></td>
@@ -266,11 +247,15 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Phí vận chuyển:</strong></td>
-                                                                <td id="ship" class="text-right">0 vnđ</td>
+                                                                <td id="ship" data-ship="0" class="text-right">0 VNĐ</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-right" colspan="4"><strong>Giảm giá:</strong></td>
+                                                                <td id="discount1" data-disc="0" class="text-right">0 VNĐ</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Tổng thanh toán:</strong></td>
-                                                                <td id="price_sum" class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                                <td id="price_sum" class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.total)</td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>
@@ -311,6 +296,11 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script>
             $(document).ready(function () {
+                let sum = 0;
+                var total = document.getElementById("total");
+                var message = document.getElementById('ship');
+                var price_sum = document.getElementById('price_sum');
+                var discount = document.getElementById('discount1');
                 $(".coupon").click(function () {
                     $.ajax({
                         url: "/Cart/CheckPromotion",
@@ -324,8 +314,13 @@
                                 icon: 'success',
                                 title: data.nofi,
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 1500                             
                             });
+                            $('#discount1').attr("data-disc", data.discount);
+                          
+                            discount.innerHTML = discount.dataset.disc.toLocaleString() + ' VNĐ';
+                            sum = parseInt(total.dataset.total) + parseInt(message.dataset.ship) - parseInt(discount.dataset.disc);
+                            price_sum.innerHTML = sum.toLocaleString() + ' VNĐ';
                         },
                         error: function () {
                             

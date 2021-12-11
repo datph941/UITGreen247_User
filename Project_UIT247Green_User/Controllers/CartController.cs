@@ -39,10 +39,12 @@ namespace Project_UIT247Green_User.Controllers
             Promotion pro = new Promotion();
             pro = Promotion.selectbyname(coupon);          
             string nofi = "";
+            double discount1 = 0;
             if (pro != null)
             {
                 string discount = String.Format("{0:0,0 vnđ}", pro.discount);
                 nofi = pro.name_promotion + " khả dụng được giảm " + discount;
+                discount1 = pro.discount;
             }    
             else
             {
@@ -52,7 +54,8 @@ namespace Project_UIT247Green_User.Controllers
             {
                 return Json(new
                 {
-                    nofi = nofi
+                    nofi = nofi,
+                    discount = discount1
                 });
             }
             return RedirectToAction("checkout");
@@ -73,7 +76,7 @@ namespace Project_UIT247Green_User.Controllers
             }
             return View();
         }
-        public IActionResult Payment(string firstname, string email,string telephone,string addr1, string addr2, string city, string zone,string coupon, string comments, int ship1, int pay)
+        public IActionResult Payment(string firstname, string email,string telephone,string addr1, string addr2, string city, string zone,string coupon, string comments, int pay)
         {
             string address = addr1 + ", " + addr2 + ", " + city + ", " + zone;
             int id_pro = 1;
@@ -88,12 +91,19 @@ namespace Project_UIT247Green_User.Controllers
             if (coupon != null)
             {
                 pro1 = Promotion.selectbyname(coupon);
-                id_pro = pro1.id_promotion;
+                if(pro1 != null)
+                {
+                    id_pro = pro1.id_promotion;
+                }    
+                else
+                {
+                    id_pro = 1;
+                }    
             }
             Customer.Insert(firstname, email, address, telephone);
             Customer cus = Customer.SelectNew();
             
-            int check = Orders.Insert(cus.id_cus, id_pro, ship1, pay, ship, comments, total-pro1.discount);
+            int check = Orders.Insert(cus.id_cus, id_pro, pay, ship, comments, total);
             int id_ord = Orders.SelectNew().id_ord;
             foreach(var item in cart)
             {
