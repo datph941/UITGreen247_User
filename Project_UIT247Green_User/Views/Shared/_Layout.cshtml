@@ -52,6 +52,9 @@
     list2 = Category.FindCatChildByID(2);
     list3 = Category.FindCatChildByID(6);
     list4 = Category.FindCatChildByID(9);
+
+    List<Image_product> listimg = new List<Image_product>();
+    List<Cart> listcart = new List<Cart>();
 }
 <body>
     <!-- Header Container  -->
@@ -71,35 +74,24 @@
                         </h5>
                         <div class="tabBlock" id="TabBlock-1">
                             <ul class="top-link list-inline">
-                                <li class="account" id="my_account">
-                                    @if (ViewBag.email != null)
-                                    {
+                                @if (ViewBag.email != null)
+                                {
+                                    <li class="account" id="my_account">
+
                                         <a href="my-account.html" title="My Account"
                                            class="btn btn-xs dropdown-toggle">
 
                                             <i class="fa fa-user"></i> @ViewBag.email
                                         </a>
-                                    }
-                                    else
-                                    {
-                                        <a href="my-account.html" title="My Account"
-                                           class="btn btn-xs dropdown-toggle">
-
-                                            <i class="fa fa-user"></i> Tài khoản
-                                        </a>
-                                    }
-
-                                </li>
-                                <li class="wishlist">
-                                    <a href="wishlist.html" class="top-link-wishlist"
-                                       title="wishlist"><i class="fa fa-heart"></i> Yêu thích</a>
-                                </li>
-                                <li class="checkout">
-                                    <a asp-controller="cart" asp-action="checkout" class="top-link-checkout"
-                                       title="Checkout"><i class="fa fa-check-square-o"></i> Thanh toán</a>
-                                </li>
-                                @if (ViewBag.email != null)
-                                {
+                                    </li>
+                                    <li class="wishlist">
+                                        <a href="wishlist.html" class="top-link-wishlist"
+                                           title="wishlist"><i class="fa fa-heart"></i> Yêu thích</a>
+                                    </li>
+                                    <li class="checkout">
+                                        <a asp-controller="cartuser" asp-action="checkout" class="top-link-checkout"
+                                           title="Checkout"><i class="fa fa-check-square-o"></i> Thanh toán</a>
+                                    </li>
                                     <li class="signin">
                                         <a asp-controller="user" asp-action="logout" class="top-link-checkout" title="login">
                                             <i class="fa fa-unlock"></i> Đăng xuất
@@ -108,13 +100,23 @@
                                 }
                                 else
                                 {
+                                    <li>
+                                        <a href="my-account.html" title="My Account"
+                                           class="btn btn-xs dropdown-toggle">
+
+                                            <i class="fa fa-user"></i> Tài khoản
+                                        </a>
+                                    </li>
+                                    <li class="checkout">
+                                        <a asp-controller="cart" asp-action="checkout" class="top-link-checkout"
+                                           title="Checkout"><i class="fa fa-check-square-o"></i> Thanh toán</a>
+                                    </li>
                                     <li class="signin">
                                         <a asp-controller="user" asp-action="login" class="top-link-checkout" title="login">
                                             <i class="fa fa-lock"></i> Đăng nhập
                                         </a>
                                     </li>
                                 }
-
                             </ul>
                         </div>
                     </div>
@@ -140,7 +142,7 @@
                             <div id="search0" class="search input-group">
                                 <div class="select_category filter_type icon-select">
                                     <select class="no-border" name="id_cat">
-                                        <option value="0">Tất cả danh mục</option>      
+                                        <option value="0">Tất cả danh mục</option>
                                         @foreach (var item in listCat)
                                         {
                                             <option value="@item.id_cat">@item.name_cat</option>
@@ -169,125 +171,244 @@
                         </div>
                     </div>
                     <!-- //Menu chính -->
-                    <!-- Ô giỏ hàng -->
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
-                        <!--Giỏ hàng-->
-                        <div id="cart" class="btn-group btn-shopping-cart">
-                            <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
-                               data-toggle="dropdown">
-                                <div class="shopcart">
-                                    <span class="handle pull-left"></span>
-                                    <span class="title">Giỏ hàng</span>
-                                    <p class="text-shopping-cart cart-total-full">2 sản phẩm - 120.000đ </p>
-                                </div>
-                            </a>
-                            <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
-                                <li>
-                                    <table class="table table-striped">
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-center" style="width:70px">
-                                                    <a href="product.html">
-                                                        <img src="~/image/demo/shop/product/resize/2.jpg"
-                                                             style="width:70px" alt="Filet Mign" title="Filet Mign"
-                                                             class="preview">
-                                                    </a>
-                                                </td>
-                                                <td class="text-left">
-                                                    <a class="cart_product_name"
-                                                       href="product.html">Filet Mign</a>
-                                                </td>
-                                                <td class="text-center"> x1 </td>
-                                                <td class="text-center"> $1,202.00 </td>
-                                                <td class="text-right">
-                                                    <a href="product.html" class="fa fa-edit"></a>
-                                                </td>
-                                                <td class="text-right">
-                                                    <a onclick="cart.remove('2');"
-                                                       class="fa fa-times fa-delete"></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center" style="width:70px">
-                                                    <a href="product.html">
-                                                        <img src="~/image/demo/shop/product/resize/3.jpg"
-                                                             style="width:70px" alt="Canon EOS 5D"
-                                                             title="Canon EOS 5D" class="preview">
-                                                    </a>
-                                                </td>
-                                                <td class="text-left">
-                                                    <a class="cart_product_name"
-                                                       href="product.html">Canon EOS 5D</a>
-                                                </td>
-                                                <td class="text-center"> x1 </td>
-                                                <td class="text-center"> $60.00 </td>
-                                                <td class="text-right">
-                                                    <a href="product.html" class="fa fa-edit"></a>
-                                                </td>
-                                                <td class="text-right">
-                                                    <a onclick="cart.remove('1');"
-                                                       class="fa fa-times fa-delete"></a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </li>
-                                <li>
-                                    <div>
-                                        <table class="table table-bordered">
+                    @if(ViewBag.email == null)
+                    {
+                        <!-- Ô giỏ hàng -->
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
+                            <!--Giỏ hàng-->
+                            <div id="cart" class="btn-group btn-shopping-cart">
+                                <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <div class="shopcart">
+                                        <span class="handle pull-left"></span>
+                                        <span class="title">Giỏ hàng</span>
+                                        @if (ViewBag.cart != null)
+                                        {
+                                    <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
+                                        }
+                                    </div>
+                                </a>
+                                <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
+                                    <li>
+                                        <table class="table table-striped">
                                             <tbody>
+                                                @if (ViewBag.cart != null)
+                                                {
+                                                    @foreach (var item in ViewBag.cart)
+                                                    {
+                                                        listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
+                                                        double price_new = (@item.Product.price * (100 + @item.Product.sale_rate) / 100 * ((100 - @item.Product.discount) / 100));
+                                                        <tr>
+                                                            <td class="text-center" style="width:70px">
+                                                                <a asp-controller="home" asp-action="product_detail"  asp-route-idpro="@item.Product.id_pro"  asp-route-idcat="@item.Product.id_cat">
+                                                                    <img src="@listimg[0].link"
+                                                                         style="width:70px" alt="@item.Product.name_pro" title="@item.Product.name_pro"
+                                                                         class="preview">
+                                                                </a>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <a class="cart_product_name"
+                                                                   asp-controller="home" asp-action="product_detail"  asp-route-idpro="@item.Product.id_pro"  asp-route-idcat="@item.Product.id_cat">@item.Product.name_pro</a>
+                                                            </td>
+                                                            <td class="text-center">@item.Quantity</td>
+                                                            <td class="text-center">@String.Format("{0:0,0 vnđ}", price_new * item.Quantity)</td>                        
+                                                            <td class="text-right">
+                                                                <a asp-controller="cart" asp-action="remove" asp-route-id="@item.Product.id_pro"
+                                                                   class="fa fa-times fa-delete"></a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    @if (ViewBag.cart != null)
+                                                    {
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>Tổng tiền hàng</strong>
+                                                            </td>
+                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>VAT: </strong>
+                                                            </td>
+                                                            <td class="text-right">Bao gồm trong sản phẩm</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>Tổng thanh toán</strong>
+                                                            </td>
+                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                        </tr>
+                                                    }
+                                                    else
+                                                    {
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>Tổng tiền hàng</strong>
+                                                            </td>
+                                                            <td class="text-right">0 vnđ</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>VAT: </strong>
+                                                            </td>
+                                                            <td class="text-right">Bao gồm trong sản phẩm</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>Tổng thanh toán</strong>
+                                                            </td>
+                                                            <td class="text-right">0 vnđ</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                             <p class="text-right">
+                                                    <a class="btn view-cart" asp-controller="cart" asp-action="index">
+                                                        <i class="fa fa-shopping-cart"></i>Xem giỏ
+                                                        hàng
+                                                    </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
+                                                                              asp-controller="cart" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
+                                             </p>             
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--//giỏ hàng-->
+                        </div>
+                    }
+                    else
+                    {
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
+                    <!--Giỏ hàng-->
+                    <div id="cart" class="btn-group btn-shopping-cart">
+                        <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
+                           data-toggle="dropdown">
+                            <div class="shopcart">
+                                <span class="handle pull-left"></span>
+                                <span class="title">Giỏ hàng</span>
+                                @if (ViewBag.cart != null)
+                                {
+                                    <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
+                                }
+                                else
+                                {
+                                    <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
+                                }
+                            </div>
+                        </a>
+                        <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
+                            <li>
+                                <table class="table table-striped">
+                                    <tbody>
+                                        @if (ViewBag.cart != null)
+                                        {
+                                            @foreach (var item in ViewBag.cart)
+                                            {
+                                                Product pro = Product.FindProByID(item.id_pro);
+                                                listimg = Image_product.FindImgByIDPro(item.id_pro);
+                                                double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
+                                                <tr>
+                                                    <td class="text-center" style="width:70px">
+                                                        <a asp-controller="home" asp-action="product_detail"  asp-route-idpro="@pro.id_pro"  asp-route-idcat="@pro.id_cat">
+                                                            <img src="@listimg[0].link"
+                                                                 style="width:70px" alt="@pro.name_pro" title="@pro.name_pro"
+                                                                 class="preview">
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <a class="cart_product_name"
+                                                           asp-controller="home" asp-action="product_detail"  asp-route-idpro="@pro.id_pro"  asp-route-idcat="@pro.id_cat">@pro.name_pro</a>
+                                                    </td>
+                                                    <td class="text-center">@item.quantity</td>
+                                                    <td class="text-center">@String.Format("{0:0,0 vnđ}", price_new * item.quantity)</td>
+                                                    <td class="text-right">
+                                                        <a asp-controller="cartuser" asp-action="remove" asp-route-idpro="@pro.id_pro"
+                                                           class="fa fa-times fa-delete"></a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </li>
+                            <li>
+                                <div>
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            @if (ViewBag.cart != null)
+                                            {
                                                 <tr>
                                                     <td class="text-left">
                                                         <strong>Tổng tiền hàng</strong>
                                                     </td>
-                                                    <td class="text-right">$1,060.00</td>
+                                                    <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
                                                 </tr>
+
                                                 <tr>
                                                     <td class="text-left">
-                                                        <strong>Phí vận chuyển</strong>
+                                                        <strong>VAT: </strong>
                                                     </td>
-                                                    <td class="text-right">$2.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-left">
-                                                        <strong>VAT (20%)</strong>
-                                                    </td>
-                                                    <td class="text-right">$200.00</td>
+                                                    <td class="text-right">Bao gồm trong sản phẩm</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="text-left">
                                                         <strong>Tổng thanh toán</strong>
                                                     </td>
-                                                    <td class="text-right">$1,262.00</td>
+                                                    <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
                                                 </tr>
-                                            </tbody>
-                                        </table>
-                                        @if (ViewBag.email == null)
-                                        {
-                                            <p class="text-right">
-                                                <a class="btn view-cart" asp-controller="cart" asp-action="index">
-                                                    <i class="fa fa-shopping-cart"></i>Xem giỏ
-                                                    hàng
-                                                </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
-                                                                          asp-controller="cart" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p class="text-right">
-                                                <a class="btn view-cart" asp-controller="cartuser" asp-action="index">
-                                                    <i class="fa fa-shopping-cart"></i>Xem giỏ
-                                                    hàng
-                                                </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
-                                                                          asp-controller="cartuser" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
-                                            </p>
-                                        }
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--//giỏ hàng-->
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng tiền hàng</strong>
+                                                    </td>
+                                                    <td class="text-right">0 vnđ</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>VAT: </strong>
+                                                    </td>
+                                                    <td class="text-right">Bao gồm trong sản phẩm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng thanh toán</strong>
+                                                    </td>
+                                                    <td class="text-right">0 vnđ</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <p class="text-right">
+                                        <a class="btn view-cart" asp-controller="cartuser" asp-action="index">
+                                            <i class="fa fa-shopping-cart"></i>Xem giỏ
+                                            hàng
+                                        </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
+                                                                  asp-controller="cartuser" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
+                    <!--//giỏ hàng-->
+                </div>
+                    }
                     <!-- //Ô giỏ hàng -->
                 </div>
 

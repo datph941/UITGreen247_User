@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Project_UIT247Green_User.Helpers;
 using Project_UIT247Green_User.Models;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,41 @@ namespace Project_UIT247Green_User.Controllers
             var cookie = Request.Cookies[key];
             this.ViewBag.email = cookie;
         }
+        public void DataCart()
+        {
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            double total = 0;
+            Product pro = new Product();
+            if (cookie != null)
+            {
+                Users u = Users.FindU(cookie);
+                List<Cart> list = Cart.FindCart(u.id);
+                this.ViewBag.cart = list;
+                foreach (var item in list)
+                {
+                    pro = Product.FindProByID(item.id_pro);
+                    double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
+                    total = total + price_new;
+                }
+                this.ViewBag.total = total;
+            }
+            else
+            {
+                var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+                if (cart != null)
+                {
+                    ViewBag.cart = cart;
+                    ViewBag.total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
+                }
+                else
+                {
+                    ViewBag.cart = null;
+                    ViewBag.total = 0;
+                }
+            }
+
+        }
         public void MenuCat()
         {
             List<Category> listCat = new List<Category>();
@@ -36,6 +72,7 @@ namespace Project_UIT247Green_User.Controllers
         {
             MenuCat();
             Email();
+            DataCart();
             List<Product> listpronew = new List<Product>();
             listpronew = Product.ListProNew();
             this.ViewBag.listpronew = listpronew;
@@ -45,6 +82,7 @@ namespace Project_UIT247Green_User.Controllers
         {
             MenuCat();
             Email();
+            DataCart();
             List<Product> listpro = Product.ListProByCat(id);
             this.ViewBag.listpro = listpro;
             List<Image_product> listimg = Image_product.SelectImg();
@@ -71,26 +109,21 @@ namespace Project_UIT247Green_User.Controllers
         {
             MenuCat();
             Email();
+            DataCart();
             return View();
         }
         public IActionResult About_us()
         {
             MenuCat();
             Email();
-            return View();
-        }
-        public IActionResult Login()
-        {
-            return View();
-        }
-        public IActionResult Register()
-        {
+            DataCart();
             return View();
         }
         public IActionResult Product_detail(int idpro,int idcat)
         {
             MenuCat();
             Email();
+            DataCart();
             Product pro = new Product();
             pro = Product.FindProByID(idpro);
             Category cat = Category.FindCatByID(idcat);

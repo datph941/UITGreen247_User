@@ -7,6 +7,7 @@ namespace Project_UIT247Green_User.Models
 {
     public class Cart
     {
+        public int id_cart { set; get; }
         public int id_user{ set; get; }
         public int id_pro { set; get; }
         public int quantity { set; get; }
@@ -48,7 +49,7 @@ namespace Project_UIT247Green_User.Models
             using(var context = new DataContext())
             {
                 Cart cart = (from p in context.Cart
-                             where (p.id_user== id_user && p.id_pro == id_pro)
+                             where (p.id_user == id_user && p.id_pro == id_pro)
                                    select p).FirstOrDefault();
                 if(cart!=null)
                 {
@@ -67,6 +68,21 @@ namespace Project_UIT247Green_User.Models
                 if (cart != null)
                 {
                     context.Remove(cart);
+                }
+                context.SaveChanges();
+            }
+        }
+        public static void DeleteAll(int id_user)
+        {
+            using (var context = new DataContext())
+            {
+                List<Cart> cart = context.Cart.Where(p=> p.id_user==id_user).ToList();
+                if (cart != null)
+                {
+                    foreach(var item in cart)
+                    {
+                        context.Cart.Remove(item);
+                    }
                     context.SaveChanges();
                 }
             }

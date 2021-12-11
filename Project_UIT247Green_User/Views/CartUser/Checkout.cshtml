@@ -5,6 +5,7 @@
     List<Image_product> listimg = new List<Image_product>();
     Product pro = new Product();
     double total = 0;
+    Users u = Users.FindU(ViewBag.email);
 }
 <body class="res layout-subpage">
     <!-- Slider  -->
@@ -29,7 +30,6 @@
     </section>
     <!-- //end Slider  -->
     <!-- Main Container  -->
-    <form methot="post" asp-controller="cart" asp-action="payment">
         <div class="main-container container">
             <ul class="breadcrumb">
                 <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
@@ -39,31 +39,31 @@
                 <!--Middle Part Start-->
                 <div id="content" class="col-sm-12">
                     <h2 class="title">Thanh toán</h2>
-                    <div class="so-onepagecheckout ">        
-                        <div class="col-left col-sm-3"> 
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><i class="fa fa-user"></i> Thông tin khách hàng</h4>
+                    <div class="so-onepagecheckout ">
+                        <form method="post" asp-controller="cartuser" asp-action="updateadd">
+                            <div class="col-left col-sm-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><i class="fa fa-user"></i> Thông tin khách hàng</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <fieldset id="account">
+                                            <div class="form-group required">
+                                                <label for="input-payment-firstname" class="control-label">Họ tên</label>
+                                                <input type="text" class="form-control" id="input-payment-firstname" placeholder="Họ tên" value="@u.fullname" name="firstname" readonly>
+                                            </div>
+
+                                            <div class="form-group required">
+                                                <label for="input-payment-email" class="control-label">E-mail</label>
+                                                <input type="text" class="form-control" id="input-payment-email" placeholder="E-mail" value="@u.email" name="email" readonly>
+                                            </div>
+                                            <div class="form-group required">
+                                                <label for="input-payment-telephone" class="control-label">Số điện thoại</label>
+                                                <input type="text" class="form-control" id="input-payment-telephone" placeholder="Số điện thoại" value="@u.phone" name="telephone">
+                                            </div>
+                                        </fieldset>
+                                    </div>
                                 </div>
-                                <div class="panel-body">
-                                    <fieldset id="account">
-                                        <div class="form-group required">
-                                            <label for="input-payment-firstname" class="control-label">Họ tên</label>
-                                            <input type="text" class="form-control" id="input-payment-firstname" placeholder="Họ tên" value="" name="firstname" readonly> 
-                                        </div>
-                                       
-                                        <div class="form-group required">
-                                            <label for="input-payment-email" class="control-label">E-mail</label>
-                                            <input type="text" class="form-control" id="input-payment-email" placeholder="E-mail" value="" name="email" readonly>
-                                        </div>
-                                        <div class="form-group required">
-                                            <label for="input-payment-telephone" class="control-label">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="input-payment-telephone" placeholder="Số điện thoại" value="" name="telephone" readonly>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <form method="post" asp-controller="cartuser" asp-action="updateaddr"> 
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title"><i class="fa fa-book"></i> Địa chỉ giao hàng</h4>
@@ -72,25 +72,19 @@
                                         <fieldset id="address" class="required">
                                             <div class="form-group">
                                                 <label for="input-payment-address-1" class="control-label">Số nhà / Tên đường</label>
-                                                <input type="text" class="form-control" id="input-payment-address-1" placeholder="Số nhà / Tên đường" value="" name="addr1">
+                                                <input type="text" class="form-control" id="input-payment-address-1" placeholder="Số nhà / Tên đường" value="@ViewBag.add1" name="addr1">
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-address-2" class="control-label">Xã / Phường</label>
-                                                <input type="text" class="form-control" id="input-payment-address-2" placeholder="Xã / Phường" value="" name="addr2">
+                                                <input type="text" class="form-control" id="input-payment-address-2" placeholder="Xã / Phường" value="@ViewBag.add2" name="addr2">
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-city" class="control-label">Quận / Huyện</label>
-                                                <input type="text" class="form-control" id="input-payment-city" placeholder="Quận / Huyện" value="" name="city">
+                                                <input type="text" class="form-control" id="input-payment-city" placeholder="Quận / Huyện" value="@ViewBag.district" name="city">
                                             </div>
                                             <div class="form-group required">
                                                 <label for="input-payment-zone" class="control-label">Tỉnh</label>
-                                                <select class="form-control" id="input-payment-zone" name="zone" onchange="genderChanged(this)">
-                                                    <option value=""> --- Vui lòng chọn --- </option>
-                                                    <option value="Vĩnh Long">Vĩnh Long</option>
-                                                    <option value="Bạc Liêu">Bạc Liêu</option>
-                                                    <option value="Quãng Ngãi">Quãng Ngãi</option>
-                                                    <option value="TP.Hồ Chí Minh">TP.Hồ Chí Minh</option>
-                                                </select>
+                                                <input type="text" class="form-control" id="input-payment-zone" placeholder="Tỉnh" value="@ViewBag.city" name="zone">
                                             </div>
                                         </fieldset>
                                         <div class="buttons">
@@ -100,157 +94,158 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>  
-                        </div>
-                        <div class="col-right col-sm-9">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="panel panel-default no-padding">
-                                        <div class="col-sm-6 checkout-shipping-methods">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title"><i class="fa fa-truck"></i> Phương thức vận chuyển</h4>
-                                            </div>
-                                            <div class="panel-body ">
-                                                <p>Vui lòng chọn phương thức vận chuyển mà bạn mong muốn.</p>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" checked="checked" name="ship" value="Tiết kiệm">
-                                                        Vận chuyển tiết kiệm
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="ship" value="Nhanh 2h">
-                                                        Vận chuyển trong 2h
-                                                    </label>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6  checkout-payment-methods">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title"><i class="fa fa-credit-card"></i> Phương thức thanh toán</h4>
-                                            </div>
-                                            <div class="panel-body">
-                                                <p>Vui lòng chọn phương thức thanh toán mà bạn mong muốn.</p>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" checked="checked" name="pay" value="Tiền mặt">Tiền mặt
-                                                    </label>
-                                                </div>
-
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="pay" value="Online">Thanh toán online
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </form>
+                        <form methot="post" asp-controller="cartuser" asp-action="payment">
+                            <div class="col-right col-sm-9">
+                                <div class="row">
                                     <div class="col-sm-12">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title"><i class="fa fa-ticket"></i> Bạn có mã khuyến mãi?</h4>
+                                        <div class="panel panel-default no-padding">
+                                            <div class="col-sm-6 checkout-shipping-methods">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><i class="fa fa-truck"></i> Phương thức vận chuyển</h4>
+                                                </div>
+                                                <div class="panel-body ">
+                                                    <p>Vui lòng chọn phương thức vận chuyển mà bạn mong muốn.</p>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" checked="checked" name="ship" value="1">
+                                                            Vận chuyển tiết kiệm
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="ship" value="2">
+                                                            Vận chuyển trong 2h
+                                                        </label>
+                                                    </div>
+
+                                                </div>
                                             </div>
-                                            <div class="panel-body row">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="input-coupon" placeholder="Nhập mã khuyến mãi" value="" name="coupon">
-                                                    <span class="input-group-btn">
-                                                        <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Áp dụng">
-                                                    </span>
+                                            <div class="col-sm-6  checkout-payment-methods">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><i class="fa fa-credit-card"></i> Phương thức thanh toán</h4>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>Vui lòng chọn phương thức thanh toán mà bạn mong muốn.</p>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" checked="checked" name="pay" value="1">Tiền mặt
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="pay" value="2">Thanh toán online
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title"><i class="fa fa-shopping-cart"></i> Giỏ hàng</h4>
+                                        <div class="col-sm-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><i class="fa fa-ticket"></i> Bạn có mã khuyến mãi?</h4>
+                                                </div>
+                                                <div class="panel-body row">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="input-coupon" placeholder="Nhập mã khuyến mãi" value="" name="coupon">
+                                                        <span class="input-group-btn">
+                                                            <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Áp dụng">
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="panel-body">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered">
-                                                        <thead>
-                                                            <tr>
-                                                                <td class="text-center">Sản phẩm</td>
-                                                                <td class="text-left">Tên</td>
-                                                                <td class="text-left">Số lượng</td>
-                                                                <td class="text-right">Đơn giá</td>
-                                                                <td class="text-right">Tổng</td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
+                                        </div>
 
-                                                            @if (ViewBag.cart != null)
-                                                            {
-                                                                @foreach (var item in ViewBag.cart)
+                                        <div class="col-sm-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><i class="fa fa-shopping-cart"></i> Giỏ hàng</h4>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <td class="text-center">Sản phẩm</td>
+                                                                    <td class="text-left">Tên</td>
+                                                                    <td class="text-left">Số lượng</td>
+                                                                    <td class="text-right">Đơn giá</td>
+                                                                    <td class="text-right">Tổng</td>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                                @if (ViewBag.cart != null)
                                                                 {
-                                                                    listimg = Image_product.FindImgByIDPro(item.id_pro);
-                                                                    pro = Product.FindProByID(item.id_pro);
-                                                                    double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
-                                                                    <tr>
-                                                                        <td class="text-center">
-                                                                            <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
-                                                                                <img width="60px" src="@listimg[0].link" alt="@pro.name_pro" title="@pro.name_pro" class="img-thumbnail">
-                                                                            </a>
-                                                                        </td>
-                                                                        <td class="text-left">
-                                                                            <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
-                                                                                @pro.name_pro
-                                                                            </a>
-                                                                        </td>
-                                                                        <td class="text-left">
-                                                                            <div class="input-group btn-block" style="min-width: 100px;">
-                                                                                <input type="text" name="quantity" value="@item.quantity" size="1" class="form-control" readonly />
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new)</td>
-                                                                        <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new * item.quantity)</td>
-                                                                    </tr>
-                                                                    total += (price_new * item.quantity);
+                                                                    @foreach (var item in ViewBag.cart)
+                                                                    {
+                                                                        listimg = Image_product.FindImgByIDPro(item.id_pro);
+                                                                        pro = Product.FindProByID(item.id_pro);
+                                                                        double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
+                                                                        <tr>
+                                                                            <td class="text-center">
+                                                                                <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
+                                                                                    <img width="60px" src="@listimg[0].link" alt="@pro.name_pro" title="@pro.name_pro" class="img-thumbnail">
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="text-left">
+                                                                                <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
+                                                                                    @pro.name_pro
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="text-left">
+                                                                                <div class="input-group btn-block" style="min-width: 100px;">
+                                                                                    <input type="text" name="quantity" value="@item.quantity" size="1" class="form-control" readonly />
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new)</td>
+                                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new * item.quantity)</td>
+                                                                        </tr>
+                                                                        total += (price_new * item.quantity);
+                                                                    }
                                                                 }
-                                                            }
 
-                                                        </tbody>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <td class="text-right" colspan="4"><strong>Tổng sản phẩm:</strong></td>
-                                                                <td id="total" class="text-right">@String.Format("{0:0,0 vnđ}", total)</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-right" colspan="4"><strong>Phí VAT:</strong></td>
-                                                                <td class="text-right">Đã bao gồm trong sản phẩm</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-right" colspan="4"><strong>Phí vận chuyển:</strong></td>
-                                                                <td id="ship" class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.ship)</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-right" colspan="4"><strong>Tổng thanh toán:</strong></td>
-                                                                <td id="price_sum" class="text-right">@String.Format("{0:0,0 vnđ}", total+ViewBag.ship)</td>
-                                                            </tr>
-                                                        </tfoot>
-                                                    </table>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td class="text-right" colspan="4"><strong>Tổng sản phẩm:</strong></td>
+                                                                    <td id="total" class="text-right">@String.Format("{0:0,0 vnđ}", total)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-right" colspan="4"><strong>Phí VAT:</strong></td>
+                                                                    <td class="text-right">Đã bao gồm trong sản phẩm</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-right" colspan="4"><strong>Phí vận chuyển:</strong></td>
+                                                                    <td id="ship" class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.ship)</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-right" colspan="4"><strong>Tổng thanh toán:</strong></td>
+                                                                    <td id="price_sum" class="text-right">@String.Format("{0:0,0 vnđ}", total + ViewBag.ship)</td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title"><i class="fa fa-pencil"></i> Thêm ghi chú cho đơn hàng</h4>
-                                            </div>
-                                            <div class="panel-body">
-                                                <textarea rows="4" class="form-control" id="confirm_comment" name="comments"></textarea>
-                                                <br>
-                                                <label class="control-label" for="confirm_agree">
-                                                    <input type="checkbox" checked="checked" value="1" required="" class="validate required" id="confirm_agree" name="confirm agree">
-                                                    <span>Tôi đã đọc và đồng ý với <a class="agree" href="#"><b>Điều khoản & Chính sách</b></a></span>
-                                                </label>
-                                                <div class="buttons">
-                                                    <div class="pull-right">
-                                                        <input type="submit" class="btn btn-primary" id="button-confirm" value="Xác nhận">
+                                        <div class="col-sm-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><i class="fa fa-pencil"></i> Thêm ghi chú cho đơn hàng</h4>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <textarea rows="4" class="form-control" id="confirm_comment" name="comments"></textarea>
+                                                    <br>
+                                                    <label class="control-label" for="confirm_agree">
+                                                        <input type="checkbox" checked="checked" value="1" required="" class="validate required" id="confirm_agree" name="confirm agree">
+                                                        <span>Tôi đã đọc và đồng ý với <a class="agree" href="#"><b>Điều khoản & Chính sách</b></a></span>
+                                                    </label>
+                                                    <div class="buttons">
+                                                        <div class="pull-right">
+                                                            <input type="submit" class="btn btn-primary" id="button-confirm" value="Xác nhận">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,12 +253,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <!--Middle Part End -->
+    <!--Middle Part End -->
+    </div>
+    </div>
 
-                </div>
-            </div>
-    </form>
     <!-- //Main Container -->
 </body>
