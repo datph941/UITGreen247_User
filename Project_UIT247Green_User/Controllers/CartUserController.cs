@@ -44,12 +44,19 @@ namespace Project_UIT247Green_User.Controllers
             this.ViewBag.total = total;
             return View();
         }
-        public IActionResult Buy(int idpro)
+        public IActionResult Buy(int id, int SoLuong, string type = "Normal")
         {
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            Cart.InsertCart(u.id, idpro, 1);
+            Cart.InsertCart(u.id, id, 1);
+            if (type == "ajax")
+            {
+                return Json(new
+                {                 
+
+                });
+            }
             return RedirectToAction("index");
         }
         public IActionResult Plus(int idpro)
