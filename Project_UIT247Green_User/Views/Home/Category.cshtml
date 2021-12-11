@@ -631,22 +631,7 @@
                                 });
                             }
                         });
-                    });
-                    $(".remove").click(function () {
-                        $.ajax({
-                            url: "/Cart/Remove",
-                            data: {
-                                id: $(this).data("id"),
-                                SoLuong: 1,
-                                type: "ajax"
-                            },
-                            success: function (data) {
-                                $("#slsp").load(location.href + " #slsp>*", "");
-                            },
-                            error: function () {                               
-                            }
-                        });
-                    });
+                    });                
                 });
             </script>
         }

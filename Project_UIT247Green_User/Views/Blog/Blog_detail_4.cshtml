@@ -5,14 +5,33 @@
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
-
+        <!-- Slider  -->
+        <section class="so-slideshow">
+            <div id="so-slideshow">
+                <div class="module  no-margin">
+                    <div class="yt-content-slider yt-content-slider--arrow1" data-autoplay="no" data-autoheight="no"
+                         data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1"
+                         data-items_column2="1" data-items_column3="1" data-items_column4="1" data-arrows="yes"
+                         data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                        <div class="yt-content-slide">
+                            <a href="#">
+                                <img src="~/image/demo/slider/home7/background-header.png" alt="slider1"
+                                     class="img-responsive">
+                            </a><br>
+                        </div>
+                    </div>
+                    <div class="loadeding"></div>
+                </div>
+            </div>
+        </section>
+        <!-- //end Slider  -->
         <!-- //Header Container  -->
         <!-- Main Container  -->
         <div class="main-container container">
             <ul class="breadcrumb">
-                <li><a href="#"><i class="fa fa-home"></i></a></li>
-                <li><a href="blog-page.html">Tin tức</a></li>
-                <li><a href="#">Cách làm món sườn ram siêu ngon</a></li>
+                <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
+                <li><a asp-controller="blog" asp-action="index">Tin tức</a></li>
+                <li><a asp-controller="blog" asp-action="blog_detail_4">Cách làm món sườn ram siêu ngon</a></li>
             </ul>
 
             <div class="row">
@@ -22,16 +41,32 @@
                         <h3 class="modtitle">Bài viết mới nhất</h3>
                         <div class="modcontent">
                             <ul class="list-group ">
-                                <li class="list-group-item"> <a href="blog-detail1.html" class="group-item">Câu chuyện
+                                <li class="list-group-item">
+                                    <a asp-controller="blog" asp-action="blog_detail_1" class="group-item">
+                                        Câu chuyện
                                         sản
-                                        phẩm - Thịt Lợn</a></li>
-                                <li class="list-group-item"><a href="blog-detail2.html" class="group-item">Câu chuyện
+                                        phẩm - Thịt Lợn
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a asp-controller="blog" asp-action="blog_detail_2" class="group-item">
+                                        Câu chuyện
                                         sản
-                                        phẩm - Trứng gà</a></li>
-                                <li class="list-group-item"><a href="blog-detail3.html" class="group-item">Hướng dẫn rã
-                                        đông thịt lợn đúng cách đảm bảo giá trị dinh dưỡng & độ tươi ngon</a></li>
-                                <li class="list-group-item"><a href="blog-detail4.html" class="group-item">Cách làm món
-                                        sườn ram siêu ngon</a></li>
+                                        phẩm - Trứng gà
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a asp-controller="blog" asp-action="blog_detail_3" class="group-item">
+                                        Hướng dẫn rã
+                                        đông thịt lợn đúng cách đảm bảo giá trị dinh dưỡng & độ tươi ngon
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a asp-controller="blog" asp-action="blog_detail_4" class="group-item">
+                                        Cách làm món
+                                        sườn ram siêu ngon
+                                    </a>
+                                </li>
                             </ul>
 
                         </div>
@@ -39,13 +74,14 @@
 
                 </aside>
                 <!--Left Part End -->
-
                 <!--Middle Part Start-->
                 <div id="content" class="col-md-9 col-sm-8">
                     <div class="article-info">
                         <div class="blog-header">
-                            <h3>Cách làm món
-                                sườn ram siêu ngon</h3>
+                            <h3>
+                                Cách làm món
+                                sườn ram siêu ngon
+                            </h3>
                         </div>
                         <div class="article-sub-title">
                             <span class="article-author">Đăng bởi: <a href="#"> Đăng Đô</a></span>
@@ -55,23 +91,31 @@
 
 
                         <div class="article-description">
-                            <p><strong>Trong những ngày mưa, bạn muốn ăn món gì? Món sườn heo thơm ngon ăn cùng với cơm
+                            <p>
+                                <strong>
+                                    Trong những ngày mưa, bạn muốn ăn món gì? Món sườn heo thơm ngon ăn cùng với cơm
                                     trắng, nước mắm và mỡ hành sẽ rất tuyệt.&nbsp;Để thực hiện món sườn ram ngon, bạn
                                     lưu ý chọn sườn lợn sạch. Bạn cũng nên chọn các miếng&nbsp;sườn non nguyên tấm sạch.
                                     Bạn không nên sử dụng thịt lợn không rõ nguồn gốc để đảm bảo sức khỏe của gia đình
-                                    nhé.</strong></p>
+                                    nhé.
+                                </strong>
+                            </p>
                             <div class="form-group">
                                 <a href="https://thucphamorganicgreen.com/wp-content/uploads/2019/03/Suon-ram-man-540-360.jpg"
-                                    class="image-popup"><img
-                                        src="https://thucphamorganicgreen.com/wp-content/uploads/2019/03/Suon-ram-man-540-360.jpg"></a>
+                                   class="image-popup">
+                                    <img src="https://thucphamorganicgreen.com/wp-content/uploads/2019/03/Suon-ram-man-540-360.jpg">
+                                </a>
                             </div>
                             <p>Xem video hướng dẫn làm món sườn ram ngon tuyệt:</p>
-                            <div class="wp-block-embed__wrapper"> <span class="embed-youtube"
-                                    style="text-align:center; display: block;"><iframe class="youtube-player"
-                                        width="640" height="360"
-                                        src="//www.youtube.com/embed/Fz75lKdppHg?version=3&amp;rel=1&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=1&amp;fs=1&amp;hl=vi&amp;autohide=2&amp;wmode=transparent"
-                                        allowfullscreen="true" style="border:0;"
-                                        sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe></span>
+                            <div class="wp-block-embed__wrapper">
+                                <span class="embed-youtube"
+                                      style="text-align:center; display: block;">
+                                    <iframe class="youtube-player"
+                                            width="640" height="360"
+                                            src="//www.youtube.com/embed/Fz75lKdppHg?version=3&amp;rel=1&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=1&amp;fs=1&amp;hl=vi&amp;autohide=2&amp;wmode=transparent"
+                                            allowfullscreen="true" style="border:0;"
+                                            sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>
+                                </span>
                             </div>
                         </div>
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project_UIT247Green_User.Helpers;
 using Project_UIT247Green_User.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,6 +34,29 @@ namespace Project_UIT247Green_User.Controllers
             }
             return View();
         }
+        public IActionResult CheckPromotion(string coupon, string type = "Normal")
+        {
+            Promotion pro = new Promotion();
+            pro = Promotion.selectbyname(coupon);          
+            string nofi = "";
+            if (pro != null)
+            {
+                string discount = String.Format("{0:0,0 vnđ}", pro.discount);
+                nofi = pro.name_promotion + " khả dụng được giảm " + discount;
+            }    
+            else
+            {
+                nofi = "Mã khuyến mãi không khả dụng";
+            }
+            if (type == "ajax")
+            {
+                return Json(new
+                {
+                    nofi = nofi
+                });
+            }
+            return RedirectToAction("checkout");
+        }
         public IActionResult Checkout()
         {
             MenuCat();
@@ -49,11 +73,12 @@ namespace Project_UIT247Green_User.Controllers
             }
             return View();
         }
-        public IActionResult Payment(string firstname, string email,string telephone,string addr1, string addr2, string city, string zone,string coupon, string comments)
+        public IActionResult Payment(string firstname, string email,string telephone,string addr1, string addr2, string city, string zone,string coupon, string comments, int ship1, int pay)
         {
             string address = addr1 + ", " + addr2 + ", " + city + ", " + zone;
             int id_pro = 1;
             double ship = 15000;
+            Promotion pro1 = new Promotion();
             List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             double total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
             if (!zone.Equals("TP.Hồ Chí Minh"))
@@ -62,12 +87,13 @@ namespace Project_UIT247Green_User.Controllers
             }
             if (coupon != null)
             {
-                id_pro = Promotion.selectbyname(coupon).id_promotion;
+                pro1 = Promotion.selectbyname(coupon);
+                id_pro = pro1.id_promotion;
             }
             Customer.Insert(firstname, email, address, telephone);
             Customer cus = Customer.SelectNew();
-          
-            int check = Orders.Insert(cus.id_cus, id_pro, ship, comments, total);
+            
+            int check = Orders.Insert(cus.id_cus, id_pro, ship1, pay, ship, comments, total-pro1.discount);
             int id_ord = Orders.SelectNew().id_ord;
             foreach(var item in cart)
             {
@@ -123,13 +149,6 @@ namespace Project_UIT247Green_User.Controllers
                     cart.Add(new Item { Product = Product.FindProByID(id), Quantity = 1 });
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
-                if (type == "ajax")
-                {               
-                    return Json(new
-                    {
-                        SoLuong = cart.Sum(c => c.Quantity)              
-                    });
-                }
             }
             return RedirectToAction("Index");
         }

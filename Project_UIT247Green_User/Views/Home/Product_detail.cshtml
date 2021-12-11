@@ -60,26 +60,26 @@
                             <div class="row">
                                 <div class="content-product-left  col-sm-7 col-xs-12 ">
                                     <div id="thumb-slider-vertical" class="thumb-vertical-outer">
-                                            <span class="btn-more prev-thumb nt"><i class="fa fa-angle-up"></i></span>
-                                            <span class="btn-more next-thumb nt"><i class="fa fa-angle-down"></i></span>
-                                            <ul class="thumb-vertical">
-                                                @foreach (var item in listimg)
-                                                {
+                                        <span class="btn-more prev-thumb nt"><i class="fa fa-angle-up"></i></span>
+                                        <span class="btn-more next-thumb nt"><i class="fa fa-angle-down"></i></span>
+                                        <ul class="thumb-vertical">
+                                            @foreach (var item in listimg)
+                                            {
 
-                                                    <li class="owl2-item">
-                                                        <a data-index="@index" class="img thumbnail" data-image="@item.link" title="@pro.name_pro">
-                                                            <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro">
-                                                        </a>
-                                                    </li>
-                                                }
-                                                </ul>
-                                        </div>
-                                        <div class="large-image vertical">
-                                            <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" title="SP" alt="SP">
-                                        </div>
-                                   
-                                        <a class="thumb-video pull-left" href="https://www.youtube.com/watch?v=crb2APddijE"><i class="fa fa-youtube-play"></i></a>
+                                                <li class="owl2-item">
+                                                    <a data-index="@index" class="img thumbnail" data-image="@item.link" title="@pro.name_pro">
+                                                        <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro">
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
                                     </div>
+                                    <div class="large-image vertical">
+                                        <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" title="SP" alt="SP">
+                                    </div>
+
+                                    <a class="thumb-video pull-left" href="https://www.youtube.com/watch?v=crb2APddijE"><i class="fa fa-youtube-play"></i></a>
+                                </div>
 
                                 <div class="content-product-right col-sm-5 col-xs-12">
                                     <div class="title-product">
@@ -114,7 +114,7 @@
                                             {
                                                 double price_old = (@pro.price * (100 + @pro.sale_rate) / 100);
                                                 <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_old)</span>
-                                                
+
                                             }
 
                                         </div>
@@ -135,7 +135,7 @@
                                             <div class="origin"><span>ĐVT:</span> @pro.type</div>
                                         </div>
                                     </div>
-                                    <div id="product">                                      
+                                    <div id="product">
                                         <div class="form-group box-info-product">
                                             <div class="option quantity">
                                                 <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
@@ -148,7 +148,7 @@
                                                 </div>
                                             </div>
                                             <div class="cart">
-                                                <input type="button" data-toggle="tooltip" title="" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" onclick="cart.add('42', '1');" data-original-title="Thêm vào giỏ hàng">
+                                                <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-id="@pro.id_pro"></a>                   
                                             </div>
                                             <div class="add-to-links wish_comp">
                                                 <ul class="blank list-inline">
@@ -211,7 +211,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#tab-1">Mô tả</a></li>
                                 <li class="item_nonactive"><a data-toggle="tab" href="#tab-review">Đánh giá</a></li>
-                               
+
                                 <!-- <li class="item_nonactive"><a data-toggle="tab" href="#tab-5">Tab bổ sung</a></li> -->
                             </ul>
                             <div class="tab-content col-xs-12">
@@ -272,7 +272,7 @@
                                             <div class="buttons clearfix"><a id="button-review" class="btn buttonGray">Xác nhận</a></div>
                                         </div>
                                     </form>
-                                </div>                   
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -370,7 +370,7 @@
                                         </div>
 
                                         <div class="button-group">
-                                            <button class="addToCart" type="button" data-toggle="tooltip" title="Thêm vào giỏ" onclick="cart.add('42', '1');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ</span></button>
+                                            <button class="addToCart" type="button" data-toggle="tooltip" title="Thêm vào giỏ" data-id=""><i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ</span></button>
                                             <button class="wishlist" type="button" data-toggle="tooltip" title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');"><i class="fa fa-heart"></i></button>
                                             <button class="compare" type="button" data-toggle="tooltip" title="So sánh sản phẩm" onclick="compare.add('42');"><i class="fa fa-exchange"></i></button>
                                         </div>
@@ -437,8 +437,6 @@
                                         <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe" href="quickview.html">  Xem nhanh</a>
                                         <!--end full quick view block-->
                                     </div>
-
-
                                     <div class="right-block">
                                         <div class="caption">
                                             <h4><a href="product.html">Sản phẩm 4</a></h4>
@@ -481,5 +479,82 @@
             <!--Middle Part End-->
         </div>
         <!-- //Main Container -->
-
+        @if (ViewBag.email != null)
+        {
+            @section scripts{
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                <script>
+                    $(document).ready(function () {
+                        $("#button-cart").click(function () {
+                            $.ajax({
+                                url: "/CartUser/Buy",
+                                data: {
+                                    id: $(this).data("id"),
+                                    SoLuong: $("input[name='quantity']").val(),
+                                    type: "ajax"
+                                },
+                                success: function (data) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Thêm giỏ hàng thành công',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });                                
+                                    setTimeout(function () {// wait for 5 secs(2)
+                                        location.reload(); // then reload the page.(3)
+                                    }, 1500);
+                                },
+                                error: function () {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thêm giỏ hàng thất bại',
+                                        text: 'Vui lòng thử lại',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                            });
+                        });
+                    });
+                </script>
+            }
+        }
+        else
+        {
+            @section scripts{
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                <script>
+                    $(document).ready(function () {
+                        $("#button-cart").click(function () {
+                            $.ajax({
+                                url: "/Cart/Buy",
+                                data: {
+                                    id: $(this).data("id"),
+                                    SoLuong: $("input[name='quantity']").val(),
+                                    type: "ajax"
+                                },
+                                success: function (data) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Thêm giỏ hàng thành công',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    $("#slsp").load(location.href + " #slsp>*", "");
+                                },
+                                error: function () {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thêm giỏ hàng thất bại',
+                                        text: 'Vui lòng thử lại',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                            });
+                        });                     
+                    });
+                </script>
+            }
+        }
 </body>

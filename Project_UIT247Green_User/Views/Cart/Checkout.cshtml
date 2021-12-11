@@ -13,7 +13,7 @@
         let sum = 0;
         var value = obj.value;
         if (value === '') {
-          
+              
         }
         else if (value === 'TP.Hồ Chí Minh') {
             message.innerHTML = '15000 vnđ';
@@ -136,7 +136,6 @@
                                                 <option value="TP.Hồ Chí Minh">TP.Hồ Chí Minh</option>
                                             </select>
                                         </div>
-
                                         <!-- <div class="checkbox">
                                           <label>
                                             <input type="checkbox" checked="checked" value="1" name="shipping_address">
@@ -200,7 +199,8 @@
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" id="input-coupon" placeholder="Nhập mã khuyến mãi" value="" name="coupon">
                                                     <span class="input-group-btn">
-                                                        <input type="button" class="btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Áp dụng">
+                                                        <input type="button" class="coupon btn btn-primary" data-loading-text="Loading..." id="button-coupon" value="Áp dụng">
+                                                        
                                                     </span>
                                                 </div>
                                             </div>
@@ -307,5 +307,33 @@
                 </div>
             </div>
     </form>
+    @section scripts{
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            $(document).ready(function () {
+                $(".coupon").click(function () {
+                    $.ajax({
+                        url: "/Cart/CheckPromotion",
+                        data: {
+                            coupon: $("#input-coupon").val(),
+                            type: "ajax"
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            Swal.fire({
+                                icon: 'success',
+                                title: data.nofi,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        },
+                        error: function () {
+                            
+                        }
+                    });
+                });
+            });
+        </script>
+    }
     <!-- //Main Container -->
 </body>

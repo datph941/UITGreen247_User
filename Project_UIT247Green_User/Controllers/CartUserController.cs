@@ -49,14 +49,7 @@ namespace Project_UIT247Green_User.Controllers
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            Cart.InsertCart(u.id, id, 1);
-            if (type == "ajax")
-            {
-                return Json(new
-                {                 
-
-                });
-            }
+            Cart.InsertCart(u.id, id, SoLuong);
             return RedirectToAction("index");
         }
         public IActionResult Plus(int idpro)
