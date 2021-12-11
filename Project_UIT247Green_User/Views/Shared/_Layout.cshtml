@@ -174,21 +174,21 @@
                     @if(ViewBag.email == null)
                     {
                         <!-- Ô giỏ hàng -->
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
+                        <div id="slsp" class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
                             <!--Giỏ hàng-->
                             <div id="cart" class="btn-group btn-shopping-cart">
                                 <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
                                    data-toggle="dropdown">
-                                    <div class="shopcart">
+                                    <div  class="shopcart">
                                         <span class="handle pull-left"></span>
                                         <span class="title">Giỏ hàng</span>
                                         @if (ViewBag.cart != null)
                                         {
-                                    <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
+                                            <p  class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
                                         }
                                         else
                                         {
-                                            <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
+                                            <p  class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
                                         }
                                     </div>
                                 </a>
@@ -216,10 +216,7 @@
                                                             </td>
                                                             <td class="text-center">@item.Quantity</td>
                                                             <td class="text-center">@String.Format("{0:0,0 vnđ}", price_new * item.Quantity)</td>                        
-                                                            <td class="text-right">
-                                                                <a asp-controller="cart" asp-action="remove" asp-route-id="@item.Product.id_pro"
-                                                                   class="fa fa-times fa-delete"></a>
-                                                            </td>
+                                                          
                                                         </tr>
                                                     }
                                                 }
@@ -335,10 +332,7 @@
                                                     </td>
                                                     <td class="text-center">@item.quantity</td>
                                                     <td class="text-center">@String.Format("{0:0,0 vnđ}", price_new * item.quantity)</td>
-                                                    <td class="text-right">
-                                                        <a asp-controller="cartuser" asp-action="remove" asp-route-idpro="@pro.id_pro"
-                                                           class="fa fa-times fa-delete"></a>
-                                                    </td>
+                                                    
                                                 </tr>
                                             }
                                         }

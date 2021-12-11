@@ -56,7 +56,6 @@
                     <div class="loadeding"></div>
                 </div>
             </div>
-
         </section>
         <!-- //end Slider  -->
         <!-- Main Container  -->
@@ -65,7 +64,6 @@
                 <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
                 <li><a asp-controller="home" asp-action="category" asp-route-id="@cat.id_cat">@cat.name_cat</a></li>
             </ul>
-
             <div class="row">
                 <!--Left Part Start -->
                 <aside class="col-sm-4 col-md-3" id="column-left">
@@ -92,13 +90,8 @@
                                     }
                                 </ul>
                             </div>
-
-
-
                         </div>
-
                     </div>
-
                     <div class="module latest-product titleLine">
                         <h3 class="modtitle">Bán chạy</h3>
                         <div class="modcontent ">
@@ -138,7 +131,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +210,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -262,10 +253,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
-
                     </div>
                     <div class="module">
                         <div class="modcontent clearfix">
@@ -357,7 +345,7 @@
                     <div class="products-list row grid">
                         @foreach (var item2 in list1)
                         {
-                            if (item2.sale_rate > 0)
+                            if (item2.discount > 0)
                             {
                                 listimg1 = Image_product.FindImgByIDPro(item2.id_pro);
 
@@ -416,15 +404,15 @@
                                             <div class="button-group">
                                                 @if (ViewBag.email != null)
                                                 {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cartuser" asp-action="buy" asp-route-idpro="@item2.id_pro"
-                                                       title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
+                                                       title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
                                                     </a>
                                                 }
                                                 else
                                                 {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cart" asp-action="buy" asp-route-id="@item2.id_pro"
-                                                       title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
+                                                       title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
                                                     </a>
                                                 }
@@ -479,7 +467,6 @@
                                                         </span>
                                                     </div>
                                                 </div>
-
                                                 <div class="price">
                                                     @{
                                                         double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
@@ -494,15 +481,15 @@
                                             <div class="button-group">
                                                 @if (ViewBag.email != null)
                                                 {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cartuser" asp-action="buy" asp-route-idpro="@item2.id_pro"
-                                                       title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
+                                                       title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
                                                     </a>
                                                 }
                                                 else
                                                 {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" asp-controller="cart" asp-action="buy" asp-route-id="@item2.id_pro"
-                                                       title="Thêm vào giỏ hàng" onclick="cart.add('42', '1');">
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
+                                                       title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
                                                     </a>
                                                 }
@@ -520,9 +507,7 @@
                                 </div>
                             }
                         }
-
                         <div class="clearfix visible-xs-block"></div>
-
                         <!--// End Changed listings-->
                         <!-- Filters -->
                         <div class="product-filter product-filter-bottom filters-panel">
@@ -571,5 +556,99 @@
             view = 'grid';
         }
         if (view) display(view);
+      
     </script>
+    @if (ViewBag.email != null)
+    {
+        @section scripts{
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            <script>
+                $(document).ready(function () {
+                    $(".addToCart").click(function () {
+                        $.ajax({
+                            url: "/CartUser/Buy",
+                            data: {
+                                id: $(this).data("id"),
+                                SoLuong: 1,
+                                type: "ajax"
+                            },
+                            success: function (data) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Thêm giỏ hàng thành công',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                setTimeout(function () {// wait for 5 secs(2)
+                                    location.reload(); // then reload the page.(3)
+                                }, 1500);
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Thêm giỏ hàng thất bại',
+                                    text: 'Vui lòng thử lại',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        });
+                    });
+                });
+            </script>
+        }
+    }
+    else
+    {
+        @section scripts{
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            <script>
+                $(document).ready(function () {
+                    $(".addToCart").click(function () {
+                        $.ajax({
+                            url: "/Cart/Buy",
+                            data: {
+                                id: $(this).data("id"),
+                                SoLuong: 1,
+                                type: "ajax"
+                            },
+                            success: function (data) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Thêm giỏ hàng thành công',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                $("#slsp").load(location.href + " #slsp>*", "");
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Thêm giỏ hàng thất bại',
+                                    text: 'Vui lòng thử lại',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        });
+                    });
+                    $(".remove").click(function () {
+                        $.ajax({
+                            url: "/Cart/Remove",
+                            data: {
+                                id: $(this).data("id"),
+                                SoLuong: 1,
+                                type: "ajax"
+                            },
+                            success: function (data) {
+                                $("#slsp").load(location.href + " #slsp>*", "");
+                            },
+                            error: function () {                               
+                            }
+                        });
+                    });
+                });
+            </script>
+        }
+    }
 </body>

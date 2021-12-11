@@ -96,18 +96,17 @@ namespace Project_UIT247Green_User.Controllers
             {
                 cart[index].Quantity--;
             }
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);        
             return RedirectToAction("index");
         }
-        public IActionResult Buy(int id)
-        {
-            //ProductModel productModel = new ProductModel();       
+        public IActionResult Buy(int id, int SoLuong, string type = "Normal")
+        {      
 
             if (SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart") == null)
             {
                 List<Item> cart = new List<Item>(); //mảng các item
 
-                cart.Add(new Item { Product = Product.FindProByID(id), Quantity = 1 });
+                cart.Add(new Item { Product = Product.FindProByID(id), Quantity = SoLuong });
 
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
@@ -117,13 +116,20 @@ namespace Project_UIT247Green_User.Controllers
                 int index = isExist(id);
                 if (index != -1)
                 {
-                    cart[index].Quantity++;
+                    cart[index].Quantity+=SoLuong;
                 }
                 else
                 {
                     cart.Add(new Item { Product = Product.FindProByID(id), Quantity = 1 });
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                if (type == "ajax")
+                {               
+                    return Json(new
+                    {
+                        SoLuong = cart.Sum(c => c.Quantity)              
+                    });
+                }
             }
             return RedirectToAction("Index");
         }
