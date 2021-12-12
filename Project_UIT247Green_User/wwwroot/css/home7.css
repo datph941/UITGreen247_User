@@ -4218,9 +4218,10 @@ body {
   padding: 34px 0; }
 
 .so-spotlight2 {
-  padding: 100px 0;
-  min-height: 500px;
-  background-image: url("../image/theme//home7/bg-client-id11.jpg"); }
+    padding: 100px 0;
+    min-height: 500px;
+    /*background-image: url("../image/theme/home7/bg-client-id11.jpg");*/
+}
 
 .module--5x {
   margin-bottom: 55px; }

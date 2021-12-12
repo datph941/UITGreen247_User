@@ -58,28 +58,27 @@
                     <div class="product-view row">
                         <div class="left-content-product col-lg-10 col-xs-12">
                             <div class="row">
-                                <div class="content-product-left  col-sm-7 col-xs-12 ">
-                                    <div id="thumb-slider-vertical" class="thumb-vertical-outer">
-                                        <span class="btn-more prev-thumb nt"><i class="fa fa-angle-up"></i></span>
-                                        <span class="btn-more next-thumb nt"><i class="fa fa-angle-down"></i></span>
-                                        <ul class="thumb-vertical">
-                                            @foreach (var item in listimg)
-                                            {
+                               <div class="content-product-left  col-sm-6 col-xs-12 ">
+								 <div class="large-image  ">
+									 <img itemprop="image" class="product-image-zoom" src="~/image/demo/shop/product/J9.jpg" data-zoom-image="~/image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
+								 </div>
 
-                                                <li class="owl2-item">
-                                                    <a data-index="@index" class="img thumbnail" data-image="@item.link" title="@pro.name_pro">
-                                                        <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro">
-                                                    </a>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </div>
-                                    <div class="large-image vertical">
-                                        <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" title="SP" alt="SP">
-                                    </div>
-
-                                    <a class="thumb-video pull-left" href="https://www.youtube.com/watch?v=crb2APddijE"><i class="fa fa-youtube-play"></i></a>
-                                </div>
+								 <div id="thumb-slider" class="owl-theme owl-loaded owl-drag full_slider">
+									 <a data-index="0" class="img thumbnail " data-image="~/image/demo/shop/product/J9.jpg" title="Bint Beef">
+										 <img src="~/image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
+									 </a>
+									 <a data-index="1" class="img thumbnail" data-image="~/image/demo/shop/product/J6.jpg" title="Bint Beef">
+										 <img src="~/image/demo/shop/product/J6.jpg" title="Bint Beef" alt="Bint Beef" />
+									 </a>
+									 <a data-index="2" class="img thumbnail" data-image="~/image/demo/shop/product/J5.jpg" title="Bint Beef">
+										 <img src="~/image/demo/shop/product/J5.jpg" title="Bint Beef" alt="Bint Beef" />
+									 </a>
+									 <a data-index="3" class="img thumbnail" data-image="~/image/demo/shop/product/J4.jpg" title="Bint Beef">
+										 <img src="~/image/demo/shop/product/J4.jpg" title="Bint Beef" alt="Bint Beef" />
+									 </a>
+								 </div>
+								 
+							 </div>
 
                                 <div class="content-product-right col-sm-5 col-xs-12">
                                     <div class="title-product">
