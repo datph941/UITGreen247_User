@@ -14,12 +14,22 @@ namespace Project_UIT247Green_User.Models
         {
             using (var context = new DataContext())
             {
-                context.Wishlist.Add(new Wishlist
+                Wishlist wishlist = (from p in context.Wishlist
+                                     where (p.id_user == id && p.id_pro == id_pro)
+                                     select p).FirstOrDefault();
+                if (wishlist != null)
                 {
-                    id_user = id,
-                    id_pro = id_pro
-                });
-                return context.SaveChanges();
+                    return 0;
+                }
+                else
+                {
+                    context.Wishlist.Add(new Wishlist
+                    {
+                        id_user = id,
+                        id_pro = id_pro
+                    });
+                    return context.SaveChanges();
+                }    
             }
         }
         public static void Delete(int id_user, int id_pro)

@@ -33,15 +33,18 @@ namespace Project_UIT247Green_User.Controllers
             if (cookie != null)
             {
                 Users u = Users.FindU(cookie);
-                List<Cart> list = Cart.FindCart(u.id);
-                this.ViewBag.cart = list;
-                foreach (var item in list)
+                if(u!=null)
                 {
-                    pro = Product.FindProByID(item.id_pro);
-                    double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
-                    total = total + price_new;
-                }
-                this.ViewBag.total = total;
+                    List<Cart> list = Cart.FindCart(u.id);
+                    this.ViewBag.cart = list;
+                    foreach (var item in list)
+                    {
+                        pro = Product.FindProByID(item.id_pro);
+                        double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
+                        total = total + price_new;
+                    }
+                    this.ViewBag.total = total;
+                }    
             }
             else
             {

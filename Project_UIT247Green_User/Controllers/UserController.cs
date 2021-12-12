@@ -162,6 +162,7 @@ namespace Project_UIT247Green_User.Controllers
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
             Wishlist.Insert(u.id, id_pro);
+
             return RedirectToAction("index");
         }
     }
