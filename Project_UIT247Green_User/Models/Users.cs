@@ -81,7 +81,7 @@ namespace Project_UIT247Green_User.Models
                 }
             }
         }
-        public static void UpdateAdd(int id,string add,string phone)
+        public static void UpdateAdd(int id,string name,string add,string phone)
         {
             using (var context = new DataContext())
             {
@@ -90,10 +90,29 @@ namespace Project_UIT247Green_User.Models
                               select p).FirstOrDefault();
                 if (user != null)
                 {
+                    user.fullname = name;
                     user.phone = phone;
                     user.address = add;
                     context.SaveChanges();
                 }
+            }
+        }
+        public static int ChangePass(string email, string pass)
+        {
+            using (var context = new DataContext())
+            {
+                Users user = (from p in context.Users
+                              where (p.email == email)
+                              select p).FirstOrDefault();
+                if (user != null)
+                {
+                    user.password = pass;
+                    return context.SaveChanges();
+                }
+                else
+                {
+                    return 0;
+                }    
             }
         }
     }

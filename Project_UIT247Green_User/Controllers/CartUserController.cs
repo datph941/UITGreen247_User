@@ -24,6 +24,32 @@ namespace Project_UIT247Green_User.Controllers
             this.ViewBag.list = list;
             this.ViewBag.listCat = listCat;
         }
+        public IActionResult CheckPromotion(string coupon, string type = "Normal")
+        {
+            Promotion pro = new Promotion();
+            pro = Promotion.selectbyname(coupon);
+            string nofi = "";
+            double discount1 = 0;
+            if (pro != null)
+            {
+                string discount = String.Format("{0:0,0 vnđ}", pro.discount);
+                nofi = pro.name_promotion + " khả dụng được giảm " + discount;
+                discount1 = pro.discount;
+            }
+            else
+            {
+                nofi = "Mã khuyến mãi không khả dụng";
+            }
+            if (type == "ajax")
+            {
+                return Json(new
+                {
+                    nofi = nofi,
+                    discount = discount1
+                });
+            }
+            return RedirectToAction("checkout");
+        }
         public IActionResult Index()
         {
             double total = 0;
@@ -76,13 +102,13 @@ namespace Project_UIT247Green_User.Controllers
             Cart.DeleteCart(u.id, idpro);
             return RedirectToAction("index");
         }
-        public IActionResult UpdateAdd(string addr1, string addr2, string city, string zone,string telephone)
+        public IActionResult UpdateAdd(string addr1, string addr2, string city, string zone,string telephone,string firstname)
         {
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
             string addr = addr1 + "," + addr2 + "," + city + "," + zone;
-            Users.UpdateAdd(u.id, addr, telephone);
+            Users.UpdateAdd(u.id, firstname, addr, telephone);
             return RedirectToAction("checkout");
         }
         public IActionResult Checkout()

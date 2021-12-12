@@ -31,22 +31,21 @@
                 <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
                 <li><a asp-controller="user" asp-action="login">Đăng nhập</a></li>
             </ul>
+            @{
+                if (ViewBag.check != null)
+                {
+                      <h2 class="title" style="text-align:center;">@ViewBag.check</h2>
+                }
+            }
             <div class="row">
                 <div id="content" class="col-sm-12">
                     <div class="page-login">
-
                         <div class="account-border">
                             <div class="row">
                                 <div class="col-sm-6 new-customer">
                                     <div class="well">
                                         <h2><i class="fa fa-file-o" aria-hidden="true"></i> Khách hàng mới</h2>
                                         <p>Khách hàng tạo tài khoản UITGreen247 để có trải nghiệm mua sắm nhanh hơn, dễ dàng quản lý và theo dõi đơn hàng.</p>
-                                        @{
-                                            if (ViewBag.check != null)
-                                            {
-                                                <p>@ViewBag.check</p>
-                                            }
-                                        }
                                     </div>
                                     <div class="bottom-form">
                                         <a asp-controller="user" asp-action="register" class="btn btn-default pull-right">Đăng ký</a>

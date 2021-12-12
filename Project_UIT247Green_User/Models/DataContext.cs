@@ -50,8 +50,7 @@ namespace Project_UIT247Green_User.Models
             modelBuilder.Entity<Users>().HasKey(c => new { c.id });
             modelBuilder.Entity<Banner>().HasKey(c => new { c.id_banner });
             modelBuilder.Entity<Cart>().HasKey(c => new { c.id_cart });
-            modelBuilder.Entity<Wishlist>().HasKey(c => new { c.id_user });
-            modelBuilder.Entity<Wishlist>().HasKey(c => new { c.id_pro });
+            modelBuilder.Entity<Wishlist>().HasKey(c => new { c.id_wish });
             modelBuilder.Entity<Promotion>().HasKey(c => new { c.id_promotion });
             modelBuilder.Entity<Province>().HasKey(c => new { c.id });
         }

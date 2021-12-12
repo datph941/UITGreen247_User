@@ -51,12 +51,12 @@
                 <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
                 <li><a asp-controller="user" asp-action="register">Đăng ký</a></li>
             </ul>
+            @if (ViewBag.check != null)
+            {
+                <h2 class="title" style="text-align:center;">@ViewBag.check</h2>
+            }
             <div class="row">
                 <div id="content" class="col-sm-12">
-                    @if (ViewBag.check != null)
-                    {
-                        <h2 class="title" style="text-align:center;">@ViewBag.check</h2>
-                    }
                     <h2 class="title">Đăng ký tài khoản mới</h2>
                     <p>Nếu bạn đã có tại khoản tài khoản tại UITGreen247, vui lòng truy cập trang <a asp-controller="user" asp-action="login">đăng nhập</a>.</p>
                     <form asp-controller="user" asp-action="ins" method="post" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="form-group required">
-                                <label class="col-sm-2 control-label" for="input-zone">Tỉnh</label>
+                                <label class="col-sm-2 control-label" for="input-zone">Tỉnh / Thành Phố</label>
                                 <div class="col-sm-10">
                                     <select name="zone" id="input-zone" class="form-control">
                                         <option value=""> --- Vui lòng chọn --- </option>

@@ -34,6 +34,12 @@ namespace Project_UIT247Green_User.Controllers
             this.ViewBag.list = list;
             this.ViewBag.listCat = listCat;
         }
+        public void Email()
+        {
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            this.ViewBag.email = cookie;
+        }
         public IActionResult Login()
         {
             MenuCat();
@@ -48,21 +54,64 @@ namespace Project_UIT247Green_User.Controllers
         }
         public IActionResult MyAccount()
         {
+            Email();
             MenuCat();
             DataCart();
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            Users u = Users.FindU(cookie);
+            string add = u.address;
+            string[] arr = add.Split(',');
+            string add1 = arr[0];
+            string add2 = arr[1];
+            string district = arr[2];
+            string city = arr[3];
+            this.ViewBag.add1 = add1;
+            this.ViewBag.add2 = add2;
+            this.ViewBag.district = district;
+            this.ViewBag.city = city;
             return View();
         }
         public IActionResult Password()
         {
+            Email();
             MenuCat();
             DataCart();
             return View();
         }
-        public IActionResult Wishlist()
+        public IActionResult wishlist()
         {
+            Email();
             MenuCat();
             DataCart();
             return View();
+        }
+        public IActionResult UpdateAcc(string addr1, string addr2, string city, string zone, string phone, string name)
+        {
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            Users u = Users.FindU(cookie);
+            string addr = addr1 + "," + addr2 + "," + city + "," + zone;
+            Users.UpdateAdd(u.id, name, addr, phone);
+            return RedirectToAction("myaccount");
+        }
+        public IActionResult ChangePass(string newpassword)
+        {
+            Email();
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            Users u = Users.FindU(cookie);
+            int check = Users.ChangePass(u.email, newpassword);
+            string change = "";
+            if (check > 0)
+            {
+                change = "Thay đổi mật khẩu thành công";
+            }
+            else
+            {
+                change = "Thay đổi mật khẩu thất bại";
+            }
+            return View("password",change);
         }
         public IActionResult CheckLogin(string email, string password)
         {
@@ -106,6 +155,14 @@ namespace Project_UIT247Green_User.Controllers
             cookie.Expires = DateTime.Now.AddDays(-1);
             Response.Cookies.Append(key, value, cookie);
             return View("login");
+        }
+        public IActionResult AddWishList(int id_pro, string type ="Normal")
+        {
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            Users u = Users.FindU(cookie);
+            Wishlist.Insert(u.id, id_pro);
+            return RedirectToAction("index");
         }
     }
 }

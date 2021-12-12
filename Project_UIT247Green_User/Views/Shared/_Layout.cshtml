@@ -101,7 +101,7 @@
                                 else
                                 {
                                     <li>
-                                        <a href="my-account.html" title="My Account"
+                                        <a asp-controller="user" asp-action="login" title="My Account"
                                            class="btn btn-xs dropdown-toggle">
 
                                             <i class="fa fa-user"></i> Tài khoản
@@ -277,8 +277,7 @@
                                                     <a class="btn view-cart" asp-controller="cart" asp-action="index">
                                                         <i class="fa fa-shopping-cart"></i>Xem giỏ
                                                         hàng
-                                                    </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
-                                                                              asp-controller="cart" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
+                                                    </a> 
                                              </p>             
                                         </div>
                                     </li>
@@ -393,8 +392,7 @@
                                         <a class="btn view-cart" asp-controller="cartuser" asp-action="index">
                                             <i class="fa fa-shopping-cart"></i>Xem giỏ
                                             hàng
-                                        </a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart"
-                                                                  asp-controller="cartuser" asp-action="checkout"><i class="fa fa-share"></i>Thanh toán</a>
+                                        </a>
                                     </p>
                                 </div>
                             </li>

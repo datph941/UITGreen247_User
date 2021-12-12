@@ -3,6 +3,7 @@
 *@
 @{
     List<Image_product> listimg = new List<Image_product>();
+    List<Province> listprovince = Province.Select();
 }
 <script language="javascript">
 
@@ -91,19 +92,15 @@
                                     <fieldset id="account">
                                         <div class="form-group required">
                                             <label for="input-payment-firstname" class="control-label">Họ tên</label>
-                                            <input type="text" class="form-control" id="input-payment-firstname" placeholder="Họ tên" value="" name="firstname">
+                                            <input type="text" class="form-control" id="input-payment-firstname" placeholder="Họ tên" value="" name="firstname" oninvalid="this.setCustomValidity('Hy vọng bạn điền đầy đủ tên')" oninput="setCustomValidity('')" required="">
                                         </div>
-                                        <!-- <div class="form-group required">
-                                          <label for="input-payment-lastname" class="control-label">Last Name</label>
-                                          <input type="text" class="form-control" id="input-payment-lastname" placeholder="Last Name" value="" name="lastname">
-                                        </div> -->
                                         <div class="form-group required">
                                             <label for="input-payment-email" class="control-label">E-mail</label>
-                                            <input type="text" class="form-control" id="input-payment-email" placeholder="E-mail" value="" name="email">
+                                            <input type="email" class="form-control" id="input-payment-email" placeholder="E-mail" value="" name="email" oninvalid="this.setCustomValidity('Hy vọng bạn điền đúng và đầy đủ email')" oninput="setCustomValidity('')" required="">
                                         </div>
                                         <div class="form-group required">
                                             <label for="input-payment-telephone" class="control-label">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="input-payment-telephone" placeholder="Số điện thoại" value="" name="telephone">
+                                            <input type="tel" class="form-control" id="input-payment-telephone" placeholder="Số điện thoại" value="" name="telephone" oninvalid="this.setCustomValidity('Hy vọng bạn điền đúng và đầy đủ số điện thoại')" oninput="setCustomValidity('')" required="">
                                         </div>
                                     </fieldset>
                                 </div>
@@ -113,38 +110,28 @@
                                     <h4 class="panel-title"><i class="fa fa-book"></i> Địa chỉ giao hàng</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <fieldset id="address" class="required">
-                                        <!-- <div class="form-group">
-                                          <label for="input-payment-company" class="control-label">Company</label>
-                                          <input type="text" class="form-control" id="input-payment-company" placeholder="Company" value="" name="company">
-                                        </div> -->
+                                    <fieldset id="address" class="required">                     
                                         <div class="form-group">
                                             <label for="input-payment-address-1" class="control-label">Số nhà / Tên đường</label>
-                                            <input type="text" class="form-control" id="input-payment-address-1" placeholder="Số nhà / Tên đường" value="" name="addr1">
+                                            <input type="text" class="form-control" id="input-payment-address-1" placeholder="Số nhà / Tên đường" value="" name="addr1" oninvalid="this.setCustomValidity('Hy vọng bạn điền đầy đủ nơi giao hàng')" oninput="setCustomValidity('')" required="">
                                         </div>
                                         <div class="form-group required">
                                             <label for="input-payment-address-2" class="control-label">Xã / Phường</label>
-                                            <input type="text" class="form-control" id="input-payment-address-2" placeholder="Xã / Phường" value="" name="addr2">
+                                            <input type="text" class="form-control" id="input-payment-address-2" placeholder="Xã / Phường" value="" name="addr2" oninvalid="this.setCustomValidity('Hy vọng bạn điền đầy đủ nơi giao hàng')" oninput="setCustomValidity('')" required="">
                                         </div>
                                         <div class="form-group required">
                                             <label for="input-payment-city" class="control-label">Quận / Huyện</label>
-                                            <input type="text" class="form-control" id="input-payment-city" placeholder="Quận / Huyện" value="" name="city">
+                                            <input type="text" class="form-control" id="input-payment-city" placeholder="Quận / Huyện" value="" name="city" oninvalid="this.setCustomValidity('Hy vọng bạn điền đầy đủ nơi giao hàng')" oninput="setCustomValidity('')" required="">
                                         </div>
                                         <div class="form-group required">
-                                            <label for="input-payment-zone" class="control-label">Tỉnh</label>
+                                            <label for="input-payment-zone" class="control-label">Tỉnh / Thành Phố</label>
                                             <select class="form-control" id="input-payment-zone" name="zone" onchange="genderChanged(this)">
-                                                <option value=""> --- Vui lòng chọn --- </option>
-                                                <option value="Vĩnh Long">Vĩnh Long</option>
-                                                <option value="Bạc Liêu">Bạc Liêu</option>
-                                                <option value="Quãng Ngãi">Quãng Ngãi</option>
-                                                <option value="TP.Hồ Chí Minh">TP.Hồ Chí Minh</option>
+                                                @foreach (var item in listprovince)
+                                                {
+                                                    <option value="@item.name_province">@item.name_province</option>
+                                                }
                                             </select>
-                                        </div>
-                                        <!-- <div class="checkbox">
-                                          <label>
-                                            <input type="checkbox" checked="checked" value="1" name="shipping_address">
-                                            My delivery and billing addresses are the same.</label>
-                                        </div> -->
+                                        </div>                
                                     </fieldset>
                                 </div>
                             </div>
@@ -187,7 +174,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-sm-12">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
@@ -272,7 +258,7 @@
                                                 <textarea rows="4" class="form-control" id="confirm_comment" name="comments"></textarea>
                                                 <br>
                                                 <label class="control-label" for="confirm_agree">
-                                                    <input type="checkbox" checked="checked" value="1" required="" class="validate required" id="confirm_agree" name="confirm agree">
+                                                    <input type="checkbox" checked="checked" value="1" class="validate required" id="confirm_agree" name="confirm agree" oninvalid="this.setCustomValidity('Bạn đã đồng ý với điều khoản?')" oninput="setCustomValidity('')" required="">
                                                     <span>Tôi đã đọc và đồng ý với <a class="agree" href="#"><b>Điều khoản & Chính sách</b></a></span>
                                                 </label>
                                                 <div class="buttons">

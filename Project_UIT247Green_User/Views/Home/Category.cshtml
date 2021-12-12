@@ -408,6 +408,10 @@
                                                        title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
                                                     </a>
+                                                    <button class="wishlist" type="button" data-toggle="tooltip"
+                                                            title="Thêm vào danh sách yêu thích" data-idpro="@item2.id_pro">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
                                                 }
                                                 else
                                                 {
@@ -415,15 +419,11 @@
                                                        title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
                                                     </a>
+                                                    <button class="wishlist" type="button" data-toggle="tooltip"
+                                                            title="Thêm vào danh sách yêu thích" asp-controller="user" asp-action="login">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
                                                 }
-                                                <button class="wishlist" type="button" data-toggle="tooltip"
-                                                        title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');">
-                                                    <i class="fa fa-heart"></i>
-                                                </button>
-                                                <button class="compare" type="button" data-toggle="tooltip"
-                                                        title="So sánh sản phẩm" onclick="compare.add('42');">
-                                                    <i class="fa fa-exchange"></i>
-                                                </button>
                                             </div>
                                         </div><!-- right block -->
 
@@ -485,6 +485,10 @@
                                                        title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
                                                     </a>
+                                                    <button class="wishlist" type="button" data-toggle="tooltip"
+                                                            title="Thêm vào danh sách yêu thích" data-idpro="@item2.id_pro">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
                                                 }
                                                 else
                                                 {
@@ -492,15 +496,11 @@
                                                        title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
                                                     </a>
+                                                    <button class="wishlist" type="button" data-toggle="tooltip"
+                                                            title="Thêm vào danh sách yêu thích" asp-controller="user" asp-action="login">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
                                                 }
-                                                <button class="wishlist" type="button" data-toggle="tooltip"
-                                                        title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');">
-                                                    <i class="fa fa-heart"></i>
-                                                </button>
-                                                <button class="compare" type="button" data-toggle="tooltip"
-                                                        title="So sánh sản phẩm" onclick="compare.add('42');">
-                                                    <i class="fa fa-exchange"></i>
-                                                </button>
                                             </div>
                                         </div><!-- right block -->
                                     </div>
@@ -587,6 +587,32 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Thêm giỏ hàng thất bại',
+                                    text: 'Vui lòng thử lại',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        });
+                    });
+                    $(".wishlist").click(function () {
+                        $.ajax({
+                            url: "/User/AddWishList",
+                            data: {
+                                id_pro: $(this).data("idpro"),
+                                type: "ajax"
+                            },
+                            success: function (data) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Thêm mặt hàng yêu thích thành công',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Thêm mặt hàng yêu thích thất bại',
                                     text: 'Vui lòng thử lại',
                                     showConfirmButton: false,
                                     timer: 1500
