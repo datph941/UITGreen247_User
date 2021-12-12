@@ -342,13 +342,13 @@
                     </div>
                     <!-- //end Filters -->
                     <!--changed listings-->
+     
                     <div class="products-list row grid">
                         @foreach (var item2 in list1)
                         {
                             if (item2.discount > 0)
                             {
                                 listimg1 = Image_product.FindImgByIDPro(item2.id_pro);
-
                                 <div class="product-layout col-md-4 col-sm-6 col-xs-12 ">
                                     <div class="product-item-container">
                                         <div class="left-block">
@@ -362,7 +362,7 @@
                                             <!--end countdown box-->
                                             <!--full quick view block-->
                                             <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                               href="quickview.html"> Xem nhanh</a>
+                                               asp-controller="home" asp-action="quickview"> Xem nhanh</a>
                                             <!--end full quick view block-->
                                         </div>
                                         <div class="right-block">
@@ -426,9 +426,9 @@
                                                 }
                                             </div>
                                         </div><!-- right block -->
-
                                     </div>
                                 </div>
+                                <div class="clearfix visible-xs-block"></div>
                             }
                             else
                             {
@@ -442,7 +442,7 @@
                                             </div>
                                             <!--full quick view block-->
                                             <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                               href="quickview.html"> Xem nhanh</a>
+                                               asp-controller="home" asp-action="quickview"> Xem nhanh</a>
                                             <!--end full quick view block-->
                                         </div>
                                         <div class="right-block">
@@ -505,9 +505,10 @@
                                         </div><!-- right block -->
                                     </div>
                                 </div>
+                                <div class="clearfix visible-xs-block"></div>
                             }
                         }
-                        <div class="clearfix visible-xs-block"></div>
+
                         <!--// End Changed listings-->
                         <!-- Filters -->
                         <div class="product-filter product-filter-bottom filters-panel">

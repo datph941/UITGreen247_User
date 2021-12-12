@@ -2,149 +2,224 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - UITGreen247 - Health for Life</title>
 
+    <link rel="shortcut icon" href="~/ico/favicon.png">
+
+    <!-- Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/bootstrap/css/bootstrap.min.css">
+    <link href="~/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/js/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="~/js/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="~/css/themecss/lib.css" rel="stylesheet">
+    <link href="~/js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="~/js/lightslider/lightslider.css" rel="stylesheet">
+
+    <link href="~/css/themecss/so_megamenu.css" rel="stylesheet">
+    <link href="~/css/themecss/so-categories.css" rel="stylesheet">
+    <link href="~/css/themecss/so-listing-tabs.css" rel="stylesheet">
+    <link href="~/css/header7.css" rel="stylesheet">
+    <link href="~/css/footer4.css" rel="stylesheet">
+    <link href="~/css/checkout.css" rel="stylesheet">
+
+    <link id="color_scheme" href="~/css/home7.css" rel="stylesheet">
+
+    <!-- Responsive-->
+    <link href="~/css/responsive.css" rel="stylesheet">
+</head>
 <body class="res layout-subpage">
-     <div id="wrapper" class="wrapper-full ">
-	<!-- Main Container  -->
-	 <div class="main-container container">
-		
-		 <div class="row">
-			 <!--Middle Part Start-->
-			 <div id="content" class="col-md-12 col-sm-12">
-				
-				 <div class="product-view row">
-					 <div class="left-content-product col-lg-12 col-xs-12">
-						 <div class="row">
-							 <div class="content-product-left  col-sm-6 col-xs-12 ">
-								 <div class="large-image  ">
-									 <img itemprop="image" class="product-image-zoom" src="image/demo/shop/product/J9.jpg" data-zoom-image="image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
-								 </div>
+    <div id="wrapper" class="wrapper-full ">
+        <!-- Main Container  -->
+        <div class="main-container container">
 
-								 <div id="thumb-slider" class="owl-theme owl-loaded owl-drag full_slider">
-									 <a data-index="0" class="img thumbnail " data-image="image/demo/shop/product/J9.jpg" title="Bint Beef">
-										 <img src="image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
-									 </a>
-									 <a data-index="1" class="img thumbnail" data-image="image/demo/shop/product/J6.jpg" title="Bint Beef">
-										 <img src="image/demo/shop/product/J6.jpg" title="Bint Beef" alt="Bint Beef" />
-									 </a>
-									 <a data-index="2" class="img thumbnail" data-image="image/demo/shop/product/J5.jpg" title="Bint Beef">
-										 <img src="image/demo/shop/product/J5.jpg" title="Bint Beef" alt="Bint Beef" />
-									 </a>
-									 <a data-index="3" class="img thumbnail" data-image="image/demo/shop/product/J4.jpg" title="Bint Beef">
-										 <img src="image/demo/shop/product/J4.jpg" title="Bint Beef" alt="Bint Beef" />
-									 </a>
-								 </div>
-								 
-							 </div>
+            <div class="row">
+                <!--Middle Part Start-->
+                <div id="content" class="col-md-12 col-sm-12">
 
-							 <div class="content-product-right col-sm-6 col-xs-12">
-								 <div class="title-product">
-									 <h1>Sản phẩm </h1>
-								 </div>
-								 <!-- Review ---->
-								 <div class="box-review form-group">
-									 <div class="ratings">
-										 <div class="rating-box">
-											 <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-											 <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-											 <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-											 <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-											 <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-										 </div>
-									 </div>
-									 <a class="reviews_button" >0 đánh giá </a>	
-								 </div>
+                    <div class="product-view row">
+                        <div class="left-content-product col-lg-12 col-xs-12">
+                            <div class="row">
+                                <div class="content-product-left  col-sm-6 col-xs-12 ">
+                                    <div class="large-image  ">
+                                        <img itemprop="image" class="product-image-zoom" src="~/image/demo/shop/product/J9.jpg" data-zoom-image="~/image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
+                                    </div>
+                                    <div id="thumb-slider" class="owl-theme owl-loaded owl-drag full_slider">
+                                        <a data-index="0" class="img thumbnail " data-image="~/image/demo/shop/product/J9.jpg" title="Bint Beef">
+                                            <img src="~/image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
+                                        </a>
+                                        <a data-index="1" class="img thumbnail" data-image="~/image/demo/shop/product/J6.jpg" title="Bint Beef">
+                                            <img src="~/image/demo/shop/product/J6.jpg" title="Bint Beef" alt="Bint Beef" />
+                                        </a>
+                                        <a data-index="2" class="img thumbnail" data-image="~/image/demo/shop/product/J5.jpg" title="Bint Beef">
+                                            <img src="~/image/demo/shop/product/J5.jpg" title="Bint Beef" alt="Bint Beef" />
+                                        </a>
+                                        <a data-index="3" class="img thumbnail" data-image="~/image/demo/shop/product/J4.jpg" title="Bint Beef">
+                                            <img src="~/image/demo/shop/product/J4.jpg" title="Bint Beef" alt="Bint Beef" />
+                                        </a>
+                                    </div>
 
-								 <div class="product-label form-group">
-									 <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
-										 <span class="price-new" itemprop="price">100.000đ </span>
-										 <span class="price-old">120.000đ </span>
-									 </div>
-									 <div class="stock"><span>Tình trạng: </span>  <span class="status-stock">Còn hàng </span></div>
-								 </div>
+                                </div>
 
-								 <div class="product-box-desc">
-									<div class="inner-box-desc">
-										<div class="brand"><span>Thương hiệu:</span><a href="#"> UIT</a>		</div>
-										<div class="origin"><span>Xuất xứ:</span> Việt Nam</div>
-										<div class="origin"><span>ĐVT:</span> </div>
-									</div>
-								 </div>
+                                <div class="content-product-right col-sm-6 col-xs-12">
+                                    <div class="title-product">
+                                        <h1>Sản phẩm </h1>
+                                    </div>
+                                    <!-- Review ---->
+                                    <div class="box-review form-group">
+                                        <div class="ratings">
+                                            <div class="rating-box">
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                            </div>
+                                        </div>
+                                        <a class="reviews_button">0 đánh giá </a>
+                                    </div>
+
+                                    <div class="product-label form-group">
+                                        <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
+                                            <span class="price-new" itemprop="price">100.000đ </span>
+                                            <span class="price-old">120.000đ </span>
+                                        </div>
+                                        <div class="stock"><span>Tình trạng: </span>  <span class="status-stock">Còn hàng </span></div>
+                                    </div>
+
+                                    <div class="product-box-desc">
+                                        <div class="inner-box-desc">
+                                            <div class="brand"><span>Thương hiệu:</span><a href="#"> UIT</a>		</div>
+                                            <div class="origin"><span>Xuất xứ:</span> Việt Nam</div>
+                                            <div class="origin"><span>ĐVT:</span> </div>
+                                        </div>
+                                    </div>
+                                    <div id="product">
+                                        <div class="form-group box-info-product">
+                                            <div class="option quantity">
+                                                <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
+                                                    <label>SL </label>
+                                                    <input class="form-control" type="text" name="quantity" value="1" />
+                                                    <input type="hidden" name="product_id" value="50" />
+                                                    <span class="input-group-addon product_quantity_down">− </span>
+                                                    <span class="input-group-addon product_quantity_up">+ </span>
+                                                </div>
+                                            </div>
+                                            <div class="cart">
+                                                <input type="button" data-toggle="tooltip" title="" value="Thêm vào giỏ hàng" onclick="cart.add('42', '1');" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-original-title="Thêm vào giỏ hàng" />
+                                            </div>
+                                            <div class="add-to-links wish_comp">
+                                                <ul class="blank list-inline">
+                                                    <li class="wishlist">
+                                                        <a class="icon" data-toggle="tooltip" title="" onclick="wishlist.add('50');" data-original-title="Yêu thích">
+                                                            <i class="fa fa-heart"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- end box info product -->
+
+                                </div>
+                            </div>
+                        </div>
 
 
-								 <div id="product">
-									 
+                    </div>
 
-									 <div class="form-group box-info-product">
-										 <div class="option quantity">
-											 <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
-												 <label>SL </label>
-												 <input class="form-control" type="text" name="quantity" value="1" />
-												 <input type="hidden" name="product_id" value="50" />
-												 <span class="input-group-addon product_quantity_down">− </span>
-												 <span class="input-group-addon product_quantity_up">+ </span>
-											 </div>
-										 </div>
-										 <div class="cart">
-											 <input type="button" data-toggle="tooltip" title="" value="Thêm vào giỏ hàng" onclick="cart.add('42', '1');" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-original-title="Thêm vào giỏ hàng" />
-										 </div>
-										 <div class="add-to-links wish_comp">
-											 <ul class="blank list-inline">
-												 <li class="wishlist">
-													 <a class="icon" data-toggle="tooltip" title="" onclick="wishlist.add('50');" data-original-title="Yêu thích"><i class="fa fa-heart"></i>
-													 </a>
-												 </li>
-											 </ul>
-										 </div>
+                    <script type="text/javascript">
+                        var cart = {
+                            'add': function (product_id, quantity) {
+                                parent.addProductNotice('Product added to Cart', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3><a href="#">Apple Cinema 30"</a> added to <a href="#">shopping cart</a>!</h3>', 'success');
+                            }
+                        }
 
-									 </div>
+                        var wishlist = {
+                            'add': function (product_id) {
+                                parent.addProductNotice('Product added to Wishlist', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>You must <a href="#">login</a>  to save <a href="#">Apple Cinema 30"</a> to your <a href="#">wish list</a>!</h3>', 'success');
+                            }
+                        }
+                    </script>
 
-								 </div>
-								 <!-- end box info product -->
 
-							 </div>
-						 </div>
-					 </div>
-					
-				
-				 </div>
-				
-				 <script type="text/javascript">
-					var cart = {
-						'add': function(product_id, quantity) {
-							parent.addProductNotice('Product added to Cart', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3><a href="#">Apple Cinema 30"</a> added to <a href="#">shopping cart</a>!</h3>', 'success');
-						}
-					}
+                </div>
 
-					var wishlist = {
-						'add': function(product_id) {
-							parent.addProductNotice('Product added to Wishlist', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>You must <a href="#">login</a>  to save <a href="#">Apple Cinema 30"</a> to your <a href="#">wish list</a>!</h3>', 'success');
-						}
-					}			
-				</script>
 
-				
-			 </div>
-			
-			
-		 </div>
-		 <!--Middle Part End-->
-	 </div>
-	 <!-- //Main Container -->
-	
- <style type="text/css">
-	#wrapper{box-shadow:none;}
-	#wrapper > *:not(.main-container){display: none;}
-	#content{margin:0}
-	.container{width:100%;}
-	
-	.product-info .product-view,.left-content-product,.box-info-product{margin:0;}
-	.left-content-product .content-product-right .box-info-product .cart input{padding:12px 16px;}
+            </div>
+            <!--Middle Part End-->
+        </div>
+        <!-- //Main Container -->
+        <style type="text/css">
+            #wrapper {
+                box-shadow: none;
+            }
 
-	.left-content-product .content-product-right .box-info-product .add-to-links{ width: auto;  float: none; margin-top: 0px; clear:none; }
-	.add-to-links ul li{margin:0;}
-	
-</style></div>
+                #wrapper > *:not(.main-container) {
+                    display: none;
+                }
+
+            #content {
+                margin: 0
+            }
+
+            .container {
+                width: 100%;
+            }
+
+            .product-info .product-view, .left-content-product, .box-info-product {
+                margin: 0;
+            }
+
+                .left-content-product .content-product-right .box-info-product .cart input {
+                    padding: 12px 16px;
+                }
+
+                .left-content-product .content-product-right .box-info-product .add-to-links {
+                    width: auto;
+                    float: none;
+                    margin-top: 0px;
+                    clear: none;
+                }
+
+            .add-to-links ul li {
+                margin: 0;
+            }
+        </style>
+    </div>
+    <!-- Include Libs & Plugins
+    ============================================ -->
+    <script type="text/javascript" src="~/js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/owl-carousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="~/js/themejs/libs.js"></script>
+    <script type="text/javascript" src="~/js/unveil/jquery.unveil.js"></script>
+    <script type="text/javascript" src="~/js/countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="~/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
+    <script type="text/javascript" src="~/js/datetimepicker/moment.js"></script>
+    <script type="text/javascript" src="~/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/js/modernizr/modernizr-2.6.2.min.js"></script>
+    <!-- <script type="text/javascript" src="~/js/lightslider/lightslider.js"></script> -->
+    <!-- <script type="text/javascript" src="~/js/product_detail.js"></script> -->
+    <!-- Theme files
+    ============================================ -->
+    <script type="text/javascript" src="~/js/themejs/application.js"></script>
+    <script type="text/javascript" src="~/js/themejs/homepage.js"></script>
+    <script type="text/javascript" src="~/js/themejs/so_megamenu.js"></script>
+    <script type="text/javascript" src="~/js/themejs/addtocart.js"></script>
 
 </body>
+</html>

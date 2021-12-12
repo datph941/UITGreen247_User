@@ -60,15 +60,15 @@
                             <div class="row">
                                <div class="content-product-left  col-sm-6 col-xs-12 ">
 								 <div class="large-image  ">
-									 <img style="width:400px; height:300px" itemprop="image" class="product-image-zoom" src="@listimg[0].link" data-zoom-image="@listimg[0].link" title="@pro.name_pro" />
+                                    <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" title="@pro.name_pro" />
 								 </div>
                                  <div id="thumb-slider" class="owl-theme owl-loaded owl-drag full_slider">
                                      @foreach (var item in listimg)
                                      {
-                                     <a data-index="@index" class="img thumbnail " data-image="@item.link" title="@pro.name_pro">
-                                         <img style="width:80px; height:50px" src="@item.link" title="@pro.name_pro" alt="@pro.name_pro" />
-                                         @{index = index + 1;}
-                                     </a>                                   
+                                         <a data-index="@index" class="img thumbnail " data-image="@item.link" title="@pro.name_pro">
+                                             <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro" />
+                                             @{index = index + 1;}
+                                         </a>                                   
                                      }
                                  </div>
 								 
@@ -100,13 +100,13 @@
                                             {
                                                 double price_old = (@pro.price * (100 + @pro.sale_rate) / 100);
                                                 double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
-                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_new)</span>
-                                                <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
                                             }
                                             else
                                             {
                                                 double price_old = (@pro.price * (100 + @pro.sale_rate) / 100);
-                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_old)</span>
 
                                             }
 

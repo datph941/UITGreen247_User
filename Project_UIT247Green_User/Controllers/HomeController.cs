@@ -115,6 +115,13 @@ namespace Project_UIT247Green_User.Controllers
             DataCart();
             return View();
         }
+        public IActionResult QuickView()
+        {
+            MenuCat();
+            Email();
+            DataCart();
+            return View();
+        }
         public IActionResult About_us()
         {
             MenuCat();
