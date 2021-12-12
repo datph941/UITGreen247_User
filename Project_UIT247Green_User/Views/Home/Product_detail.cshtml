@@ -60,23 +60,17 @@
                             <div class="row">
                                <div class="content-product-left  col-sm-6 col-xs-12 ">
 								 <div class="large-image  ">
-									 <img itemprop="image" class="product-image-zoom" src="~/image/demo/shop/product/J9.jpg" data-zoom-image="~/image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
+									 <img style="width:400px; height:300px" itemprop="image" class="product-image-zoom" src="@listimg[0].link" data-zoom-image="@listimg[0].link" title="@pro.name_pro" />
 								 </div>
-
-								 <div id="thumb-slider" class="owl-theme owl-loaded owl-drag full_slider">
-									 <a data-index="0" class="img thumbnail " data-image="~/image/demo/shop/product/J9.jpg" title="Bint Beef">
-										 <img src="~/image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
-									 </a>
-									 <a data-index="1" class="img thumbnail" data-image="~/image/demo/shop/product/J6.jpg" title="Bint Beef">
-										 <img src="~/image/demo/shop/product/J6.jpg" title="Bint Beef" alt="Bint Beef" />
-									 </a>
-									 <a data-index="2" class="img thumbnail" data-image="~/image/demo/shop/product/J5.jpg" title="Bint Beef">
-										 <img src="~/image/demo/shop/product/J5.jpg" title="Bint Beef" alt="Bint Beef" />
-									 </a>
-									 <a data-index="3" class="img thumbnail" data-image="~/image/demo/shop/product/J4.jpg" title="Bint Beef">
-										 <img src="~/image/demo/shop/product/J4.jpg" title="Bint Beef" alt="Bint Beef" />
-									 </a>
-								 </div>
+                                 <div id="thumb-slider" class="owl-theme owl-loaded owl-drag full_slider">
+                                     @foreach (var item in listimg)
+                                     {
+                                     <a data-index="@index" class="img thumbnail " data-image="@item.link" title="@pro.name_pro">
+                                         <img style="width:80px; height:50px" src="@item.link" title="@pro.name_pro" alt="@pro.name_pro" />
+                                         @{index = index + 1;}
+                                     </a>                                   
+                                     }
+                                 </div>
 								 
 							 </div>
 
