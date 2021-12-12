@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    List<Orders_user> listord = ViewBag.listord;
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
@@ -40,11 +41,8 @@
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
-                                <tr>
-                                    <td class="text-center">Sản phẩm</td>
-                                    <td class="text-left">Tên</td>
+                                <tr>                        
                                     <td class="text-center">Mã đơn hàng</td>
-                                    <td class="text-center">Số lượng</td>
                                     <td class="text-center">Trạng thái</td>
                                     <td class="text-center">Ngày mua</td>
                                     <td class="text-right">Tổng</td>
@@ -52,42 +50,33 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if (listord != null)
+                                {
+                                    @foreach (var item in listord)
+                                    {
                                 <tr>
+                                    <td class="text-center">@item.id_ord</td>                     
+                                    @if (item.status == 0)
+                                    {
+                                        <td class="text-center">Đã đặt hàng</td>
+                                    }
+                                    else if (item.status == 1)
+                                    {
+                                        <td class="text-center">Đã xác nhận</td>
+                                    }
+                                    else if (item.status == 2)
+                                    {
+                                        <td class="text-center">Đã giao hàng</td>
+                                    }
+                                    <td class="text-center">@item.date</td>
+                                    <td class="text-right">@item.price_sum</td>
                                     <td class="text-center">
-                                        <a href="product.html">
-                                            <img width="85" class="img-thumbnail" title="SP1" alt="SP1" src="~/image/demo/shop/product/B8.jpg">
-                                        </a>
-                                    </td>
-                                    <td class="text-left">
-                                        <a href="product.html">Sản phẩm 1</a>
-                                    </td>
-                                    <td class="text-center">#214521</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">Đã hoàn thành</td>
-                                    <td class="text-center">06/12/2021</td>
-                                    <td class="text-right">100.000đ</td>
-                                    <td class="text-center">
-                                        <a class="btn btn-info" title="" data-toggle="tooltip" href="order-information.html" data-original-title="Xem đơn hàng"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-info" title="" data-toggle="tooltip" asp-controller="order" asp-action="order_information" asp-route-id="@item.id_ord" data-original-title="Xem đơn hàng"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <a href="product.html">
-                                            <img width="85" class="img-thumbnail" title="SP2" alt="SP2" src="~/image/demo/shop/product/B5.jpg">
-                                        </a>
-                                    </td>
-                                    <td class="text-left">
-                                        <a href="product.html">Sản phẩm 2</a>
-                                    </td>
-                                    <td class="text-center">#1565245</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">Đã hoàn thành</td>
-                                    <td class="text-center">06/12/2021</td>
-                                    <td class="text-right">100.000đ</td>
-                                    <td class="text-center">
-                                        <a class="btn btn-info" title="" data-toggle="tooltip" href="order-information.html" data-original-title="Xem đơn hàng"><i class="fa fa-eye"></i></a>
-                                    </td>
-                                </tr>
+
+                                    }
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -100,17 +89,14 @@
                     <div class="list-group">
                         <ul class="list-item">
                             <li>
-                                <a href="#">Thông tin tài khoản</a>
+                                <a asp-controller="user" asp-action="myaccount">Thông tin tài khoản</a>
                             </li>
                             <li>
-                                <a href="#">Sổ địa chỉ</a>
+                                <a asp-controller="user" asp-action="password">Đổi mật khẩu</a>
                             </li>
                             <li>
-                                <a href="wishlist.html">Danh sách yêu thích</a>
-                            </li>
-                            <li>
-                                <a href="#">Lịch sử đặt hàng</a>
-                            </li>
+                                <a asp-controller="user" asp-action="wishlist">Danh sách yêu thích</a>
+                            </li>                      
                         </ul>
                     </div>
                 </aside>

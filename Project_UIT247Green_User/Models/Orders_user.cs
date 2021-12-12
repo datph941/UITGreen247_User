@@ -29,7 +29,7 @@ namespace Project_UIT247Green_User.Models
                     status = 0,
                     note = note,
                     date = DateTime.Now,
-                price_sum = pricesum + ship
+                    price_sum = pricesum + ship
                 });
                 return context.SaveChanges();
             }
@@ -40,6 +40,22 @@ namespace Project_UIT247Green_User.Models
             {
                 Orders_user ord = context.Orders_user.Last();
                 return ord;
+            }
+        }
+        public static List<Orders_user> Select(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var list = context.Orders_user.Where(p=>p.id_user==id).ToList();
+                return list;
+            }
+        }
+        public static Orders_user SelectOne(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var list = context.Orders_user.Where(p => p.id_ord == id).FirstOrDefault();
+                return list;
             }
         }
     }
