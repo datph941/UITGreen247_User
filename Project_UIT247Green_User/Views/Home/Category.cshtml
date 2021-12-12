@@ -392,8 +392,8 @@
                                                         double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
                                                         double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
 
-                                                        <span class="price-new">@String.Format("{0:0,0 vnđ}", price_new)</span>
-                                                        <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                        <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                        <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
                                                         <span class="label label-percent">@item2.discount%</span>
                                                     }
                                                 </div>
@@ -471,7 +471,7 @@
                                                     @{
                                                         double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
                                                         double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
-                                                        <span class="price-new">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                        <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_old)</span>
                                                     }
                                                 </div>
                                                 <div class="description item-desc hidden">
@@ -577,11 +577,11 @@
                                     icon: 'success',
                                     title: 'Thêm giỏ hàng thành công',
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 1300
                                 });
                                 setTimeout(function () {// wait for 5 secs(2)
                                     location.reload(); // then reload the page.(3)
-                                }, 1500);
+                                }, 1300);
                             },
                             error: function () {
                                 Swal.fire({
@@ -589,7 +589,7 @@
                                     title: 'Thêm giỏ hàng thất bại',
                                     text: 'Vui lòng thử lại',
                                     showConfirmButton: false,
-                                    timer: 1500
+                                    timer: 1300
                                 });
                             }
                         });
@@ -602,12 +602,22 @@
                                 type: "ajax"
                             },
                             success: function (data) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Thêm mặt hàng yêu thích thành công',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
+                                if (data.check > 0) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Thêm mặt hàng yêu thích thành công',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                                else {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Mặt hàng đã yêu thích',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
                             },
                             error: function () {
                                 Swal.fire({

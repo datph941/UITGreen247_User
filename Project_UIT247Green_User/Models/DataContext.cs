@@ -24,6 +24,7 @@ namespace Project_UIT247Green_User.Models
         public DbSet<Orders> Orders { set; get; }
         public DbSet<Orders_user> Orders_user { set; get; }
         public DbSet<Order_items> Order_items { set; get; }
+        public DbSet<Order_status> Order_status { set; get; }
         public DbSet<Order_user_items> Order_user_items { set; get; }
         public DbSet<News> News { set; get; }
         public DbSet<Customer> Customer { set; get; }
@@ -53,6 +54,7 @@ namespace Project_UIT247Green_User.Models
             modelBuilder.Entity<Wishlist>().HasKey(c => new { c.id_wish });
             modelBuilder.Entity<Promotion>().HasKey(c => new { c.id_promotion });
             modelBuilder.Entity<Province>().HasKey(c => new { c.id });
+            modelBuilder.Entity<Order_status>().HasKey(c => new { c.id });
         }
     }
 }

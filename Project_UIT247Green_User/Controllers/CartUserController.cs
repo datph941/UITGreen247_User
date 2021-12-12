@@ -156,6 +156,7 @@ namespace Project_UIT247Green_User.Controllers
         {
             double ship = 15000;
             double total = 0;
+            double discount = 0;
             int id_promo = 1;
             Product pro = new Product();
             string key = "email";
@@ -169,6 +170,7 @@ namespace Project_UIT247Green_User.Controllers
             if (coupon != null)
             {
                 id_promo = Promotion.selectbyname(coupon).id_promotion;
+                discount = Promotion.selectbyname(coupon).discount;
             }
             List<Cart> list = Cart.FindCart(u.id);
             foreach(var item in list)
@@ -177,12 +179,13 @@ namespace Project_UIT247Green_User.Controllers
                 double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100))*item.quantity;
                 total = total + price_new;
             }
-            Orders_user.Insert(u.id, id_promo, ship, comments, pay, total);
+            Orders_user.Insert(u.id, id_promo, ship, comments, pay, total-discount);
             int id_ord = Orders_user.SelectNew().id_ord;
             foreach (var item in list)
             {
                 Order_user_items.Insert(id_ord, item.id_pro, item.quantity);
             }
+            Order_status.Insert(id_ord, "Đã đặt hàng", u.address);
             Cart.DeleteAll(u.id);
             return RedirectToAction("index");
         }

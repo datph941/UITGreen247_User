@@ -23,5 +23,13 @@ namespace Project_UIT247Green_User.Models
                 return context.SaveChanges();
             }
         }
+        public static List<Order_user_items> Select(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var list = context.Order_user_items.Where(p => p.id_ord == id).ToList();
+                return list;
+            }
+        }
     }
 }

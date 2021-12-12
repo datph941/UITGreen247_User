@@ -2,6 +2,10 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    Orders_user ord = ViewBag.ord;
+    List<Order_user_items> listitem = ViewBag.listitem;
+    List<Order_status> liststatus = ViewBag.liststatus;
+    Product pro = new Product();
 }
 <body class="common-home res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
@@ -29,8 +33,8 @@
         <!-- Main Container  -->
         <div class="main-container container">
             <ul class="breadcrumb">
-                <li><a href="#"><i class="fa fa-home"></i></a></li>
-                <li><a href="#">Thông tin đơn hàng</a></li>
+                <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
+                <li><a asp-controller="user" asp-action="order_information" asp-route-id="@ord.id_ord">Thông tin đơn hàng</a></li>
             </ul>
 
             <div class="row">
@@ -47,14 +51,19 @@
                         <tbody>
                             <tr>
                                 <td style="width: 50%;" class="text-left">
-                                    <b>Mã đơn hàng:</b> #214521
+                                    <b>Mã đơn hàng:</b> @ord.id_ord
                                     <br>
-                                    <b>Ngày lập:</b> 20/06/2016
+                                    <b>Ngày lập:</b> @ord.date
                                 </td>
                                 <td style="width: 50%;" class="text-left">
-                                    <b>Phương thức thanh toán:</b> Tiền mặt
-                                    <br>
-                                    <b>Phương thức vận chuyển:</b> Tiết kiệm
+                                    @if (ord.paymethod == 1)
+                                    {
+                                        <b>Phương thức thanh toán: Tiền mặt</b>
+                                    }
+                                    else
+                                    {
+                                        <b>Phương thức thanh toán: Thanh toán online</b>
+                                    }
                                 </td>
                             </tr>
                         </tbody>
@@ -69,10 +78,7 @@
                         <tbody>
                             <tr>
                                 <td class="text-left">
-                                    Phan Tấn Đạt
-                                    <br>Tường Lộc
-                                    <br>Tam Bình
-                                    <br>Vĩnh Long
+                                   @liststatus[0].address
                                 </td>
                             </tr>
                         </tbody>
@@ -89,16 +95,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-left">Cà chua bi </td>
-                                    <td class="text-right">1</td>
-                                    <td class="text-right">25.000đ</td>
-                                    <td class="text-right">25.000đ</td>
-                                    <!-- <td style="white-space: nowrap;" class="text-right"> <a class="btn btn-primary" title="" data-toggle="tooltip" href="#" data-original-title="Reorder"><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="btn btn-danger" title="" data-toggle="tooltip" href="return.html" data-original-title="Return"><i class="fa fa-reply"></i></a>
-                                </td> -->
-                                </tr>
+                                @foreach (var item in listitem)
+                                {
+                                    pro = Product.FindProByID(item.id_pro);
+                                    double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - pro.discount) / 100));
+                                    double total = price_new * item.quantity;
+                                    <tr>
+                                        <td class="text-left">@pro.name_pro</td>
+                                        <td class="text-right">@item.quantity</td>
+                                        <td class="text-right">@String.Format("{0:0,0 VNĐ}", price_new)</td>
+                                        <td class="text-right">@String.Format("{0:0,0 VNĐ}", total)</td>
+                                    </tr>
 
+                                }
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -106,7 +115,11 @@
                                     <td class="text-right">
                                         <b>Tổng sản phẩm</b>
                                     </td>
-                                    <td class="text-right">25.000đ</td>
+                                    @{
+                                        double discount = Promotion.selectbyid(ord.id_promotion).discount;
+                                        double price = ord.price_sum - ord.ship + discount;
+                                    }
+                                <td class="text-right">@String.Format("{0:0,0 VNĐ}", price)</td>
 
                                 </tr>
                                 <tr>
@@ -114,7 +127,15 @@
                                     <td class="text-right">
                                         <b>Phí vận chuyển</b>
                                     </td>
-                                    <td class="text-right">30.000đ</td>
+                                    <td class="text-right">@String.Format("{0:0,0 VNĐ}", ord.ship)</td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td class="text-right">
+                                        <b>Giảm giá</b>
+                                    </td>
+                                    <td class="text-right">@String.Format("{0:0,0 VNĐ}", discount)</td>
 
                                 </tr>
                                 <tr>
@@ -122,7 +143,7 @@
                                     <td class="text-right">
                                         <b>Tổng thanh toán</b>
                                     </td>
-                                    <td class="text-right">55.000đ</td>
+                                    <td class="text-right">@String.Format("{0:0,0 VNĐ}", ord.price_sum)</td>
 
                                 </tr>
                             </tfoot>
@@ -137,27 +158,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-left">04/12/2021</td>
-                                <td class="text-left">Đã tiếp nhận</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">05/12/2021</td>
-                                <td class="text-left">Đã bàn giao vận chuyển</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">06/12/2021</td>
-                                <td class="text-left">Đã hoàn thành</td>
-                            </tr>
+                            @foreach (var item in liststatus)
+                            {
+                                <tr>
+                                    <td class="text-left">@item.date</td>
+                                    <td class="text-left">@item.status</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                     <div class="buttons clearfix">
                         <div class="pull-right">
-                            <a class="btn btn-primary" href="#">Trở lại</a>
+                            <a class="btn btn-primary" asp-controller="user" asp-action="order_history">Trở lại</a>
                         </div>
                     </div>
-
-
 
                 </div>
                 <!--Middle Part End-->
@@ -167,16 +181,16 @@
                     <div class="list-group">
                         <ul class="list-item">
                             <li>
-                                <a href="#">Thông tin tài khoản</a>
+                                <a asp-controller="user" asp-action="myaccount">Thông tin tài khoản</a>
                             </li>
                             <li>
-                                <a href="#">Sổ địa chỉ</a>
+                                <a asp-controller="user" asp-action="password">Đổi mật khẩu</a>
                             </li>
                             <li>
-                                <a href="wishlist.html">Danh sách yêu thích</a>
+                                <a asp-controller="user" asp-action="wishlist">Danh sách yêu thích</a>
                             </li>
                             <li>
-                                <a href="#">Lịch sử đặt hàng</a>
+                                <a asp-controller="order" asp-action="order_history">Lịch sử đặt hàng</a>
                             </li>
                         </ul>
                     </div>

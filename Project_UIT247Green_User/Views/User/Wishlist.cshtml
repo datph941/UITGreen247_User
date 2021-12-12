@@ -2,6 +2,9 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    List<Wishlist> list = Wishlist.Select();
+    List<Product> listpro = Product.ListPro();
+    List<Image_product> listimg = new List<Image_product>();
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
@@ -30,10 +33,9 @@
         <!-- Main Container  -->
         <div class="main-container container">
             <ul class="breadcrumb">
-                <li><a href="#"><i class="fa fa-home"></i></a></li>
-                <li><a href="#">Danh sách yêu thích</a></li>
+                <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
+                <li><a asp-controller="user" asp-action="wishlist">Danh sách yêu thích</a></li>
             </ul>
-
             <div class="row">
                 <!--Middle Part Start-->
                 <div id="content" class="col-sm-9">
@@ -49,60 +51,47 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center">
-                                        <a href="product.html">
-                                            <img width="70px" src="image/demo/shop/product/18.jpg"
-                                                 alt="sp" title="sp">
-                                        </a>
-                                    </td>
-                                    <td class="text-left">
-                                        <a href="product.html">Sản phẩm 1</a>
-                                    </td>
-                                    <td class="text-right">
-                                        <div class="price">
-                                            <span class="price-new">100.000đ</span> <span class="price-old">200.000đ</span>
-                                        </div>
+                                @foreach (var item in list)
+                                {
+                                    @foreach (var item1 in listpro)
+                                    {
+                                        if (item.id_pro == item1.id_pro)
+                                        {
+                                            listimg = Image_product.FindImgByIDPro(item1.id_pro);
+                                            double price_new = (@item1.price * (100 + @item1.sale_rate) / 100 * ((100 - @item1.discount) / 100));
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item1.id_pro" asp-route-idcat="@item1.id_cat">
+                                                        <img width="70px" src="@listimg[0].link"
+                                                             alt="sp" title="sp">
+                                                    </a>
+                                                </td>
+                                                <td class="text-left">
+                                                    <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item1.id_pro" asp-route-idcat="@item1.id_cat">@item1.name_pro</a>
+                                                </td>
+                                                <td class="text-right">
+                                                    <div class="price">
+                                                        <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                    </div>
 
-                                    </td>
-                                    <td class="text-right">
-                                        <button class="btn btn-primary" title="" data-toggle="tooltip"
-                                                onclick="cart.add('48');" type="button"
-                                                data-original-title="Thêm vào giỏ hàng">
-                                            <i class="fa fa-shopping-cart"></i>
-                                        </button>
-                                        <a class="btn btn-danger" title="" data-toggle="tooltip" href=""
-                                           data-original-title="Xóa"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <a href="product.html">
-                                            <img width="70px" src="image/demo/shop/product/E1.jpg"
-                                                 alt="sp" title="sp">
-                                        </a>
-                                    </td>
-                                    <td class="text-left">
-                                        <a href="product.html">Sản phẩm 2</a>
-                                    </td>
-                                    <td class="text-right">
-                                        <div class="price"> <span class="price-new">100.000đ</span> </div>
-                                    </td>
-                                    <td class="text-right">
-                                        <button class="btn btn-primary" title="" data-toggle="tooltip"
-                                                onclick="cart.add('48');" type="button"
-                                                data-original-title="Thêm vào giỏ hàng">
-                                            <i class="fa fa-shopping-cart"></i>
-                                        </button>
-                                        <a class="btn btn-danger" title="" data-toggle="tooltip" href=""
-                                           data-original-title="Xóa"><i class="fa fa-times"></i></a>
-                                    </td>
-                                </tr>
+                                                </td>
+                                                <td class="text-right">
+                                                    <button class="addToCart btn btn-primary" title="" data-toggle="tooltip"
+                                                            data-id="@item1.id_pro" type="button"
+                                                            data-original-title="Thêm vào giỏ hàng">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </button>
+                                                    <a class="btn btn-danger" title="" data-toggle="tooltip" asp-controller="user" asp-action="deleteWL"
+                                                       data-original-title="Xóa"><i class="fa fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
                             </tbody>
                         </table>
                     </div>
                 </div>
-
                 <!--Middle Part End-->
                 <aside class="col-sm-3 hidden-xs" id="column-right">
                     <h2 class="subtitle">Tài khoản</h2>
@@ -115,8 +104,8 @@
                                 <a asp-controller="user" asp-action="password">Đổi mật khẩu</a>
                             </li>
                             <li>
-                                <a asp-controller="user" asp-action="wishlist">Danh sách yêu thích</a>
-                            </li>                
+                                <a asp-controller="user" asp-action="order_history">Lịch sử đơn hàng</a>
+                            </li>
                         </ul>
                     </div>
                 </aside>
@@ -125,6 +114,42 @@
         <!-- //Main Container -->
 
     </div>
-
+    @section scripts{
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            $(document).ready(function () {
+                $(".addToCart").click(function () {
+                    $.ajax({
+                        url: "/CartUser/Buy",
+                        data: {
+                            id: $(this).data("id"),
+                            SoLuong: 1,
+                            type: "ajax"
+                        },
+                        success: function (data) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Thêm giỏ hàng thành công',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            setTimeout(function () {
+                                location.reload(); 
+                            }, 1500);
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Thêm giỏ hàng thất bại',
+                                text: 'Vui lòng thử lại',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                });             
+            });
+        </script>
+    }
 </body>
 

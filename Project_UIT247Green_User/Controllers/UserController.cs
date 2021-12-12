@@ -13,17 +13,20 @@ namespace Project_UIT247Green_User.Controllers
     {
         public void DataCart()
         {
-            var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            if (cart != null)
+            double total = 0;
+            Product pro = new Product();
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            Users u = Users.FindU(cookie);
+            List<Cart> list = Cart.FindCart(u.id);
+            this.ViewBag.cart = list;
+            foreach (var item in list)
             {
-                ViewBag.cart = cart;
-                ViewBag.total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
+                pro = Product.FindProByID(item.id_pro);
+                double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
+                total = total + price_new;
             }
-            else
-            {
-                ViewBag.cart = null;
-                ViewBag.total = 0;
-            }
+            this.ViewBag.total = total;
         }
         public void MenuCat()
         {
@@ -161,9 +164,15 @@ namespace Project_UIT247Green_User.Controllers
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            Wishlist.Insert(u.id, id_pro);
-
-            return RedirectToAction("index");
+            int check = Wishlist.Insert(u.id, id_pro);
+            if (type == "ajax")
+            {
+                return Json(new
+                {
+                    check = check
+                });
+            }
+            return RedirectToAction("wishlist");
         }
     }
 }
