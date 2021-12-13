@@ -13,20 +13,41 @@ namespace Project_UIT247Green_User.Controllers
     {
         public void DataCart()
         {
-            double total = 0;
-            Product pro = new Product();
             string key = "email";
             var cookie = Request.Cookies[key];
-            Users u = Users.FindU(cookie);
-            List<Cart> list = Cart.FindCart(u.id);
-            this.ViewBag.cart = list;
-            foreach (var item in list)
+            double total = 0;
+            Product pro = new Product();
+            if (cookie != null)
             {
-                pro = Product.FindProByID(item.id_pro);
-                double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
-                total = total + price_new;
+                Users u = Users.FindU(cookie);
+                if (u != null)
+                {
+                    List<Cart> list = Cart.FindCart(u.id);
+                    this.ViewBag.cart = list;
+                    foreach (var item in list)
+                    {
+                        pro = Product.FindProByID(item.id_pro);
+                        double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
+                        total = total + price_new;
+                    }
+                    this.ViewBag.total = total;
+                }
             }
-            this.ViewBag.total = total;
+            else
+            {
+                var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+                if (cart != null)
+                {
+                    ViewBag.cart = cart;
+                    ViewBag.total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
+                }
+                else
+                {
+                    ViewBag.cart = null;
+                    ViewBag.total = 0;
+                }
+            }
+
         }
         public void MenuCat()
         {
@@ -135,13 +156,21 @@ namespace Project_UIT247Green_User.Controllers
             }    
            
         }
-        public IActionResult Ins(string name, string email, string phone, string add1,string add2, string city, string zone, string password)
+        public IActionResult Ins(string name, string email, string phone, string add1,string add2, string district, string zone, string password)
         {
-            string addr = add1 + ", " + add2 + ", " + city + ", " + zone;
+            string addr = add1 + ", " + add2 + ", " + district + ", " + zone;
             int check = Users.InsertU(name, email, password, addr, phone);
             if (check > 0)
             {
                 ViewBag.check = "Đăng kí thành công";
+                List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+                int id = Users.selectnew().id;
+                foreach(var item in cart)
+                {
+                    Cart.InsertCart(id,item.Product.id_pro,item.Quantity);
+                }
+                cart.Clear();
+                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
                 return View("login");
             }
             else
@@ -164,7 +193,7 @@ namespace Project_UIT247Green_User.Controllers
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            int check = Wishlist.Insert(u.id, id_pro);
+            int check = Wishlist.InsertWishList(u.id, id_pro);
             if (type == "ajax")
             {
                 return Json(new
@@ -172,7 +201,7 @@ namespace Project_UIT247Green_User.Controllers
                     check = check
                 });
             }
-            return RedirectToAction("wishlist");
+            return RedirectToAction("index", "home");
         }
     }
 }

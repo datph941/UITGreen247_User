@@ -10,18 +10,13 @@ namespace Project_UIT247Green_User.Models
         public int id_wish { set; get; }
         public int id_user { set; get; }
         public int id_pro { set; get; }
-        public static int Insert(int id, int id_pro)
+        public static int InsertWishList(int id, int id_pro)
         {
             using (var context = new DataContext())
             {
-                Wishlist wishlist = (from p in context.Wishlist
-                                     where (p.id_user == id && p.id_pro == id_pro)
-                                     select p).FirstOrDefault();
-                if (wishlist != null)
-                {
-                    return 0;
-                }
-                else
+                Wishlist wishlist = null;
+                wishlist = context.Wishlist.Where(p => p.id_user == id && p.id_pro == id_pro).FirstOrDefault();
+                if (wishlist == null)
                 {
                     context.Wishlist.Add(new Wishlist
                     {
@@ -29,6 +24,10 @@ namespace Project_UIT247Green_User.Models
                         id_pro = id_pro
                     });
                     return context.SaveChanges();
+                }
+                else
+                {
+                    return 0;
                 }    
             }
         }

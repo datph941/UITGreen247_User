@@ -58,21 +58,24 @@
                     <div class="product-view row">
                         <div class="left-content-product col-lg-10 col-xs-12">
                             <div class="row">
-                               <div class="content-product-left  col-sm-6 col-xs-12 ">
-								 <div class="large-image  ">
-                                    <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" title="@pro.name_pro" />
-								 </div>
-                                 <div id="thumb-slider" class="owl-theme owl-loaded owl-drag full_slider">
-                                     @foreach (var item in listimg)
-                                     {
-                                         <a data-index="@index" class="img thumbnail " data-image="@item.link" title="@pro.name_pro">
-                                             <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro" />
-                                             @{index = index + 1;}
-                                         </a>                                   
-                                     }
-                                 </div>
-								 
-							 </div>
+                                <div class="content-product-left  col-sm-6 col-xs-12 ">
+                                    <div class="large-image  ">
+                                        <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" title="@pro.name_pro" />
+                                    </div>
+                                    <div id="thumb-slider" class="owl-theme owl-loaded owl-drag full_slider">
+                                        @foreach (var item in listimg)
+                                        {
+                                            if (item.link != null)
+                                            {
+                                                <a data-index="@index" class="img thumbnail " data-image="@item.link" title="@pro.name_pro">
+                                                    <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro" />
+                                                    @{index = index + 1;}
+                                                </a>
+                                            }
+                                        }
+                                    </div>
+
+                                </div>
 
                                 <div class="content-product-right col-sm-5 col-xs-12">
                                     <div class="title-product">
@@ -140,30 +143,43 @@
                                                     <span class="input-group-addon product_quantity_up">+</span>
                                                 </div>
                                             </div>
-                                            <div class="cart">
-                                                <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-id="@pro.id_pro"></a>                   
-                                            </div>
-                                            <div class="add-to-links wish_comp">
-                                                <ul class="blank list-inline">
-                                                    <li class="wishlist">
-                                                        <a class="icon" data-toggle="tooltip" title=""
-                                                           onclick="wishlist.add('50');" data-original-title="Thêm vào danh sách yêu thích">
-
-                                                            <i class="fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="compare">
-                                                        <a class="icon" data-toggle="tooltip" title=""
-                                                           onclick="compare.add('50');" data-original-title="So sánh sản phẩm">
-
-                                                            <i class="fa fa-exchange"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
+                                            @if (pro.quantity > 0)
+                                            {
+                                                <div class="cart">
+                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-id="@pro.id_pro"></a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="cart">
+                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-id="@pro.id_pro" disabled=""></a>
+                                                </div>
+                                            }
+                                            @if (ViewBag.email != null)
+                                            {
+                                                <div class="add-to-links wish_comp">
+                                                    <ul class="blank list-inline">
+                                                        <li class="wishlist">
+                                                            <a class="icon" data-toggle="tooltip" title=""
+                                                               data-idpro="@pro.id_pro">
+                                                                <i class="fa fa-heart"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            }
+                                            else
+                                            { <div class="add-to-links wish_comp">
+                                                    <ul class="blank list-inline">
+                                                        <li class="wishlist">
+                                                            <a class="icon" data-toggle="tooltip" title="">
+                                                                <i class="fa fa-heart"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                             }
                                         </div>
-
                                     </div>
                                     <!-- end box info product -->
 
@@ -478,12 +494,12 @@
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                 <script>
                     $(document).ready(function () {
-                        $("#button-cart").click(function () {
+                        $(".addToCart").click(function () {
                             $.ajax({
                                 url: "/CartUser/Buy",
                                 data: {
                                     id: $(this).data("id"),
-                                    SoLuong: $("input[name='quantity']").val(),
+                                    SoLuong: 1,
                                     type: "ajax"
                                 },
                                 success: function (data) {
@@ -491,16 +507,52 @@
                                         icon: 'success',
                                         title: 'Thêm giỏ hàng thành công',
                                         showConfirmButton: false,
-                                        timer: 1500
-                                    });                                
+                                        timer: 1300
+                                    });
                                     setTimeout(function () {// wait for 5 secs(2)
                                         location.reload(); // then reload the page.(3)
-                                    }, 1500);
+                                    }, 1300);
                                 },
                                 error: function () {
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Thêm giỏ hàng thất bại',
+                                        text: 'Vui lòng thử lại',
+                                        showConfirmButton: false,
+                                        timer: 1300
+                                    });
+                                }
+                            });
+                        });
+                        $(".wishlist").click(function () {
+                            $.ajax({
+                                url: "/User/AddWishList",
+                                data: {
+                                    id_pro: $(this).data("idpro"),
+                                    type: "ajax"
+                                },
+                                success: function (data) {
+                                    if (data.check > 0) {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Thêm mặt hàng yêu thích thành công',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                    }
+                                    else {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Mặt hàng đã yêu thích',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                    }
+                                },
+                                error: function () {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thêm mặt hàng yêu thích thất bại',
                                         text: 'Vui lòng thử lại',
                                         showConfirmButton: false,
                                         timer: 1500
@@ -518,12 +570,12 @@
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                 <script>
                     $(document).ready(function () {
-                        $("#button-cart").click(function () {
+                        $(".addToCart").click(function () {
                             $.ajax({
                                 url: "/Cart/Buy",
                                 data: {
                                     id: $(this).data("id"),
-                                    SoLuong: $("input[name='quantity']").val(),
+                                    SoLuong: 1,
                                     type: "ajax"
                                 },
                                 success: function (data) {
@@ -545,7 +597,10 @@
                                     });
                                 }
                             });
-                        });                     
+                        });
+                        $(".wishlist").click(function () {
+                            Swal.fire('Vui lòng đăng nhập!');
+                        });
                     });
                 </script>
             }

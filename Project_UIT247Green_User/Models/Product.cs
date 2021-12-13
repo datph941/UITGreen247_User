@@ -16,6 +16,7 @@ namespace Project_UIT247Green_User.Models
         public string status { set; get; }
         public string type { set; get; }
         public double discount { set; get; }
+        public int rate { set; get; }
         public double sale_rate { set; get; }
         public static List<Product> ListPro()
         {
@@ -31,7 +32,7 @@ namespace Project_UIT247Green_User.Models
             List<Product> listPro = new List<Product>();
             using (var context = new DataContext())
             {
-                var product = context.Product.Where(p => p.id_cat==id).ToList();
+                var product = context.Product.Where(p => p.id_cat==id && p.quantity>0).ToList();
                 listPro = product;
             }
             return listPro;
@@ -41,7 +42,7 @@ namespace Project_UIT247Green_User.Models
             List<Product> listPro = new List<Product>();
             using (var context = new DataContext())
             {
-                var product = context.Product.OrderByDescending(s => s.id_pro).Take(6).ToList();
+                var product = context.Product.Where(p=> p.quantity > 0).OrderByDescending(s => s.id_pro).Take(8).ToList();
                 listPro = product;
             }
             return listPro;
@@ -51,27 +52,27 @@ namespace Project_UIT247Green_User.Models
             List<Product> listPro = new List<Product>();
             using (var context = new DataContext())
             {
-                var product = context.Product.Where(p => p.id_cat == id).ToList();
+                var product = context.Product.Where(p => p.id_cat == id && p.quantity > 0).ToList();
                 listPro = product;
             }
             return listPro;
         }
-        public static List<Product> ListProImp(int id)
+        public static List<Product> ListProCat(int id)
         {
             List<Product> listPro = new List<Product>();
             using (var context = new DataContext())
             {
-                var product = context.Product.Where(p => p.id_cat == id).ToList();
+                var product = context.Product.Where(p => p.id_cat == id && p.quantity > 0).Take(3).ToList();
                 listPro = product;
             }
             return listPro;
         }
-        public static List<Product> ListProSale(int id)
+        public static List<Product> ListProSale()
         {
             List<Product> listPro = new List<Product>();
             using (var context = new DataContext())
             {
-                var product = context.Product.Where(p => p.id_cat == id).ToList();
+                var product = context.Product.Where(p=>p.discount>0 && p.quantity > 0).OrderByDescending(p=>p.discount).Take(8).ToList();
                 listPro = product;
             }
             return listPro;

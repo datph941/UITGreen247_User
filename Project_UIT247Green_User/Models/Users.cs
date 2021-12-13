@@ -35,6 +35,15 @@ namespace Project_UIT247Green_User.Models
             }
             return u;
         }
+        public static Users selectnew()
+        {
+            Users u = new Users();
+            using (var context = new DataContext())
+            {
+                u = context.Users.Last();
+            }
+            return u;
+        }
         public static int InsertU(string name, string email, string pass, string addr, string phone)
         {
             Users u = new Users();
@@ -115,5 +124,6 @@ namespace Project_UIT247Green_User.Models
                 }    
             }
         }
+        
     }
 }

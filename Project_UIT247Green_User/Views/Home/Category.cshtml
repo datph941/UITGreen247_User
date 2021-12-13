@@ -82,7 +82,7 @@
                                                 {
                                                     if (item1.id_parent == item.id_cat)
                                                     {
-                                                        <li><a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat">@item1.name_cat</a></li>
+                                                        <li><a asp-controller="home" asp-action="category" asp-route-id="@item1.id_cat">@item1.name_cat</a></li>
                                                     }
                                                 }
                                             </ul>
@@ -346,167 +346,91 @@
                     <div class="products-list row grid">
                         @foreach (var item2 in list1)
                         {
-                            if (item2.discount > 0)
-                            {
-                                listimg1 = Image_product.FindImgByIDPro(item2.id_pro);
-                                <div class="product-layout col-md-4 col-sm-6 col-xs-12 ">
-                                    <div class="product-item-container">
-                                        <div class="left-block">
-                                            <div class="product-image-container second_img ">
-                                                <img src="@listimg1[0].link"
-                                                     alt="@item2.name_pro;" class="img-responsive" />
-                                            </div>
-                                            <!--Giảm giá Label-->
+                            listimg1 = Image_product.FindImgByIDPro(item2.id_pro);
+                            <div class="product-layout col-md-4 col-sm-6 col-xs-12 ">
+                                <div class="product-item-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container second_img ">
+                                            <img src="@listimg1[0].link"
+                                                 alt="@item2.name_pro;" class="img-responsive" />
+                                        </div>
+                                        <!--Giảm giá Label-->
+                                        @if (item2.discount > 0)
+                                        {
                                             <span class="label label-sale">Giảm giá</span>
-                                            <!--countdown box-->
-                                            <!--end countdown box-->
-                                            <!--full quick view block-->
-                                            <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                               asp-controller="home" asp-action="quickview"> Xem nhanh</a>
-                                            <!--end full quick view block-->
-                                        </div>
-                                        <div class="right-block">
-                                            <div class="caption">
-                                                <h4><a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item2.id_pro" asp-route-idcat="@item2.id_cat">@item2.name_pro</a></h4>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                    </div>
+                                        }
+                                        <!--countdown box-->
+                                        <!--end countdown box-->
+                                        <!--full quick view block-->
+                                        <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
+                                           asp-controller="home" asp-action="quickview"> Xem nhanh</a>
+                                        <!--end full quick view block-->
+                                    </div>
+                                    <div class="right-block">
+                                        <div class="caption">
+                                            <h4><a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item2.id_pro" asp-route-idcat="@item2.id_cat">@item2.name_pro</a></h4>
+                                            <div class="ratings">
+                                                <div class="rating-box">
+                                                    @for (int i = 1; i < 6; i++)
+                                                    {
+                                                        if (i <= item2.rate)
+                                                        {
+                                                            <span class="fa fa-stack">
+                                                                <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                            </span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="fa fa-stack">
+                                                                <i class="fa fa-star-o fa-stack-1x"></i>
+                                                            </span>
+                                                        }
+                                                    }                                                 
                                                 </div>
-                                                <div class="price">
-                                                    @{
-                                                        double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
-                                                        double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
+                                            </div>
+                                            <div class="price">
+                                                @{
+                                                    double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
+                                                    double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
 
-                                                        <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
-                                                        <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
-                                                        <span class="label label-percent">@item2.discount%</span>
-                                                    }
-                                                </div>
-                                                <div class="description item-desc hidden">
-                                                    <p>Mô tả. </p>
-                                                </div>
-                                            </div>
-                                            <div class="button-group">
-                                                @if (ViewBag.email != null)
-                                                {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
-                                                       title="Thêm vào giỏ hàng">
-                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                    </a>
-                                                    <button class="wishlist" type="button" data-toggle="tooltip"
-                                                            title="Thêm vào danh sách yêu thích" data-idpro="@item2.id_pro">
-                                                        <i class="fa fa-heart"></i>
-                                                    </button>
-                                                }
-                                                else
-                                                {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
-                                                       title="Thêm vào giỏ hàng">
-                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                    </a>
-                                                    <button class="wishlist" type="button" data-toggle="tooltip"
-                                                            title="Thêm vào danh sách yêu thích" asp-controller="user" asp-action="login">
-                                                        <i class="fa fa-heart"></i>
-                                                    </button>
+                                                    <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                    <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+                                                    <span class="label label-percent">@item2.discount%</span>
                                                 }
                                             </div>
-                                        </div><!-- right block -->
-                                    </div>
-                                </div>
-                                <div class="clearfix visible-xs-block"></div>
-                            }
-                            else
-                            {
-                                listimg1 = Image_product.FindImgByIDPro(item2.id_pro);
-                                <div class="product-layout col-md-4 col-sm-6 col-xs-12 ">
-                                    <div class="product-item-container">
-                                        <div class="left-block">
-                                            <div class="product-image-container second_img ">
-                                                <img src="@listimg1[0].link"
-                                                     alt="@item2.name_pro" class="img-responsive" />
+                                            <div class="description item-desc hidden">
+                                                <p>Mô tả. </p>
                                             </div>
-                                            <!--full quick view block-->
-                                            <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                               asp-controller="home" asp-action="quickview"> Xem nhanh</a>
-                                            <!--end full quick view block-->
                                         </div>
-                                        <div class="right-block">
-                                            <div class="caption">
-                                                <h4><a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item2.id_pro" asp-route-idcat="@item2.id_cat">@item2.name_pro</a></h4>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                        <span class="fa fa-stack">
-                                                            <i class="fa fa-star-o fa-stack-1x"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="price">
-                                                    @{
-                                                        double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
-                                                        double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
-                                                        <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_old)</span>
-                                                    }
-                                                </div>
-                                                <div class="description item-desc hidden">
-                                                    <p>Mô tả. </p>
-                                                </div>
-                                            </div>
-                                            <div class="button-group">
-                                                @if (ViewBag.email != null)
-                                                {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
-                                                       title="Thêm vào giỏ hàng">
-                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                    </a>
-                                                    <button class="wishlist" type="button" data-toggle="tooltip"
-                                                            title="Thêm vào danh sách yêu thích" data-idpro="@item2.id_pro">
-                                                        <i class="fa fa-heart"></i>
-                                                    </button>
-                                                }
-                                                else
-                                                {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
-                                                       title="Thêm vào giỏ hàng">
-                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                    </a>
-                                                    <button class="wishlist" type="button" data-toggle="tooltip"
-                                                            title="Thêm vào danh sách yêu thích" asp-controller="user" asp-action="login">
-                                                        <i class="fa fa-heart"></i>
-                                                    </button>
-                                                }
-                                            </div>
-                                        </div><!-- right block -->
-                                    </div>
+                                        <div class="button-group">
+                                            @if (ViewBag.email != null)
+                                            {
+                                                <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
+                                                   title="Thêm vào giỏ hàng">
+                                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                </a>
+                                                <button class="wishlist" type="button" data-toggle="tooltip"
+                                                        title="Thêm vào danh sách yêu thích" data-idpro="@item2.id_pro">
+                                                    <i class="fa fa-heart"></i>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
+                                                   title="Thêm vào giỏ hàng">
+                                                    <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                </a>
+                                                <button class="wishlist" type="button" data-toggle="tooltip"
+                                                        title="Thêm vào danh sách yêu thích">
+                                                    <i class="fa fa-heart"></i>
+                                                </button>
+                                            }
+                                        </div>
+                                    </div><!-- right block -->
                                 </div>
-                                <div class="clearfix visible-xs-block"></div>
-                            }
+                            </div>
+                            <div class="clearfix visible-xs-block"></div>
+
                         }
 
                         <!--// End Changed listings-->
@@ -668,7 +592,10 @@
                                 });
                             }
                         });
-                    });                
+                    });
+                    $(".wishlist").click(function () {
+                        Swal.fire('Vui lòng đăng nhập!');
+                    });
                 });
             </script>
         }

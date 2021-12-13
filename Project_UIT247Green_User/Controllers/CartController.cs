@@ -64,9 +64,17 @@ namespace Project_UIT247Green_User.Controllers
         {
             MenuCat();
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            List<Item> list = new List<Item>();
             if (cart != null)
             {
-                ViewBag.cart = cart;
+                foreach(var item in cart)
+                {
+                    if(item.Product.quantity>0)
+                    {
+                        list.Add(item);
+                    }    
+                }    
+                ViewBag.cart = list;
                 ViewBag.total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
             }
             else
@@ -83,6 +91,14 @@ namespace Project_UIT247Green_User.Controllers
             double ship = 15000;
             Promotion pro1 = new Promotion();
             List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            List<Item> list = new List<Item>();
+            foreach (var item in cart)
+            {
+                if (item.Product.quantity > 0)
+                {
+                    list.Add(item);
+                }
+            }
             double total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
             if (!zone.Equals("TP.Hồ Chí Minh"))
             {
@@ -105,11 +121,11 @@ namespace Project_UIT247Green_User.Controllers
             
             int check = Orders.Insert(cus.id_cus, id_pro, pay, ship, comments, total);
             int id_ord = Orders.SelectNew().id_ord;
-            foreach(var item in cart)
+            foreach(var item in list)
             {
                 Order_items.Insert(id_ord,item.Product.id_pro, item.Quantity);
+                cart.Remove(item);
             }
-            cart.Clear();
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             return RedirectToAction("index");
         }
