@@ -78,7 +78,7 @@
                         <tbody>
                             <tr>
                                 <td class="text-left">
-                                   @liststatus[0].address
+                                    @liststatus[0].address
                                 </td>
                             </tr>
                         </tbody>
@@ -119,7 +119,7 @@
                                         double discount = Promotion.selectbyid(ord.id_promotion).discount;
                                         double price = ord.price_sum - ord.ship + discount;
                                     }
-                                <td class="text-right">@String.Format("{0:0,0 VNĐ}", price)</td>
+                                    <td class="text-right">@String.Format("{0:0,0 VNĐ}", price)</td>
 
                                 </tr>
                                 <tr>
@@ -167,7 +167,14 @@
                             }
                         </tbody>
                     </table>
+
                     <div class="buttons clearfix">
+                        @if (ord.status == 0)
+                        {
+                            <div class="pull-left">
+                                <a class="return btn btn-primary"  onclick="return confirm('Bạn có muốn trả hàng?');" asp-controller="order" asp-action="return" asp-route-id_ord="@ord.id_ord">Trả hàng</a>
+                            </div>
+                        }
                         <div class="pull-right">
                             <a class="btn btn-primary" asp-controller="user" asp-action="order_history">Trở lại</a>
                         </div>
@@ -199,7 +206,6 @@
             </div>
         </div>
         <!-- //Main Container -->
-
-
     </div>
+ 
 </body>

@@ -14,13 +14,16 @@ namespace Project_UIT247Green_User.Controllers
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
             List<Cart> list = Cart.FindCart(u.id);
-            this.ViewBag.cart = list;
+            List<Item> listitem = new List<Item>();
             foreach (var item in list)
             {
                 pro = Product.FindProByID(item.id_pro);
+                Item item1 = new Item(pro, item.quantity);
+                listitem.Add(item1);
                 double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
                 total = total + price_new;
             }
+            this.ViewBag.cart = listitem;
             this.ViewBag.total = total;
         }
         public void MenuCat()
@@ -65,6 +68,13 @@ namespace Project_UIT247Green_User.Controllers
             List<Order_status> liststatus = Order_status.SelectStatus(id);
             this.ViewBag.liststatus = liststatus;
             return View();
+        }
+        public IActionResult Return(int id_ord)
+        {
+            Order_user_items.DeleteItem(id_ord);
+            Order_status.DeleteStatus(id_ord);
+            Orders_user.DeleteOrder(id_ord);
+            return RedirectToAction("order_history");
         }
     }
 }

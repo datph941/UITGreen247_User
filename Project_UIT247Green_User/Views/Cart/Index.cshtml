@@ -70,14 +70,14 @@
                                 <td class="text-left" width="200px">
                                     <div class="input-group btn-block quantity">
                                         <span class="input-group-btn">
-                                            <a id="minus" type="button" data-toggle="tooltip" asp-controller="cart" asp-action="minus" asp-route-idpro="@item.Product.id_pro"
+                                            <a id="minus" type="button" data-toggle="tooltip" asp-controller="cart" asp-action="minus" asp-route-id="@item.Product.id_pro"
                                                class="btn">
                                                 <i class="fa fa-minus"></i>
                                             </a>
                                         </span>
                                         <input id="sl" type="text" name="quantity" value="@item.Quantity" size="1" class="form-control" readonly />
                                         <span class="input-group-btn">
-                                            <a type="button" data-toggle="tooltip" asp-controller="cart" asp-action="plus" asp-route-idpro="@item.Product.id_pro"
+                                            <a type="button" data-toggle="tooltip" asp-controller="cart" asp-action="buy" asp-route-id="@item.Product.id_pro"
                                                class="btn">
                                                 <i class="fa fa-plus"></i>
                                             </a>

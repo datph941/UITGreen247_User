@@ -19,6 +19,7 @@
         listimg = ViewBag.listimg;
     }
     var index = 0;
+    List<Comment> listcmt = Comment.FindCmtByID(pro.id_pro);
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
@@ -85,11 +86,21 @@
                                     <div class="box-review form-group">
                                         <div class="ratings">
                                             <div class="rating-box">
-                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                @for (int i = 1; i < 6; i++)
+                                                {
+                                                    if (i <= pro.rate)
+                                                    {
+                                                        <span class="fa fa-stack">
+                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="fa fa-stack">
+                                                            <i class="fa fa-star-o fa-stack-1x"></i>
+                                                        </span>
+                                                    }
+                                                }
                                             </div>
                                         </div>
 
@@ -126,7 +137,7 @@
 
                                     <div class="product-box-desc">
                                         <div class="inner-box-desc">
-                                            <div class="brand"><span>Thương hiệu:</span><a href="#"> UIT</a></div>
+                                            <div class="brand"><span>Thương hiệu:</span><a> UIT</a></div>
                                             <div class="origin"><span>Xuất xứ:</span> @pro.origin</div>
                                             <div class="origin"><span>ĐVT:</span> @pro.type</div>
                                         </div>
@@ -193,19 +204,19 @@
                                     <div class="policy-detail">
                                         <div class="banner-policy">
                                             <div class="policy policy1">
-                                                <a href="#">
+                                                <a>
 
                                                     <span class="ico-policy">&nbsp;</span>	TRẢ HÀNG TRONG 12H
                                                     <!-- <br> Hoàn tiền </a> -->
                                             </div>
                                             <div class="policy policy2">
-                                                <a href="#"> <span class="ico-policy">&nbsp;</span>	MIỄN PHÍ SHIP </a>
+                                                <a> <span class="ico-policy">&nbsp;</span>	MIỄN PHÍ SHIP </a>
                                             </div>
                                             <div class="policy policy3">
-                                                <a href="#"> <span class="ico-policy">&nbsp;</span>	GIÁ RẺ NHẤT </a>
+                                                <a> <span class="ico-policy">&nbsp;</span>	GIÁ RẺ NHẤT </a>
                                             </div>
                                             <div class="policy policy4">
-                                                <a href="#"> <span class="ico-policy">&nbsp;</span>	ĐẢM BẢO AN TOÀN </a>
+                                                <a> <span class="ico-policy">&nbsp;</span>	ĐẢM BẢO AN TOÀN </a>
                                             </div>
                                         </div>
                                     </div>
@@ -220,7 +231,6 @@
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#tab-1">Mô tả</a></li>
                                 <li class="item_nonactive"><a data-toggle="tab" href="#tab-review">Đánh giá</a></li>
-
                                 <!-- <li class="item_nonactive"><a data-toggle="tab" href="#tab-5">Tab bổ sung</a></li> -->
                             </ul>
                             <div class="tab-content col-xs-12">
@@ -228,43 +238,60 @@
                                     <p>@pro.status</p>
                                 </div>
                                 <div id="tab-review" class="tab-pane fade">
-                                    <form>
-                                        <div id="review">
-                                            <table class="table table-striped table-bordered">
-                                                <tbody>
+                                    <div id="review">
+                                        <table class="table table-striped table-bordered">
+                                            <tbody>
+                                                @foreach (var item in listcmt)
+                                                {
                                                     <tr>
-                                                        <td style="width: 50%;"><strong>Tên người đánh giá</strong></td>
-                                                        <td class="text-right">05/12/2021</td>
+                                                        <td style="width: 50%;" colspan="2"><strong>@item.name</strong></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">
-                                                            <p>Sản phẩm này khá tốt</p>
+                                                            <p>@item.cmt_detail</p>
                                                             <div class="ratings">
                                                                 <div class="rating-box">
-                                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                                    @for (int i = 1; i < 6; i++)
+                                                                    {
+                                                                        if (i <= item.rate)
+                                                                        {
+                                                                            <span class="fa fa-stack">
+                                                                                <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                            </span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="fa fa-stack">
+                                                                                <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                            </span>
+                                                                        }
+                                                                    }
                                                                 </div>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="text-right"></div>
-                                        </div>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <div class="text-right"></div>
+                                    </div>
                                         <h2 id="review-title">Viết đánh giá của bạn</h2>
                                         <div class="contacts-form">
                                             <div class="form-group">
-
                                                 <span class="icon icon-user"></span>
-                                                <input type="text" name="name" class="form-control" value="Tên của bạn" onblur="if (this.value == '') {this.value = 'Tên của bạn';}" onfocus="if(this.value == 'Tên của bạn') {this.value = '';}">
+                                                @if (ViewBag.email != null)
+                                                {
+                                                    Users u = Users.FindU(ViewBag.email);
+                                                    <input id="name_cmt" type="text" name="name" class="form-control" value="@u.fullname" onblur="if (this.value == '') {this.value = 'Tên của bạn';}" onfocus="if(this.value == 'Tên của bạn') {this.value = '';}">
+                                                }
+                                                else
+                                                {
+                                                    <input id="name_cmt" type="text" name="name" class="form-control" value="Tên của bạn" onblur="if (this.value == '') {this.value = 'Tên của bạn';}" onfocus="if(this.value == 'Tên của bạn') {this.value = '';}">                                             
+                                                }
                                             </div>
                                             <div class="form-group">
-
                                                 <span class="icon icon-bubbles-2"></span>
-                                                <textarea class="form-control" name="text" onblur="if (this.value == '') {this.value = 'Để lại bình luận';}" onfocus="if(this.value == 'Để lại bình luận') {this.value = '';}">Để lại bình luận</textarea>
+                                                <textarea class="form-control" id="comment" name="text" onblur="if (this.value == '') {this.value = 'Để lại bình luận';}" onfocus="if(this.value == 'Để lại bình luận') {this.value = '';}">Để lại bình luận</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <b>Đánh giá </b> <span>Tệ</span>&nbsp;
@@ -278,9 +305,8 @@
                                                 <input type="radio" name="rating"
                                                        value="5"> &nbsp;<span>Tốt</span>
                                             </div>
-                                            <div class="buttons clearfix"><a id="button-review" class="btn buttonGray">Xác nhận</a></div>
+                                            <div class="buttons clearfix"><button id="button-review" type="button" data-id_pro="@pro.id_pro" class="cmt btn buttonGray">Xác nhận</button></div>
                                         </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -494,7 +520,7 @@
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                 <script>
                     $(document).ready(function () {
-                        $(".addToCart").click(function () {
+                        $("#button-cart").click(function () {
                             $.ajax({
                                 url: "/CartUser/Buy",
                                 data: {
@@ -508,7 +534,7 @@
                                         title: 'Thêm giỏ hàng thành công',
                                         showConfirmButton: false,
                                         timer: 1300
-                                    });
+                                    });                                  
                                     setTimeout(function () {// wait for 5 secs(2)
                                         location.reload(); // then reload the page.(3)
                                     }, 1300);
@@ -524,7 +550,25 @@
                                 }
                             });
                         });
-                        $(".wishlist").click(function () {
+                        $(".cmt").click(function () {
+                            $.ajax({
+                                url: "/Home/Cmt_Product",
+                                data: {
+                                    id_pro: $(this).data("id_pro"),
+                                    name: $("#name_cmt").val(),
+                                    rating: $('input[name="rating"]:checked').val(),
+                                    text: $("#comment").val(),
+                                    type: "ajax"
+                                },
+                                success: function (data) {
+      
+                                },
+                                error: function () {
+                                    $("#review").load(location.href + " #review>*", "");
+                                }
+                            });
+                        });
+                        $(".icon").click(function () {
                             $.ajax({
                                 url: "/User/AddWishList",
                                 data: {
@@ -570,7 +614,7 @@
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                 <script>
                     $(document).ready(function () {
-                        $(".addToCart").click(function () {
+                        $("#button-cart").click(function () {
                             $.ajax({
                                 url: "/Cart/Buy",
                                 data: {
@@ -598,7 +642,7 @@
                                 }
                             });
                         });
-                        $(".wishlist").click(function () {
+                        $(".icon").click(function () {
                             Swal.fire('Vui lòng đăng nhập!');
                         });
                     });

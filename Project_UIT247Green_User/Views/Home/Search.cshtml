@@ -1,7 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
+@{ 
     List<Category> list = new List<Category>();
     List<Category> listCat = new List<Category>();
     if (ViewBag.list != null)
@@ -23,11 +23,7 @@
     {
         list2 = ViewBag.listimg;
     }
-    Category cat = new Category();
-    if (ViewBag.cat != null)
-    {
-        cat = ViewBag.cat;
-    }
+
     Pager pager = new Pager();
     int pageNo = 0;
     if (ViewBag.Pager != null)
@@ -61,11 +57,7 @@
         <!-- Main Container  -->
         <div class="main-container container">
             <ul class="breadcrumb">
-                <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>
-                @if (cat != null)
-                {
-                    <li><a asp-controller="home" asp-action="category" asp-route-id="@cat.id_cat">@cat.name_cat</a></li>
-                }
+                <li><a asp-controller="home" asp-action="index"><i class="fa fa-home"></i></a></li>         
             </ul>
             <div class="row">
                 <!--Left Part Start -->
@@ -305,7 +297,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form asp-controller="home" asp-action="category" asp-route-id="@cat.id_cat">
+                                <form asp-controller="home" asp-action="search" asp-route-id="@ViewBag.id_cat" asp-route-search="@ViewBag.search">
                                     <div class="short-by-show form-inline text-right col-md-7 col-sm-8 col-xs-12">
                                         <div class="form-group short-by">
                                             <label class="control-label" for="input-sort">Sắp xếp theo:</label>
@@ -327,7 +319,7 @@
                                         @for (var pge = pager.startPage; pge <= pager.endPage; pge++)
                                         {
                                             <li class="page-item @(pge==pager.currentPage ? "active" : "")">
-                                                <a class="page-link" asp-controller="home" asp-action="category" asp-route-id="@cat.id_cat" asp-route-pg="@pge"> @pge</a>
+                                                <a class="page-link" asp-controller="home" asp-action="search" asp-route-id="@ViewBag.id_cat" asp-route-search="@ViewBag.search" asp-route-pg="@pge"> @pge</a>
                                             </li>
                                         }
                                     </ul>
@@ -338,7 +330,7 @@
                     </div>
                     <!-- //end Filters -->
                     <!--changed listings-->
-     
+
                     <div class="products-list row grid">
                         @foreach (var item2 in list1)
                         {
@@ -359,7 +351,7 @@
                                         <!--end countdown box-->
                                         <!--full quick view block-->
                                         <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                           asp-controller="home" asp-action="quickview" asp-route-id_pro="@item2.id_pro" asp-route-id_cat="@item2.id_cat" > Xem nhanh</a>
+                                           asp-controller="home" asp-action="quickview"> Xem nhanh</a>
                                         <!--end full quick view block-->
                                     </div>
                                     <div class="right-block">
@@ -384,28 +376,16 @@
                                                     }
                                                 </div>
                                             </div>
-                                            @if (item2.discount > 0)
-                                            {
-                                                <div class="price">
-                                                    @{
-                                                        double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
-                                                        double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
+                                            <div class="price">
+                                                @{
+                                                    double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
+                                                    double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
 
-                                                        <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
-                                                        <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
-                                                        <span class="label label-percent">@item2.discount%</span>
-                                                    }
-                                                </div>
-                                            }
-                                            else
-                                            { <div class="price">
-                                                    @{
-                                                        double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
-                                                        double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
-                                                        <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_old)</span>
-                                                    }
-                                                </div>
-                                            }
+                                                    <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                    <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+                                                    <span class="label label-percent">@item2.discount%</span>
+                                                }
+                                            </div>
                                             <div class="description item-desc hidden">
                                                 <p>Mô tả. </p>
                                             </div>
@@ -445,11 +425,24 @@
                         <!-- Filters -->
                         <div class="product-filter product-filter-bottom filters-panel">
                             <div class="row">
-                                <div class="short-by-show text-right col-md-7 col-sm-8 col-xs-12">
+                                <div class="col-md-2 hidden-sm hidden-xs">
+                                </div>
+                                <div class="short-by-show text-center col-md-7 col-sm-8 col-xs-12">
                                     <div class="form-group" style="margin: 7px 10px">
-                                        Hiển thị từ 1 đến 6 trong @list1.Count() sản phẩm (@pager.endPage Trang)
+                                        Hiển thị từ 1 đến 9 trong @list1.Count() sản phẩm (@pager.endPage Trang)
                                     </div>
-                                </div>   
+                                </div>
+                                <div class="box-pagination col-md-3 col-sm-4 text-right">
+                                    <ul class="pagination">
+                                        @for (var pge = pager.startPage; pge <= pager.endPage; pge++)
+                                        {
+                                            <li class="page-item @(pge==pager.currentPage ? "active" : "")">
+                                                <a class="page-link" asp-controller="home" asp-action="search" asp-route-id="@ViewBag.id_cat" asp-route-search="@ViewBag.search" asp-route-pg="@pge"> @pge</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+
                             </div>
                         </div>
                         <!-- //end Filters -->
@@ -476,7 +469,7 @@
             view = 'grid';
         }
         if (view) display(view);
-      
+
     </script>
     @if (ViewBag.email != null)
     {

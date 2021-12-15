@@ -23,19 +23,46 @@ namespace Project_UIT247Green_User.Controllers
                 if (u != null)
                 {
                     List<Cart> list = Cart.FindCart(u.id);
-                    this.ViewBag.cart = list;
+                    List<Item> listitem = new List<Item>();
                     foreach (var item in list)
                     {
                         pro = Product.FindProByID(item.id_pro);
+                        Item item1 = new Item(pro, item.quantity);
+                        listitem.Add(item1);
                         double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
                         total = total + price_new;
                     }
+                    this.ViewBag.cart = listitem;
                     this.ViewBag.total = total;
                 }
             }
             else
             {
-                var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+                List<Item> cart = new List<Item>();
+                string cartcookie = Request.Cookies["cart"];
+                if (cartcookie == null)
+                {
+                    string value = "";
+                    CookieOptions cookie1 = new CookieOptions();
+                    cookie1.Expires = DateTime.Now.AddDays(30);
+                    Response.Cookies.Append("cart", value, cookie1);
+                }
+                if (!cartcookie.Equals(""))
+                {
+                    string[] arrcart = cartcookie.Split("|");
+                    for (int i = 0; i < arrcart.Length; i++)
+                    {
+                        if (arrcart[i] != "")
+                        {
+                            string[] arritem = arrcart[i].Split(",");
+                            int id_pro = Convert.ToInt32(arritem[0]);
+                            int quantity = Convert.ToInt32(arritem[1]);
+                            pro = Product.FindProByID(id_pro);
+                            Item item = new Item(pro, quantity);
+                            cart.Add(item);
+                        }
+                    }
+                }
                 if (cart != null)
                 {
                     ViewBag.cart = cart;
@@ -153,8 +180,7 @@ namespace Project_UIT247Green_User.Controllers
             {
                 ViewBag.check = "Sai tên tài khoản hoặc mật khẩu";
                 return View("login");
-            }    
-           
+            }             
         }
         public IActionResult Ins(string name, string email, string phone, string add1,string add2, string district, string zone, string password)
         {
@@ -163,14 +189,46 @@ namespace Project_UIT247Green_User.Controllers
             if (check > 0)
             {
                 ViewBag.check = "Đăng kí thành công";
-                List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-                int id = Users.selectnew().id;
+                Users u = Users.selectnew();
+                List<Item> cart = new List<Item>();
+                List<Item> cart1 = new List<Item>();
+                string cartcookie = Request.Cookies["cart"];
+                if (cartcookie == null)
+                {
+                    string value = "";
+                    CookieOptions cookie1 = new CookieOptions();
+                    cookie1.Expires = DateTime.Now.AddDays(30);
+                    Response.Cookies.Append("cart", value, cookie1);
+                }
+                if (!cartcookie.Equals(""))
+                {
+                    string[] arrcart = cartcookie.Split("|");
+                    for (int i = 0; i < arrcart.Length; i++)
+                    {
+                        string[] arritem = arrcart[i].Split(",");
+                        int idpro = Convert.ToInt32(arritem[0]);
+                        int quantity = Convert.ToInt32(arritem[1]);
+                        Product pro = Product.FindProByID(idpro);
+                        if (pro.quantity > 0)
+                        {
+                            Item item = new Item(pro, quantity);
+                            cart.Add(item);
+                        }
+                        else
+                        {
+                            Item item = new Item(pro, quantity);
+                            cart1.Add(item);
+                        }
+                    }
+                }
                 foreach(var item in cart)
                 {
-                    Cart.InsertCart(id,item.Product.id_pro,item.Quantity);
+                    Cart.InsertCart(u.id, item.Product.id_pro, item.Quantity);
                 }
-                cart.Clear();
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                string cartnull = "";
+                CookieOptions cookie = new CookieOptions();
+                cookie.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Append("cart", cartnull, cookie);
                 return View("login");
             }
             else
@@ -203,5 +261,14 @@ namespace Project_UIT247Green_User.Controllers
             }
             return RedirectToAction("index", "home");
         }
+        public IActionResult DeleteWishList(int id_pro)
+        {
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            Users u = Users.FindU(cookie);
+            Wishlist.Delete(u.id, id_pro);
+            return View("wishlist");
+        }
+     
     }
 }

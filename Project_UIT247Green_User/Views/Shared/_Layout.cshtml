@@ -138,10 +138,10 @@
                     <!-- //end Logo -->
                     <!-- Search -->
                     <div id="sosearchpro" class="col-md-5 col-sm-7 search-pro">
-                        <form method="GET" asp-controller="home" asp-action="search">
+                        <form method="post" asp-controller="home" asp-action="search">
                             <div id="search0" class="search input-group">
                                 <div class="select_category filter_type icon-select">
-                                    <select class="no-border" name="id_cat">
+                                    <select class="no-border" name="id">
                                         <option value="0">Tất cả danh mục</option>
                                         @foreach (var item in listCat)
                                         {
@@ -159,7 +159,7 @@
                                     </button>
                                 </span>
                             </div>
-                            <input type="hidden" name="route" value="product/search">
+                            <input type="hidden" value="product/search">
                         </form>
                     </div>
                     <!-- //Search -->
@@ -334,8 +334,8 @@
                                                 {
                                                     break;
                                                 }
-                                                Product pro = Product.FindProByID(item.id_pro);
-                                                listimg = Image_product.FindImgByIDPro(item.id_pro);
+                                                Product pro = Product.FindProByID(item.Product.id_pro);
+                                                listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
                                                 double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
                                         <tr>
                                             <td class="text-center" style="width:70px">
@@ -349,8 +349,8 @@
                                                 <a class="cart_product_name"
                                                    asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">@pro.name_pro</a>
                                             </td>
-                                            <td class="text-center">@item.quantity</td>
-                                            <td class="text-center">@String.Format("{0:0,0 vnđ}", price_new * item.quantity)</td>
+                                            <td class="text-center">@item.Quantity</td>
+                                            <td class="text-center">@String.Format("{0:0,0 VNĐ}", price_new * item.Quantity)</td>
                                             @{
                                                 i = i + 1;
                                             }
@@ -377,7 +377,7 @@
                                                     <td class="text-left">
                                                         <strong>Tổng tiền hàng</strong>
                                                     </td>
-                                                    <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                    <td class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.total)</td>
                                                 </tr>
 
                                                 <tr>

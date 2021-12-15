@@ -3,6 +3,10 @@
 *@
 @{
     Layout = null;
+    Product pro = ViewBag.pro;
+    Category cat = ViewBag.cat;
+    List<Image_product> listimg = Image_product.FindImgByIDPro(pro.id_pro);
+    int index = 0;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -52,38 +56,44 @@
                             <div class="row">
                                 <div class="content-product-left  col-sm-6 col-xs-12 ">
                                     <div class="large-image  ">
-                                        <img itemprop="image" class="product-image-zoom" src="~/image/demo/shop/product/J9.jpg" data-zoom-image="~/image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
+                                        <img itemprop="image" class="product-image-zoom" src="@listimg[0].link" title="@pro.name_pro" />
                                     </div>
                                     <div id="thumb-slider" class="owl-theme owl-loaded owl-drag full_slider">
-                                        <a data-index="0" class="img thumbnail " data-image="~/image/demo/shop/product/J9.jpg" title="Bint Beef">
-                                            <img src="~/image/demo/shop/product/J9.jpg" title="Bint Beef" alt="Bint Beef" />
-                                        </a>
-                                        <a data-index="1" class="img thumbnail" data-image="~/image/demo/shop/product/J6.jpg" title="Bint Beef">
-                                            <img src="~/image/demo/shop/product/J6.jpg" title="Bint Beef" alt="Bint Beef" />
-                                        </a>
-                                        <a data-index="2" class="img thumbnail" data-image="~/image/demo/shop/product/J5.jpg" title="Bint Beef">
-                                            <img src="~/image/demo/shop/product/J5.jpg" title="Bint Beef" alt="Bint Beef" />
-                                        </a>
-                                        <a data-index="3" class="img thumbnail" data-image="~/image/demo/shop/product/J4.jpg" title="Bint Beef">
-                                            <img src="~/image/demo/shop/product/J4.jpg" title="Bint Beef" alt="Bint Beef" />
-                                        </a>
+                                        @foreach (var item in listimg)
+                                        {
+                                            if (item.link != null)
+                                            {
+                                                <a data-index="@index" class="img thumbnail " data-image="@item.link" title="@pro.name_pro">
+                                                    <img src="@item.link" title="@pro.name_pro" alt="@pro.name_pro" />
+                                                    @{index = index + 1;}
+                                                </a>
+                                            }
+                                        }
                                     </div>
-
                                 </div>
-
                                 <div class="content-product-right col-sm-6 col-xs-12">
                                     <div class="title-product">
-                                        <h1>Sản phẩm </h1>
+                                        <h1>@pro.name_pro</h1>
                                     </div>
                                     <!-- Review ---->
                                     <div class="box-review form-group">
                                         <div class="ratings">
                                             <div class="rating-box">
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                @for (int i = 1; i < 6; i++)
+                                                {
+                                                    if (i <= pro.rate)
+                                                    {
+                                                        <span class="fa fa-stack">
+                                                            <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="fa fa-stack">
+                                                            <i class="fa fa-star-o fa-stack-1x"></i>
+                                                        </span>
+                                                    }
+                                                }
                                             </div>
                                         </div>
                                         <a class="reviews_button">0 đánh giá </a>
@@ -91,17 +101,35 @@
 
                                     <div class="product-label form-group">
                                         <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
-                                            <span class="price-new" itemprop="price">100.000đ </span>
-                                            <span class="price-old">120.000đ </span>
+                                            @if (pro.discount > 0)
+                                            {
+                                                double price_old = (@pro.price * (100 + @pro.sale_rate) / 100);
+                                                double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
+                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+                                            }
+                                            else
+                                            {
+                                                double price_old = (@pro.price * (100 + @pro.sale_rate) / 100);
+                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+
+                                            }
                                         </div>
-                                        <div class="stock"><span>Tình trạng: </span>  <span class="status-stock">Còn hàng </span></div>
+                                        @if (pro.quantity > 0)
+                                        {
+                                            <div class="stock"><span>Tình trạng:</span> <span class="status-stock">Còn hàng</span></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="stock"><span>Tình trạng:</span> <span class="status-stock">Hết hàng</span></div>
+                                        }
                                     </div>
 
                                     <div class="product-box-desc">
                                         <div class="inner-box-desc">
-                                            <div class="brand"><span>Thương hiệu:</span><a href="#"> UIT</a>		</div>
-                                            <div class="origin"><span>Xuất xứ:</span> Việt Nam</div>
-                                            <div class="origin"><span>ĐVT:</span> </div>
+                                            <div class="brand"><span>Thương hiệu:</span><a> UIT</a></div>
+                                            <div class="origin"><span>Xuất xứ:</span> @pro.origin</div>
+                                            <div class="origin"><span>ĐVT:</span> @pro.type</div>
                                         </div>
                                     </div>
                                     <div id="product">

@@ -44,8 +44,7 @@ namespace Project_UIT247Green_User.Models
             modelBuilder.Entity<Orders_user>().HasKey(c => new { c.id_ord });
             modelBuilder.Entity<Order_items>().HasKey(c => new { c.id_ord });
             modelBuilder.Entity<Order_items>().HasKey(c => new { c.id_pro });
-            modelBuilder.Entity<Order_user_items>().HasKey(c => new { c.id_ord });
-            modelBuilder.Entity<Order_user_items>().HasKey(c => new { c.id_pro });
+            modelBuilder.Entity<Order_user_items>().HasKey(c => new { c.id_user_items });
             modelBuilder.Entity<News>().HasKey(c => new { c.id_news });
             modelBuilder.Entity<Customer>().HasKey(c => new { c.id_cus });
             modelBuilder.Entity<Users>().HasKey(c => new { c.id });

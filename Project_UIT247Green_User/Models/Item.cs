@@ -14,5 +14,10 @@ namespace Project_UIT247Green_User.Models
         public Item()
         {
         }
+        public Item(Product product, int quantity)
+        {
+            Product = product;
+            Quantity = quantity;
+        }
     }
 }

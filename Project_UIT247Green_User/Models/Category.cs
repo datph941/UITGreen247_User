@@ -24,6 +24,35 @@ namespace Project_UIT247Green_User.Models
             }
             return listCat;
         }
+        public static Category FindCatByName(string name)
+        {
+            Category cat = new Category();
+            using (var context = new DataContext())
+            {
+                cat = (from p in context.Category
+                           where (p.name_cat == name)
+                           select p).FirstOrDefault();
+            }
+            return cat;
+        }
+        public static List<Category> search(int id_parent)
+        {
+            List<Category> list = new List<Category>();
+            using (var context = new DataContext())
+            {
+               if(id_parent==0)
+                {
+                    list = context.Category.ToList();                   
+                }   
+               else
+                {
+                    list = (from p in context.Category
+                            where (p.id_parent == id_parent)
+                            select p).ToList();
+                }    
+            }
+            return list;
+        }
         public static List<Category> FindCatChild()
         {
             List<Category> listCat = new List<Category>();

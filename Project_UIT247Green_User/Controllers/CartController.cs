@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Project_UIT247Green_User.Helpers;
 using Project_UIT247Green_User.Models;
 using System;
@@ -21,12 +22,37 @@ namespace Project_UIT247Green_User.Controllers
         public IActionResult Index()
         {
             MenuCat();
-            var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session,"cart");
-            if(cart!=null)
+            List<Item> cart = new List<Item>();
+            Product pro = new Product();
+            string cartcookie = Request.Cookies["cart"];
+            if (cartcookie == null)
+            {
+                string value = "";
+                CookieOptions cookie = new CookieOptions();
+                cookie.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Append("cart", value, cookie);
+            }
+            if (!cartcookie.Equals(""))
+            {
+                string[] arrcart = cartcookie.Split("|");
+                for (int i = 0; i < arrcart.Length; i++)
+                {
+                    if (arrcart[i] != "")
+                    {
+                        string[] arritem = arrcart[i].Split(",");
+                        int id_pro = Convert.ToInt32(arritem[0]);
+                        int quantity = Convert.ToInt32(arritem[1]);
+                        pro = Product.FindProByID(id_pro);
+                        Item item = new Item(pro, quantity);
+                        cart.Add(item);
+                    }
+                }
+            }
+            if (cart != null)
             {
                 ViewBag.cart = cart;
-                ViewBag.total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));             
-            }    
+                ViewBag.total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
+            }
             else
             {
                 ViewBag.cart = null;
@@ -63,18 +89,43 @@ namespace Project_UIT247Green_User.Controllers
         public IActionResult Checkout()
         {
             MenuCat();
-            var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            List<Item> list = new List<Item>();
+            List<Item> cart = new List<Item>();
+            List<Item> cartcheckout = new List<Item>();
+            Product pro = new Product();
+            string cartcookie = Request.Cookies["cart"];
+            if (cartcookie == null)
+            {
+                string value = "";
+                CookieOptions cookie1 = new CookieOptions();
+                cookie1.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Append("cart", value, cookie1);
+            }
+            if (!cartcookie.Equals(""))
+            {
+                string[] arrcart = cartcookie.Split("|");
+                for (int i = 0; i < arrcart.Length; i++)
+                {
+                    if (arrcart[i] != "")
+                    {
+                        string[] arritem = arrcart[i].Split(",");
+                        int id_pro = Convert.ToInt32(arritem[0]);
+                        int quantity = Convert.ToInt32(arritem[1]);
+                        pro = Product.FindProByID(id_pro);
+                        Item item = new Item(pro, quantity);
+                        cart.Add(item);
+                        if (pro.quantity>0)
+                        {
+                            cartcheckout.Add(item);
+                        }    
+                    }
+
+                }
+            }
             if (cart != null)
             {
-                foreach(var item in cart)
-                {
-                    if(item.Product.quantity>0)
-                    {
-                        list.Add(item);
-                    }    
-                }    
-                ViewBag.cart = list;
+                ViewBag.cart = cart;
+                ViewBag.cartcheckout = cartcheckout;
+                ViewBag.totalcheckout = cartcheckout.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
                 ViewBag.total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
             }
             else
@@ -89,16 +140,39 @@ namespace Project_UIT247Green_User.Controllers
             string address = addr1 + ", " + addr2 + ", " + city + ", " + zone;
             int id_pro = 1;
             double ship = 15000;
-            Promotion pro1 = new Promotion();
-            List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            List<Item> list = new List<Item>();
-            foreach (var item in cart)
+            Promotion pro1 = new Promotion();          
+            List<Item> cart = new List<Item>();
+            List<Item> cart1 = new List<Item>();
+            string cartcookie = Request.Cookies["cart"];
+            if (cartcookie == null)
             {
-                if (item.Product.quantity > 0)
-                {
-                    list.Add(item);
-                }
+                string value = "";
+                CookieOptions cookie1 = new CookieOptions();
+                cookie1.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Append("cart", value, cookie1);
             }
+            if (!cartcookie.Equals(""))
+            {
+                string[] arrcart = cartcookie.Split("|");
+                for (int i = 0; i < arrcart.Length; i++)
+                {
+                    string[] arritem = arrcart[i].Split(",");
+                    int idpro = Convert.ToInt32(arritem[0]);
+                    int quantity = Convert.ToInt32(arritem[1]);
+                    Product pro = Product.FindProByID(idpro);
+                    if(pro.quantity>0)
+                    {
+                        Item item = new Item(pro, quantity);
+                        cart.Add(item);
+                    }
+                    else
+                    {
+                        Item item = new Item(pro, quantity);
+                        cart1.Add(item);
+                    }    
+
+                }
+            }      
             double total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
             if (!zone.Equals("TP.Hồ Chí Minh"))
             {
@@ -121,81 +195,189 @@ namespace Project_UIT247Green_User.Controllers
             
             int check = Orders.Insert(cus.id_cus, id_pro, pay, ship, comments, total);
             int id_ord = Orders.SelectNew().id_ord;
-            foreach(var item in list)
+            double price = 0;
+            foreach(var item in cart)
             {
-                Order_items.Insert(id_ord,item.Product.id_pro, item.Quantity);
-                cart.Remove(item);
+                price = item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100);
+                Order_items.Insert(id_ord,item.Product.id_pro, item.Quantity,price);
             }
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            UpdateCart(cart1);
+            if(check>0)
+            {
+                ViewBag.nofi = "Đặt hàng thành công";
+            }    
             return RedirectToAction("index");
         }
-        public IActionResult Plus(int idpro)
+        public IActionResult Minus(int id, int SoLuong = -1, string type = "Normal")
         {
-            List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            int index = isExist(idpro);
-            if (index != -1)
+            string cartcookie = Request.Cookies["cart"];
+            if (cartcookie == null || cartcookie.Equals(""))
             {
-                cart[index].Quantity++;
-            }
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
-            return RedirectToAction("index");
-        }
-        public IActionResult Minus(int idpro)
-        {
-            List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            int index = isExist(idpro);
-            if (index != -1 && cart[index].Quantity!=1)
-            {
-                cart[index].Quantity--;
-            }
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);        
-            return RedirectToAction("index");
-        }
-        public IActionResult Buy(int id, int SoLuong, string type = "Normal")
-        {      
-
-            if (SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart") == null)
-            {
-                List<Item> cart = new List<Item>(); //mảng các item
-
-                cart.Add(new Item { Product = Product.FindProByID(id), Quantity = SoLuong });
-
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+                cartcookie = id + "," + 1;
             }
             else
             {
-                List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-                int index = isExist(id);
-                if (index != -1)
+                int check = isExist(id);
+                if (check == -1)
                 {
-                    cart[index].Quantity+=SoLuong;
+                    cartcookie = cartcookie + "|" + id + "," + SoLuong;
                 }
                 else
                 {
-                    cart.Add(new Item { Product = Product.FindProByID(id), Quantity = 1 });
+                    string[] arrcart = cartcookie.Split("|");
+                    string cart = "";
+                    for (int i = 0; i < arrcart.Length; i++)
+                    {
+                        string[] arritem = arrcart[i].Split(",");
+                        int id_pro = Convert.ToInt32(arritem[0]);
+                        int quantity = Convert.ToInt32(arritem[1]);
+                        if (id_pro == id)
+                        {
+                            if(quantity>=0)
+                            {
+                                quantity += SoLuong;
+                            }       
+                            arritem[1] = quantity.ToString();
+                        }
+                        string item1 = id_pro + "," + quantity;
+                        if (i == 0)
+                        {
+                            cart = cart + item1;
+                        }
+                        else
+                        {
+                            cart = cart + "|" + item1;
+                        }
+                    }
+                    cartcookie = cart;
                 }
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             }
+            CookieOptions cookie = new CookieOptions();
+            cookie.Expires = DateTime.Now.AddDays(30);
+            Response.Cookies.Append("cart", cartcookie, cookie);
+            return RedirectToAction("Index");
+        }
+        public IActionResult Buy(int id, int SoLuong=1, string type = "Normal")
+        {
+            string cartcookie = Request.Cookies["cart"];
+            if (cartcookie.Equals(""))
+            {
+                cartcookie = id + "," + 1;
+            }
+            else
+            {
+                int check = isExist(id);
+                if (check == -1)
+                {
+                    cartcookie = cartcookie + "|" + id + "," + SoLuong;
+                }
+                else
+                {
+                    string[] arrcart = cartcookie.Split("|");
+                    string cart = "";
+                    for (int i = 0; i < arrcart.Length; i++)
+                    {
+                        if (arrcart[i] != null)
+                        {
+                            string[] arritem = arrcart[i].Split(",");
+                            int id_pro = Convert.ToInt32(arritem[0]);
+                            int quantity = Convert.ToInt32(arritem[1]);
+                            if (id_pro == id)
+                            {
+                                quantity += SoLuong;
+                                arritem[1] = quantity.ToString();
+                            }
+                            string item1 = id_pro + "," + quantity;
+                            if (i == 0)
+                            {
+                                cart = cart + item1;
+                            }
+                            else
+                            {
+                                cart = cart + "|" + item1;
+                            }
+                        }    
+                    }
+                    cartcookie = cart;
+                }
+            }
+            CookieOptions cookie = new CookieOptions();
+            cookie.Expires = DateTime.Now.AddDays(30);
+            Response.Cookies.Append("cart", cartcookie, cookie);
             return RedirectToAction("Index");
         }
         private int isExist(int id)
         {
-            List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            for (int i = 0; i < cart.Count; i++)
+            string cartcookie = Request.Cookies["cart"];
+            if (cartcookie.Equals(""))
             {
-                if (cart[i].Product.id_pro == id)
-                {
-                    return i;
-                }
+                return 0;
             }
-            return -1;
+            else
+            {
+                string[] arrcart = cartcookie.Split("|");
+                for (int i = 0; i < arrcart.Length; i++)
+                {
+                    if (!arrcart[i].Equals(""))
+                    {
+                        string[] arritem = arrcart[i].Split(",");
+                        int id_pro = Convert.ToInt32(arritem[0]);
+                        int quantity = Convert.ToInt32(arritem[1]);
+                        if (id_pro == id)
+                        {
+                            return i;
+                        }
+                    }
+                }
+                return -1;
+            }
+        }
+        public void UpdateCart(List<Item> cart)
+        {
+            string cartnull = "";
+            CookieOptions cookie = new CookieOptions();
+            cookie.Expires = DateTime.Now.AddDays(30);
+            Response.Cookies.Append("cart", cartnull, cookie);
+            foreach (var item in cart)
+            {
+                Buy(item.Product.id_pro, item.Quantity);
+            }    
+            
         }
         public IActionResult Remove(int id)
         {
-            List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            int index = isExist(id);
-            cart.RemoveAt(index);
-            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            string cartcookie = Request.Cookies["cart"];
+            string[] arrcart = cartcookie.Split("|");
+            string cart = "";
+            for (int i = 0; i < arrcart.Length; i++)
+            {
+               if(!arrcart[i].Equals(""))
+                {
+                    string[] arritem = arrcart[i].Split(",");
+                    int id_pro = Convert.ToInt32(arritem[0]);
+                    int quantity = Convert.ToInt32(arritem[1]);
+                    if (id_pro == id)
+                    {
+
+                    }
+                    else
+                    {
+                        string item1 = id_pro + "," + quantity;
+                        if (i == 0)
+                        {
+                            cart = item1;
+                        }
+                        else
+                        {
+                            cart = cart + "|" + item1;
+                        }
+                    }
+                }    
+            }
+            cartcookie = cart;
+            CookieOptions cookie = new CookieOptions();
+            cookie.Expires = DateTime.Now.AddDays(30);
+            Response.Cookies.Append("cart", cartcookie, cookie);
             return RedirectToAction("index");
         }
     }

@@ -76,12 +76,23 @@
 
                                                 </td>
                                                 <td class="text-right">
-                                                    <button class="addToCart btn btn-primary" title="" data-toggle="tooltip"
-                                                            data-id="@item1.id_pro" type="button"
-                                                            data-original-title="Thêm vào giỏ hàng">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </button>
-                                                    <a class="btn btn-danger" title="" data-toggle="tooltip" asp-controller="user" asp-action="deleteWL"
+                                                    @if (item1.quantity > 0)
+                                                    {
+                                                        <button class="addToCart btn btn-primary" title="" data-toggle="tooltip"
+                                                                data-id="@item1.id_pro" type="button"
+                                                                data-original-title="Thêm vào giỏ hàng">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="addToCart btn btn-primary" title="" data-toggle="tooltip" disabled=""
+                                                                data-id="@item1.id_pro" type="button"
+                                                                data-original-title="Thêm vào giỏ hàng">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                        </button>
+                                                    }
+                                                    <a class="btn btn-danger" title="" data-toggle="tooltip" asp-controller="user" asp-action="deletewishlist" asp-route-id_pro="@item1.id_pro"
                                                        data-original-title="Xóa"><i class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
@@ -104,7 +115,7 @@
                                 <a asp-controller="user" asp-action="password">Đổi mật khẩu</a>
                             </li>
                             <li>
-                                <a asp-controller="user" asp-action="order_history">Lịch sử đơn hàng</a>
+                                <a asp-controller="order" asp-action="order_history">Lịch sử đơn hàng</a>
                             </li>
                         </ul>
                     </div>

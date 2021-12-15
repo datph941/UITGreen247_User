@@ -72,7 +72,7 @@ namespace Project_UIT247Green_User.Models
                 context.SaveChanges();
             }
         }
-        public static void DeleteAll(int id_user)
+        public static void DeleteAll(int id_user,List<Item> list)
         {
             using (var context = new DataContext())
             {
@@ -81,7 +81,13 @@ namespace Project_UIT247Green_User.Models
                 {
                     foreach(var item in cart)
                     {
-                        context.Cart.Remove(item);
+                        foreach(var item1 in list)
+                        {
+                            if(item1.Product.id_pro==item.id_pro)
+                            {
+                                context.Cart.Remove(item);
+                            }    
+                        }    
                     }
                     context.SaveChanges();
                 }

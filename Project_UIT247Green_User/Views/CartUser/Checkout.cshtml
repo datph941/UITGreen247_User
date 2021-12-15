@@ -191,10 +191,10 @@
 
                                                             @if (ViewBag.cart != null)
                                                             {
-                                                                @foreach (var item in ViewBag.cart)
+                                                                @foreach (var item in ViewBag.cartcheckout)
                                                                 {
-                                                                    listimg = Image_product.FindImgByIDPro(item.id_pro);
-                                                                    pro = Product.FindProByID(item.id_pro);
+                                                                    listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
+                                                                    pro = Product.FindProByID(item.Product.id_pro);
                                                                     double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
                                                                     <tr>
                                                                         <td class="text-center">
@@ -209,13 +209,13 @@
                                                                         </td>
                                                                         <td class="text-left">
                                                                             <div class="input-group btn-block" style="min-width: 100px;">
-                                                                                <input type="text" name="quantity" value="@item.quantity" size="1" class="form-control" readonly />
+                                                                                <input type="text" name="quantity" value="@item.Quantity" size="1" class="form-control" readonly />
                                                                             </div>
                                                                         </td>
-                                                                        <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new)</td>
-                                                                        <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new * item.quantity)</td>
+                                                                        <td class="text-right">@String.Format("{0:0,0 VNĐ}", price_new)</td>
+                                                                        <td class="text-right">@String.Format("{0:0,0 VNĐ}", price_new * item.Quantity)</td>
                                                                     </tr>
-                                                                    total += (price_new * item.quantity);
+                                                                    total += (price_new * item.Quantity);
                                                                 }
                                                             }
 
@@ -223,7 +223,7 @@
                                                         <tfoot>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Tổng sản phẩm:</strong></td>
-                                                                <td id="total" data-total="@total" class="text-right">@String.Format("{0:0,0 vnđ}", total)</td>
+                                                                <td id="total" data-total="@total" class="text-right">@String.Format("{0:0,0 VNĐ}", total)</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Phí VAT:</strong></td>
@@ -231,7 +231,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Phí vận chuyển:</strong></td>
-                                                                <td id="ship" data-ship="@ViewBag.ship" class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.ship)</td>
+                                                                <td id="ship" data-ship="@ViewBag.ship" class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.ship)</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Giảm giá:</strong></td>
@@ -239,7 +239,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Tổng thanh toán:</strong></td>
-                                                                <td id="price_sum" class="text-right">@String.Format("{0:0,0 vnđ}", total + ViewBag.ship)</td>
+                                                                <td id="price_sum" class="text-right">@String.Format("{0:0,0 VNĐ}", total + ViewBag.ship)</td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>

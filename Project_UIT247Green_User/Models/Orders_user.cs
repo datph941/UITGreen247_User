@@ -34,6 +34,20 @@ namespace Project_UIT247Green_User.Models
                 return context.SaveChanges();
             }
         }
+        public static void DeleteOrder(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var ord = (from p in context.Orders_user
+                            where (p.id_ord == id)
+                            select p).FirstOrDefault();
+                if (ord != null)
+                {
+                    context.Remove(ord);
+                    context.SaveChanges();
+                }
+            }
+        }
         public static Orders_user SelectNew()
         {
             using (var context = new DataContext())

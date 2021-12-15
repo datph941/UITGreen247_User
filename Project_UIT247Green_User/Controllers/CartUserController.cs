@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Project_UIT247Green_User.Helpers;
 using Project_UIT247Green_User.Models;
 using System;
 using System.Collections.Generic;
@@ -60,13 +61,16 @@ namespace Project_UIT247Green_User.Controllers
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
             List<Cart> list = Cart.FindCart(u.id);
-            this.ViewBag.cart = list;
+            List<Item> listitem = new List<Item>();
             foreach (var item in list)
             {
                 pro = Product.FindProByID(item.id_pro);
+                Item item1 = new Item(pro, item.quantity);
+                listitem.Add(item1);
                 double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
                 total = total + price_new;
             }
+            this.ViewBag.cart = listitem;
             this.ViewBag.total = total;
             return View();
         }
@@ -75,7 +79,7 @@ namespace Project_UIT247Green_User.Controllers
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            Cart.InsertCart(u.id, id, SoLuong);
+            Cart.InsertCart(u.id, id, SoLuong);    
             return RedirectToAction("index");
         }
         public IActionResult Plus(int idpro)
@@ -99,7 +103,7 @@ namespace Project_UIT247Green_User.Controllers
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            Cart.DeleteCart(u.id, idpro);
+            Cart.DeleteCart(u.id, idpro);          
             return RedirectToAction("index");
         }
         public IActionResult UpdateAdd(string addr1, string addr2, string city, string zone,string telephone,string firstname)
@@ -142,13 +146,22 @@ namespace Project_UIT247Green_User.Controllers
                 ViewBag.ship = ship;
             }    
             List<Cart> list = Cart.FindCart(u.id);
-            this.ViewBag.cart = list;
+            List<Item> listitem = new List<Item>();
+            List<Item> listitemcheckout = new List<Item>();
             foreach (var item in list)
             {
                 pro = Product.FindProByID(item.id_pro);
+                Item item1 = new Item(pro, item.quantity);
                 double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
+                listitem.Add(item1);
                 total = total + price_new;
-            }
+                if (pro.quantity>0)
+                {                 
+                    listitemcheckout.Add(item1);                 
+                }    
+            }    
+            this.ViewBag.cart = listitem;
+            this.ViewBag.cartcheckout = listitemcheckout;
             this.ViewBag.total = total;
             return View();
         }
@@ -173,20 +186,27 @@ namespace Project_UIT247Green_User.Controllers
                 discount = Promotion.selectbyname(coupon).discount;
             }
             List<Cart> list = Cart.FindCart(u.id);
-            foreach(var item in list)
+            List<Item> listitem = new List<Item>();
+            foreach (var item in list)
             {
                 pro = Product.FindProByID(item.id_pro);
-                double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100))*item.quantity;
-                total = total + price_new;
+                if (pro.quantity > 0)
+                {
+                    Item item1 = new Item(pro, item.quantity);
+                    listitem.Add(item1);
+                    double price_new = (pro.price * (100 + pro.sale_rate) / 100 * ((100 - pro.discount) / 100)) * item.quantity;
+                    total = total + price_new;
+                }
             }
             Orders_user.Insert(u.id, id_promo, ship, comments, pay, total-discount);
             int id_ord = Orders_user.SelectNew().id_ord;
-            foreach (var item in list)
+            foreach (var item in listitem)
             {
-                Order_user_items.Insert(id_ord, item.id_pro, item.quantity);
+                double price = item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100);
+                Order_user_items.Insert(id_ord, item.Product.id_pro, item.Quantity,price);
             }
             Order_status.Insert(id_ord, "Đã đặt hàng", u.address);
-            Cart.DeleteAll(u.id);
+            Cart.DeleteAll(u.id,listitem);
             return RedirectToAction("index");
         }
     }

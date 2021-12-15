@@ -44,8 +44,10 @@
                                 <td class="text-center">Sản phẩm</td>
                                 <td class="text-left">Tên sản phẩm</td>
                                 <td class="text-left">Số lượng</td>
+                                <td class="text-left">ĐVT</td>
                                 <td class="text-right">Giá</td>
                                 <td class="text-right">Giá tổng</td>
+                                <td class="text-right">Tình trạng</td>
                                 <td class="text-right">Thao tác</td>
                             </tr>
                         </thead>
@@ -54,48 +56,63 @@
                             {
                                 @foreach (var item in ViewBag.cart)
                                 {
-                                    pro = Product.FindProByID(item.id_pro);
-                                    listimg = Image_product.FindImgByIDPro(item.id_pro);
-                                    <tr>
-                                        <td class="text-center">
-                                            <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.id_pro" asp-route-idcat="@pro.id_cat">
-                                                <img width="70px"
-                                                     src="@listimg[0].link" alt="@pro.name_pro"
-                                                     title="@pro.name_pro" class="img-thumbnail" />
+                                    pro = Product.FindProByID(item.Product.id_pro);
+                                    listimg = Image_product.FindImgByIDPro(pro.id_pro);
+                            <tr>
+                                <td class="text-center">
+                                    <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
+                                        <img width="70px"
+                                             src="@listimg[0].link" alt="@pro.name_pro"
+                                             title="@pro.name_pro" class="img-thumbnail" />
+                                    </a>
+                                </td>
+                                <td class="text-left">
+                                    <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">@pro.name_pro</a><br />
+                                </td>
+                                <td class="text-left" width="200px">
+                                    <div class="input-group btn-block quantity">
+                                        <span class="input-group-btn">
+                                            <a type="submit" data-toggle="tooltip" asp-controller="cartuser" asp-action="minus" asp-route-idpro="@pro.id_pro"
+                                               class="btn">
+                                                <i class="fa fa-minus"></i>
                                             </a>
-                                        </td>
-                                        <td class="text-left">
-                                            <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.id_pro" asp-route-idcat="@pro.id_cat">@pro.name_pro</a><br />
-                                        </td>
-                                        <td class="text-left" width="200px">
-                                            <div class="input-group btn-block quantity">
-                                                <span class="input-group-btn">
-                                                    <a type="submit" data-toggle="tooltip" asp-controller="cartuser" asp-action="minus" asp-route-idpro="@pro.id_pro"
-                                                       class="btn">
-                                                        <i class="fa fa-minus"></i>
-                                                    </a>
-                                                </span>
-                                                <input type="text" name="quantity" value="@item.quantity" size="1" class="form-control" readonly />
-                                                <span class="input-group-btn">
-                                                    <a type="button" data-toggle="tooltip" asp-controller="cartuser" asp-action="plus" asp-route-idpro="@pro.id_pro"
-                                                       class="btn" onClick="">
-                                                        <i class="fa fa-plus"></i>
-                                                    </a>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        @{
-                                            double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
-                                        }
-                                        <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new)</td>
-                                        <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new * item.quantity)</td>
-                                        <td class="text-right">
-                                            <a type="button" data-toggle="tooltip" asp-controller="cartuser" asp-action="remove" asp-route-idpro="@pro.id_pro"
+                                        </span>
+                                        <input type="text" name="quantity" value="@item.Quantity" size="1" class="form-control" readonly />
+                                        <span class="input-group-btn">
+                                            <a type="button" data-toggle="tooltip" asp-controller="cartuser" asp-action="plus" asp-route-idpro="@pro.id_pro"
                                                class="btn" onClick="">
-                                                <i class="fa fa-minus-circle"></i> Xóa
+                                                <i class="fa fa-plus"></i>
                                             </a>
-                                        </td>
-                                    </tr>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <p>@pro.type</p>
+                                </td>
+                                @{
+                                    double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
+                                }
+                                <td class="text-right">@String.Format("{0:0,0 VNĐ}", price_new)</td>
+                                <td class="text-right">@String.Format("{0:0,0 VNĐ}", price_new * item.Quantity)</td>
+                                @if (pro.quantity > 0)
+                                {
+                                    <td class="text-right">
+                                        <p>Còn hàng</p>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="text-right">
+                                        <p>Hết hàng</p>
+                                    </td>
+                                }
+                                <td class="text-right">
+                                    <a type="button" data-toggle="tooltip" asp-controller="cartuser" asp-action="remove" asp-route-idpro="@pro.id_pro"
+                                       class="btn" onClick="">
+                                        <i class="fa fa-minus-circle"></i> Xóa
+                                    </a>
+                                </td>
+                            </tr>
                                 }
 
                             }

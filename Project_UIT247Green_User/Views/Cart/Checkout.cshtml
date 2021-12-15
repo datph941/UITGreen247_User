@@ -195,7 +195,7 @@
 
                                                             @if (ViewBag.cart != null)
                                                             {
-                                                                @foreach (var item in ViewBag.cart)
+                                                                @foreach (var item in ViewBag.cartcheckout)
                                                                 {
                                                                     listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
                                                                     double price_new = (@item.Product.price * (100 + @item.Product.sale_rate) / 100 * ((100 - @item.Product.discount) / 100));
@@ -225,7 +225,7 @@
                                                         <tfoot>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Tổng sản phẩm:</strong></td>
-                                                                <td data-total="@ViewBag.total" id="total" class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.total)</td>
+                                                                <td data-total="@ViewBag.totalcheckout" id="total" class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.totalcheckout)</td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Phí VAT:</strong></td>
@@ -241,7 +241,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-right" colspan="4"><strong>Tổng thanh toán:</strong></td>
-                                                                <td id="price_sum" class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.total)</td>
+                                                                <td id="price_sum" class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.totalcheckout)</td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>

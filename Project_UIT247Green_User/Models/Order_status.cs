@@ -34,5 +34,22 @@ namespace Project_UIT247Green_User.Models
                 return list;
             }
         }
+        public static void DeleteStatus(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var ord = (from p in context.Order_status
+                           where (p.id_ord == id)
+                           select p).ToList();
+                if (ord != null)
+                {
+                    foreach (var item in ord)
+                    {
+                        context.Remove(item);
+                        context.SaveChanges();
+                    }
+                }
+            }
+        }
     }
 }

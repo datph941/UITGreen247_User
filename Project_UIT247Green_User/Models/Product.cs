@@ -37,6 +37,82 @@ namespace Project_UIT247Green_User.Models
             }
             return listPro;
         }
+        public static List<Product> ListProByCat(int id,int type)
+        {
+            List<Product> listPro = new List<Product>();
+            using (var context = new DataContext())
+            {
+                if(type==0)
+                {
+                    var product = context.Product.Where(p => p.id_cat == id && p.quantity > 0).ToList();
+                    listPro = product;
+                }    
+                else if(type==1)
+                {
+                    var product = context.Product.Where(p => p.id_cat == id && p.quantity > 0).OrderBy(p=> p.name_pro).ToList();
+                    listPro = product;
+                }
+                else if (type == 2)
+                {
+                    var product = context.Product.Where(p => p.id_cat == id && p.quantity > 0).OrderByDescending(p => p.name_pro).ToList();
+                    listPro = product;
+                }
+                else if (type == 3)
+                {
+                    var product = context.Product.Where(p => p.id_cat == id && p.quantity > 0).OrderBy(p => p.price*(p.sale_rate+100)/100*(100-p.discount)/100).ToList();
+                    listPro = product;
+                }
+                else if (type == 4)
+                {
+                    var product = context.Product.Where(p => p.id_cat == id && p.quantity > 0).OrderByDescending(p => p.price * (p.sale_rate + 100) / 100 * (100 - p.discount) / 100).ToList();
+                    listPro = product;
+                }
+            }
+            return listPro;
+        }
+        public static List<Product> ListProByCatSearch(int id, int type,string search)
+        {
+            List<Product> listPro = new List<Product>();
+            using (var context = new DataContext())
+            {
+                if (type == 0)
+                {
+                    var product = context.Product.Where(p => p.name_pro.Contains(search) && p.id_cat == id && p.quantity > 0).ToList();
+                    listPro = product;
+                }
+                else if (type == 1)
+                {
+                    var product = context.Product.Where(p => p.name_pro.Contains(search) && p.id_cat == id && p.quantity > 0).OrderBy(p => p.name_pro).ToList();
+                    listPro = product;
+                }
+                else if (type == 2)
+                {
+                    var product = context.Product.Where(p => p.name_pro.Contains(search) && p.id_cat == id && p.quantity > 0).OrderByDescending(p => p.name_pro).ToList();
+                    listPro = product;
+                }
+                else if (type == 4)
+                {
+                    var product = context.Product.Where(p => p.name_pro.Contains(search) && p.id_cat == id && p.quantity > 0).OrderBy(p => p.price * (p.sale_rate + 100) / 100 * (100 - p.discount) / 100).ToList();
+                    listPro = product;
+                }
+                else if (type == 5)
+                {
+                    var product = context.Product.Where(p => p.name_pro.Contains(search) && p.id_cat == id && p.quantity > 0).OrderByDescending(p => p.price * (p.sale_rate + 100) / 100 * (100 - p.discount) / 100).ToList();
+                    listPro = product;
+                }
+            }
+            return listPro;
+        }
+        public static List<Product> ListProByName(int id_cat,string name)
+        {
+            List<Product> listPro = new List<Product>();
+            using (var context = new DataContext())
+            {
+                var product = context.Product.Where(p => p.name_pro.Contains(name) && p.quantity > 0 && p.id_cat==id_cat).ToList();
+                listPro = product;
+            }
+            return listPro;
+        }
         public static List<Product> ListProNew()
         {
             List<Product> listPro = new List<Product>();
@@ -88,6 +164,23 @@ namespace Project_UIT247Green_User.Models
                 return product;
             }
 
+        }
+        public static void UpdatePro(int id_pro, int rate)
+        {
+            using (var context = new DataContext())
+            {
+                var product = context.Product;
+                Product pro_duct = (from p in product
+                                    where (p.id_pro == id_pro)
+                                    select p).FirstOrDefault();
+
+                if (pro_duct != null)
+                {
+                    pro_duct.rate = rate;
+                }
+                context.SaveChanges();
+
+            }
         }
     }
 }
