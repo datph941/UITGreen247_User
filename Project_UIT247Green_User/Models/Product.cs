@@ -123,15 +123,26 @@ namespace Project_UIT247Green_User.Models
             }
             return listPro;
         }
-        public static List<Product> ListProBest(int id)
+        public static List<Product> ListProBest(int sl)
         {
-            List<Product> listPro = new List<Product>();
+            List<Product> list = new List<Product>();
             using (var context = new DataContext())
             {
-                var product = context.Product.Where(p => p.id_cat == id && p.quantity > 0).ToList();
-                listPro = product;
-            }
-            return listPro;
+                var q = (from h in context.Order_user_items
+                         group h by new { h.id_pro } into hh
+                         select new
+                         {
+                             hh.Key.id_pro,
+                             Score = hh.Sum(s => s.quantity)
+                         }).OrderByDescending(i => i.Score);
+                foreach(var item in q)
+                {
+                    Product pro = FindProByID(item.id_pro);
+                    list.Add(pro);
+                }
+                list = list.Where(p => p.quantity > 0).Take(sl).ToList();
+                return list;
+            }          
         }
         public static List<Product> ListProCat(int id)
         {

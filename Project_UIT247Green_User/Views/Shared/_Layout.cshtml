@@ -171,7 +171,7 @@
                         </div>
                     </div>
                     <!-- //Menu chính -->
-                    @if(ViewBag.email == null)
+                    @if (ViewBag.email == null)
                     {
                         <!-- Ô giỏ hàng -->
                         <div id="slsp" class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
@@ -179,16 +179,16 @@
                             <div id="cart" class="btn-group btn-shopping-cart">
                                 <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
                                    data-toggle="dropdown">
-                                    <div  class="shopcart">
+                                    <div class="shopcart">
                                         <span class="handle pull-left"></span>
                                         <span class="title">Giỏ hàng</span>
                                         @if (ViewBag.cart != null)
                                         {
-                                            <p  class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
+                                            <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
                                         }
                                         else
                                         {
-                                            <p  class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
+                                            <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
                                         }
                                     </div>
                                 </a>
@@ -286,15 +286,15 @@
                                                         </tr>
                                                     }
                                                 </tbody>
-                                                </table>
+                                            </table>
 
-                                            <p class="text-right">                   
+                                            <p class="text-right">
                                                 <a class="btn view-cart" asp-controller="cart" asp-action="index">
                                                     <i class="fa fa-shopping-cart"></i>Xem giỏ
                                                     hàng
                                                 </a>
-                                                </p>
-                                            </div>
+                                            </p>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -303,132 +303,132 @@
                     }
                     else
                     {
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
-                    <!--Giỏ hàng-->
-                    <div id="cart" class="btn-group btn-shopping-cart">
-                        <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
-                           data-toggle="dropdown">
-                            <div class="shopcart">
-                                <span class="handle pull-left"></span>
-                                <span class="title">Giỏ hàng</span>
-                                @if (ViewBag.cart != null)
-                                {
-                                    <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
-                                }
-                                else
-                                {
-                                    <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
-                                }
-                            </div>
-                        </a>
-                        <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
-                            <li>
-                                <table class="table table-striped">
-                                    <tbody>
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
+                            <!--Giỏ hàng-->
+                            <div id="cart" class="btn-group btn-shopping-cart">
+                                <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <div class="shopcart">
+                                        <span class="handle pull-left"></span>
+                                        <span class="title">Giỏ hàng</span>
                                         @if (ViewBag.cart != null)
                                         {
-                                            int i = 0;
-                                            @foreach (var item in ViewBag.cart)
-                                            {
-                                                @if (i == 5)
-                                                {
-                                                    break;
-                                                }
-                                                Product pro = Product.FindProByID(item.Product.id_pro);
-                                                listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
-                                                double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
-                                        <tr>
-                                            <td class="text-center" style="width:70px">
-                                                <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
-                                                    <img src="@listimg[0].link"
-                                                         style="width:70px" alt="@pro.name_pro" title="@pro.name_pro"
-                                                         class="preview">
-                                                </a>
-                                            </td>
-                                            <td class="text-left">
-                                                <a class="cart_product_name"
-                                                   asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">@pro.name_pro</a>
-                                            </td>
-                                            <td class="text-center">@item.Quantity</td>
-                                            <td class="text-center">@String.Format("{0:0,0 VNĐ}", price_new * item.Quantity)</td>
-                                            @{
-                                                i = i + 1;
-                                            }
-                                        </tr>
-                                            }
+                                            <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
                                         }
-                                    </tbody>
-                                </table>
-                            </li>
-                            <li>
-                                <div>
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            @if (ViewBag.cart != null)
-                                            {
-                                                @if (ViewBag.cart != null && ViewBag.cart.Count > 5)
+                                        else
+                                        {
+                                            <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
+                                        }
+                                    </div>
+                                </a>
+                                <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
+                                    <li>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                @if (ViewBag.cart != null)
                                                 {
-                                                    int sl = ViewBag.cart.Count - 5;
-                                                    <tr>
-                                                        <td colspan="2" style="text-align:center;">Và @sl sản phẩm</td>
-                                                    </tr>
+                                                    int i = 0;
+                                                    @foreach (var item in ViewBag.cart)
+                                                    {
+                                                        @if (i == 5)
+                                                        {
+                                                            break;
+                                                        }
+                                                        Product pro = Product.FindProByID(item.Product.id_pro);
+                                                        listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
+                                                        double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
+                                                        <tr>
+                                                            <td class="text-center" style="width:70px">
+                                                                <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
+                                                                    <img src="@listimg[0].link"
+                                                                         style="width:70px" alt="@pro.name_pro" title="@pro.name_pro"
+                                                                         class="preview">
+                                                                </a>
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <a class="cart_product_name"
+                                                                   asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">@pro.name_pro</a>
+                                                            </td>
+                                                            <td class="text-center">@item.Quantity</td>
+                                                            <td class="text-center">@String.Format("{0:0,0 VNĐ}", price_new * item.Quantity)</td>
+                                                            @{
+                                                                i = i + 1;
+                                                            }
+                                                        </tr>
+                                                    }
                                                 }
-                                                <tr>
-                                                    <td class="text-left">
-                                                        <strong>Tổng tiền hàng</strong>
-                                                    </td>
-                                                    <td class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.total)</td>
-                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    @if (ViewBag.cart != null)
+                                                    {
+                                                        @if (ViewBag.cart != null && ViewBag.cart.Count > 5)
+                                                        {
+                                                            int sl = ViewBag.cart.Count - 5;
+                                                            <tr>
+                                                                <td colspan="2" style="text-align:center;">Và @sl sản phẩm</td>
+                                                            </tr>
+                                                        }
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>Tổng tiền hàng</strong>
+                                                            </td>
+                                                            <td class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.total)</td>
+                                                        </tr>
 
-                                                <tr>
-                                                    <td class="text-left">
-                                                        <strong>VAT: </strong>
-                                                    </td>
-                                                    <td class="text-right">Bao gồm trong sản phẩm</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-left">
-                                                        <strong>Tổng thanh toán</strong>
-                                                    </td>
-                                                    <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
-                                                </tr>
-                                            }
-                                            else
-                                            {
-                                                <tr>
-                                                    <td class="text-left">
-                                                        <strong>Tổng tiền hàng</strong>
-                                                    </td>
-                                                    <td class="text-right">0 vnđ</td>
-                                                </tr>
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>VAT: </strong>
+                                                            </td>
+                                                            <td class="text-right">Bao gồm trong sản phẩm</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>Tổng thanh toán</strong>
+                                                            </td>
+                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                        </tr>
+                                                    }
+                                                    else
+                                                    {
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>Tổng tiền hàng</strong>
+                                                            </td>
+                                                            <td class="text-right">0 vnđ</td>
+                                                        </tr>
 
-                                                <tr>
-                                                    <td class="text-left">
-                                                        <strong>VAT: </strong>
-                                                    </td>
-                                                    <td class="text-right">Bao gồm trong sản phẩm</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-left">
-                                                        <strong>Tổng thanh toán</strong>
-                                                    </td>
-                                                    <td class="text-right">0 vnđ</td>
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                    <p class="text-right">
-                                        <a class="btn view-cart" asp-controller="cartuser" asp-action="index">
-                                            <i class="fa fa-shopping-cart"></i>Xem giỏ
-                                            hàng
-                                        </a>
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--//giỏ hàng-->
-                </div>
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>VAT: </strong>
+                                                            </td>
+                                                            <td class="text-right">Bao gồm trong sản phẩm</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <strong>Tổng thanh toán</strong>
+                                                            </td>
+                                                            <td class="text-right">0 vnđ</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                            <p class="text-right">
+                                                <a class="btn view-cart" asp-controller="cartuser" asp-action="index">
+                                                    <i class="fa fa-shopping-cart"></i>Xem giỏ
+                                                    hàng
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--//giỏ hàng-->
+                        </div>
                     }
                     <!-- //Ô giỏ hàng -->
                 </div>
@@ -566,8 +566,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-5">
                                                                             <div class="column">
-                                                                                <a
-                                                                                   class="title-submenu">Mua sắm</a>
+                                                                                <a class="title-submenu">Mua sắm</a>
                                                                                 <div>
                                                                                     <ul class="row-list">
                                                                                         <li><a asp-controller="cart" asp-action="index">Giỏ hàng</a></li>
@@ -601,7 +600,8 @@
                                                                                             </li>
                                                                                             <li>
                                                                                                 <a asp-controller="order" asp-action="order_history">Lịch sử đặt hàng</a>
-                                                                                            </li>                        
+                                                                                            </li>
+
                                                                                         }
                                                                                     </ul>
                                                                                 </div>
@@ -659,7 +659,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>                            
+                                                                    </div>
                                                                     <div class="row">
                                                                         <div class="col-md-3">
                                                                             <a asp-controller="home" asp-action="category" asp-route-id=""
@@ -682,8 +682,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
-                                                                            <a
-                                                                               class="title-submenu">Đồ hộp</a>
+                                                                            <a class="title-submenu">Đồ hộp</a>
                                                                             <div class="row">
                                                                                 <div class="col-md-12 hover-menu">
                                                                                     <div class="menu">
@@ -702,8 +701,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
-                                                                            <a
-                                                                               class="title-submenu">Các loại sữa</a>
+                                                                            <a class="title-submenu">Các loại sữa</a>
                                                                             <div class="row">
                                                                                 <div class="col-md-12 hover-menu">
                                                                                     <div class="menu">
@@ -791,29 +789,22 @@
             <div class="container content">
                 <div class="row">
                     <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
-                        <div class="module clearfix modLine subscribe-home">
+                        <div class="subscribe module clearfix modLine subscribe-home">
                             <h3 class="modtitle">Đăng ký nhận tin tức </h3>
-                            <div class="modcontent align-center">
-                                <form class="form subscribe" novalidate="novalidate"
-                                      action="http://magento2.magentech.com/themes/sm_market/newsletter/subscriber/new/"
-                                      method="post" id="newsletter-validate-detail">
-                                    <div class="input-group">
-                                        <input name="email" type="email" class="form-control"
-                                               onfocus="if(this.value=='Nhập địa chỉ email của bạn') this.value='';"
-                                               onblur="if(this.value=='') this.value='Nhập địa chỉ email của bạn';"
-                                               value="Nhập địa chỉ email của bạn"
-                                               data-validate="{required:true, 'validate-email':true}">
-                                        <span class="input-group-btn">
-                                            <button type="submit" class="button-search btn btn-primary"
-                                                    name="submit_search">
-                                                Đăng kí
-                                            </button>
-                                        </span>
-                                    </div>
-
-                                </form>
-
-
+                            <div class=" modcontent align-center">
+                                <div class="input-group">
+                                    <input name="email" type="email" class="emailsub form-control"
+                                           onfocus="if(this.value=='Nhập địa chỉ email của bạn') this.value='';"
+                                           onblur="if(this.value=='') this.value='Nhập địa chỉ email của bạn';"
+                                           value="Nhập địa chỉ email của bạn"
+                                           data-validate="{required:true, 'validate-email':true}">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="sub button-search btn btn-primary"
+                                                name="submit_search">
+                                            Đăng kí
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -944,42 +935,46 @@
     </footer>
 
     <!-- Social widgets -->
-	<section class="social-widgets visible-lg">
-		<ul class="items">
-			<li class="item item-01 facebook"> <a href="php/facebook.php?account=envato" class="tab-icon"><span
-						class="fa fa-facebook"></span></a>
-				<div class="tab-content">
-					<div class="title">
-						<h5>FACEBOOK</h5>
-					</div>
-					<div class="loading">
-						<img src="~/image/theme/lazy-loader.gif" class="ajaxloader" alt="loader">
-					</div>
-				</div>
-			</li>
-			<li class="item item-02 twitter"> <a href="php/twitter.php?account_twitter=envato" class="tab-icon"><span
-						class="fa fa-twitter"></span></a>
-				<div class="tab-content">
-					<div class="title">
-						<h5>TWITTER FEEDS</h5>
-					</div>
-					<div class="loading">
-						<img src="~/image/theme/lazy-loader.gif" class="ajaxloader" alt="loader">
-					</div>
-				</div>
-			</li>
-			<li class="item item-03 youtube"> <a href="php/youtubevideo.php?account_video=PY2RLgTmiZY"
-					class="tab-icon"><span class="fa fa-youtube"></span></a>
-				<div class="tab-content">
-					<div class="title">
-						<h5>YouTube</h5>
-					</div>
-					<div class="loading"> <img src="~/image/theme/lazy-loader.gif" class="ajaxloader" alt="loader"></div>
-				</div>
-			</li>
-		</ul>
-	</section> <!-- End Social widgets -->
-
+    <section class="social-widgets visible-lg">
+        <ul class="items">
+            <li class="item item-01 facebook">
+                <a href="php/facebook.php?account=envato" class="tab-icon">
+                    <span class="fa fa-facebook"></span>
+                </a>
+                <div class="tab-content">
+                    <div class="title">
+                        <h5>FACEBOOK</h5>
+                    </div>
+                    <div class="loading">
+                        <img src="~/image/theme/lazy-loader.gif" class="ajaxloader" alt="loader">
+                    </div>
+                </div>
+            </li>
+            <li class="item item-02 twitter">
+                <a href="php/twitter.php?account_twitter=envato" class="tab-icon">
+                    <span class="fa fa-twitter"></span>
+                </a>
+                <div class="tab-content">
+                    <div class="title">
+                        <h5>TWITTER FEEDS</h5>
+                    </div>
+                    <div class="loading">
+                        <img src="~/image/theme/lazy-loader.gif" class="ajaxloader" alt="loader">
+                    </div>
+                </div>
+            </li>
+            <li class="item item-03 youtube">
+                <a href="php/youtubevideo.php?account_video=PY2RLgTmiZY"
+                   class="tab-icon"><span class="fa fa-youtube"></span></a>
+                <div class="tab-content">
+                    <div class="title">
+                        <h5>YouTube</h5>
+                    </div>
+                    <div class="loading"> <img src="~/image/theme/lazy-loader.gif" class="ajaxloader" alt="loader"></div>
+                </div>
+            </li>
+        </ul>
+    </section> <!-- End Social widgets -->
     <!-- Include Libs & Plugins
     ============================================ -->
     <script type="text/javascript" src="~/js/jquery-2.2.4.min.js"></script>
@@ -995,14 +990,55 @@
     <script type="text/javascript" src="~/js/modernizr/modernizr-2.6.2.min.js"></script>
     <!-- <script type="text/javascript" src="~/js/lightslider/lightslider.js"></script> -->
     <!-- <script type="text/javascript" src="~/js/product_detail.js"></script> -->
-
     <!-- Theme files
     ============================================ -->
     <script type="text/javascript" src="~/js/themejs/application.js"></script>
     <script type="text/javascript" src="~/js/themejs/homepage.js"></script>
     <script type="text/javascript" src="~/js/themejs/so_megamenu.js"></script>
     <script type="text/javascript" src="~/js/themejs/addtocart.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     @RenderSection("Scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            $(".sub").click(function () {
+                $.ajax({
+                    url: "/Home/Subscribe",
+                    data: {
+                        email: $(".emailsub").val(),
+                        type: "ajax"
+                    },
+                    success: function (data) {
+                        if (data.check > 0) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Đăng kí thành công',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Đã đăng kí',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                        $(".subscribe").load(location.href + " .subscribe>*", "");
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Đăng kí thất bại',
+                            text: 'Vui lòng thử lại',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

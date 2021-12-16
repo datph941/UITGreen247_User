@@ -238,8 +238,7 @@
                                                                             <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
                                                                         </button>
                                                                         <button class="wishlist" type="button"
-                                                                                data-toggle="tooltip" title="Add to Wish List"
-                                                                                >
+                                                                                data-toggle="tooltip" title="Add to Wish List">
                                                                             <i class="fa fa-heart"></i>
                                                                         </button>
                                                                     </div>
@@ -254,63 +253,9 @@
 
                                         <!--Bán chạy nhất-->
                                         <div class="ltabs-items  items-category-75 products-list  grid" data-total="10">
-                                            <div class="ltabs-loading"></div>
-                                        </div>
-
-                                    </div>
-                                    <!--End Items-->
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="module static-image col-xs-12 module--4x clearfix">
-                            <div class="banners">
-                                <div>
-                                    <a href="#"><img src="image/demo/cms/home7/image3-id11.jpg" alt="banner1"></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="module tab-slider titleLine col-xs-12">
-                            <div id="so_listing_tabs_2" class="so-listing-tabs first-load module">
-                                <div class="loadeding"></div>
-                                <div class="ltabs-wrap ">
-                                    <div class="ltabs-tabs-container" data-delay="300" data-duration="600"
-                                         data-effect="starwars" data-ajaxurl="" data-type_source="0" data-lg="5"
-                                         data-md="4" data-sm="2" data-xs="1" data-margin="30">
-                                        <!--Begin Tabs-->
-                                        <div class="ltabs-tabs-wrap">
-                                            <span class="ltabs-tab-selected">THỰC PHẨM TƯƠI SỐNG </span> <span class="ltabs-tab-arrow">▼</span>
-                                            <div class="item-sub-cat item-sub-cat__divided">
-                                                <ul class="ltabs-tabs cf">
-                                                    <li class="ltabs-tab tab-sel" data-category-id="20"
-                                                        data-active-content=".items-category-20">
-                                                        <span class="ltabs-tab-label">THỰC PHẨM TƯƠI SỐNG </span>
-                                                    </li>
-
-                                                    <li class="ltabs-tab " data-category-id="75"
-                                                        data-active-content=".items-category-75">
-                                                        <span class="ltabs-tab-label">THỰC PHẨM ĐÔNG LẠNH </span>
-                                                    </li>
-
-                                                    <li class="ltabs-tab " data-category-id="76"
-                                                        data-active-content=".items-category-75">
-                                                        <span class="ltabs-tab-label">ĐỒ ĐÓNG HỘP </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- End Tabs-->
-                                    </div>
-                                    <div class="ltabs-items-container">
-                                        <!--Begin Items-->
-                                        <div class="ltabs-items ltabs-items-loaded ltabs-items-selected items-category-20 grid"
-                                             data-total="10">
                                             <div class="ltabs-items-inner ltabs-slider ">
                                                 <!--Sản phẩm mới-->
-                                                @foreach (var item in listtuoisong)
+                                                @foreach (var item in listpronew)
                                                 {
                                                     List<Image_product> listimg = new List<Image_product>();
                                                     listimg = Image_product.FindImgByIDPro(item.id_pro);
@@ -330,6 +275,7 @@
                                                                 {
                                                                     <span class="label label-sale">Giảm giá</span>
                                                                 }
+                                                                <span class="label label-new">Mới</span>
                                                                 <!--full quick view block-->
                                                                 <a class="quickview iframe-link visible-lg"
                                                                    data-fancybox-type="iframe" href="quickview.html">
@@ -401,8 +347,163 @@
                                                                             <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
                                                                         </button>
                                                                         <button class="wishlist" type="button"
+                                                                                data-toggle="tooltip" title="Add to Wish List">
+                                                                            <i class="fa fa-heart"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                }
+                                                            </div><!-- right block -->
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--End Items-->
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="module static-image col-xs-12 module--4x clearfix">
+                            <div class="banners">
+                                <div>
+                                    <a href="#"><img src="image/demo/cms/home7/image3-id11.jpg" alt="banner1"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="module tab-slider titleLine col-xs-12">
+                            <div id="so_listing_tabs_2" class="so-listing-tabs first-load module">
+                                <div class="loadeding"></div>
+                                <div class="ltabs-wrap ">
+                                    <div class="ltabs-tabs-container" data-delay="300" data-duration="600"
+                                         data-effect="starwars" data-ajaxurl="" data-type_source="0" data-lg="5"
+                                         data-md="4" data-sm="2" data-xs="1" data-margin="30">
+                                        <!--Begin Tabs-->
+                                        <div class="ltabs-tabs-wrap">
+                                            <span class="ltabs-tab-selected">THỰC PHẨM TƯƠI SỐNG </span> <span class="ltabs-tab-arrow">▼</span>
+                                            <div class="item-sub-cat item-sub-cat__divided">
+                                                <ul class="ltabs-tabs cf">
+                                                    <li class="ltabs-tab tab-sel" data-category-id="20"
+                                                        data-active-content=".items-category-20">
+                                                        <span class="ltabs-tab-label">THỰC PHẨM TƯƠI SỐNG </span>
+                                                    </li>
+
+                                                    <li class="ltabs-tab " data-category-id="175"
+                                                        data-active-content=".items-category-175">
+                                                        <span class="ltabs-tab-label">THỰC PHẨM ĐÔNG LẠNH </span>
+                                                    </li>
+
+                                                    <li class="ltabs-tab " data-category-id="76"
+                                                        data-active-content=".items-category-76">
+                                                        <span class="ltabs-tab-label">ĐỒ ĐÓNG HỘP</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- End Tabs-->
+                                    </div>
+                                    <div class="ltabs-items-container">
+                                        <!--Begin Items-->
+                                        <div class="ltabs-items ltabs-items-loaded ltabs-items-selected items-category-20 grid"
+                                             data-total="10">
+                                            <div class="ltabs-items-inner ltabs-slider ">
+                                                <!--Sản phẩm mới-->
+                                                @foreach (var item in listtuoisong)
+                                                {
+                                                    List<Image_product> listimg = new List<Image_product>();
+                                                    listimg = Image_product.FindImgByIDPro(item.id_pro);
+                                                    double price_old = (@item.price * (100 + @item.sale_rate) / 100);
+                                                    double price_new = (@item.price * (100 + @item.sale_rate) / 100 * ((100 - @item.discount) / 100));
+                                                    <div class="ltabs-item product-layout">
+                                                        <div class="product-item-container">
+                                                            <div class="left-block">
+
+                                                                <div class="product-image-container second_img ">
+                                                                    <img src="@listimg[0].link"
+                                                                         alt="@item.name_pro"
+                                                                         class="img-responsive" />
+                                                                </div>
+                                                                <!--Sale Label-->
+                                                                @if (item.discount > 0)
+                                                                {
+                                                                    <span class="label label-sale">Giảm giá</span>
+                                                                }
+                                                                <!--full quick view block-->
+                                                                <a class="quickview iframe-link visible-lg"
+                                                                   data-fancybox-type="iframe" href="quickview.html">
+                                                                    Xem
+                                                                    nhanh
+                                                                </a>
+                                                                <!--end full quick view block-->
+                                                            </div>
+                                                            <div class="right-block">
+                                                                <div class="caption">
+                                                                    <h4><a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.id_pro" asp-route-idcat="@item.id_cat">@item.name_pro</a></h4>
+                                                                    <div class="ratings">
+                                                                        <div class="rating-box">
+                                                                            @for (int i = 1; i < 6; i++)
+                                                                            {
+                                                                                if (i <= item.rate)
+                                                                                {
+                                                                                    <span class="fa fa-stack">
+                                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                    </span>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <span class="fa fa-stack">
+                                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                    </span>
+                                                                                }
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                    @if (item.discount > 0)
+                                                                    {
+                                                                        <div class="price">
+                                                                            <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                                            <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                                        </div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="price">
+                                                                            <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                                @if (ViewBag.email != null)
+                                                                {
+                                                                    <div class="button-group">
+                                                                        <button class="addToCart addToCart--notext"
+                                                                                type="button" data-toggle="tooltip"
+                                                                                title="Add to Cart"
+                                                                                data-id="@item.id_pro">
+                                                                            <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
+                                                                        </button>
+                                                                        <button class="wishlist" type="button"
                                                                                 data-toggle="tooltip" title="Add to Wish List"
-                                                                                >
+                                                                                data-idpro="@item.id_pro">
+                                                                            <i class="fa fa-heart"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="button-group">
+                                                                        <button class="addToCart addToCart--notext"
+                                                                                type="button" data-toggle="tooltip"
+                                                                                title="Add to Cart"
+                                                                                data-id="@item.id_pro">
+                                                                            <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
+                                                                        </button>
+                                                                        <button class="wishlist" type="button"
+                                                                                data-toggle="tooltip" title="Add to Wish List">
                                                                             <i class="fa fa-heart"></i>
                                                                         </button>
                                                                     </div>
@@ -414,8 +515,110 @@
                                             </div>
                                         </div>
                                         <!--Bán chạy nhất-->
-                                        <div class="ltabs-items  items-category-75 products-list  grid" data-total="10">
-                                            <div class="ltabs-loading"></div>
+                                        <div class="ltabs-items  items-category-175 products-list  grid" data-total="10">
+                                            <div class="ltabs-items-inner ltabs-slider ">
+                                                <!--Sản phẩm mới-->
+                                                @foreach (var item in listtuoisong)
+                                                {
+                                                    List<Image_product> listimg = new List<Image_product>();
+                                                    listimg = Image_product.FindImgByIDPro(item.id_pro);
+                                                    double price_old = (@item.price * (100 + @item.sale_rate) / 100);
+                                                    double price_new = (@item.price * (100 + @item.sale_rate) / 100 * ((100 - @item.discount) / 100));
+                                                    <div class="ltabs-item product-layout">
+                                                        <div class="product-item-container">
+                                                            <div class="left-block">
+
+                                                                <div class="product-image-container second_img ">
+                                                                    <img src="@listimg[0].link"
+                                                                         alt="@item.name_pro"
+                                                                         class="img-responsive" />
+                                                                </div>
+                                                                <!--Sale Label-->
+                                                                @if (item.discount > 0)
+                                                                {
+                                                                    <span class="label label-sale">Giảm giá</span>
+                                                                }
+                                                                <!--full quick view block-->
+                                                                <a class="quickview iframe-link visible-lg"
+                                                                   data-fancybox-type="iframe" href="quickview.html">
+                                                                    Xem
+                                                                    nhanh
+                                                                </a>
+                                                                <!--end full quick view block-->
+                                                            </div>
+                                                            <div class="right-block">
+                                                                <div class="caption">
+                                                                    <h4><a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.id_pro" asp-route-idcat="@item.id_cat">@item.name_pro</a></h4>
+                                                                    <div class="ratings">
+                                                                        <div class="rating-box">
+                                                                            @for (int i = 1; i < 6; i++)
+                                                                            {
+                                                                                if (i <= item.rate)
+                                                                                {
+                                                                                    <span class="fa fa-stack">
+                                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                    </span>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <span class="fa fa-stack">
+                                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                    </span>
+                                                                                }
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                    @if (item.discount > 0)
+                                                                    {
+                                                                        <div class="price">
+                                                                            <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                                            <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                                        </div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="price">
+                                                                            <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                                @if (ViewBag.email != null)
+                                                                {
+                                                                    <div class="button-group">
+                                                                        <button class="addToCart addToCart--notext"
+                                                                                type="button" data-toggle="tooltip"
+                                                                                title="Add to Cart"
+                                                                                data-id="@item.id_pro">
+                                                                            <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
+                                                                        </button>
+                                                                        <button class="wishlist" type="button"
+                                                                                data-toggle="tooltip" title="Add to Wish List"
+                                                                                data-idpro="@item.id_pro">
+                                                                            <i class="fa fa-heart"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="button-group">
+                                                                        <button class="addToCart addToCart--notext"
+                                                                                type="button" data-toggle="tooltip"
+                                                                                title="Add to Cart"
+                                                                                data-id="@item.id_pro">
+                                                                            <i class="fa fa-shopping-cart"></i> <span class="">Add to Cart</span>
+                                                                        </button>
+                                                                        <button class="wishlist" type="button"
+                                                                                data-toggle="tooltip" title="Add to Wish List">
+                                                                            <i class="fa fa-heart"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                }
+                                                            </div><!-- right block -->
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
                                         </div>
                                     </div>
                                     <!--End Items-->
@@ -467,21 +670,21 @@
                                                     <h4><a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.id_pro" asp-route-idcat="@item.id_cat">@item.name_pro</a></h4>
                                                     <div class="ratings">
                                                         <div class="rating-box">
-                                                            <span class="fa fa-stack">
-                                                                <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                            </span>
-                                                            <span class="fa fa-stack">
-                                                                <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                            </span>
-                                                            <span class="fa fa-stack">
-                                                                <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                            </span>
-                                                            <span class="fa fa-stack">
-                                                                <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                            </span>
-                                                            <span class="fa fa-stack">
-                                                                <i class="fa fa-star-o fa-stack-1x"></i>
-                                                            </span>
+                                                            @for (int i = 1; i < 6; i++)
+                                                            {
+                                                                if (i <= item.rate)
+                                                                {
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span class="fa fa-stack">
+                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                    </span>
+                                                                }
+                                                            }
                                                         </div>
                                                     </div>
                                                     <div class="price">
@@ -512,7 +715,7 @@
                                                             <i class="fa fa-shopping-cart"></i>
                                                             <span class="button-group__text">Add to Cart</span>
                                                         </button>
-                                                        <button class="wishlist" type="button" >
+                                                        <button class="wishlist" type="button">
                                                             <i class="fa fa-heart"></i>
                                                         </button>
                                                     </div>
@@ -693,9 +896,7 @@
                                     showConfirmButton: false,
                                     timer: 1300
                                 });
-                                setTimeout(function () {// wait for 5 secs(2)
-                                    location.reload(); // then reload the page.(3)
-                                }, 1300);
+                                $("#cart").load(location.href + " #cart>*", "");
                             },
                             error: function () {
                                 Swal.fire({
@@ -743,7 +944,7 @@
                                 });
                             }
                         });
-                    });
+                    });                 
                 });
             </script>
         }
@@ -769,7 +970,7 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
-                                $("#slsp").load(location.href + " #slsp>*", "");
+                                $("#cart").load(location.href + " #cart>*", "");
                             },
                             error: function () {
                                 Swal.fire({
@@ -785,9 +986,10 @@
                     $(".wishlist").click(function () {
                         Swal.fire('Vui lòng đăng nhập!');
                     });
+                  
                 });
             </script>
         }
     }
-
+    
 </body>

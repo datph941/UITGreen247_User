@@ -229,6 +229,9 @@ namespace Project_UIT247Green_User.Controllers
                 CookieOptions cookie = new CookieOptions();
                 cookie.Expires = DateTime.Now.AddDays(30);
                 Response.Cookies.Append("cart", cartnull, cookie);
+                string body = "Cảm ơn bạn đã đăng kí thành viên ở UITGreen247, hy vọng bạn sẽ gắn bó với chúng tôi dài lâu.\n Chân thành cảm ơn.\nUITGreen247";
+                
+                MailUtils.SendGmail("thaykv19521364@gmail.com", email, "Đăng kí thành viên UITGreen247", body, "thaykv19521364@gmail.com", "01259977014");
                 return View("login");
             }
             else

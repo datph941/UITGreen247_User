@@ -27,13 +27,24 @@ namespace Project_UIT247Green_User.Models
                 return context.SaveChanges();
             }
         }
+        public static int SumCmt(int id)
+        {
+            using (var context = new DataContext())
+            {
+                var cmt = (from p in context.Comment
+                           where (p.id_pro == id)
+                           select p).ToList();
+                return cmt.Count;
+            }
+
+        }
         public static List<Comment> FindCmtByID(int id)
         {
             using (var context = new DataContext())
             {
                var cmt = (from p in context.Comment
                                    where (p.id_pro == id)
-                                   select p).ToList();
+                                   select p).OrderByDescending(p => p.id_cmt).Take(5).ToList();
                 return cmt;
             }
 

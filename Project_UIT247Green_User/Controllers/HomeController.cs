@@ -222,6 +222,18 @@ namespace Project_UIT247Green_User.Controllers
             Product.UpdatePro(id_pro, rate);
             return RedirectToAction("product_detail");
         }
+        public IActionResult Subscribe(string email, string type = "Normal")
+        {
+            int check = Sub_news.Insert(email);
+            if (type == "ajax")
+            {
+                return Json(new
+                {
+                    check = check
+                });
+            }
+            return RedirectToAction("index");
+        }
         public IActionResult Product_detail(int idpro,int idcat)
         {
             MenuCat();

@@ -20,6 +20,8 @@
     }
     var index = 0;
     List<Comment> listcmt = Comment.FindCmtByID(pro.id_pro);
+    int socmt = Comment.SumCmt(pro.id_pro);
+    List<Suggest_product> listsug = Suggest_product.FindSugByID(pro.id_pro);
 }
 <body class="res layout-subpage">
     <div id="wrapper" class="wrapper-full ">
@@ -104,7 +106,7 @@
                                             </div>
                                         </div>
 
-                                        <a class="reviews_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">0 đánh giá</a>	|
+                                        <a class="reviews_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">@socmt đánh giá</a>	|
                                         <a class="write_review_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Đánh giá sản phẩm này</a>
                                     </div>
 
@@ -157,13 +159,13 @@
                                             @if (pro.quantity > 0)
                                             {
                                                 <div class="cart">
-                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-id="@pro.id_pro"></a>
+                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="addToCart btn btn-mega btn-lg" data-id="@pro.id_pro"></a>
                                                 </div>
                                             }
                                             else
                                             {
                                                 <div class="cart">
-                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-id="@pro.id_pro" disabled=""></a>
+                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="wishlist btn btn-mega btn-lg" data-id="@pro.id_pro" disabled=""></a>
                                                 </div>
                                             }
                                             @if (ViewBag.email != null)
@@ -314,197 +316,105 @@
                     <!-- //Product Tabs -->
                     <!-- Related Products -->
                     <div class="related titleLine products-list grid module ">
-                        <h3 class="modtitle">Sản phẩm bạn có thể quan tâm  </h3>
+                        <h3 class="modtitle">Sản phẩm bạn có thể quan tâm </h3>
                         <div class="releate-products ">
-                            <div class="product-layout">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container second_img ">
-                                            <img src="~/image/demo/shop/product/e11.jpg" title="Apple Cinema 30&quot;" class="img-responsive" />
-                                            <img src="~/image/demo/shop/product/e12.jpg" title="Apple Cinema 30&quot;" class="img_0 img-responsive" />
+                            @foreach (var item in listsug)
+                            {
+                                Product pro1 = Product.FindProByID(item.id_sug);
+                                listimg = Image_product.FindImgByIDPro(pro1.id_pro);
+                                <div class="product-layout">
+                                    <div class="product-item-container">
+                                        <div class="left-block">
+                                            <div class="product-image-container second_img ">
+                                                <img src="@listimg[0].link" title="@pro1.name_pro" class="img-responsive" />
+                                            </div>
+                                            <!--Sale Label-->
+                                            @if (pro1.discount > 0)
+                                            {
+                                                <span class="label label-sale">Giảm giá</span>
+                                            }
+                                            <!--full quick view block-->
+                                            <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"  asp-controller="home" asp-action="quickview" asp-route-id_pro="@pro1.id_pro" asp-route-id_cat="@pro1.id_cat">  Xem nhanh</a>
+                                            <!--end full quick view block-->
                                         </div>
-                                        <!--Sale Label-->
-                                        <span class="label label-sale">Giảm giá</span>
-                                        <!--full quick view block-->
-                                        <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe" href="quickview.html">  Xem nhanh</a>
-                                        <!--end full quick view block-->
-                                    </div>
+                                        <div class="right-block">
+                                            <div class="caption">
+                                                <h4><a a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro1.id_pro" asp-route-idcat="@pro1.id_cat">@pro1.name_pro</a></h4>
+                                                <div class="ratings">
+                                                    <div class="rating-box">
+                                                        @for (int i = 1; i < 6; i++)
+                                                        {
+                                                            if (i <= pro1.rate)
+                                                            {
+                                                                <span class="fa fa-stack">
+                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                </span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="fa fa-stack">
+                                                                    <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                </span>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                                @if (pro1.discount > 0)
+                                                {
+                                                    <div class="price">
+                                                        @{
+                                                            double price_old = (@pro1.price * (100 + @pro1.sale_rate) / 100);
+                                                            double price_new = (@pro1.price * (100 + @pro1.sale_rate) / 100 * ((100 - @pro1.discount) / 100));
 
-
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Sản phẩm 1</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                                                            <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                            <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+                                                            <span class="label label-percent">@pro1.discount%</span>
+                                                        }
+                                                    </div>
+                                                }
+                                                else
+                                                { <div class="price">
+                                                        @{
+                                                            double price_old = (@pro1.price * (100 + @pro1.sale_rate) / 100);
+                                                            double price_new = (@pro1.price * (100 + @pro1.sale_rate) / 100 * ((100 - @pro1.discount) / 100));
+                                                            <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+                                                        }
+                                                    </div>
+                                                }
+                                                <div class="description item-desc hidden">
+                                                    <p>Mô tả ẩn...</p>
                                                 </div>
                                             </div>
 
-                                            <div class="price">
-                                                <span class="price-new">100.000đ</span>
-                                                <span class="price-old">120.000đ</span>
-                                                <span class="label label-percent">-20%</span>
-
+                                            <div class="button-group">
+                                                @if (ViewBag.email != null)
+                                                {
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@pro1.id_pro"
+                                                       title="Thêm vào giỏ hàng">
+                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                    </a>
+                                                    <button class="wishlist" type="button" data-toggle="tooltip"
+                                                            title="Thêm vào danh sách yêu thích" data-idpro="@pro1.id_pro">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
+                                                }
+                                                else
+                                                {
+                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@pro1.id_pro"
+                                                       title="Thêm vào giỏ hàng">
+                                                        <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
+                                                    </a>
+                                                    <button class="wishlist" type="button" data-toggle="tooltip"
+                                                            title="Thêm vào danh sách yêu thích">
+                                                        <i class="fa fa-heart"></i>
+                                                    </button>
+                                                }
                                             </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Mô tả ẩn...</p>
-                                            </div>
-                                        </div>
+                                        </div><!-- right block -->
 
-                                        <div class="button-group">
-                                            <button class="addToCart" type="button" data-toggle="tooltip" title="Thêm vào giỏ" onclick="cart.add('42', '1');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ</span></button>
-                                            <button class="wishlist" type="button" data-toggle="tooltip" title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');"><i class="fa fa-heart"></i></button>
-                                            <button class="compare" type="button" data-toggle="tooltip" title="So sánh sản phẩm" onclick="compare.add('42');"><i class="fa fa-exchange"></i></button>
-                                        </div>
-                                    </div><!-- right block -->
-
-                                </div>
-                            </div>
-
-                            <div class="product-layout ">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container second_img ">
-                                            <img src="~/image/demo/shop/product/e11.jpg" title="Apple Cinema 30&quot;" class="img-responsive" />
-                                            <img src="~/image/demo/shop/product/e12.jpg" title="Apple Cinema 30&quot;" class="img_0 img-responsive" />
-                                        </div>
-                                        <!--Sale Label-->
-                                        <span class="label label-sale">Giảm giá</span>
-                                        <!--full quick view block-->
-                                        <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe" href="quickview.html">  Xem nhanh</a>
-                                        <!--end full quick view block-->
                                     </div>
-
-
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Sản phẩm 2</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                <span class="price-new">100.000đ</span>
-                                                <span class="price-old">120.000đ</span>
-                                                <span class="label label-percent">-20%</span>
-
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Mô tả ẩn...</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart" type="button" data-toggle="tooltip" title="Thêm vào giỏ" data-id=""><i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ</span></button>
-                                            <button class="wishlist" type="button" data-toggle="tooltip" title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');"><i class="fa fa-heart"></i></button>
-                                            <button class="compare" type="button" data-toggle="tooltip" title="So sánh sản phẩm" onclick="compare.add('42');"><i class="fa fa-exchange"></i></button>
-                                        </div>
-                                    </div><!-- right block -->
-
                                 </div>
-                            </div>
-                            <div class="product-layout ">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container second_img ">
-                                            <img src="~/image/demo/shop/product/e11.jpg" title="Apple Cinema 30&quot;" class="img-responsive" />
-                                            <imgsrc ="~/image/demo/shop/product/e12.jpg" title="Apple Cinema 30&quot;" class="img_0 img-responsive" />
-                                        </div>
-                                        <!--Sale Label-->
-                                        <span class="label label-sale">Giảm giá</span>
-                                        <!--full quick view block-->
-                                        <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe" href="quickview.html">  Xem nhanh</a>
-                                        <!--end full quick view block-->
-                                    </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Sản phẩm 3</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                <span class="price-new">100.000đ</span>
-                                                <span class="price-old">120.000đ</span>
-                                                <span class="label label-percent">-20%</span>
-
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Mô tả ẩn...</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart" type="button" data-toggle="tooltip" title="Thêm vào giỏ" onclick="cart.add('42', '1');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ</span></button>
-                                            <button class="wishlist" type="button" data-toggle="tooltip" title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');"><i class="fa fa-heart"></i></button>
-                                            <button class="compare" type="button" data-toggle="tooltip" title="So sánh sản phẩm" onclick="compare.add('42');"><i class="fa fa-exchange"></i></button>
-                                        </div>
-                                    </div><!-- right block -->
-
-                                </div>
-                            </div>
-                            <div class="product-layout ">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container second_img ">
-                                            <img src="~/image/demo/shop/product/e11.jpg" title="Apple Cinema 30&quot;" class="img-responsive" />
-                                            <img src="~/image/demo/shop/product/e12.jpg" title="Apple Cinema 30&quot;" class="img_0 img-responsive" />
-                                        </div>
-                                        <!--Sale Label-->
-                                        <span class="label label-sale">Giảm giá</span>
-                                        <!--full quick view block-->
-                                        <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe" href="quickview.html">  Xem nhanh</a>
-                                        <!--end full quick view block-->
-                                    </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Sản phẩm 4</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                <span class="price-new">100.000đ</span>
-                                                <span class="price-old">120.000đ</span>
-                                                <span class="label label-percent">-20%</span>
-
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Mô tả ẩn...</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart" type="button" data-toggle="tooltip" title="Thêm vào giỏ" onclick="cart.add('42', '1');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ</span></button>
-                                            <button class="wishlist" type="button" data-toggle="tooltip" title="Thêm vào danh sách yêu thích" onclick="wishlist.add('42');"><i class="fa fa-heart"></i></button>
-                                            <button class="compare" type="button" data-toggle="tooltip" title="So sánh sản phẩm" onclick="compare.add('42');"><i class="fa fa-exchange"></i></button>
-                                        </div>
-                                    </div><!-- right block -->
-
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
 
@@ -520,7 +430,7 @@
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                 <script>
                     $(document).ready(function () {
-                        $("#button-cart").click(function () {
+                        $(".addToCart").click(function () {
                             $.ajax({
                                 url: "/CartUser/Buy",
                                 data: {
@@ -534,10 +444,8 @@
                                         title: 'Thêm giỏ hàng thành công',
                                         showConfirmButton: false,
                                         timer: 1300
-                                    });                                  
-                                    setTimeout(function () {// wait for 5 secs(2)
-                                        location.reload(); // then reload the page.(3)
-                                    }, 1300);
+                                    });
+                                    $("#cart").load(location.href + " #cart>*", "");                               
                                 },
                                 error: function () {
                                     Swal.fire({
@@ -561,14 +469,15 @@
                                     type: "ajax"
                                 },
                                 success: function (data) {
-      
+                                    $("#review").load(location.href + " #review>*", "");
+                                    $("#ratings").load(location.href + " #ratings>*", "");
                                 },
                                 error: function () {
                                     $("#review").load(location.href + " #review>*", "");
-                                }
+                                    $("#ratings").load(location.href + " #ratings>*", "");}
                             });
-                        });
-                        $(".icon").click(function () {
+                        }); 
+                        $(".wishlist").click(function () {
                             $.ajax({
                                 url: "/User/AddWishList",
                                 data: {
@@ -614,7 +523,7 @@
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                 <script>
                     $(document).ready(function () {
-                        $("#button-cart").click(function () {
+                        $(".addToCart").click(function () {
                             $.ajax({
                                 url: "/Cart/Buy",
                                 data: {
@@ -629,7 +538,7 @@
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
-                                    $("#slsp").load(location.href + " #slsp>*", "");
+                                    $("#cart").load(location.href + " #cart>*", "");
                                 },
                                 error: function () {
                                     Swal.fire({
@@ -642,7 +551,25 @@
                                 }
                             });
                         });
-                        $(".icon").click(function () {
+                        $(".cmt").click(function () {
+                            $.ajax({
+                                url: "/Home/Cmt_Product",
+                                data: {
+                                    id_pro: $(this).data("id_pro"),
+                                    name: $("#name_cmt").val(),
+                                    rating: $('input[name="rating"]:checked').val(),
+                                    text: $("#comment").val(),
+                                    type: "ajax"
+                                },
+                                success: function (data) {
+                                    $("#review").load(location.href + " #review>*", "");
+                                },
+                                error: function () {
+                                    $("#review").load(location.href + " #review>*", "");
+                                }
+                            });
+                        });
+                        $(".wishlist").click(function () {
                             Swal.fire('Vui lòng đăng nhập!');
                         });
                     });
