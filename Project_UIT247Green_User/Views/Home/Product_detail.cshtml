@@ -149,7 +149,7 @@
                                             <div class="option quantity">
                                                 <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
                                                     <label>SL</label>
-                                                    <input class="form-control" type="text" name="quantity"
+                                                    <input class="form-control" type="text" id="sl" name="quantity"
                                                            value="1">
                                                     <input type="hidden" name="product_id" value="50">
                                                     <span class="input-group-addon product_quantity_down">−</span>
@@ -159,7 +159,7 @@
                                             @if (pro.quantity > 0)
                                             {
                                                 <div class="cart">
-                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="addToCart btn btn-mega btn-lg" data-id="@pro.id_pro"></a>
+                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="add btn btn-mega btn-lg" data-id="@pro.id_pro"></a>
                                                 </div>
                                             }
                                             else
@@ -172,11 +172,11 @@
                                             {
                                                 <div class="add-to-links wish_comp">
                                                     <ul class="blank list-inline">
-                                                        <li class="wishlist">
-                                                            <a class="icon" data-toggle="tooltip" title=""
+                                                        <li>
+                                                            <button class="wishlist btn btn-default btn-lg" data-toggle="tooltip" title="" type="button"
                                                                data-idpro="@pro.id_pro">
                                                                 <i class="fa fa-heart"></i>
-                                                            </a>
+                                                            </button>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -184,8 +184,8 @@
                                             else
                                             { <div class="add-to-links wish_comp">
                                                     <ul class="blank list-inline">
-                                                        <li class="wishlist">
-                                                            <a class="icon" data-toggle="tooltip" title="">
+                                                        <li>
+                                                            <a class="wishlist icon" data-toggle="tooltip" title="">
                                                                 <i class="fa fa-heart"></i>
                                                             </a>
                                                         </li>
@@ -389,21 +389,20 @@
                                             <div class="button-group">
                                                 @if (ViewBag.email != null)
                                                 {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@pro1.id_pro"
+                                                    <button class="addToCart" type="button" data-toggle="tooltip" data-id="@pro1.id_pro"
                                                        title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                    </a>
-                                                    <button class="wishlist" type="button" data-toggle="tooltip"
-                                                            title="Thêm vào danh sách yêu thích" data-idpro="@pro1.id_pro">
+                                                    </button>
+                                                    <button class="wishlist" type="button" data-idpro="@pro1.id_pro">
                                                         <i class="fa fa-heart"></i>
                                                     </button>
                                                 }
                                                 else
                                                 {
-                                                    <a class="addToCart" type="button" data-toggle="tooltip" data-id="@pro1.id_pro"
+                                                    <button class="addToCart" type="button" data-toggle="tooltip" data-id="@pro1.id_pro"
                                                        title="Thêm vào giỏ hàng">
                                                         <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                    </a>
+                                                    </button>
                                                     <button class="wishlist" type="button" data-toggle="tooltip"
                                                             title="Thêm vào danh sách yêu thích">
                                                         <i class="fa fa-heart"></i>
@@ -446,6 +445,34 @@
                                         timer: 1300
                                     });
                                     $("#cart").load(location.href + " #cart>*", "");                               
+                                },
+                                error: function () {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thêm giỏ hàng thất bại',
+                                        text: 'Vui lòng thử lại',
+                                        showConfirmButton: false,
+                                        timer: 1300
+                                    });
+                                }
+                            });
+                        });
+                        $(".add").click(function () {
+                            $.ajax({
+                                url: "/CartUser/Buy",
+                                data: {
+                                    id: $(this).data("id"),
+                                    SoLuong: $("#sl").val(),
+                                    type: "ajax"
+                                },
+                                success: function (data) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Thêm giỏ hàng thành công',
+                                        showConfirmButton: false,
+                                        timer: 1300
+                                    });
+                                    $("#cart").load(location.href + " #cart>*", "");
                                 },
                                 error: function () {
                                     Swal.fire({
@@ -529,6 +556,34 @@
                                 data: {
                                     id: $(this).data("id"),
                                     SoLuong: 1,
+                                    type: "ajax"
+                                },
+                                success: function (data) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Thêm giỏ hàng thành công',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    $("#cart").load(location.href + " #cart>*", "");
+                                },
+                                error: function () {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Thêm giỏ hàng thất bại',
+                                        text: 'Vui lòng thử lại',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                            });
+                        });
+                        $(".add").click(function () {
+                            $.ajax({
+                                url: "/Cart/Buy",
+                                data: {
+                                    id: $(this).data("id"),
+                                    SoLuong: $("#sl").val(),
                                     type: "ajax"
                                 },
                                 success: function (data) {

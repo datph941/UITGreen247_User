@@ -172,7 +172,7 @@
                         @if (ord.status == 0)
                         {
                             <div class="pull-left">
-                                <a class="return btn btn-primary"  onclick="return confirm('Bạn có muốn trả hàng?');" asp-controller="order" asp-action="return" asp-route-id_ord="@ord.id_ord">Trả hàng</a>
+                                <a class="return btn btn-primary"  onclick="return confirm('Bạn có muốn hủy đơn?');" asp-controller="order" asp-action="return" asp-route-id_ord="@ord.id_ord">Hủy đơn</a>
                             </div>
                         }
                         <div class="pull-right">

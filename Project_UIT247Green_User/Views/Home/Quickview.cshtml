@@ -133,30 +133,55 @@
                                         </div>
                                     </div>
                                     <div id="product">
-                                        <div class="form-group box-info-product">
+                                        <p></p>
+                                        @*<div class="form-group box-info-product">
                                             <div class="option quantity">
                                                 <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
                                                     <label>SL </label>
-                                                    <input class="form-control" type="text" name="quantity" value="1" />
+                                                    <input class="form-control" type="text" id="sl" name="quantity" value="1" />
                                                     <input type="hidden" name="product_id" value="50" />
                                                     <span class="input-group-addon product_quantity_down">− </span>
                                                     <span class="input-group-addon product_quantity_up">+ </span>
                                                 </div>
                                             </div>
-                                            <div class="cart">
-                                                <input type="button" data-toggle="tooltip" title="" value="Thêm vào giỏ hàng" onclick="cart.add('42', '1');" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-original-title="Thêm vào giỏ hàng" />
-                                            </div>
-                                            <div class="add-to-links wish_comp">
-                                                <ul class="blank list-inline">
-                                                    <li class="wishlist">
-                                                        <a class="icon" data-toggle="tooltip" title="" onclick="wishlist.add('50');" data-original-title="Yêu thích">
-                                                            <i class="fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            @if (pro.quantity > 0)
+                                            {
+                                                <div class="cart">
+                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="addToCart btn btn-mega btn-lg" data-id="@pro.id_pro"></a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="cart">
+                                                    <a><input type="button" data-toggle="tooltip" value="+ giỏ hàng" data-loading-text="Loading..." id="button-cart" class="addToCart btn btn-mega btn-lg" data-id="@pro.id_pro" disabled=""></a>
+                                                </div>
+                                            }
+                                            @if (ViewBag.email != null)
+                                            {
+                                                <div class="add-to-links wish_comp">
+                                                    <ul class="blank list-inline">
+                                                        <li>
+                                                            <button class="wishlist btn btn-default btn-lg" data-toggle="tooltip" title="" type="button"
+                                                                    data-idpro="@pro.id_pro">
+                                                                <i class="fa fa-heart"></i>
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            }
+                                            else
+                                            { <div class="add-to-links wish_comp">
+                                                    <ul class="blank list-inline">
+                                                        <li>
+                                                            <button class="wishlist icon" data-toggle="tooltip" title="">
+                                                                <i class="fa fa-heart"></i>
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            }
 
-                                        </div>
+                                        </div>*@
 
                                     </div>
                                     <!-- end box info product -->
@@ -168,19 +193,6 @@
 
                     </div>
 
-                    <script type="text/javascript">
-                        var cart = {
-                            'add': function (product_id, quantity) {
-                                parent.addProductNotice('Product added to Cart', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3><a href="#">Apple Cinema 30"</a> added to <a href="#">shopping cart</a>!</h3>', 'success');
-                            }
-                        }
-
-                        var wishlist = {
-                            'add': function (product_id) {
-                                parent.addProductNotice('Product added to Wishlist', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>You must <a href="#">login</a>  to save <a href="#">Apple Cinema 30"</a> to your <a href="#">wish list</a>!</h3>', 'success');
-                            }
-                        }
-                    </script>
 
 
                 </div>
@@ -227,6 +239,121 @@
             }
         </style>
     </div>
+    @if (ViewBag.email != null)
+    {
+        @section scripts{
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            <script>
+                $(document).ready(function () {
+                    $(".addToCart").click(function () {
+                        $.ajax({
+                            url: "/CartUser/Buy",
+                            data: {
+                                id: $(this).data("id"),
+                                SoLuong: $("#sl").val(),
+                                type: "ajax"
+                            },
+                            success: function (data) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Thêm giỏ hàng thành công',
+                                    showConfirmButton: false,
+                                    timer: 1300
+                                });
+                                $("#cart").load(location.href + " #cart>*", "");
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Thêm giỏ hàng thất bại',
+                                    text: 'Vui lòng thử lại',
+                                    showConfirmButton: false,
+                                    timer: 1300
+                                });
+                            }
+                        });
+                    });
+                    $(".wishlist").click(function () {
+                        $.ajax({
+                            url: "/User/AddWishList",
+                            data: {
+                                id_pro: $(this).data("idpro"),
+                                type: "ajax"
+                            },
+                            success: function (data) {
+                                if (data.check > 0) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Thêm mặt hàng yêu thích thành công',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                                else {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Mặt hàng đã yêu thích',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Thêm mặt hàng yêu thích thất bại',
+                                    text: 'Vui lòng thử lại',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        });
+                    });
+                });
+            </script>
+        }
+    }
+    else
+    {
+        @section scripts{
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            <script>
+                $(document).ready(function () {
+                    $(".addToCart").click(function () {
+                        $.ajax({
+                            url: "/Cart/Buy",
+                            data: {
+                                id: $(this).data("id"),
+                                SoLuong: $("#sl").val(),
+                                type: "ajax"
+                            },
+                            success: function (data) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Thêm giỏ hàng thành công',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                $("#cart").load(location.href + " #cart>*", "");
+                            },
+                            error: function () {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Thêm giỏ hàng thất bại',
+                                    text: 'Vui lòng thử lại',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        });
+                    });
+                    $(".wishlist").click(function () {
+                        Swal.fire('Vui lòng đăng nhập!');
+                    });
+                });
+            </script>
+        }
+    }
     <!-- Include Libs & Plugins
     ============================================ -->
     <script type="text/javascript" src="~/js/jquery-2.2.4.min.js"></script>
