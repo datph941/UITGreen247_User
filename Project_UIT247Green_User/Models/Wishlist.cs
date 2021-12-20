@@ -45,11 +45,11 @@ namespace Project_UIT247Green_User.Models
                 context.SaveChanges();
             }
         }
-        public static List<Wishlist> Select()
+        public static List<Wishlist> Select(int id)
         {
             using (var context = new DataContext())
             {
-                var list  = context.Wishlist.ToList();
+                var list  = context.Wishlist.Where(p=>p.id_user==id).ToList();
                 return list;
             }
         }

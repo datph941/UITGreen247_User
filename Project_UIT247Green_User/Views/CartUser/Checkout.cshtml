@@ -303,7 +303,7 @@
                                 });
                                 $('#discount1').attr("data-disc", data.discount);
 
-                                discount.innerHTML = discount.dataset.disc.toLocaleString() + ' VNĐ';
+                                discount.innerHTML = discount.dataset.disc.toLocaleString('vi-VN') + ' VNĐ';
                                 sum = parseInt(total.dataset.total) + parseInt(message.dataset.ship) - parseInt(discount.dataset.disc);
                                 price_sum.innerHTML = sum.toLocaleString() + ' VNĐ';
                             },

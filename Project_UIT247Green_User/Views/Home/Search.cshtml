@@ -238,7 +238,7 @@
                                         <!--end countdown box-->
                                         <!--full quick view block-->
                                         <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                           asp-controller="home" asp-action="quickview"> Xem nhanh</a>
+                                           asp-controller="home" asp-action="quickview" asp-route-id_pro="@item2.id_pro" asp-route-id_cat="@item2.id_cat"> Xem nhanh</a>
                                         <!--end full quick view block-->
                                     </div>
                                     <div class="right-block">
@@ -285,8 +285,22 @@
                                                     }
                                                 </div>
                                             }
+                                            @{
+                                                string[] arrListStr = item2.status.Split(' ');
+                                                string a = "";
+
+                                                for(int i =0;i<arrListStr.Length;i++)
+                                                {
+                                                    a = a + arrListStr[i] + " ";
+                                                    if (i==120)
+                                                    {
+                                                        a = a +  arrListStr[i] + "...";
+                                                        break;
+                                                    } 
+                                                }
+                                            }
                                             <div class="description item-desc hidden">
-                                                <p>Mô tả. </p>
+                                                <p>@a</p>
                                             </div>
                                         </div>
                                         <div class="button-group">

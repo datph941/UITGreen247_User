@@ -294,8 +294,22 @@
                                                     }
                                                 </div>
                                             }
+                                            @{
+                                                string[] arrListStr = item2.status.Split(' ');
+                                                string a = "";
+
+                                                for (int i = 0; i < arrListStr.Length; i++)
+                                                {
+                                                    a = a + arrListStr[i] + " ";
+                                                    if (i == 120)
+                                                    {
+                                                        a = a + arrListStr[i] + "...";
+                                                        break;
+                                                    }
+                                                }
+                                            }
                                             <div class="description item-desc hidden">
-                                                <p>Mô tả. </p>
+                                                <p>@a</p>
                                             </div>
                                         </div>
                                         <div class="button-group">

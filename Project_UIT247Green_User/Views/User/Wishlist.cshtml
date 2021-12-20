@@ -2,7 +2,8 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    List<Wishlist> list = Wishlist.Select();
+    Users u = Users.FindU(ViewBag.email);
+    List<Wishlist> list = Wishlist.Select(u.id);
     List<Product> listpro = Product.ListPro();
     List<Image_product> listimg = new List<Image_product>();
 }
@@ -144,9 +145,7 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            setTimeout(function () {
-                                location.reload(); 
-                            }, 1500);
+                            $("#cart").load(location.href + " #cart>*", "");
                         },
                         error: function () {
                             Swal.fire({

@@ -184,7 +184,7 @@ namespace Project_UIT247Green_User.Controllers
         }
         public IActionResult Ins(string name, string email, string phone, string add1,string add2, string district, string zone, string password)
         {
-            string addr = add1 + ", " + add2 + ", " + district + ", " + zone;
+            string addr = add1 + "," + add2 + "," + district + "," + zone;
             int check = Users.InsertU(name, email, password, addr, phone);
             if (check > 0)
             {
@@ -270,7 +270,7 @@ namespace Project_UIT247Green_User.Controllers
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
             Wishlist.Delete(u.id, id_pro);
-            return View("wishlist");
+            return RedirectToAction("wishlist");
         }
      
     }
