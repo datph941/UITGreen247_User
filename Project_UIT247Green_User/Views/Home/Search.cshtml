@@ -31,6 +31,8 @@
         pager = ViewBag.Pager;
         pageNo = pager.currentPage;
     }
+
+    List<Product> listpro1 = Product.ListProBest(4);
 }
 <body class="res layout-subpage banners-effect-6">
     <div id="wrapper" class="wrapper-full ">
@@ -90,164 +92,49 @@
                     <div class="module latest-product titleLine">
                         <h3 class="modtitle">Bán chạy</h3>
                         <div class="modcontent ">
-                            <div class="product-latest-item">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img src="~/image/demo/shop/product/m1.jpg" alt="Cisi Chicken"
-                                                 title="Cisi Chicken" class="img-responsive"
-                                                 style="width: 100px; height: 82px;">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="caption">
-                                            <h4><a href="#">Sản phẩm 1</a></h4>
-
-                                            <div class="price">
-                                                <span class="price-new">100.000đ</span>
-                                            </div>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
+                            @foreach (var item in listpro1)
+                            {
+                                listimg1 = Image_product.FindImgByIDPro(item.id_pro);
+                                double price_new = (@item.price * (100 + @item.sale_rate) / 100 * ((100 - @item.discount) / 100));
+                                <div class="product-latest-item">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.id_pro" asp-route-idcat="@item.id_cat">
+                                                <img src="@listimg1[0].link" alt="@item.name_pro"
+                                                     title="@item.name_pro" class="img-responsive"
+                                                     style="width: 100px; height: 82px;">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="caption">
+                                                <h4><a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.id_pro" asp-route-idcat="@item.id_cat">@item.name_pro</a></h4>
+                                                <div class="price">
+                                                    <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                </div>
+                                                <div class="ratings">
+                                                    <div class="rating-box">
+                                                        @for (int i = 1; i < 6; i++)
+                                                        {
+                                                            if (i <= item.rate)
+                                                            {
+                                                                <span class="fa fa-stack">
+                                                                    <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
+                                                                </span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="fa fa-stack">
+                                                                    <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                </span>
+                                                            }
+                                                        }
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="product-latest-item">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img src="~/image/demo/shop/product/m2.jpg" alt="Cisi Chicken"
-                                                 title="Cisi Chicken" class="img-responsive"
-                                                 style="width: 100px; height: 82px;">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="caption">
-                                            <h4><a href="#">Sản phẩm 2</a></h4>
-
-                                            <div class="price">
-                                                <span class="price-new">50.000đ</span>
-                                            </div>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-latest-item">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img src="~/image/demo/shop/product/18.jpg" alt="Cisi Chicken"
-                                                 title="Cisi Chicken" class="img-responsive"
-                                                 style="width: 100px; height: 82px;">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="caption">
-                                            <h4><a href="#">Sản phẩm 3</a></h4>
-
-                                            <div class="price">
-                                                <span class="price-new">50.000đ</span>
-                                            </div>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-latest-item transition">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img src="~/image/demo/shop/product/9.jpg" alt="Cisi Chicken"
-                                                 title="Cisi Chicken" class="img-responsive"
-                                                 style="width: 100px; height:82px;">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="caption">
-                                            <h4><a href="#">Sản phẩm 4</a></h4>
-
-                                            <div class="price">
-                                                <span class="price-new">50.000đ</span>
-                                            </div>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                    <span class="fa fa-stack">
-                                                        <i class="fa fa-star-o fa-stack-1x"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                     <div class="module">
@@ -376,16 +263,28 @@
                                                     }
                                                 </div>
                                             </div>
-                                            <div class="price">
-                                                @{
-                                                    double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
-                                                    double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
+                                            @if (item2.discount > 0)
+                                            {
+                                                <div class="price">
+                                                    @{
+                                                        double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
+                                                        double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
 
-                                                    <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
-                                                    <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
-                                                    <span class="label label-percent">@item2.discount%</span>
-                                                }
-                                            </div>
+                                                        <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                        <span class="price-old">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+                                                        <span class="label label-percent">@item2.discount%</span>
+                                                    }
+                                                </div>
+                                            }
+                                            else
+                                            { <div class="price">
+                                                    @{
+                                                        double price_old = (@item2.price * (100 + @item2.sale_rate) / 100);
+                                                        double price_new = (@item2.price * (100 + @item2.sale_rate) / 100 * ((100 - @item2.discount) / 100));
+                                                        <span class="price-new">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+                                                    }
+                                                </div>
+                                            }
                                             <div class="description item-desc hidden">
                                                 <p>Mô tả. </p>
                                             </div>
@@ -393,10 +292,10 @@
                                         <div class="button-group">
                                             @if (ViewBag.email != null)
                                             {
-                                                <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
+                                                <button class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
                                                    title="Thêm vào giỏ hàng">
                                                     <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                </a>
+                                                </button>
                                                 <button class="wishlist" type="button" data-toggle="tooltip"
                                                         title="Thêm vào danh sách yêu thích" data-idpro="@item2.id_pro">
                                                     <i class="fa fa-heart"></i>
@@ -404,10 +303,10 @@
                                             }
                                             else
                                             {
-                                                <a class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
+                                                <button class="addToCart" type="button" data-toggle="tooltip" data-id="@item2.id_pro"
                                                    title="Thêm vào giỏ hàng">
                                                     <i class="fa fa-shopping-cart"></i> <span class="hidden-xs">Thêm vào giỏ hàng</span>
-                                                </a>
+                                                </button>
                                                 <button class="wishlist" type="button" data-toggle="tooltip"
                                                         title="Thêm vào danh sách yêu thích">
                                                     <i class="fa fa-heart"></i>
@@ -429,20 +328,9 @@
                                 </div>
                                 <div class="short-by-show text-center col-md-7 col-sm-8 col-xs-12">
                                     <div class="form-group" style="margin: 7px 10px">
-                                        Hiển thị từ 1 đến 9 trong @list1.Count() sản phẩm (@pager.endPage Trang)
+                                        Hiển thị @list1.Count() sản phẩm (@pager.endPage Trang)
                                     </div>
                                 </div>
-                                <div class="box-pagination col-md-3 col-sm-4 text-right">
-                                    <ul class="pagination">
-                                        @for (var pge = pager.startPage; pge <= pager.endPage; pge++)
-                                        {
-                                            <li class="page-item @(pge==pager.currentPage ? "active" : "")">
-                                                <a class="page-link" asp-controller="home" asp-action="search" asp-route-id="@ViewBag.id_cat" asp-route-search="@ViewBag.search" asp-route-pg="@pge"> @pge</a>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-
                             </div>
                         </div>
                         <!-- //end Filters -->

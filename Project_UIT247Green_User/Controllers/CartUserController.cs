@@ -33,9 +33,16 @@ namespace Project_UIT247Green_User.Controllers
             double discount1 = 0;
             if (pro != null)
             {
-                string discount = String.Format("{0:0,0 vnđ}", pro.discount);
-                nofi = pro.name_promotion + " khả dụng được giảm " + discount;
-                discount1 = pro.discount;
+                if(pro.id_promotion==1)
+                {
+                    nofi = "Mã đã hết hạn sử dụng";
+                }   
+                else
+                {
+                    string discount = String.Format("{0:0,0 vnđ}", pro.discount);
+                    nofi = pro.name_promotion + " khả dụng được giảm " + discount;
+                    discount1 = pro.discount;
+                }    
             }
             else
             {

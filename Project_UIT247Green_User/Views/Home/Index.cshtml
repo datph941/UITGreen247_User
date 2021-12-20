@@ -7,6 +7,7 @@
         listpronew = ViewBag.listpronew;
     }
     List<Product> listprosale = Product.ListProSale();
+
     List<Product> listrau = Product.ListProCat(12);
     List<Product> listthit = Product.ListProCat(10);
     List<Product> listtraicay = Product.ListProCat(13);
@@ -14,6 +15,23 @@
     listtuoisong.AddRange(listrau);
     listtuoisong.AddRange(listthit);
     listtuoisong.AddRange(listtraicay);
+
+    List<Product> listdonglanh = new List<Product>();
+    List<Product> listcavien = Product.ListProCat(42);
+    List<Product> haisandonglanh = Product.ListProCat(44);
+    List<Product> listkem = Product.ListProCat(56);
+    listdonglanh.AddRange(listcavien);
+    listdonglanh.AddRange(haisandonglanh);
+    listdonglanh.AddRange(listkem);
+
+    List<Product> listdohop = new List<Product>();
+    List<Product> listcahop = Product.ListProCat(22);
+    List<Product> listthithop= Product.ListProCat(23);
+    List<Product> listraucuhop = Product.ListProCat(24);
+    listdohop.AddRange(listcahop);
+    listdohop.AddRange(listthithop);
+    listdohop.AddRange(listraucuhop);
+
 }
 <body class="common-home res layout-home7 ">
 
@@ -87,26 +105,26 @@
                                     <div class="policy policy1 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                         <div class="policy-inner">
                                             <span class="ico-policy"></span>
-                                            <h2>TRẢ HÀNG TRONG 12H</h2><a href="#">Hoàn tiền</a>
+                                            <h2>TRẢ HÀNG TRONG 12H</h2><a>Hoàn tiền</a>
                                         </div>
                                     </div>
                                     <div class="policy policy2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                         <div class="policy-inner">
-                                            <span class="ico-policy"></span><a href="#">
+                                            <span class="ico-policy"></span><a>
                                                 <h2>MIỄN PHÍ SHIP</h2>Hóa đơn trên 250.000đ
                                             </a>
                                         </div>
                                     </div>
                                     <div class="policy policy3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                         <div class="policy-inner">
-                                            <span class="ico-policy"></span><a href="#">
+                                            <span class="ico-policy"></span><a>
                                                 <h2>CAM KẾT</h2>Giá rẻ nhất
                                             </a>
                                         </div>
                                     </div>
                                     <div class="policy policy4 col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                         <div class="policy-inner">
-                                            <span class="ico-policy"></span><a href="#">
+                                            <span class="ico-policy"></span><a>
                                                 <h2>AN TOÀN</h2>Đảm bảo chất lượng
                                             </a>
                                         </div>
@@ -147,7 +165,6 @@
                                         <div class="ltabs-items ltabs-items-loaded ltabs-items-selected items-category-20 grid"
                                              data-total="10">
                                             <div class="ltabs-items-inner ltabs-slider ">
-
                                                 <!--Sản phẩm mới-->
                                                 @foreach (var item in listpronew)
                                                 {
@@ -172,7 +189,7 @@
                                                                 <span class="label label-new">Mới</span>
                                                                 <!--full quick view block-->
                                                                 <a class="quickview iframe-link visible-lg"
-                                                                   data-fancybox-type="iframe" href="quickview.html">
+                                                                   data-fancybox-type="iframe"  asp-controller="home" asp-action="quickview" asp-route-id_pro="@item.id_pro" asp-route-id_cat="@item.id_cat">
                                                                     Xem
                                                                     nhanh
                                                                 </a>
@@ -330,7 +347,7 @@
                                                                 }
                                                                 <!--full quick view block-->
                                                                 <a class="quickview iframe-link visible-lg"
-                                                                   data-fancybox-type="iframe" href="quickview.html">
+                                                                   data-fancybox-type="iframe" asp-controller="home" asp-action="quickview" asp-route-id_pro="@item.id_pro" asp-route-id_cat="@item.id_cat">
                                                                     Xem
                                                                     nhanh
                                                                 </a>
@@ -435,7 +452,7 @@
                                                                 }
                                                                 <!--full quick view block-->
                                                                 <a class="quickview iframe-link visible-lg"
-                                                                   data-fancybox-type="iframe" href="quickview.html">
+                                                                   data-fancybox-type="iframe"  asp-controller="home" asp-action="quickview" asp-route-id_pro="@item.id_pro" asp-route-id_cat="@item.id_cat">
                                                                     Xem
                                                                     nhanh
                                                                 </a>
@@ -543,7 +560,7 @@
                                  data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes"
                                  data-loop="no" data-hoverpause="yes">
                                 <!--Begin Items-->
-                                @foreach (var item in listprosale)
+                                @foreach (var item in listdonglanh)
                                 {
                                     List<Image_product> listimg = new List<Image_product>();
                                     listimg = Image_product.FindImgByIDPro(item.id_pro);
@@ -555,10 +572,13 @@
                                                          class="img-responsive">
                                                 </div>
                                                 <!--Sale Label-->
-                                                <span class="label label-sale">Giảm giá</span>
+                                                @if (item.discount > 0)
+                                                {
+                                                    <span class="label label-sale">Giảm giá</span>
+                                                }
                                                 <!--full quick view block-->
                                                 <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                                   href="quickview.html"> Xem nhanh</a>
+                                                    asp-controller="home" asp-action="quickview" asp-route-id_pro="@item.id_pro" asp-route-id_cat="@item.id_cat"> Xem nhanh</a>
                                                 <!--end full quick view block-->
                                             </div>
                                             <div class="right-block">
@@ -586,9 +606,21 @@
                                                     <div class="price">
                                                         @{
                                                             double price_old = (@item.price * (100 + @item.sale_rate) / 100);
-                                                            double price_new = (@item.price * (100 + @item.sale_rate) / 100 * ((100 - @item.discount) / 100));
-                                                            <span class="price-new">@String.Format("{0:0,0 vnđ}", price_new)</span>
-                                                            <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                            double price_new = (@item.price * (100 + @item.sale_rate) / 100 * ((100 - @item.discount) / 100));                                     
+                                                        }
+                                                        @if (item.discount > 0)
+                                                        {
+                                                            <div class="price">
+                                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                                <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="price">
+                                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+
+                                                            </div>
                                                         }
                                                     </div>
                                                 </div>
@@ -646,7 +678,7 @@
                                  data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes"
                                  data-loop="no" data-hoverpause="yes">
                                 <!--Begin Items-->
-                                @foreach (var item in listprosale)
+                                @foreach (var item in listdohop)
                                 {
                                     List<Image_product> listimg = new List<Image_product>();
                                     listimg = Image_product.FindImgByIDPro(item.id_pro);
@@ -658,10 +690,13 @@
                                                          class="img-responsive">
                                                 </div>
                                                 <!--Sale Label-->
-                                                <span class="label label-sale">Giảm giá</span>
+                                                @if (item.discount > 0)
+                                                {
+                                                    <span class="label label-sale">Giảm giá</span>
+                                                }
                                                 <!--full quick view block-->
                                                 <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                                   href="quickview.html"> Xem nhanh</a>
+                                                    asp-controller="home" asp-action="quickview" asp-route-id_pro="@item.id_pro" asp-route-id_cat="@item.id_cat"> Xem nhanh</a>
                                                 <!--end full quick view block-->
                                             </div>
                                             <div class="right-block">
@@ -690,8 +725,20 @@
                                                         @{
                                                             double price_old = (@item.price * (100 + @item.sale_rate) / 100);
                                                             double price_new = (@item.price * (100 + @item.sale_rate) / 100 * ((100 - @item.discount) / 100));
-                                                            <span class="price-new">@String.Format("{0:0,0 vnđ}", price_new)</span>
-                                                            <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                        }
+                                                        @if (item.discount > 0)
+                                                        {
+                                                            <div class="price">
+                                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_new)</span>
+                                                                <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="price">
+                                                                <span class="price-new" itemprop="price">@String.Format("{0:0,0 VNĐ}", price_old)</span>
+
+                                                            </div>
                                                         }
                                                     </div>
                                                 </div>
@@ -724,8 +771,6 @@
                                     </div>
                                 }
                                 <!--End Items-->
-
-
                             </div>
                             <!--End extraslider-inner -->
                         </div>
@@ -764,7 +809,7 @@
                                                 <span class="label label-sale">Giảm giá</span>
                                                 <!--full quick view block-->
                                                 <a class="quickview iframe-link visible-lg" data-fancybox-type="iframe"
-                                                   href="quickview.html"> Xem nhanh</a>
+                                                    asp-controller="home" asp-action="quickview" asp-route-id_pro="@item.id_pro" asp-route-id_cat="@item.id_cat"> Xem nhanh</a>
                                                 <!--end full quick view block-->
                                             </div>
                                             <div class="right-block">

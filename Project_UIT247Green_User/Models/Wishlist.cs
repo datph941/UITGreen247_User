@@ -14,7 +14,7 @@ namespace Project_UIT247Green_User.Models
         {
             using (var context = new DataContext())
             {
-                Wishlist wishlist = null;
+                Wishlist wishlist = new Wishlist();
                 wishlist = context.Wishlist.Where(p => p.id_user == id && p.id_pro == id_pro).FirstOrDefault();
                 if (wishlist == null)
                 {
