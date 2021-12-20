@@ -76,46 +76,46 @@
                             <ul class="top-link list-inline">
                                 @if (ViewBag.email != null)
                                 {
-                                    <li class="account" id="my_account">
+                                <li class="account" id="my_account">
 
-                                        <a asp-controller="user" asp-action="myaccount" title="My Account"
-                                           class="btn btn-xs dropdown-toggle">
+                                    <a asp-controller="user" asp-action="myaccount" title="My Account"
+                                       class="btn btn-xs dropdown-toggle">
 
-                                            <i class="fa fa-user"></i> @ViewBag.email
-                                        </a>
-                                    </li>
-                                    <li class="wish">
-                                        <a asp-controller="user" asp-action="wishlist" class="top-link-wishlist"
-                                           title="wishlist"><i class="fa fa-heart"></i> Yêu thích</a>
-                                    </li>
-                                    <li class="checkout">
-                                        <a asp-controller="cartuser" asp-action="checkout" class="top-link-checkout"
-                                           title="Checkout"><i class="fa fa-check-square-o"></i> Thanh toán</a>
-                                    </li>
-                                    <li class="signin">
-                                        <a asp-controller="user" asp-action="logout" class="top-link-checkout" title="login">
-                                            <i class="fa fa-unlock"></i> Đăng xuất
-                                        </a>
-                                    </li>
+                                        <i class="fa fa-user"></i> @ViewBag.email
+                                    </a>
+                                </li>
+                                <li class="wish">
+                                    <a asp-controller="user" asp-action="wishlist" class="top-link-wishlist"
+                                       title="wishlist"><i class="fa fa-heart"></i> Yêu thích</a>
+                                </li>
+                                <li class="checkout">
+                                    <a asp-controller="cartuser" asp-action="checkout" class="top-link-checkout"
+                                       title="Checkout"><i class="fa fa-check-square-o"></i> Thanh toán</a>
+                                </li>
+                                <li class="signin">
+                                    <a asp-controller="user" asp-action="logout" class="top-link-checkout" title="login">
+                                        <i class="fa fa-unlock"></i> Đăng xuất
+                                    </a>
+                                </li>
                                 }
                                 else
                                 {
-                                    <li>
-                                        <a asp-controller="user" asp-action="login" title="My Account"
-                                           class="btn btn-xs dropdown-toggle">
+                                <li>
+                                    <a asp-controller="user" asp-action="login" title="My Account"
+                                       class="btn btn-xs dropdown-toggle">
 
-                                            <i class="fa fa-user"></i> Tài khoản
-                                        </a>
-                                    </li>
-                                    <li class="checkout">
-                                        <a asp-controller="cart" asp-action="checkout" class="top-link-checkout"
-                                           title="Checkout"><i class="fa fa-check-square-o"></i> Thanh toán</a>
-                                    </li>
-                                    <li class="signin">
-                                        <a asp-controller="user" asp-action="login" class="top-link-checkout" title="login">
-                                            <i class="fa fa-lock"></i> Đăng nhập
-                                        </a>
-                                    </li>
+                                        <i class="fa fa-user"></i> Tài khoản
+                                    </a>
+                                </li>
+                                <li class="checkout">
+                                    <a asp-controller="cart" asp-action="checkout" class="top-link-checkout"
+                                       title="Checkout"><i class="fa fa-check-square-o"></i> Thanh toán</a>
+                                </li>
+                                <li class="signin">
+                                    <a asp-controller="user" asp-action="login" class="top-link-checkout" title="login">
+                                        <i class="fa fa-lock"></i> Đăng nhập
+                                    </a>
+                                </li>
                                 }
                             </ul>
                         </div>
@@ -145,7 +145,7 @@
                                         <option value="0">Tất cả danh mục</option>
                                         @foreach (var item in listCat)
                                         {
-                                            <option value="@item.id_cat">@item.name_cat</option>
+                                        <option value="@item.id_cat">@item.name_cat</option>
                                         }
                                     </select>
                                 </div>
@@ -174,261 +174,261 @@
                     @if (ViewBag.email == null)
                     {
                         <!-- Ô giỏ hàng -->
-                        <div id="slsp" class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
-                            <!--Giỏ hàng-->
-                            <div id="cart" class="btn-group btn-shopping-cart">
-                                <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
-                                   data-toggle="dropdown">
-                                    <div class="shopcart">
-                                        <span class="handle pull-left"></span>
-                                        <span class="title">Giỏ hàng</span>
-                                        @if (ViewBag.cart != null)
+                    <div id="slsp" class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
+                        <!--Giỏ hàng-->
+                        <div id="cart" class="btn-group btn-shopping-cart">
+                            <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
+                               data-toggle="dropdown">
+                                <div class="shopcart">
+                                    <span class="handle pull-left"></span>
+                                    <span class="title">Giỏ hàng</span>
+                                    @if (ViewBag.cart != null)
                                         {
-                                            <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
+                                    <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
                                         }
                                         else
                                         {
-                                            <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
+                                    <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
                                         }
-                                    </div>
-                                </a>
-                                <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
-                                    <li>
-                                        <table class="table table-striped">
-                                            <tbody>
-                                                @if (ViewBag.cart != null)
+                                </div>
+                            </a>
+                            <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
+                                <li>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            @if (ViewBag.cart != null)
                                                 {
                                                     int i = 0;
-                                                    @foreach (var item in ViewBag.cart)
+                                            @foreach (var item in ViewBag.cart)
                                                     {
-                                                        @if (i == 5)
+                                            @if (i == 5)
                                                         {
                                                             break;
                                                         }
                                                         listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
                                                         double price_new = (@item.Product.price * (100 + @item.Product.sale_rate) / 100 * ((100 - @item.Product.discount) / 100));
-                                                        <tr>
-                                                            <td class="text-center" style="width:70px">
-                                                                <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.Product.id_pro" asp-route-idcat="@item.Product.id_cat">
-                                                                    <img src="@listimg[0].link"
-                                                                         style="width:70px" alt="@item.Product.name_pro" title="@item.Product.name_pro"
-                                                                         class="preview">
-                                                                </a>
-                                                            </td>
-                                                            <td class="text-left">
-                                                                <a class="cart_product_name"
-                                                                   asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.Product.id_pro" asp-route-idcat="@item.Product.id_cat">@item.Product.name_pro</a>
-                                                            </td>
-                                                            <td class="text-center">@item.Quantity</td>
-                                                            <td class="text-center">@String.Format("{0:0,0 vnđ}", price_new * item.Quantity)</td>
-                                                            @{
+                                            <tr>
+                                                <td class="text-center" style="width:70px">
+                                                    <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.Product.id_pro" asp-route-idcat="@item.Product.id_cat">
+                                                        <img src="@listimg[0].link"
+                                                             style="width:70px" alt="@item.Product.name_pro" title="@item.Product.name_pro"
+                                                             class="preview">
+                                                    </a>
+                                                </td>
+                                                <td class="text-left">
+                                                    <a class="cart_product_name"
+                                                       asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.Product.id_pro" asp-route-idcat="@item.Product.id_cat">@item.Product.name_pro</a>
+                                                </td>
+                                                <td class="text-center">@item.Quantity</td>
+                                                <td class="text-center">@String.Format("{0:0,0 vnđ}", price_new * item.Quantity)</td>
+                                                @{
                                                                 i = i + 1;
-                                                            }
-                                                        </tr>
+                                                }
+                                            </tr>
                                                     }
                                                 }
-                                            </tbody>
-                                        </table>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <table class="table table-bordered">
-                                                <tbody>
-                                                    @if (ViewBag.cart != null)
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>
+                                    <div>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                @if (ViewBag.cart != null)
                                                     {
-                                                        @if (ViewBag.cart != null && ViewBag.cart.Count > 5)
+                                                @if (ViewBag.cart != null && ViewBag.cart.Count > 5)
                                                         {
                                                             int sl = ViewBag.cart.Count - 5;
-                                                            <tr>
-                                                                <td colspan="2" style="text-align:center;">Và @sl sản phẩm</td>
-                                                            </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center;">Và @sl sản phẩm</td>
+                                                </tr>
                                                         }
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>Tổng tiền hàng</strong>
-                                                            </td>
-                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
-                                                        </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng tiền hàng</strong>
+                                                    </td>
+                                                    <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                </tr>
 
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>VAT: </strong>
-                                                            </td>
-                                                            <td class="text-right">Bao gồm trong sản phẩm</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>Tổng thanh toán</strong>
-                                                            </td>
-                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
-                                                        </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>VAT: </strong>
+                                                    </td>
+                                                    <td class="text-right">Bao gồm trong sản phẩm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng thanh toán</strong>
+                                                    </td>
+                                                    <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                </tr>
                                                     }
                                                     else
                                                     {
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>Tổng tiền hàng</strong>
-                                                            </td>
-                                                            <td class="text-right">0 vnđ</td>
-                                                        </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng tiền hàng</strong>
+                                                    </td>
+                                                    <td class="text-right">0 vnđ</td>
+                                                </tr>
 
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>VAT: </strong>
-                                                            </td>
-                                                            <td class="text-right">Bao gồm trong sản phẩm</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>Tổng thanh toán</strong>
-                                                            </td>
-                                                            <td class="text-right">0 vnđ</td>
-                                                        </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>VAT: </strong>
+                                                    </td>
+                                                    <td class="text-right">Bao gồm trong sản phẩm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng thanh toán</strong>
+                                                    </td>
+                                                    <td class="text-right">0 vnđ</td>
+                                                </tr>
                                                     }
-                                                </tbody>
-                                            </table>
+                                            </tbody>
+                                        </table>
 
-                                            <p class="text-right">
-                                                <a class="btn view-cart" asp-controller="cart" asp-action="index">
-                                                    <i class="fa fa-shopping-cart"></i>Xem giỏ
-                                                    hàng
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!--//giỏ hàng-->
+                                        <p class="text-right">
+                                            <a class="btn view-cart" asp-controller="cart" asp-action="index">
+                                                <i class="fa fa-shopping-cart"></i>Xem giỏ
+                                                hàng
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
+                        <!--//giỏ hàng-->
+                    </div>
                     }
                     else
                     {
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
-                            <!--Giỏ hàng-->
-                            <div id="cart" class="btn-group btn-shopping-cart">
-                                <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
-                                   data-toggle="dropdown">
-                                    <div class="shopcart">
-                                        <span class="handle pull-left"></span>
-                                        <span class="title">Giỏ hàng</span>
-                                        @if (ViewBag.cart != null)
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 shopping_cart pull-right">
+                        <!--Giỏ hàng-->
+                        <div id="cart" class="btn-group btn-shopping-cart">
+                            <a data-loading-text="Loading..." class="top_cart dropdown-toggle"
+                               data-toggle="dropdown">
+                                <div class="shopcart">
+                                    <span class="handle pull-left"></span>
+                                    <span class="title">Giỏ hàng</span>
+                                    @if (ViewBag.cart != null)
                                         {
-                                            <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
+                                    <p class="text-shopping-cart cart-total-full">@ViewBag.cart.Count sản phẩm - @String.Format("{0:0,0 vnđ}", ViewBag.total)</p>
                                         }
                                         else
                                         {
-                                            <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
+                                    <p class="text-shopping-cart cart-total-full">0 sản phẩm - 0vnđ</p>
                                         }
-                                    </div>
-                                </a>
-                                <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
-                                    <li>
-                                        <table class="table table-striped">
-                                            <tbody>
-                                                @if (ViewBag.cart != null)
+                                </div>
+                            </a>
+                            <ul class="tab-content content dropdown-menu pull-right shoppingcart-box" role="menu">
+                                <li>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            @if (ViewBag.cart != null)
                                                 {
                                                     int i = 0;
-                                                    @foreach (var item in ViewBag.cart)
+                                            @foreach (var item in ViewBag.cart)
                                                     {
-                                                        @if (i == 5)
+                                            @if (i == 5)
                                                         {
                                                             break;
                                                         }
                                                         Product pro = Product.FindProByID(item.Product.id_pro);
                                                         listimg = Image_product.FindImgByIDPro(item.Product.id_pro);
                                                         double price_new = (@pro.price * (100 + @pro.sale_rate) / 100 * ((100 - @pro.discount) / 100));
-                                                        <tr>
-                                                            <td class="text-center" style="width:70px">
-                                                                <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
-                                                                    <img src="@listimg[0].link"
-                                                                         style="width:70px" alt="@pro.name_pro" title="@pro.name_pro"
-                                                                         class="preview">
-                                                                </a>
-                                                            </td>
-                                                            <td class="text-left">
-                                                                <a class="cart_product_name"
-                                                                   asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">@pro.name_pro</a>
-                                                            </td>
-                                                            <td class="text-center">@item.Quantity</td>
-                                                            <td class="text-center">@String.Format("{0:0,0 VNĐ}", price_new * item.Quantity)</td>
-                                                            @{
+                                            <tr>
+                                                <td class="text-center" style="width:70px">
+                                                    <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">
+                                                        <img src="@listimg[0].link"
+                                                             style="width:70px" alt="@pro.name_pro" title="@pro.name_pro"
+                                                             class="preview">
+                                                    </a>
+                                                </td>
+                                                <td class="text-left">
+                                                    <a class="cart_product_name"
+                                                       asp-controller="home" asp-action="product_detail" asp-route-idpro="@pro.id_pro" asp-route-idcat="@pro.id_cat">@pro.name_pro</a>
+                                                </td>
+                                                <td class="text-center">@item.Quantity</td>
+                                                <td class="text-center">@String.Format("{0:0,0 VNĐ}", price_new * item.Quantity)</td>
+                                                @{
                                                                 i = i + 1;
-                                                            }
-                                                        </tr>
+                                                }
+                                            </tr>
                                                     }
                                                 }
-                                            </tbody>
-                                        </table>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <table class="table table-bordered">
-                                                <tbody>
-                                                    @if (ViewBag.cart != null)
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li>
+                                    <div>
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                @if (ViewBag.cart != null)
                                                     {
-                                                        @if (ViewBag.cart != null && ViewBag.cart.Count > 5)
+                                                @if (ViewBag.cart != null && ViewBag.cart.Count > 5)
                                                         {
                                                             int sl = ViewBag.cart.Count - 5;
-                                                            <tr>
-                                                                <td colspan="2" style="text-align:center;">Và @sl sản phẩm</td>
-                                                            </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center;">Và @sl sản phẩm</td>
+                                                </tr>
                                                         }
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>Tổng tiền hàng</strong>
-                                                            </td>
-                                                            <td class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.total)</td>
-                                                        </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng tiền hàng</strong>
+                                                    </td>
+                                                    <td class="text-right">@String.Format("{0:0,0 VNĐ}", ViewBag.total)</td>
+                                                </tr>
 
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>VAT: </strong>
-                                                            </td>
-                                                            <td class="text-right">Bao gồm trong sản phẩm</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>Tổng thanh toán</strong>
-                                                            </td>
-                                                            <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
-                                                        </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>VAT: </strong>
+                                                    </td>
+                                                    <td class="text-right">Bao gồm trong sản phẩm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng thanh toán</strong>
+                                                    </td>
+                                                    <td class="text-right">@String.Format("{0:0,0 vnđ}", ViewBag.total)</td>
+                                                </tr>
                                                     }
                                                     else
                                                     {
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>Tổng tiền hàng</strong>
-                                                            </td>
-                                                            <td class="text-right">0 vnđ</td>
-                                                        </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng tiền hàng</strong>
+                                                    </td>
+                                                    <td class="text-right">0 vnđ</td>
+                                                </tr>
 
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>VAT: </strong>
-                                                            </td>
-                                                            <td class="text-right">Bao gồm trong sản phẩm</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-left">
-                                                                <strong>Tổng thanh toán</strong>
-                                                            </td>
-                                                            <td class="text-right">0 vnđ</td>
-                                                        </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>VAT: </strong>
+                                                    </td>
+                                                    <td class="text-right">Bao gồm trong sản phẩm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left">
+                                                        <strong>Tổng thanh toán</strong>
+                                                    </td>
+                                                    <td class="text-right">0 vnđ</td>
+                                                </tr>
                                                     }
-                                                </tbody>
-                                            </table>
-                                            <p class="text-right">
-                                                <a class="btn view-cart" asp-controller="cartuser" asp-action="index">
-                                                    <i class="fa fa-shopping-cart"></i>Xem giỏ
-                                                    hàng
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!--//giỏ hàng-->
+                                            </tbody>
+                                        </table>
+                                        <p class="text-right">
+                                            <a class="btn view-cart" asp-controller="cartuser" asp-action="index">
+                                                <i class="fa fa-shopping-cart"></i>Xem giỏ
+                                                hàng
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
+                        <!--//giỏ hàng-->
+                    </div>
                     }
                     <!-- //Ô giỏ hàng -->
                 </div>
@@ -475,43 +475,43 @@
                                                         <ul class="megamenu">
                                                             @foreach (var item in listCat)
                                                             {
-                                                                <li class="item-vertical css-menu with-sub-menu hover">
-                                                                    <p class="close-menu"></p>
-                                                                    <a href="#" class="clearfix">
+                                                            <li class="item-vertical css-menu with-sub-menu hover">
+                                                                <p class="close-menu"></p>
+                                                                <a href="#" class="clearfix">
 
-                                                                        <!-- <img src="~/image/theme/icons/2.png" alt="icon"> -->
-                                                                        <span>@item.name_cat</span>
-                                                                        <b class="caret"></b>
-                                                                    </a>
-                                                                    <div class="sub-menu" data-subwidth="30"
-                                                                         style="width: 270px; display: none; right: 0px;">
-                                                                        <div class="content" style="display: none;">
-                                                                            <div class="row">
-                                                                                <div class="col-sm-12">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-12 hover-menu">
-                                                                                            <div class="menu">
-                                                                                                <ul>
+                                                                    <!-- <img src="~/image/theme/icons/2.png" alt="icon"> -->
+                                                                    <span>@item.name_cat</span>
+                                                                    <b class="caret"></b>
+                                                                </a>
+                                                                <div class="sub-menu" data-subwidth="30"
+                                                                     style="width: 270px; display: none; right: 0px;">
+                                                                    <div class="content" style="display: none;">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-12 hover-menu">
+                                                                                        <div class="menu">
+                                                                                            <ul>
 
-                                                                                                    @foreach (var item1 in list)
+                                                                                                @foreach (var item1 in list)
                                                                                                     {
                                                                                                         if (item1.id_parent == item.id_cat)
                                                                                                         {
-                                                                                                            <li>
-                                                                                                                <a asp-controller="home" asp-action="category" asp-route-id="@item1.id_cat"
-                                                                                                                   class="main-menu">@item1.name_cat</a>
-                                                                                                            </li>
+                                                                                                <li>
+                                                                                                    <a asp-controller="home" asp-action="category" asp-route-id="@item1.id_cat"
+                                                                                                       class="main-menu">@item1.name_cat</a>
+                                                                                                </li>
                                                                                                         }
                                                                                                     }
-                                                                                                </ul>
-                                                                                            </div>
+                                                                                            </ul>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </li>
+                                                                </div>
+                                                            </li>
                                                             }
                                                             <!-- <li class="loadmore">
                                                                 <i class="fa fa-plus-square-o"></i>
@@ -573,11 +573,11 @@
                                                                                         <li><a asp-controller="cart" asp-action="checkout">Thanh toán</a></li>
                                                                                         @if (ViewBag.email != null)
                                                                                         {
-                                                                                            <li><a asp-controller="user" asp-action="wishlist">Yêu thích</a></li>
+                                                                                        <li><a asp-controller="user" asp-action="wishlist">Yêu thích</a></li>
                                                                                         }
                                                                                         else
                                                                                         {
-                                                                                            <li><a asp-controller="user" asp-action="register">Yêu thích</a></li>
+                                                                                        <li><a asp-controller="user" asp-action="register">Yêu thích</a></li>
                                                                                         }
                                                                                     </ul>
                                                                                 </div>
@@ -590,17 +590,17 @@
                                                                                     <ul class="row-list">
                                                                                         @if (ViewBag.email == null)
                                                                                         {
-                                                                                            <li><a asp-controller="user" asp-action="login">Đăng nhập</a></li>
-                                                                                            <li><a asp-controller="user" asp-action="register">Đăng ký</a></li>
+                                                                                        <li><a asp-controller="user" asp-action="login">Đăng nhập</a></li>
+                                                                                        <li><a asp-controller="user" asp-action="register">Đăng ký</a></li>
                                                                                         }
                                                                                         else
                                                                                         {
-                                                                                            <li>
-                                                                                                <a asp-controller="user" asp-action="myaccount">Thông tin tài khoản</a>
-                                                                                            </li>
-                                                                                            <li>
-                                                                                                <a asp-controller="order" asp-action="order_history">Lịch sử đặt hàng</a>
-                                                                                            </li>
+                                                                                        <li>
+                                                                                            <a asp-controller="user" asp-action="myaccount">Thông tin tài khoản</a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a asp-controller="order" asp-action="order_history">Lịch sử đặt hàng</a>
+                                                                                        </li>
 
                                                                                         }
                                                                                     </ul>
@@ -670,10 +670,10 @@
                                                                                         <ul>
                                                                                             @foreach (var item in list1)
                                                                                             {
-                                                                                                <li>
-                                                                                                    <a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat"
-                                                                                                       class="main-menu">@item.name_cat</a>
-                                                                                                </li>
+                                                                                            <li>
+                                                                                                <a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat"
+                                                                                                   class="main-menu">@item.name_cat</a>
+                                                                                            </li>
 
                                                                                             }
                                                                                         </ul>
@@ -689,10 +689,10 @@
                                                                                         <ul>
                                                                                             @foreach (var item in list2)
                                                                                             {
-                                                                                                <li>
-                                                                                                    <a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat"
-                                                                                                       class="main-menu">@item.name_cat</a>
-                                                                                                </li>
+                                                                                            <li>
+                                                                                                <a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat"
+                                                                                                   class="main-menu">@item.name_cat</a>
+                                                                                            </li>
 
                                                                                             }
                                                                                         </ul>
@@ -708,10 +708,10 @@
                                                                                         <ul>
                                                                                             @foreach (var item in list3)
                                                                                             {
-                                                                                                <li>
-                                                                                                    <a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat"
-                                                                                                       class="main-menu">@item.name_cat</a>
-                                                                                                </li>
+                                                                                            <li>
+                                                                                                <a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat"
+                                                                                                   class="main-menu">@item.name_cat</a>
+                                                                                            </li>
                                                                                             }
                                                                                         </ul>
                                                                                     </div>
@@ -726,10 +726,10 @@
                                                                                         <ul>
                                                                                             @foreach (var item in list4)
                                                                                             {
-                                                                                                <li>
-                                                                                                    <a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat"
-                                                                                                       class="main-menu">@item.name_cat</a>
-                                                                                                </li>
+                                                                                            <li>
+                                                                                                <a asp-controller="home" asp-action="category" asp-route-id="@item.id_cat"
+                                                                                                   class="main-menu">@item.name_cat</a>
+                                                                                            </li>
 
                                                                                             }
                                                                                         </ul>
@@ -975,7 +975,6 @@
             </li>
         </ul>
     </section> <!-- End Social widgets -->
-
     <!-- Include Libs & Plugins
     ============================================ -->
     <script type="text/javascript" src="~/js/jquery-2.2.4.min.js"></script>
