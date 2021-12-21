@@ -214,6 +214,7 @@ namespace Project_UIT247Green_User.Controllers
             }
             Order_status.Insert(id_ord, "Đã đặt hàng", u.address);
             Cart.DeleteAll(u.id,listitem);
+
             return RedirectToAction("index");
         }
     }
