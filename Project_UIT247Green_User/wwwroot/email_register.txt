@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<!--[if gte mso 9]>
+<xml>
+  <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+  </o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="x-apple-disable-message-reformatting">
+  <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
+  <title></title>
+  
+    <style type="text/css">
+      table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } @media (max-width: 480px) { #u_content_image_1 .v-src-width { width: auto !important; } #u_content_image_1 .v-src-max-width { max-width: 48% !important; } #u_content_image_3 .v-src-width { width: auto !important; } #u_content_image_3 .v-src-max-width { max-width: 26% !important; } #u_content_text_7 .v-text-align { text-align: center !important; } }
+@media only screen and (min-width: 620px) {
+  .u-row {
+    width: 600px !important;
+  }
+  .u-row .u-col {
+    vertical-align: top;
+  }
+
+  .u-row .u-col-100 {
+    width: 600px !important;
+  }
+
+}
+
+@media (max-width: 620px) {
+  .u-row-container {
+    max-width: 100% !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .u-row .u-col {
+    min-width: 320px !important;
+    max-width: 100% !important;
+    display: block !important;
+  }
+  .u-row {
+    width: calc(100% - 40px) !important;
+  }
+  .u-col {
+    width: 100% !important;
+  }
+  .u-col > div {
+    margin: 0 auto;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+table,
+tr,
+td {
+  vertical-align: top;
+  border-collapse: collapse;
+}
+
+p {
+  margin: 0;
+}
+
+.ie-container table,
+.mso-container table {
+  table-layout: fixed;
+}
+
+* {
+  line-height: inherit;
+}
+
+a[x-apple-data-detectors='true'] {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+</style>
+  
+  
+
+</head>
+
+<body class="clean-body u_body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #f2f5da;color: #000000">
+  <!--[if IE]><div class="ie-container"><![endif]-->
+  <!--[if mso]><div class="mso-container"><![endif]-->
+  <table style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #f2f5da;width:100%" cellpadding="0" cellspacing="0">
+  <tbody>
+  <tr style="vertical-align: top">
+    <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
+    <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: #f2f5da;"><![endif]-->
+    
+
+<div class="u-row-container" style="padding: 0px;background-color: #f2f5da">
+  <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #fbf9ec;">
+    <div style="border-collapse: collapse;display: table;width: 100%;background-image: url('https://lh3.googleusercontent.com/mm6nsZ3fLZTxZYsMNWpx0uuyWbCHjwN3YVzrfMEqbHagO2ZhY5UPfV_tDucl62V00e7_lPxzaJcd4SMK1dEDBPk3fzWrnjI5sKXB-mh7afpyCQ-SRzy06qQUvLb-jqOJw2-M7CU4AVTu4pqO4-IHAAzkHPfDZ8mIE4T3Cp7fMMZzceoTu6Dd0uW-jp45S-K-PVWOvAw9j9VCYav-tBufQE2QzdiZdR-ZOei4UUB8a9XakIAlE28O59MtCL2LAt1-fI7z1waeHc4kiNaBZ8u0H_pmBG13QXK_2s6WrcPyuunF0eLXxn1XPMbGZvBK7kQOYmVp7wyxZRzjLuQZ8R1bHGX-sWCLtuH5jhyE4hm-S4_E2Q6PZ2U7IT0VX1tcFvHJY3zEfeH61AnE2HjymgEDO5sINTZD-2Sc9FihDB7VXtvsSSwI8H-BQ3nbueDjU-pUCLToPGo4YfzDvAG6pUw_G-Vxx89JatolhllFZZFwnj18_grTeeem8JSQoAXnZzrki8EShNopB-Pd2iPkS8PKWg5tOrESRbjiYIJwBqzGRvawQNqOtJrBn8ODQBuSvn4sQLuB_HNsv5r_B4DT8ricyYoffdskMibT4QNwOnXoBJpCBoUP2pny0MT0Nadc5agCpuPU_niV3gT5WJua5LrD6neZz4Ut13lGqrZvvJh2cnkXYqDo44oVsgJclpZQ6Ssh9LYGjGY8uqfEWNPadZYeNLEWgw=w600-h650-no?authuser=1');background-repeat: no-repeat;background-position: center top;background-color: transparent;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: #f2f5da;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-image: url('images/image-3.png');background-repeat: no-repeat;background-position: center top;background-color: #fbf9ec;"><![endif]-->
+      
+<!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
+<div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+  <div style="width: 100% !important;">
+  <!--[if (!mso)&(!IE)]><!--><div style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
+  
+<table id="u_content_image_1" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:20px 10px 15px;font-family:arial,helvetica,sans-serif;" align="left">
+        
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;" align="center">
+      
+      <img align="center" border="0" src="https://lh3.googleusercontent.com/VsN_ny6L1Rg3jiIrJV9KMs-Fc-XQOwXQZw0hs5HQA1rT4Uh3L2nAkipdjNXHfIdiVbgDCVmQ0Xfr87n_htI5KseHO-Jz54exogaellXUlnfXBrpnorYYzxl6S_VE1sv0ofzviac67HA-nN4j9oJw7BB2wDsfHaEWK9C9wmlKVbCCDhwqjH01T5_ElDC7PuKUx1VSyNhvSP_UmwXUk4-M8MCyBKZJ3dCD3c2XoYh34XUBQbc0g06omHxa-3cpgtrh18e4anUCA6MaTabReqnBrIv1v7amUshnG27jWpiL2PvMocUIQEfVFoaHTZTHQLkHV5aJuU3pwTAw5J8A8bEbO_5nKgxEFXbwH4tSHNh6iQTOPCU45ocEodnElEwsBS4hzkwoL3K8bLdWZ4Tk172YX-GO9U8Nq_Agvyyb4mSgOjfvsAN3vJ0vzQMYDULanqkmj7dqcNwfE7J5XZfAJ57LlpDckMsxVt604PqMhSRhuTiIGmcb3ndUcv03H-8eSaEVQ3THi3SY0U7udbjZ4gQzzcgRji07rLHhmzYfKBfY4zesVK76nlz2fi4fVhoM6NUlOPA69-6pe_ug5jSpptFl67XHzfDTql9_ajPInwq1aNNBgJNpaTNFxeuftWKdbfAWhw8HqXACELJNvYSP0EPm6jfpk-MCkj8Fp4wmlvqBMG4IF6KfYeXkQX_EQUuEQ6hIx25q7MAR2QS1lQJs6grYL5y-XQ=w500-h131-no?authuser=1" alt="lgo" title="lgo" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 33%;max-width: 191.4px;" width="191.4" class="v-src-width v-src-max-width"/>
+      
+    </td>
+  </tr>
+</table>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
+        
+  <table height="0px" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 0px solid #34495e;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+    <tbody>
+      <tr style="vertical-align: top">
+        <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+          <span>&#160;</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:13px 10px 10px;font-family:arial,helvetica,sans-serif;" align="left">
+        
+  <div class="v-text-align" style="color: #161819; line-height: 140%; text-align: center; word-wrap: break-word;">
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 30px; line-height: 42px;">Ch&agrave;o mừng bạn đến với UITGreen247!</span></p>
+  </div>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table id="u_content_image_3" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 10px;font-family:arial,helvetica,sans-serif;" align="left">
+        
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;" align="center">
+      
+      <img align="center" border="0" src="https://lh3.googleusercontent.com/fss0pM2FAwfw0hphUuykj9HLWC3h5Pp-_wP-6PIEfTiKwO261xDXF0IFpgN9SIRZvr_qO3gFzcIBA2bb72JSJZIwRqDwY2yOgMyq0WLw20leU1DzXDf6S6U9kDGtuNp8FT-j4a9Onx98D2O7pkaih6EB1M1s12ne7dLOpSTRK2STXmPWfrfIz4rhVeyE45CiuDEWz2zF_GkRdM5yenkherHBJLs_XvGmBmvUUMPMw5iDpTI4fCPaFK7CQAS2VtUIyK7AiqlMJBebLCKD-uw4ebXJjGMuYIDldesOXG9O8Cdxj5fjjgXH49aQ3EResOnibrNVV2ysxherOMoQVXGUULZExwk3EgtaYZ7vLvSRd-vL7wMYG6SnaWRrMxOR4NdoDlj4-wds00BhxGi9PS1hybTsn5EVCWNnAcWv44pH-I0RpyZeSIa0XGFZW4QaMiEmXxkUgLqTi6AKAugUJyOWU6UCZWoh2DC5Ps7TANkGekifH7mOYLYR9I8ZfZ2T9vsdOhZxZ-UrFIRLvpmey-vv5dh_yEwSMmz6idNLqfEjpgIbz9buY0v8uFFEwDOVHVdvJBSmw6FxqBC-PDx5lKjYoGerPfVqX58FbJojenw7937r67l57yo7KHs9tbdKxN0FcxwdxcxPLU2LiwMdpYo7VYJJo_WJBJrZ3768DnlLUxvNMW_fJnGnZDRUstnCgAiMXb3yJkrQvFJ7-kseH0suMjLolA=s894-no?authuser=1" alt="quacam" title="quacam" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 35%;max-width: 203px;" width="203" class="v-src-width v-src-max-width"/>
+      
+    </td>
+  </tr>
+</table>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 20px;font-family:arial,helvetica,sans-serif;" align="left">
+        
+  <div class="v-text-align" style="color: #616e7e; line-height: 140%; text-align: center; word-wrap: break-word;">
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px;">Mua thực phẩm sạch, đừng qu&ecirc;n gh&eacute; qua website của ch&uacute;ng tớ nh&eacute;!</span></p>
+  </div>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+  </div>
+</div>
+<!--[if (mso)|(IE)]></td><![endif]-->
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>
+
+
+
+<div class="u-row-container" style="padding: 0px;background-color: transparent">
+  <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
+    <div style="border-collapse: collapse;display: table;width: 100%;background-image: url('https://lh3.googleusercontent.com/oL_ZPBJUCTX8e_pBFbBL28B-Y3fEkHsyyvonDelDZ4esq1fG86QTcfCdWY369ZFKCArQts8SX00W8PboYnGykXR8VtNCvrTOxSiujJ3OKk8EIJ04cEmxfppLMBDH74Hcu0OGf8dnKi7HdYpk9da7a4R2pf135JvnctH9ffTxXC-jYuyRJY6bdOmaiiMoRiCWUiE01MpDoNzW9IrmyqfQV0tj0a5v72o6vuF5IIvqnOvS2CHEPdxcBb4qHYCuRVf-YmVgXsimbfmHk-HKqArOLndzwUxdh1fQYsNl7JK9ufnVIHp1SFog9Vqd_qyEJup7eWV1r9GJje_NKeavhb0YCm1DXL1R0gA56NRNHAJ2BnoIAsdhfzqI6Z7EkUk7cpJhO0QNJBdxDKvp6SnmQNcL2gpkmt8P5gkN3stcGfdDkV6AgPySL0Zta1LjkEk58veKqo8n8g0I61BLvXrUEVaE_v5naJzm2uJuRor_tIUVSLM_LbuXnOSmTRsOwdAm3_zSJnNAa6pvqlwALkGnt1hpyBz2F6fOZHACNwXTcgWauke6e-nde60ynDPs6Y3d8MQNmftd5JgnobPmUOA53_H4csKlRSJB1PAeohm4UbTpuZYPlVvRNGkLRaKgaSbQj-ah92TNKE0Jn_Sv8RyrKwrVo0Nq2-wwDI7zUjOPqm1Py5RF3uqsce4ZX0al14ZKRiVK4zHntQLF6lD1TlnX998VAybvZw=w626-h417-no?authuser=1');background-repeat: no-repeat;background-position: center top;background-color: transparent;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr style="background-image: url('images/image-2.jpeg');background-repeat: no-repeat;background-position: center top;background-color: transparent;"><![endif]-->
+      
+<!--[if (mso)|(IE)]><td align="center" width="600" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
+<div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
+  <div style="width: 100% !important;">
+  <!--[if (!mso)&(!IE)]><!--><div style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
+  
+<table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:12px;font-family:arial,helvetica,sans-serif;" align="left">
+        
+<div align="center">
+  <div style="display: table; max-width:43px;">
+  <!--[if (mso)|(IE)]><table width="43" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-collapse:collapse;" align="center"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:43px;"><tr><![endif]-->
+  
+    
+    <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 0px;" valign="top"><![endif]-->
+    <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px">
+      <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
+        <a href="https://facebook.com/" title="Facebook" target="_blank">
+          <img src="https://lh3.googleusercontent.com/fmRroa3mYPOeq9znFBCZ84Z2IravsaH_Kxs6qoACUtiD4ubh772Izm4XjY4sNWS5H1zCANuGcrbDNsH9GX8g8n-Q0psD_vvlokGw2E7iLXIVSN3cKsngXzvcAk89i8FEAGkBDKZX9yUr0KEEqPAcOVPoRl-WaGZHPrb2k68gDpdw8BnzldOiEipi-3Ai7X8HOXHB5SGmff-Tc1Oi8b65xGxIa18KBdtQms6Z9ZXwlUwXPC2UvT0Geyx3BEkcXQue3S92jjK3rCths-EB0uDA_Ja3ySPYow4ZRm3sHtHsb8ecXnnByl56fBZ1IxICit5eKtlTp41rDVzHA13P0aUTp8Y2xz-izz6HB1yK_fRXtammP6xCqMPy9q8UQqVHsUXsA6CNHDTU0E1X_GBfdUX9oa5cTvPSkMzJKotxuzwhLQyofLCZsgS0UWIrFq5OIxQmO0HGVfompPhl_Nsb0GfvdtGoPJdrSLB4pY-TslWcI0_0xMCxsifaHLuI2wMif51K01fRbNAw32iEcZbmoVoK7LQ4BgnhZHMF1X1Lpxubv-cJ7mKkDqZOlG6Y62RLxHtXc6mrl3_fB4ae2M-YAD0XU_rIwyJO3rhLnrNWUwVvlYmfcKQqN8w3c6PoSFyFm9Qf35z1PMR9JHJwT5cJtJzl7dYoruvJYxF8JtjGjIsUtyU9O95tYg7ujzR2ifONfo6diOjml7SUY2gEODrxb9vrcAxCdQ=s144-no?authuser=1" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+        </a>
+      </td></tr>
+    </tbody></table>
+    <!--[if (mso)|(IE)]></td><![endif]-->
+    
+    
+    <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+  </div>
+</div>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table id="u_content_text_7" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
+        
+  <div class="v-text-align" style="color: #616e7e; line-height: 160%; text-align: center; word-wrap: break-word;">
+    <p style="line-height: 160%; font-size: 14px;"><span style="font-family: 'arial black', 'avant garde', arial; font-size: 14px; line-height: 22.4px;"><strong><span style="font-size: 12px; line-height: 19.2px;">UITGreen247 - Health for Life</span></strong></span></p>
+  </div>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
+        
+  <table height="0px" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;border-top: 1px solid #BBBBBB;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+    <tbody>
+      <tr style="vertical-align: top">
+        <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top;font-size: 0px;line-height: 0px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
+          <span>&#160;</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+  <tbody>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 15px;font-family:arial,helvetica,sans-serif;" align="left">
+        
+  <div class="v-text-align" style="color: #34495e; line-height: 160%; text-align: center; word-wrap: break-word;">
+    <p style="font-size: 14px; line-height: 160%;">Nh&oacute;m 4 - Trường Đại học C&ocirc;ng nghệ Th&ocirc;ng tin - ĐHQGHCM<br />Made with<span style="color: #e03e2d; font-size: 14px; line-height: 22.4px;"> <span style="font-size: 14px; line-height: 22.4px;">❤ </span></span></p>
+  </div>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+  <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+  </div>
+</div>
+<!--[if (mso)|(IE)]></td><![endif]-->
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>
+
+
+    <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+    </td>
+  </tr>
+  </tbody>
+  </table>
+  <!--[if mso]></div><![endif]-->
+  <!--[if IE]></div><![endif]-->
+</body>
+
+</html>

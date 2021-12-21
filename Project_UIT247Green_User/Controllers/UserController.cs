@@ -229,10 +229,7 @@ namespace Project_UIT247Green_User.Controllers
                 CookieOptions cookie = new CookieOptions();
                 cookie.Expires = DateTime.Now.AddDays(30);
                 Response.Cookies.Append("cart", cartnull, cookie);
-                string body = "<!DOCTYPE html>" +
-                    "<html lang='en'>" + "<head>" +
-                    " </head> "+ "<body>" + " <img src='https://khostock.net/wp-content/uploads/2019/10/6-trieu-hinh-anh-trai-cay-000.jpg' width='300' height='230' style='display: block;' />" +
-                 "<p style='text - align: center; '>Chào mừng bạn đến với UITGreen247</p>";
+                string body = System.IO.File.ReadAllText(@"wwwroot\email_register.txt");
                 
                 MailUtils.SendGmail("uitgreen247@gmail.com", email, "Đăng kí thành viên UITGreen247", body, "uitgreen247@gmail.com", "LucasPhan94");
                 return View("login");
