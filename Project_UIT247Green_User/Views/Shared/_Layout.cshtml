@@ -49,7 +49,7 @@
     List<Category> list4 = new List<Category>();
 
     list1 = Category.FindCatChildByID(1);
-    list2 = Category.FindCatChildByID(2);
+    list2 = Category.FindCatChildByID(3);
     list3 = Category.FindCatChildByID(6);
     list4 = Category.FindCatChildByID(9);
 
@@ -850,9 +850,9 @@
                             <h3 class="modtitle">THÔNG TIN</h3>
                             <div class="modcontent">
                                 <ul class="menu">
-                                    <li><a href="about-us.html">Giới thiệu</a></li>
-                                    <li><a href="contact.html">Liên hệ</a></li>
-                                    <li><a href="blog-page.html">Tin tức</a></li>
+                                    <li><a asp-controller="home" asp-action="about_us">Giới thiệu</a></li>
+                                    <li><a asp-controller="home" asp-action="contact">Liên hệ</a></li>
+                                    <li><a asp-controller="blog" asp-action="index">Tin tức</a></li>
 
                                 </ul>
                             </div>
@@ -864,10 +864,17 @@
                             <h3 class="modtitle">MUA SẮM</h3>
                             <div class="modcontent">
                                 <ul class="menu">
-                                    <li><a href="contact.html">Giỏ hàng</a></li>
-                                    <li><a href="return.html">Thanh toán</a></li>
-                                    <li><a href="order-history.html">Lịch sử đơn hàng</a></li>
-                                    <li><a href="return.html">Trả hàng</a></li>
+                                    @if (ViewBag.email != null)
+                                    {
+                                        <li><a asp-controller="cartuser" asp-action="index">Giỏ hàng</a></li>
+                                        <li><a asp-controller="cartuser" asp-action="checkout">Thanh toán</a></li>
+                                        <li><a asp-controller="order" asp-action="order_history">Lịch sử đơn hàng</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a asp-controller="cart" asp-action="index">Giỏ hàng</a></li>
+                                        <li><a asp-controller="cart" asp-action="checkout">Thanh toán</a></li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -878,9 +885,16 @@
                             <h3 class="modtitle">TÀI KHOẢN</h3>
                             <div class="modcontent">
                                 <ul class="menu">
-                                    <li><a href="#">Thông tin tài khoản</a></li>
-                                    <li><a href="gift-voucher.html">Thẻ quà tặng</a></li>
-
+                                    @if (ViewBag.email != null)
+                                    {
+                                        <li><a asp-controller="user" asp-action="myaccount">Thông tin tài khoản</a></li>
+                                        <li><a asp-controller="user" asp-action="wishlist">Yêu thích</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a asp-controller="user" asp-action="login">Đăng nhập</a></li>
+                                        <li><a asp-controller="user" asp-action="register">Đăng kí</a></li>
+                                    }
                                 </ul>
                             </div>
                         </div>
