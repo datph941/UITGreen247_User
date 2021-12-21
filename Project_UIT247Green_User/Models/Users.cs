@@ -40,7 +40,7 @@ namespace Project_UIT247Green_User.Models
             Users u = new Users();
             using (var context = new DataContext())
             {
-                u = context.Users.Last();
+                u = context.Users.OrderBy(p=>p.id).Last();
             }
             return u;
         }

@@ -223,7 +223,7 @@ jQuery(function ($) {
 
 				
 /* ---------------------------------------------------
-	Back to Top
+	Back to Top - Len dau trang
 -------------------------------------------------- */
 $(".back-to-top").addClass("hidden-top");
 	$(window).scroll(function () {
@@ -237,7 +237,9 @@ $(".back-to-top").addClass("hidden-top");
 $('.back-to-top').click(function () {
 	$('body,html').animate({scrollTop:0}, 1200);
 	return false;
-});	
+});
+
+
 /* ---------------------------------------------------
 	Range slider && Filter  Reset
 -------------------------------------------------- */
