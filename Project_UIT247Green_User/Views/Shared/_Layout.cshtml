@@ -23,11 +23,11 @@
 	<link href="~/css/themecss/so_megamenu.css" rel="stylesheet">
 	<link href="~/css/themecss/so-categories.css" rel="stylesheet">
 	<link href="~/css/themecss/so-listing-tabs.css" rel="stylesheet">
-	<link href="~/css/header7.css" rel="stylesheet">
-	<link href="~/css/footer4.css" rel="stylesheet">
+	<link href="~/css/header.css" rel="stylesheet">
+	<link href="~/css/footer.css" rel="stylesheet">
     <link href="~/css/checkout.css" rel="stylesheet">
 
-	<link id="color_scheme" href="~/css/home7.css" rel="stylesheet">
+	<link id="color_scheme" href="~/css/home.css" rel="stylesheet">
 
     <!-- Responsive-->
 	<link href="~/css/responsive.css" rel="stylesheet">
@@ -570,14 +570,17 @@
                                                                                 <a class="title-submenu">Mua sắm</a>
                                                                                 <div>
                                                                                     <ul class="row-list">
-                                                                                        <li><a asp-controller="cart" asp-action="index">Giỏ hàng</a></li>
-                                                                                        <li><a asp-controller="cart" asp-action="checkout">Thanh toán</a></li>
+                                                                                        
                                                                                         @if (ViewBag.email != null)
                                                                                         {
+                                                                                        <li><a asp-controller="cartuser" asp-action="index">Giỏ hàng</a></li>
+                                                                                        <li><a asp-controller="cartuser" asp-action="checkout">Thanh toán</a></li>
                                                                                         <li><a asp-controller="user" asp-action="wishlist">Yêu thích</a></li>
                                                                                         }
                                                                                         else
                                                                                         {
+                                                                                        <li><a asp-controller="cart" asp-action="index">Giỏ hàng</a></li>
+                                                                                        <li><a asp-controller="cart" asp-action="checkout">Thanh toán</a></li>
                                                                                         <li><a asp-controller="user" asp-action="register">Yêu thích</a></li>
                                                                                         }
                                                                                     </ul>

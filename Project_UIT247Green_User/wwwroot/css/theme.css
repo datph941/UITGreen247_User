@@ -82,7 +82,7 @@
     .back-to-top {
       right: 40px; } }
 
-/* 2.SOCIAL ACCOUNTS (RIGHT FIXED PANEL)
+/* 2.SOCIAL ACCOUNTS 
 ----------------------------------------------------- */
 .social-widgets {
   position: fixed;
@@ -223,7 +223,7 @@
   width: 32px;
   height: 32px; }
 
-/* 3.TOP PANEL (RIGHT FIXED PANEL)
+/* 3.TOP PANEL
 ----------------------------------------------------- */
 @media (min-width: 1200px) {
   .navbar-compact {

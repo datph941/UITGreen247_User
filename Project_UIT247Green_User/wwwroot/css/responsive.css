@@ -158,7 +158,7 @@
     border-left: none;
     display: block; }
 
-  /*==============HOME 7 =====================*/
+  /*==============HOME =====================*/
   .layout-home7 .header-top-right .tabBlockTitle {
     -webkit-transform: translateY(-35px);
     -moz-transform: translateY(-35px);
@@ -196,7 +196,7 @@
 
   
 
-  /*==============HOME 7 =====================*/
+  /*==============HOME=====================*/
   .layout-home7 .type_7 .header-bottom .header-bottom__content {
     padding: 0 10px;
     background: rgba(255, 255, 255, 0.1); }
@@ -211,4 +211,3 @@
       padding: 0 15px;
       float: left; }
 
-/*# sourceMappingURL=responsive.css.map */
