@@ -52,7 +52,7 @@ namespace Project_UIT247Green_User.Models
         {
             using (var context = new DataContext())
             {
-                Orders_user ord = context.Orders_user.Last();
+                Orders_user ord = context.Orders_user.OrderBy(p=>p.id_ord).Last();
                 return ord;
             }
         }
