@@ -1,4 +1,0 @@
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Undefined mixin 'breakpoint'.\A         on line 1 of D:\xampp\htdocs\html\market\sass\responsive\responsive-992px-1199px.scss, in `breakpoint'\A         from line 1 of D:\xampp\htdocs\html\market\sass\responsive\responsive-992px-1199px.scss\A \A 1: @include breakpoint(md){\A 2:    .container-full{margin: 0; clear: both;}\A 3: /*==============HOME 1 =====================*/\A 4:     .layout-home1{\A 5: 		#yt_header_right .three-block .htmlcontent-home{margin: 0;}\A 6: 		#yt_header_right .three-block .htmlcontent-home img{width:100%;height: 140px;}"; }

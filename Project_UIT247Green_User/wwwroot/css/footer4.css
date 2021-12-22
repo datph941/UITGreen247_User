@@ -36,12 +36,11 @@
     opacity: 0;
     -webkit-transform: translate3d(0, 800px, 0);
     transform: translate3d(0, 800px, 0); } }
+
 /*******************************************************
   Style Color
 ********************************************************/
-/**************************************************************
-	  Footer Wrapper
-**************************************************************/
+
 .footer-container {
   padding: 0;
   background-color: #333333;
@@ -133,14 +132,8 @@ div.subscribe-home .btn {
   line-height: 18px;
   min-height: 40px; }
 .contact-address span {
-  /* [4] */
-  /* [6] */
-  /* [6] */
-  /* [7] */
   font-size: 18px;
-  /* [8] */
   font-size: 1.8rem;
-  /* [8] */
   left: 0px;
   position: absolute;
   background-color: #4b5056;
@@ -167,4 +160,3 @@ div.subscribe-home .btn {
   .footer-bottom-block .payment-footer img {
     margin: 0 3px; }
 
-/*# sourceMappingURL=footer4.css.map */
