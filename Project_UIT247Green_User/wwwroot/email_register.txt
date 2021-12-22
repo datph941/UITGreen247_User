@@ -190,7 +190,6 @@ a[x-apple-data-detectors='true'] {
   <div class="v-text-align" style="color: #616e7e; line-height: 140%; text-align: center; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px;">Mua thực phẩm sạch, đừng qu&ecirc;n gh&eacute; qua website của ch&uacute;ng tớ nh&eacute;!</span></p>
   </div>
-
       </td>
     </tr>
   </tbody>
