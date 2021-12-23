@@ -31,7 +31,7 @@ namespace Project_UIT247Green_User.Models
         {
             using (var context = new DataContext())
             {
-                Customer cus = context.Customer.Last();
+                Customer cus = context.Customer.OrderBy(p=>p.id_cus).Last();
                 return cus;
             }
         }
