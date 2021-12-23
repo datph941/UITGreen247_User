@@ -18,14 +18,14 @@ namespace Project_UIT247Green_User.Models
             }
             return listImg;
         }
-        public static List<Image> SelectImgByID()
+        public static Image SelectImgByID(int id)
         {
-            List<Image> listImg = new List<Image>();
+            Image Img = new Image();
             using (var context = new DataContext())
             {
-                listImg = context.Image.ToList();
+                Img = context.Image.Where(p => p.id_img == id).FirstOrDefault();
             }
-            return listImg;
+            return Img;
         }
     }
 

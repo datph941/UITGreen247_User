@@ -33,6 +33,11 @@
     }
 
     List<Product> listpro1 = Product.ListProBest(4);
+
+    Banner ban1 = Banner.Selectone("Banner lớn trang danh mục");
+    Image image1 = Image.SelectImgByID(ban1.id_img);
+    Banner ban2 = Banner.Selectone("Banner nhỏ trang danh mục");
+    Image image2 = Image.SelectImgByID(ban2.id_img);
 }
 <body class="res layout-subpage banners-effect-6">
     <div id="wrapper" class="wrapper-full ">
@@ -141,7 +146,7 @@
                         <div class="modcontent clearfix">
                             <div class="banners">
                                 <div>
-                                    <a href="#"><img src="~/image/demo/cms/left-image-static.png" alt="left-image"></a>
+                                    <a ><img src="@image2.link" alt="left-image"></a>
                                 </div>
                             </div>
 
@@ -157,8 +162,8 @@
                                 <div class="col-sm-12">
                                     <div class="banners">
                                         <div>
-                                            <a href="#">
-                                                <img src="~/image/demo/shop/category/electronic-cat.png"
+                                            <a>
+                                                <img src="@image1.link"
                                                      alt=""><br>
                                             </a>
                                         </div>

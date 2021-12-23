@@ -8,7 +8,17 @@ namespace Project_UIT247Green_User.Models
     public class Banner
     {
         public int id_banner { set; get; }
-        public int description { set; get; }
+        public string description { set; get; }
         public int id_img { set; get; }
+
+        public static Banner Selectone(string type)
+        {
+            Banner bn = new Banner();
+            using (var context = new DataContext())
+            {
+                bn = context.Banner.Where(p => p.description==type).FirstOrDefault();
+            }
+            return bn;
+        }
     }
 }

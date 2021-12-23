@@ -77,8 +77,16 @@
                                     <li class="col-lg-6 col-md-6 col-sm-6 static-image">
                                         <div class="banners">
                                             <div>
-                                                <a href="#">
-                                                    <img src="image/demo/cms/home7/image1-id11.jpg"
+                                                @{ 
+                                                    Banner ban1 = Banner.Selectone("Banner1 trang home");
+                                                    Image image1 = Image.SelectImgByID(ban1.id_img);
+                                                    Banner ban2 = Banner.Selectone("Banner2 trang home");
+                                                    Image image2 = Image.SelectImgByID(ban2.id_img);
+                                                    Banner ban3 = Banner.Selectone("Banner giữa trang home");
+                                                    Image image3 = Image.SelectImgByID(ban3.id_img);
+                                                }
+                                                <a>
+                                                    <img src="@image1.link"
                                                          alt="banner1">
                                                 </a>
                                             </div>
@@ -87,8 +95,8 @@
                                     <li class="col-lg-6 col-md-6 col-sm-6 static-image">
                                         <div class="banners">
                                             <div>
-                                                <a href="#">
-                                                    <img src="image/demo/cms/home7/image2-id11.jpg"
+                                                <a>
+                                                    <img src="@image2.link"
                                                          alt="banner1">
                                                 </a>
                                             </div>
@@ -282,7 +290,7 @@
                         <div class="module static-image col-xs-12 module--4x clearfix">
                             <div class="banners">
                                 <div>
-                                    <a href="#"><img src="image/demo/cms/home7/image3-id11.jpg" alt="banner1"></a>
+                                    <a><img src="@image3.link" alt="banner1"></a>
                                 </div>
                             </div>
                         </div>
