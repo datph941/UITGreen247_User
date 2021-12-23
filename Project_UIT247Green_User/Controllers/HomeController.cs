@@ -225,6 +225,8 @@ namespace Project_UIT247Green_User.Controllers
         public IActionResult Subscribe(string email, string type = "Normal")
         {
             int check = Sub_news.Insert(email);
+            string body = System.IO.File.ReadAllText(@"wwwroot\email_register.txt");
+            MailUtils.SendGmail("uitgreen247@gmail.com", email, "Đăng kí nhận tin tức từ UITGreen247", body, "uitgreen247@gmail.com", "LucasPhan94");
             if (type == "ajax")
             {
                 return Json(new

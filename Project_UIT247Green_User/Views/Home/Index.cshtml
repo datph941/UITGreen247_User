@@ -848,6 +848,7 @@
                                                             double price_new = (@item.price * (100 + @item.sale_rate) / 100 * ((100 - @item.discount) / 100));
                                                             <span class="price-new">@String.Format("{0:0,0 vnđ}", price_new)</span>
                                                             <span class="price-old">@String.Format("{0:0,0 vnđ}", price_old)</span>
+                                                            <span class="label label-percent">@item.discount%</span>
                                                         }
                                                     </div>
                                                 </div>
