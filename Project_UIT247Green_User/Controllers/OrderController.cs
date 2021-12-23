@@ -71,9 +71,11 @@ namespace Project_UIT247Green_User.Controllers
         }
         public IActionResult Return(int id_ord)
         {
-            Order_user_items.DeleteItem(id_ord);
-            Order_status.DeleteStatus(id_ord);
-            Orders_user.DeleteOrder(id_ord);
+            string key = "email";
+            var cookie = Request.Cookies[key];
+            Users u = Users.FindU(cookie);
+            Orders_user.UpdateStatus(id_ord,4);
+            Order_status.Insert(id_ord, "Hủy đơn", "");
             return RedirectToAction("order_history");
         }
     }

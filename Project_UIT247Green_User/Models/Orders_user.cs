@@ -72,5 +72,20 @@ namespace Project_UIT247Green_User.Models
                 return list;
             }
         }
+        public static void UpdateStatus(int id, int status)
+        {
+            using (var context = new DataContext())
+            {
+                Orders_user orders = (from p in context.Orders_user
+                                      where (p.id_ord == id)
+                                      select p).FirstOrDefault();
+                if (orders != null)
+                {
+                    orders.status = status;
+                }
+                context.SaveChanges();
+
+            }
+        }
     }
 }

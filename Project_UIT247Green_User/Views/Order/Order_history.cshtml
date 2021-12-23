@@ -55,7 +55,7 @@
                                     @foreach (var item in listord)
                                     {
                                 <tr>
-                                    <td class="text-center">@item.id_ord</td>                     
+                                    <td class="text-center">@item.id_ord</td>
                                     @if (item.status == 0)
                                     {
                                         <td class="text-center">Đã đặt hàng</td>
@@ -66,7 +66,15 @@
                                     }
                                     else if (item.status == 2)
                                     {
+                                        <td class="text-center">Đang vận chuyển</td>
+                                    }
+                                    else if (item.status == 3)
+                                    {
                                         <td class="text-center">Đã giao hàng</td>
+                                    }
+                                    else if (item.status == 4)
+                                    {
+                                        <td class="text-center">Đã hủy</td>
                                     }
                                     <td class="text-center">@item.date</td>
                                     <td class="text-right">@String.Format("{0:0,0 VNĐ}", item.price_sum)</td>
