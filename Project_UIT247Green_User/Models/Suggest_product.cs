@@ -15,7 +15,7 @@ namespace Project_UIT247Green_User.Models
         {
             using (var context = new DataContext())
             {
-                var sug = (from p in context.Suggest_product
+                List<Suggest_product> sug = (from p in context.Suggest_product
                            where (p.id_pro == id)
                            select p).Take(6).ToList();
                 return sug;
