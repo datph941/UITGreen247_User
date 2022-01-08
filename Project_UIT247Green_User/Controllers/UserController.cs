@@ -47,26 +47,29 @@ namespace Project_UIT247Green_User.Controllers
                     cookie1.Expires = DateTime.Now.AddDays(30);
                     Response.Cookies.Append("cart", value, cookie1);
                 }
-                if (!cartcookie.Equals(""))
+                else
                 {
-                    string[] arrcart = cartcookie.Split("|");
-                    for (int i = 0; i < arrcart.Length; i++)
+                    if (!cartcookie.Equals(""))
                     {
-                        if (arrcart[i] != "")
+                        string[] arrcart = cartcookie.Split("|");
+                        for (int i = 0; i < arrcart.Length; i++)
                         {
-                            string[] arritem = arrcart[i].Split(",");
-                            int id_pro = Convert.ToInt32(arritem[0]);
-                            int quantity = Convert.ToInt32(arritem[1]);
-                            pro = Product.FindProByID(id_pro);
-                            Item item = new Item(pro, quantity);
-                            cart.Add(item);
+                            if (arrcart[i] != "")
+                            {
+                                string[] arritem = arrcart[i].Split(",");
+                                int id_pro = Convert.ToInt32(arritem[0]);
+                                int quantity = Convert.ToInt32(arritem[1]);
+                                pro = Product.FindProByID(id_pro);
+                                Item item = new Item(pro, quantity);
+                                cart.Add(item);
+                            }
                         }
                     }
                 }
                 if (cart != null)
                 {
                     ViewBag.cart = cart;
-                    ViewBag.total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100));
+                    ViewBag.total = ViewBag.total = cart.Sum(item => item.Quantity * item.Product.price * (100 + item.Product.sale_rate) / 100 * ((100 - item.Product.discount) / 100)); ;
                 }
                 else
                 {

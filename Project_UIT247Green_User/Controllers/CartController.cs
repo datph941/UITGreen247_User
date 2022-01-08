@@ -63,15 +63,22 @@ namespace Project_UIT247Green_User.Controllers
         public IActionResult CheckPromotion(string coupon, string type = "Normal")
         {
             Promotion pro = new Promotion();
-            pro = Promotion.selectbyname(coupon);          
+            pro = Promotion.selectbyname(coupon);
             string nofi = "";
             double discount1 = 0;
             if (pro != null)
             {
-                string discount = String.Format("{0:0,0 vnđ}", pro.discount);
-                nofi = pro.name_promotion + " khả dụng được giảm " + discount;
-                discount1 = pro.discount;
-            }    
+                if (pro.id_promotion == 1)
+                {
+                    nofi = "Mã đã hết hạn sử dụng";
+                }
+                else
+                {
+                    string discount = String.Format("{0:0,0 vnđ}", pro.discount);
+                    nofi = pro.name_promotion + " khả dụng được giảm " + discount;
+                    discount1 = pro.discount;
+                }
+            }
             else
             {
                 nofi = "Mã khuyến mãi không khả dụng";
@@ -208,7 +215,7 @@ namespace Project_UIT247Green_User.Controllers
             }    
             return RedirectToAction("index");
         }
-        public IActionResult Minus(int id, int SoLuong = -1, string type = "Normal")
+        public IActionResult Minus(int id, int SoLuong = -1)
         {
             string cartcookie = Request.Cookies["cart"];
             if (cartcookie == null || cartcookie.Equals(""))
@@ -233,7 +240,7 @@ namespace Project_UIT247Green_User.Controllers
                         int quantity = Convert.ToInt32(arritem[1]);
                         if (id_pro == id)
                         {
-                            if(quantity>=0)
+                            if(quantity>1)
                             {
                                 quantity += SoLuong;
                             }       
@@ -257,7 +264,7 @@ namespace Project_UIT247Green_User.Controllers
             Response.Cookies.Append("cart", cartcookie, cookie);
             return RedirectToAction("Index");
         }
-        public IActionResult Buy(int id, int SoLuong=1, string type = "Normal")
+        public IActionResult Buy(int id, int SoLuong=1)
         {
             string cartcookie = Request.Cookies["cart"];
             if (cartcookie.Equals(""))
@@ -286,6 +293,7 @@ namespace Project_UIT247Green_User.Controllers
                             {
                                 quantity += SoLuong;
                                 arritem[1] = quantity.ToString();
+
                             }
                             string item1 = id_pro + "," + quantity;
                             if (i == 0)

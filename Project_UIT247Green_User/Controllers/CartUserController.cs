@@ -81,7 +81,7 @@ namespace Project_UIT247Green_User.Controllers
             this.ViewBag.total = total;
             return View();
         }
-        public IActionResult Buy(int id, int SoLuong, string type = "Normal")
+        public IActionResult Buy(int id, int SoLuong)
         {
             string key = "email";
             var cookie = Request.Cookies[key];
@@ -97,20 +97,20 @@ namespace Project_UIT247Green_User.Controllers
             Cart.ChangeQuantity(u.id, idpro, 1);
             return RedirectToAction("index");
         }
-        public IActionResult Minus(int idpro)
+        public IActionResult Minus(int id)
         {
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            Cart.ChangeQuantity(u.id, idpro, -1);
+            Cart.ChangeQuantity(u.id, id, -1);
             return RedirectToAction("index");
         }
-        public IActionResult Remove(int idpro)
+        public IActionResult Remove(int id)
         {
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            Cart.DeleteCart(u.id, idpro);          
+            Cart.DeleteCart(u.id, id);          
             return RedirectToAction("index");
         }
         public IActionResult UpdateAdd(string addr1, string addr2, string city, string zone,string telephone,string firstname)

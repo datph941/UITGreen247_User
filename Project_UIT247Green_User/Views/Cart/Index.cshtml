@@ -37,7 +37,7 @@
             <div id="content" class="col-sm-12">
                 <h2 class="title">Giỏ hàng của bạn</h2>
                 <div class="table-responsive form-group">
-                    <table class="table table-bordered">
+                    <table class="cart tb table table-bordered">
                         <thead>
                             <tr>
                                 <td class="text-center">Sản phẩm</td>
@@ -67,18 +67,21 @@
                                 <td class="text-left">
                                     <a asp-controller="home" asp-action="product_detail" asp-route-idpro="@item.Product.id_pro" asp-route-idcat="@item.Product.id_cat">@item.Product.name_pro</a><br />
                                 </td>
+                                @{
+                                    double price_new = (@item.Product.price * (100 + @item.Product.sale_rate) / 100 * ((100 - @item.Product.discount) / 100));
+                                }
                                 <td class="text-left" width="200px">
                                     <div class="input-group btn-block quantity">
                                         <span class="input-group-btn">
-                                            <a id="minus" type="button" data-toggle="tooltip" asp-controller="cart" asp-action="minus" asp-route-id="@item.Product.id_pro"
-                                               class="btn">
+                                            <a type="button" data-toggle="tooltip" data-id="@item.Product.id_pro" data-price="@price_new"
+                                               class="minus btn">
                                                 <i class="fa fa-minus"></i>
                                             </a>
                                         </span>
-                                        <input id="sl" type="text" name="quantity" value="@item.Quantity" size="1" class="form-control" readonly />
+                                        <input id="sl_@item.Product.id_pro" type="text" name="quantity" value="@item.Quantity" size="1" class="form-control" readonly />
                                         <span class="input-group-btn">
-                                            <a type="button" data-toggle="tooltip" asp-controller="cart" asp-action="buy" asp-route-id="@item.Product.id_pro"
-                                               class="btn">
+                                            <a type="button" data-toggle="tooltip" data-id="@item.Product.id_pro" data-price="@price_new"
+                                               class="plus btn">
                                                 <i class="fa fa-plus"></i>
                                             </a>
                                         </span>
@@ -87,11 +90,9 @@
                                 <td class="text-right">
                                     <p>@item.Product.type</p>
                                 </td>
-                                @{
-                                    double price_new = (@item.Product.price * (100 + @item.Product.sale_rate) / 100 * ((100 - @item.Product.discount) / 100));
-                                }
-                                <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new)</td>
-                                <td class="text-right">@String.Format("{0:0,0 vnđ}", price_new * item.Quantity)</td>
+
+                                <td class="text-right">@String.Format("{0:0,0 VNĐ}", price_new)</td>
+                                <td  id="gia_@item.Product.id_pro" class="gia text-right">@String.Format("{0:0,0 VNĐ}", price_new * item.Quantity)</td>
                                 @if (item.Product.quantity > 0)
                                 {
                                     <td class="text-right">
@@ -105,8 +106,8 @@
                                     </td>
                                 }
                                 <td class="text-right">
-                                    <a type="button" data-toggle="tooltip" asp-controller="cart" asp-action="remove" asp-route-id="@item.Product.id_pro"
-                                       class="btn" onClick="">
+                                    <a type="button" data-toggle="tooltip" data-id="@item.Product.id_pro"
+                                       class="remove btn" onClick="">
                                         <i class="fa fa-minus-circle"></i> Xóa
                                     </a>
                                 </td>
@@ -131,3 +132,70 @@
     </div>
     <!-- //Main Container -->
 </body>
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        $(document).ready(function () {
+            $(".plus").click(function () {
+                var id = '#sl_' + $(this).data("id");
+                var gia = '#gia_' + $(this).data("id");
+                var quan = parseInt($(id).val()) + 1;
+                $(id).val(quan);
+                var price = $(this).data("price");
+                var price_sum = parseInt(price) * parseInt(quan);
+                $(gia).html(price_sum.toLocaleString() + ' VNĐ');
+                $.ajax({
+                    url: "/Cart/Buy",
+                    data: {
+                        id: $(this).data("id"),
+                        SoLuong: 1,
+                    },
+                    success: function (data) {
+                        $("#cart").load(location.href + " #cart>*", "");
+                    },
+                    error: function () {
+                        
+                    }
+                });
+            });
+            $(".minus").click(function () {
+                var id = '#sl_' + $(this).data("id");
+                var gia = '#gia_' + $(this).data("id");
+                if ($(id).val() > 1) {
+                    var quan = parseInt($(id).val()) - 1;
+                    $(id).val(quan);
+                    var price = $(this).data("price");
+                    var price_sum = parseInt(price) * parseInt(quan);
+                    $(gia).html(price_sum.toLocaleString() + ' VNĐ');
+                }
+                $.ajax({
+                    url: "/Cart/Minus",
+                    data: {
+                        id: $(this).data("id")
+                    },
+                    success: function (data) {
+                        $("#cart").load(location.href + " #cart>*", "");
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+            $(".remove").click(function () {
+                $(this).parent().parent().remove();
+                $.ajax({
+                    url: "/Cart/Remove",
+                    data: {
+                        id: $(this).data("id")
+                    },
+                    success: function (data) {
+                        $("#cart").load(location.href + " #cart>*", "");
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+        });
+    </script>
+}
