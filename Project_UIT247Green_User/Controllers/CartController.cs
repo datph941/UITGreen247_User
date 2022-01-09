@@ -144,7 +144,7 @@ namespace Project_UIT247Green_User.Controllers
         }
         public IActionResult Payment(string firstname, string email,string telephone,string addr1, string addr2, string city, string zone,string coupon, string comments, int pay)
         {
-            string address = addr1 + ", " + addr2 + ", " + city + ", " + zone;
+            string address = addr1 + "," + addr2 + "," + city + "," + zone;
             int id_pro = 1;
             double ship = 15000;
             Promotion pro1 = new Promotion();          

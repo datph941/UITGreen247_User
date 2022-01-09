@@ -102,7 +102,11 @@ namespace Project_UIT247Green_User.Controllers
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            Cart.ChangeQuantity(u.id, id, -1);
+            Cart cart = Cart.FindCartById(u.id, id);
+            if(cart.quantity>1)
+            {
+                Cart.ChangeQuantity(u.id, id, -1);
+            }    
             return RedirectToAction("index");
         }
         public IActionResult Remove(int id)

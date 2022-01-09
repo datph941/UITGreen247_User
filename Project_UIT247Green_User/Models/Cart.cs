@@ -20,6 +20,15 @@ namespace Project_UIT247Green_User.Models
             }
             return list;
         }
+        public static Cart FindCartById(int id_u, int id)
+        {
+            Cart cart = new Cart();
+            using (var context = new DataContext())
+            {
+                cart = context.Cart.Where(p => p.id_user == id_u && p.id_pro == id).FirstOrDefault();
+            }
+            return cart;
+        }
         public static void InsertCart(int id_user, int id_pro, int quan)
         {
             using (var context = new DataContext())
