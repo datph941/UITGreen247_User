@@ -86,7 +86,7 @@
                                     </div>
                                     <!-- Review ---->
                                     <div class="box-review form-group">
-                                        <div class="ratings">
+                                        <div id="rate" class="ratings">
                                             <div class="rating-box">
                                                 @for (int i = 1; i < 6; i++)
                                                 {
@@ -106,7 +106,7 @@
                                             </div>
                                         </div>
 
-                                        <a class="reviews_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">@socmt đánh giá</a>	|
+                                        <a id="socmt" data-cmt="@socmt" class="reviews_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">@socmt đánh giá</a>	|
                                         <a class="write_review_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Đánh giá sản phẩm này</a>
                                     </div>
 
@@ -486,6 +486,9 @@
                             });
                         });
                         $(".cmt").click(function () {
+                            var socmt = parseInt($("#socmt").data("cmt")) + 1;
+                            console.log(socmt);
+                            $("#socmt").html(socmt + ' đánh giá');
                             $.ajax({
                                 url: "/Home/Cmt_Product",
                                 data: {
@@ -497,11 +500,12 @@
                                 },
                                 success: function (data) {
                                     $("#review").load(location.href + " #review>*", "");
-                                    $("#ratings").load(location.href + " #ratings>*", "");
+                                    $("#rate").load(location.href + " #rate>*", "");
                                 },
                                 error: function () {
                                     $("#review").load(location.href + " #review>*", "");
-                                    $("#ratings").load(location.href + " #ratings>*", "");}
+                                    $("#rate").load(location.href + " #rate>*", "");
+                                }
                             });
                         }); 
                         $(".wishlist").click(function () {
@@ -607,6 +611,9 @@
                             });
                         });
                         $(".cmt").click(function () {
+                            var socmt = parseInt($("#socmt").data("cmt")) + 1;
+                            console.log(socmt);
+                            $("#socmt").html(socmt + ' đánh giá');
                             $.ajax({
                                 url: "/Home/Cmt_Product",
                                 data: {
@@ -618,9 +625,11 @@
                                 },
                                 success: function (data) {
                                     $("#review").load(location.href + " #review>*", "");
+                                    $("#rate").load(location.href + " #rate>*", "");
                                 },
                                 error: function () {
                                     $("#review").load(location.href + " #review>*", "");
+                                    $("#rate").load(location.href + " #rate>*", "");
                                 }
                             });
                         });

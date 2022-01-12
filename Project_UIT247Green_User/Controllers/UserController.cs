@@ -266,12 +266,12 @@ namespace Project_UIT247Green_User.Controllers
             }
             return RedirectToAction("index", "home");
         }
-        public IActionResult DeleteWishList(int id_pro)
+        public IActionResult DeleteWishList(int id)
         {
             string key = "email";
             var cookie = Request.Cookies[key];
             Users u = Users.FindU(cookie);
-            Wishlist.Delete(u.id, id_pro);
+            Wishlist.Delete(u.id, id);
             return RedirectToAction("wishlist");
         }
      

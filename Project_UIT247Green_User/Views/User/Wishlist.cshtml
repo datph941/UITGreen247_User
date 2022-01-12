@@ -93,7 +93,7 @@
                                                             <i class="fa fa-shopping-cart"></i>
                                                         </button>
                                                     }
-                                                    <a class="btn btn-danger" title="" data-toggle="tooltip" asp-controller="user" asp-action="deletewishlist" asp-route-id_pro="@item1.id_pro"
+                                                    <a class="delete btn btn-danger" title="" data-toggle="tooltip" data-id="@item1.id_pro"
                                                        data-original-title="Xóa"><i class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
@@ -157,7 +157,35 @@
                             });
                         }
                     });
-                });             
+                });
+
+                $(".delete").click(function () {
+                    Swal.fire({
+                        title: 'Bạn có muốn xóa?',
+                        showDenyButton: true,
+                        confirmButtonText: 'Xóa',
+                        denyButtonText: `Không xóa`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire('Vâng bạn đã xóa!', '', 'success')
+                                $(this).parent().parent().remove();
+                                $.ajax({
+                                    url: "/User/DeleteWishList",
+                                    data: {
+                                        id: $(this).data("id"),
+                                    },
+                                    success: function (data) {
+
+                                    },
+                                    error: function () {
+
+                                    }
+                                });
+                        } else if (result.isDenied) {
+                            Swal.fire('Sản phẩm không được xóa', '', 'info')
+                        }
+                    })
+                });
             });
         </script>
     }
