@@ -1,4 +1,4 @@
-# Project: UITGreen247_UserInterface
+# Project: UITGreen247_User
 ![uit](https://user-images.githubusercontent.com/88669332/180483362-c6d8bc63-0e36-41ba-8bf6-57d5ffdfba3f.png)
 
 # Đồ án môn học: Phát triển ứng dụng Web & Xây dựng Hệ thống Thông tin Framework.
